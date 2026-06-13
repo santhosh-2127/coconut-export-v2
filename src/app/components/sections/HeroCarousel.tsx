@@ -10,7 +10,7 @@ const slides = [
     theme: "Fresh Brown Coconut Export",
     headline: "Premium Export Quality Fresh Coconuts",
     subheading: "Supplying international markets with carefully selected export-grade coconuts from certified farms across Tamil Nadu.",
-    image: "/images/products/fresh-brown-coconut/hero.jpg",
+    image: "/images/products/fresh-brown-coconut/Fresh-Brown-image.png",
     cta: [
       { label: "Explore Products", href: "/products/fresh-brown-coconut", primary: false },
       { label: "Request Quote", href: "/#contact", primary: true },
@@ -21,14 +21,14 @@ const slides = [
     theme: "Pollachi Origin",
     headline: "Sourced From The Coconut Capital Of India",
     subheading: "Premium coconuts from Pollachi farms trusted by global buyers for consistent quality and reliable supply.",
-    image: "/images/storytelling/farm-sourcing.jpg",
+    image: "/images/storytelling/INQUIRY-image.png",
   },
   {
     id: 3,
     theme: "Global Export",
     headline: "Reliable Global Coconut Supply Chain",
     subheading: "From sourcing and processing to container loading and worldwide delivery — end-to-end export logistics managed in-house.",
-    image: "/images/storytelling/container-loading.jpg",
+    image: "/images/storytelling/CONTAINER LOADING-image.png",
   },
   {
     id: 4,
@@ -50,12 +50,9 @@ export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const touchStartX = useRef(0);
 
   const totalSlides = slides.length;
-
-  const goTo = useCallback((index: number) => {
-    setCurrent(index);
-  }, []);
 
   const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % totalSlides);
@@ -64,6 +61,22 @@ export default function HeroCarousel() {
   const prev = useCallback(() => {
     setCurrent((prev) => (prev - 1 + totalSlides) % totalSlides);
   }, [totalSlides]);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next();
+      else prev();
+    }
+  }, []);
+
+  const goTo = useCallback((index: number) => {
+    setCurrent(index);
+  }, []);
 
   useEffect(() => {
     if (isPaused) return;
@@ -77,6 +90,8 @@ export default function HeroCarousel() {
     <section
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       className="relative h-[80vh] sm:h-[85vh] lg:h-screen overflow-hidden bg-[#0C1A12] select-none"
       aria-label="Hero carousel — premium coconut export showcase"
       role="region"
@@ -108,7 +123,7 @@ export default function HeroCarousel() {
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/30 to-transparent" />
 
           {/* Content */}
-          <div className="absolute inset-0 flex items-center pt-20 sm:pt-24">
+          <div className="absolute inset-0 flex items-center pt-14 sm:pt-24">
             <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -117,7 +132,7 @@ export default function HeroCarousel() {
                 className="max-w-3xl"
               >
                 {/* Theme badge */}
-                <div className="inline-flex items-center gap-3 mb-6">
+                <div className="inline-flex items-center gap-3 mb-4 sm:mb-6">
                   <span className="block w-8 h-px bg-[#D4A017]" />
                   <span className="text-[#D4A017] text-[11px] font-semibold uppercase tracking-[0.24em]">
                     {slides[current].theme}
@@ -125,29 +140,29 @@ export default function HeroCarousel() {
                 </div>
 
                 {/* Headline */}
-                <h2 className="font-serif text-[clamp(2rem,4.5vw,4rem)] text-white font-bold leading-[1.08] tracking-[-0.02em]">
+                <h2 className="font-serif text-[clamp(1.5rem,4.5vw,4rem)] text-white font-bold leading-[1.08] tracking-[-0.02em]">
                   {slides[current].headline}
                 </h2>
 
                 {/* Subheading */}
-                <p className="mt-5 text-[15px] sm:text-base lg:text-lg text-white/65 leading-relaxed max-w-[600px] font-light">
+                <p className="mt-3 sm:mt-5 text-[13px] sm:text-base lg:text-lg text-white/65 leading-relaxed max-w-[600px] font-light">
                   {slides[current].subheading}
                 </p>
 
                 {/* CTAs (slide 1 only) */}
                 {slides[current].cta && (
-                  <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                  <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row gap-2 sm:gap-4">
                     {slides[current].cta.map((btn) =>
                       btn.primary ? (
                         <a
                           key={btn.label}
                           href={btn.href}
-                          className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]"
+                          className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-8 py-2.5 sm:py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-xs sm:text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]"
                         >
                           <span className="relative z-10">{btn.label}</span>
                           <svg
                             aria-hidden="true"
-                            className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                            className="relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -161,7 +176,7 @@ export default function HeroCarousel() {
                         <a
                           key={btn.label}
                           href={btn.href}
-                          className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white/90 font-semibold text-sm tracking-[0.04em] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/40 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+                          className="group inline-flex items-center justify-center gap-2 px-4 sm:px-8 py-2.5 sm:py-4 border border-white/20 text-white/90 font-semibold text-xs sm:text-sm tracking-[0.04em] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/40 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
                         >
                           Explore Products
                           <svg
@@ -186,7 +201,7 @@ export default function HeroCarousel() {
       </AnimatePresence>
 
       {/* ── Navigation Arrows ── */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 flex items-center justify-between pointer-events-none px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 hidden sm:flex items-center justify-between pointer-events-none px-4 sm:px-6 lg:px-8">
         <button
           onClick={prev}
           className="pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center bg-white/[0.06] border border-white/[0.12] backdrop-blur-sm text-white/70 hover:bg-white/[0.12] hover:text-white transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]"

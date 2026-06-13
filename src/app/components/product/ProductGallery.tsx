@@ -25,15 +25,15 @@ export default function ProductGallery({ product }: { product: Product }) {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-          {/* Main large image */}
+          {/* Main large image - close-up detail */}
           <motion.div variants={fadeUp} initial="initial" whileInView="animate" viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.05 }} className="md:col-span-7 row-span-2">
             <div className="group relative overflow-hidden bg-[#1B4332] h-full min-h-[340px] md:min-h-[480px] border border-[#E5E7EB]">
-              <Image src={product.images.hero.src} alt={product.images.hero.alt} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-105" sizes="(max-width:768px) 100vw, 58vw" />
+              <Image src={product.images.closeUp?.src ?? product.images.hero.src} alt={product.images.closeUp?.alt ?? product.images.hero.alt} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-105" sizes="(max-width:768px) 100vw, 58vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 w-10 h-10 border-l-2 border-t-2 border-[#D4A017]/60" />
               <div className="absolute bottom-0 right-0 w-10 h-10 border-r-2 border-b-2 border-[#D4A017]/40" />
               <div className="absolute bottom-5 left-5">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/80 bg-black/40 backdrop-blur-sm px-3 py-1.5 border border-white/20">Product Image</span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/80 bg-black/40 backdrop-blur-sm px-3 py-1.5 border border-white/20">Product Detail</span>
               </div>
             </div>
           </motion.div>

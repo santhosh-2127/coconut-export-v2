@@ -53,7 +53,7 @@ const EXT = ".jpg";
    ════════════════════════════════════════════════════ */
 export const freshBrownCoconutImages: ProductImageSet = {
   hero: {
-    src: `${BASE}/fresh-brown-coconut/hero${EXT}`,
+    src: `/images/products/fresh-brown-coconut/Fresh-Brown-image.png`,
     alt: "Premium fresh brown coconuts stacked for export — semi-husked Grade A quality with uniform sizing",
     title: "Fresh Brown Coconut — Premium Export Grade A",
     caption: "Semi-husked mature coconuts ready for international shipment from Tamil Nadu, India",

@@ -10,7 +10,7 @@ const processSteps = [
     step: 1, title: "Inquiry", phase: "Step 1",
     description: "Buyer submits product requirements, volume, destination, and preferred incoterm. Our team reviews and logs the inquiry within 2 business hours.",
     businessValue: "Structured intake ensures no critical details are missed and accelerates response time.",
-    image: "/images/storytelling/team-facility.jpg",
+    image: "/images/storytelling/INQUIRY-image.png",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
@@ -21,7 +21,7 @@ const processSteps = [
     step: 2, title: "Quotation", phase: "Step 2",
     description: "Detailed commercial quotation issued within 24 hours — including product pricing, shipping costs, and delivery timeline based on the specified incoterm.",
     businessValue: "Transparent, itemized pricing enables informed procurement decisions.",
-    image: "/images/storytelling/farm-sourcing.jpg",
+    image: "/images/storytelling/QUOTATION-image.png",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
@@ -32,7 +32,7 @@ const processSteps = [
     step: 3, title: "Order Confirmation", phase: "Step 3",
     description: "Purchase order is received, confirmed, and logged into our production pipeline. Container booking and raw material allocation begin immediately.",
     businessValue: "Fast confirmation reduces lead time and locks in production slots.",
-    image: "/images/storytelling/team-facility.jpg",
+    image: "/images/storytelling/ORDER CONFIRMATION-imge.png",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-.702 3.142 3.745 3.745 0 01-3.142.702 3.745 3.745 0 01-3.068 1.593c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 01-3.142-.702 3.745 3.745 0 01-.702-3.142A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 01.702-3.142 3.745 3.745 0 013.142-.702A3.745 3.745 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 013.142.702 3.745 3.745 0 01.702 3.142A3.745 3.745 0 0121 12z" />
@@ -43,7 +43,7 @@ const processSteps = [
     step: 4, title: "Production & Packaging", phase: "Step 4",
     description: "Products are processed, graded, and packed according to order specifications. Packaging configurations are verified against buyer requirements.",
     businessValue: "Tailored packaging ensures product integrity and reduces damage during transit.",
-    image: "/images/storytelling/processing-facility.jpg",
+    image: "/images/storytelling/PRODUCTION & PACKAGING-image.png",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
@@ -54,7 +54,7 @@ const processSteps = [
     step: 5, title: "Container Loading", phase: "Step 5",
     description: "Pre-cooled containers are loaded at our facility under supervision. Loading is photographed and documented for quality records and pre-shipment inspection.",
     businessValue: "Supervised loading reduces cargo damage and ensures optimal container utilization.",
-    image: "/images/storytelling/container-loading.jpg",
+    image: "/images/storytelling/CONTAINER LOADING-image.png",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
@@ -65,7 +65,7 @@ const processSteps = [
     step: 6, title: "Documentation", phase: "Step 6",
     description: "Complete export documentation package prepared: Bill of Lading, Commercial Invoice, Packing List, Certificate of Origin, Phytosanitary Certificate, and customs clearance.",
     businessValue: "Comprehensive documentation ensures smooth customs clearance at destination.",
-    image: "/images/storytelling/quality-inspection.jpg",
+    image: "/images/storytelling/QUOTATION-image.png",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
@@ -76,7 +76,7 @@ const processSteps = [
     step: 7, title: "Shipment", phase: "Step 7",
     description: "Container is gated in at the port, loaded onto the vessel, and departs on schedule. Real-time tracking is shared with the buyer for full visibility.",
     businessValue: "Real-time tracking and proactive updates eliminate uncertainty during transit.",
-    image: "/images/logistics-hero.jpg",
+    image: "/images/storytelling/SHIPMENT-image.png",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
@@ -87,7 +87,7 @@ const processSteps = [
     step: 8, title: "Delivery", phase: "Step 8",
     description: "Vessel arrives at destination port. Customs clearance is supported with complete documentation. Cargo is discharged and available for buyer's collection or last-mile delivery.",
     businessValue: "End-to-end logistics management from farm gate to destination port.",
-    image: "/images/storytelling/packaging-line.jpg",
+    image: "/images/storytelling/DELIVERY-image.png",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />

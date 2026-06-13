@@ -249,7 +249,7 @@ export default function AboutHero() {
                   className="w-full h-[125%] -top-[12.5%] relative"
                 >
                   <Image
-                    src="/images/storytelling/farm-sourcing.jpg"
+                    src="/images/Eachpage/About-page-image.png"
                     alt="Farmers harvesting premium coconuts in Tamil Nadu — direct farm sourcing from certified partner farms for global export"
                     fill
                     className="object-cover object-center"

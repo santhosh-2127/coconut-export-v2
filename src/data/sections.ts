@@ -57,7 +57,7 @@ export const supplyChainSteps: SupplyChainStep[] = [
       "Buyers benefit from direct farm relationships that eliminate intermediaries, ensuring complete traceability from grove to global buyer and competitive pricing from source.",
     qualityRelevance:
       "Farm-level quality gates — each batch inspected for maturity, size uniformity, and visual integrity before acceptance into processing.",
-    image: "/images/storytelling/farm-sourcing.jpg",
+    image: "/images/Farm Sourcing-image.png",
   },
   {
     step: 2,
@@ -68,7 +68,7 @@ export const supplyChainSteps: SupplyChainStep[] = [
       "Commercial partners receive products processed under internationally certified food safety protocols — protecting supply chain reputation and ensuring import compliance.",
     qualityRelevance:
       "Critical Control Points monitored continuously: temperature, humidity, hygiene, and product integrity across all processing stages.",
-    image: "/images/storytelling/processing-facility.jpg",
+    image: "/images/Quality Processing-image.png",
   },
   {
     step: 3,
@@ -79,7 +79,7 @@ export const supplyChainSteps: SupplyChainStep[] = [
       "Importers benefit from flexible packaging configurations that reduce secondary handling costs and ensure products arrive in optimal condition at destination.",
     qualityRelevance:
       "Each grade visually verified against reference samples; all packaging materials food-grade certified and selected for destination climate compatibility.",
-    image: "/images/storytelling/packaging-line.jpg",
+    image: "/images/storytelling/PRODUCTION & PACKAGING-image.png",
   },
   {
     step: 4,
@@ -90,7 +90,7 @@ export const supplyChainSteps: SupplyChainStep[] = [
       "Commercial partners achieve lower total landed cost through consolidated logistics, competitive freight rates, and complete documentation support included with every shipment.",
     qualityRelevance:
       "Container pre-inspection, optimized stowage, and ventilation management ensure product condition throughout ocean transit.",
-    image: "/images/storytelling/container-loading.jpg",
+    image: "/images/storytelling/CONTAINER LOADING-image.png",
   },
 ];
 

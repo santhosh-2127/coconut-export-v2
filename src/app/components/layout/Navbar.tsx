@@ -189,7 +189,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               <a
                 href="/"
                 onClick={() => setMobileOpen(false)}
-                className="text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-gray-50 hover:text-[#1B4332] transition-all min-h-[48px] flex items-center text-[15px]"
+                className="text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5 transition-all min-h-[48px] flex items-center text-[15px]"
               >
                 Home
               </a>
@@ -198,14 +198,14 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               <div className="flex flex-col">
                 <button
                   onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                  className="flex items-center justify-between w-full text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-gray-50 transition-all min-h-[48px]"
+                  className="flex items-center justify-between w-full text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-4 transition-all min-h-[48px]"
                   aria-expanded={mobileProductsOpen}
                 >
                   <span className="text-[15px]">Products</span>
                   <motion.span
                     animate={{ rotate: mobileProductsOpen ? 180 : 0 }}
                     transition={{ duration: 0.25, ease: "easeInOut" }}
-                    className="text-[#D4A017] text-xs"
+                    className="text-[#D4A017] text-sm font-bold bg-[#D4A017]/10 w-7 h-7 flex items-center justify-center rounded-md"
                   >
                     ▸
                   </motion.span>
@@ -218,16 +218,17 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25, ease: "easeInOut" }}
-                      className="overflow-hidden bg-gray-50/50 rounded-lg mx-1 my-1"
+                      className="overflow-hidden bg-[#1B4332]/[0.04] rounded-lg mx-1 my-1 border border-[#1B4332]/[0.06]"
                     >
-                      <div className="pl-6 pr-4 py-2 flex flex-col gap-0.5 border-l-2 border-[#D4A017]/30 ml-2">
+                      <div className="pl-6 pr-4 py-2 flex flex-col gap-0.5 border-l-2 border-[#D4A017] ml-2">
                         {productLinks.map((product) => (
                           <a
                             key={product.name}
                             href={product.href}
                             onClick={() => setMobileOpen(false)}
-                            className="text-[13px] text-gray-600 font-medium py-2 hover:text-[#1B4332] transition-colors flex items-center"
+                            className="text-[13px] text-gray-600 font-medium py-2 hover:text-[#D4A017] hover:bg-[#1B4332]/[0.03] hover:pl-3 rounded transition-all flex items-center gap-2"
                           >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A017]/40" />
                             {product.name}
                           </a>
                         ))}
@@ -242,7 +243,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-gray-50 hover:text-[#1B4332] transition-all min-h-[48px] flex items-center text-[15px]"
+                  className="text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5 transition-all min-h-[48px] flex items-center text-[15px]"
                 >
                   {link.label}
                 </a>
