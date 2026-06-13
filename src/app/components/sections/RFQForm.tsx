@@ -810,7 +810,7 @@ export default function RFQForm() {
     <section
       id="rfq-form"
       ref={formRef}
-      className="relative py-20 md:py-24 overflow-hidden bg-[#FAFAFA]"
+      className="relative py-14 md:py-18 overflow-hidden bg-[#FAFAFA]"
       aria-label="Request For Quotation Form"
     >
       {/* ── Background texture ── */}

@@ -27,7 +27,7 @@ export default function ProductHero({ product }: { product: Product }) {
       </div>
 
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-28 md:py-0 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-24 md:py-0 min-h-[70vh] flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
             {/* Left: Content */}
             <motion.div initial="initial" animate="animate" className="lg:col-span-3 max-w-[640px]">

@@ -34,7 +34,7 @@ export default function ContactHero() {
       <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] rounded-full opacity-10 pointer-events-none"
         style={{ background: "radial-gradient(circle, #D4A017 0%, transparent 70%)" }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full pt-28 pb-20 md:pt-36 md:pb-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full pt-24 pb-16 md:pt-32 md:pb-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* Left content */}

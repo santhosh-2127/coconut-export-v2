@@ -142,7 +142,7 @@ export default function RFQBenefits() {
     <section
       id="rfq-benefits"
       aria-label="Why Request A Quotation"
-      className="relative py-20 md:py-24 overflow-hidden bg-[#FAFAFA]"
+      className="relative py-14 md:py-18 overflow-hidden bg-[#FAFAFA]"
     >
       {/* ── Background texture ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">

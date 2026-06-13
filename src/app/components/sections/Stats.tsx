@@ -127,7 +127,7 @@ export default function Stats() {
       id="stats"
       ref={ref}
       aria-label="Company statistics and export reach"
-      className="relative overflow-hidden bg-[#FAFAFA] py-16 md:py-20"
+      className="relative overflow-hidden bg-[#FAFAFA] py-12 md:py-16"
     >
       {/* ── Architectural background ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">

@@ -65,7 +65,7 @@ export default function TrustStrip() {
       {/* Gold accent line — bottom edge */}
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/40 to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-8 md:py-10">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-6 md:py-8">
 
         {/* ── Section label ── */}
         <motion.p

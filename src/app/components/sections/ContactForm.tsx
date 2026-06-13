@@ -74,7 +74,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact-form" aria-label="Quick Inquiry Form" className="relative py-20 md:py-24 overflow-hidden">
+    <section id="contact-form" aria-label="Quick Inquiry Form" className="relative py-14 md:py-18 overflow-hidden">
       <div className="absolute inset-0 bg-[#FAFAFA]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "radial-gradient(circle, #1B4332 1px, transparent 1px)", backgroundSize: "20px 20px" }} />

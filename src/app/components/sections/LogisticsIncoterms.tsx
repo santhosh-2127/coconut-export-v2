@@ -71,7 +71,7 @@ const incoterms = [
 
 export default function LogisticsIncoterms() {
   return (
-    <section id="incoterms" aria-label="Incoterms Guide" className="relative py-20 md:py-24 overflow-hidden bg-white">
+    <section id="incoterms" aria-label="Incoterms Guide" className="relative py-14 md:py-18 overflow-hidden bg-white">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle, #1B4332 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-[#1B4332]/[0.03] blur-[120px]" />

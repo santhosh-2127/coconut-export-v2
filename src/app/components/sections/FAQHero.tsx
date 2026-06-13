@@ -66,7 +66,7 @@ export default function FAQHero() {
       {/* ═══════════════════════════════════════════════════════════════
          MAIN CONTENT
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative z-10 w-full min-h-[80vh] flex items-center">
+      <div className="relative z-10 w-full min-h-[70vh] flex items-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-28 md:py-0">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
             {/* ═══ LEFT: Content — 3/5 cols ════════════════════ */}

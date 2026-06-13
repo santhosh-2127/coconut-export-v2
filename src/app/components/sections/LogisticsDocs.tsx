@@ -81,7 +81,7 @@ const documents = [
 
 export default function LogisticsDocs() {
   return (
-    <section id="export-docs" aria-label="Export Documentation Center" className="relative py-20 md:py-24 overflow-hidden bg-white">
+    <section id="export-docs" aria-label="Export Documentation Center" className="relative py-14 md:py-18 overflow-hidden bg-white">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "repeating-linear-gradient(135deg, #1B4332 0px, #1B4332 1px, transparent 1px, transparent 40px)" }} />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#1B4332]/[0.03] blur-[120px]" />

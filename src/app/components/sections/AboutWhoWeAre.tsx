@@ -58,7 +58,7 @@ export default function AboutWhoWeAre() {
     <section
       id="who-we-are"
       aria-label="Who We Are"
-      className="relative py-20 md:py-24 overflow-hidden bg-white"
+      className="relative py-14 md:py-18 overflow-hidden bg-white"
     >
       {/* ── Subtle background ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">

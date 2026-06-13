@@ -139,7 +139,7 @@ export default function FAQAccordionSection({
     <section
       id={id}
       aria-label={`${headingPrefix} ${headingHighlight} — Frequently Asked Questions`}
-      className={`relative py-12 md:py-14 overflow-hidden ${
+      className={`relative py-10 md:py-12 overflow-hidden ${
         index % 2 === 0 ? "bg-white" : "bg-[#FAFAFA]"
       }`}
     >

@@ -6,7 +6,7 @@ import type { Product } from "@/types";
 
 export default function ProductOverview({ product }: { product: Product }) {
   return (
-    <section id="overview" className="relative overflow-hidden bg-[#FAFAFA] py-16 md:py-20">
+    <section id="overview" className="relative overflow-hidden bg-[#FAFAFA] py-12 md:py-16">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 opacity-[0.018]" style={{ backgroundImage: "repeating-linear-gradient(90deg, #1B4332 0px, #1B4332 1px, transparent 1px, transparent 80px)" }} />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-[#1B4332]/[0.04] blur-[120px]" />

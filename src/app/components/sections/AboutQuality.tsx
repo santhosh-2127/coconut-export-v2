@@ -77,7 +77,7 @@ export default function AboutQuality() {
     <section
       id="quality"
       aria-label="Quality Assurance"
-      className="relative py-20 md:py-24 overflow-hidden bg-white"
+      className="relative py-14 md:py-18 overflow-hidden bg-white"
     >
       {/* ── Background ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">

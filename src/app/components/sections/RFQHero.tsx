@@ -207,7 +207,7 @@ export default function RFQHero() {
             {/* ═══ RIGHT: Visual — 2/5 cols ════════════════════════ */}
             <motion.div
               variants={fadeUp}
-              className="lg:col-span-2 relative hidden lg:block select-none h-[520px] xl:h-[600px]"
+              className="lg:col-span-2 relative hidden lg:block select-none h-[480px] xl:h-[540px]"
             >
               <div className="absolute inset-0 rounded-[2px] overflow-hidden">
                 <motion.div

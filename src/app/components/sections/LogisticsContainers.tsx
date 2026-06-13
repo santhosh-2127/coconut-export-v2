@@ -77,7 +77,7 @@ const containerTypes = [
 
 export default function LogisticsContainers() {
   return (
-    <section id="containers" aria-label="Container Capacity Guide" className="relative py-20 md:py-24 overflow-hidden bg-[#FAFAFA]">
+    <section id="containers" aria-label="Container Capacity Guide" className="relative py-14 md:py-18 overflow-hidden bg-[#FAFAFA]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 opacity-[0.022]" style={{
           backgroundImage: "repeating-linear-gradient(0deg, #1B4332 0px, #1B4332 1px, transparent 1px, transparent 48px), repeating-linear-gradient(90deg, #1B4332 0px, #1B4332 1px, transparent 1px, transparent 48px)"

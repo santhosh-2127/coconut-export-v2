@@ -135,7 +135,7 @@ export default function AboutWhyBuyers() {
     <section
       id="why-buyers"
       aria-label="Why Buyers Work With Us"
-      className="relative py-20 md:py-24 overflow-hidden bg-[#FAFAFA]"
+      className="relative py-14 md:py-18 overflow-hidden bg-[#FAFAFA]"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div

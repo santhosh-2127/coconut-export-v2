@@ -127,7 +127,7 @@ export default function Hero() {
     <section
       id="home"
       aria-label="Hero — Premium Coconut Export Solutions"
-      className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#0C1A12]"
+      className="relative min-h-[70vh] flex items-center overflow-hidden bg-[#0C1A12]"
     >
       {/* ═══════════════════════════════════════════════════════════════
          BACKGROUND: layered depth
