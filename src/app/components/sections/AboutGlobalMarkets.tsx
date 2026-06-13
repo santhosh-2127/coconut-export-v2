@@ -22,7 +22,7 @@ function AnimatedStatBarItem({
   return (
     <div className="flex flex-col items-center justify-center py-6 px-4 bg-white/[0.04] hover:bg-white/[0.08] transition-colors">
       <motion.span
-        className="text-3xl sm:text-4xl font-bold text-[#D4A017] font-serif leading-none"
+        className="text-3xl sm:text-4xl font-bold text-[#D4A017] leading-none"
         initial={{ opacity: 0, scale: 0.7 }}
         animate={isVisible ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.5, delay: 0.4 + index * 0.08, ease: "backOut" }}
@@ -122,7 +122,7 @@ export default function AboutGlobalMarkets() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
             Serving Markets{" "}
             <span className="text-[#D4A017]">Across the Globe</span>
           </h2>

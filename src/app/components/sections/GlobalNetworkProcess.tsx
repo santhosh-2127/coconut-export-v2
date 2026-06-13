@@ -105,7 +105,7 @@ export default function GlobalNetworkProcess() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1B4332] font-bold leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[#1B4332] font-bold leading-tight">
             From Farm to{" "}
             <span className="text-[#D4A017]">Global Delivery</span>
           </h2>

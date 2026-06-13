@@ -55,14 +55,14 @@ export default function GlobalNetworkHero() {
               <span className="block w-8 h-px bg-[#D4A017]/50" />
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className="font-serif text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold">
+            <motion.h1 variants={fadeUp} className="text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold">
               <span className="block">Global Export</span>
               <span className="block text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.02em] text-[#D4A017] mt-1">
                 Network
               </span>
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[640px] font-light">
+            <motion.p variants={fadeUp} className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[640px] font-medium">
               Supporting importers, distributors, and industrial buyers across international markets through dependable sourcing, quality assurance, and export-ready logistics.
             </motion.p>
 

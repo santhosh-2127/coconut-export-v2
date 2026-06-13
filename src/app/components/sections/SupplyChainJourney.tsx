@@ -48,7 +48,7 @@ export default function SupplyChainJourney() {
       <div className="max-w-7xl mx-auto px-6">
         <motion.div variants={fadeUp} initial="initial" whileInView="animate" viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center max-w-2xl mx-auto mb-12">
           <p className="text-[#D4A017] uppercase tracking-[4px] text-sm font-medium mb-4">Supply Chain</p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#1B4332] font-bold">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl text-[#1B4332] font-bold">
             From Farm to <span className="text-[#D4A017]">Global Market</span>
           </h2>
           <p className="mt-4 text-gray-500">An integrated supply chain that ensures freshness, quality, and timely delivery at every stage — from carefully selected sourcing regions to your destination port.</p>

@@ -57,7 +57,7 @@ function AnimatedMetric({
   return (
     <div className="flex flex-col">
       <span
-        className={`font-serif text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${
+        className={`text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${
           highlight ? "text-[#D4A017]" : "text-white"
         }`}
       >
@@ -136,7 +136,7 @@ export default function AboutHero() {
               {/* ── Heading ── */}
               <motion.h1
                 variants={fadeUp}
-                className="font-serif text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
+                className="text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
               >
                 <span className="block max-w-4xl">Building Global Supply</span>
                 <span className="block text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.02em] text-[#D4A017] mt-1">
@@ -147,7 +147,7 @@ export default function AboutHero() {
               {/* ── Subheading ── */}
               <motion.p
                 variants={fadeUp}
-                className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-light"
+                className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-medium"
               >
                 Supporting international importers, distributors and industrial
                 buyers through dependable sourcing, quality assurance and

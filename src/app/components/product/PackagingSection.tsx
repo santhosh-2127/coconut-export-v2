@@ -19,7 +19,7 @@ export default function PackagingSection({ product }: { product: Product }) {
             <span className="w-5 h-px bg-[#D4A017]" />
             <span className="text-[#D4A017] text-[10px] font-semibold uppercase tracking-[0.26em]">Packaging & Logistics</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
             From Packing to <span className="text-[#1B4332]">Port</span>
           </h2>
         </motion.div>
@@ -40,7 +40,7 @@ export default function PackagingSection({ product }: { product: Product }) {
                   </div>
                   <span className="text-[10px] font-semibold text-[#D4A017] uppercase tracking-[0.14em] text-right max-w-[120px] leading-tight">{item.stat}</span>
                 </div>
-                <h3 className="font-serif text-xl lg:text-2xl font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-4">{item.title}</h3>
+                <h3 className="text-xl lg:text-2xl font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-4">{item.title}</h3>
                 <p className="text-[#6B7280] text-sm leading-relaxed">{item.desc}</p>
               </div>
             </motion.article>

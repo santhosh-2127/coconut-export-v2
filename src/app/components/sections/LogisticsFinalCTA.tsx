@@ -28,7 +28,7 @@ export default function LogisticsFinalCTA() {
         </motion.div>
 
         <motion.h2 initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          className="font-serif text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-white leading-[1.12] tracking-[-0.02em]">
+          className="text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-white leading-[1.12] tracking-[-0.02em]">
           Need Logistics Support For
           <br />
           <span className="text-[#D4A017]">Your Next Shipment?</span>
@@ -70,7 +70,7 @@ export default function LogisticsFinalCTA() {
             <motion.div key={s.label} initial={{ opacity: 0, scale: 0.8 }} animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.4, delay: 0.6 + i * 0.07, ease: "backOut" }}
               className="flex flex-col items-center justify-center py-6 px-4 bg-white/[0.03] hover:bg-white/[0.06] transition-colors">
-              <span className="font-serif text-2xl font-bold text-[#D4A017] leading-none">{s.value}</span>
+              <span className="text-2xl font-bold text-[#D4A017] leading-none">{s.value}</span>
               <span className="text-white/35 text-[9px] uppercase tracking-widest mt-1 text-center">{s.label}</span>
             </motion.div>
           ))}

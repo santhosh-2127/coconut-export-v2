@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cinzel, Lato, Roboto, Buda } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { OrganizationSchema, WebsiteSchema, LocalBusinessSchema } from "@/lib/schemas";
 import SkipNav from "./components/layout/SkipNav";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
@@ -8,38 +8,13 @@ import CookieConsent from "./components/analytics/CookieConsent";
 import TrackingInit from "./components/analytics/TrackingInit";
 import "./globals.css";
 
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["100", "300", "400", "700", "900"],
-  variable: "--font-lato",
-  display: "swap",
-  preload: true,
-  fallback: ["system-ui", "-apple-system", "sans-serif"],
-});
-
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  variable: "--font-cinzel",
-  display: "swap",
-  preload: true,
-  fallback: ["Georgia", "serif"],
-});
-
 const roboto = Roboto({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
   variable: "--font-roboto",
   display: "swap",
   preload: true,
   fallback: ["system-ui", "sans-serif"],
-});
-
-const buda = Buda({
-  subsets: ["latin"],
-  weight: "300",
-  variable: "--font-buda",
-  display: "swap",
-  preload: true,
-  fallback: ["cursive", "sans-serif"],
 });
 
 const BASE_URL = "https://www.globalcocoexports.com";
@@ -140,7 +115,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lato.variable} ${cinzel.variable} ${roboto.variable} ${buda.variable} font-sans antialiased bg-[#FAFAFA] text-[#111827]`}
+        className={`${roboto.variable} font-sans antialiased bg-[#FAFAFA] text-[#111827]`}
       >
         <SkipNav />
         <GoogleAnalytics />

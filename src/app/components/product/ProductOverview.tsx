@@ -22,7 +22,7 @@ export default function ProductOverview({ product }: { product: Product }) {
               <span className="w-5 h-px bg-[#D4A017]" />
               <span className="text-[#D4A017] text-[10px] font-semibold uppercase tracking-[0.26em]">Product Overview</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
               About This <span className="text-[#1B4332]">Product</span>
             </h2>
           </div>
@@ -51,7 +51,7 @@ export default function ProductOverview({ product }: { product: Product }) {
                 ))}
               </div>
 
-              <h3 className="font-serif text-2xl font-bold text-[#111827] mb-6 tracking-[-0.01em]">Premium Quality, Direct From Origin</h3>
+              <h3 className="text-2xl font-bold text-[#111827] mb-6 tracking-[-0.01em]">Premium Quality, Direct From Origin</h3>
               <div className="space-y-4 text-[#6B7280] text-sm leading-relaxed">
                 <p>{product.description}</p>
               </div>

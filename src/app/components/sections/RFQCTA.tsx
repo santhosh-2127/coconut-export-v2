@@ -122,7 +122,7 @@ export default function RFQCTA() {
             </div>
 
             {/* Headline */}
-            <h2 className="font-serif text-3xl sm:text-4xl xl:text-5xl font-bold text-white leading-[1.12] mb-6">
+            <h2 className="text-3xl sm:text-4xl xl:text-5xl font-bold text-white leading-[1.12] mb-6">
               Start Your
               <br />
               <span className="text-[#D4A017]">Global Procurement</span>
@@ -244,7 +244,7 @@ export default function RFQCTA() {
                 <div className="px-8 pt-8 pb-5 border-b border-gray-100">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="font-serif text-xl font-bold text-[#111827] leading-tight">
+                      <h3 className="text-xl font-bold text-[#111827] leading-tight">
                         Request Bulk Quotation
                       </h3>
                       <p className="text-gray-400 text-xs mt-1 leading-relaxed">
@@ -333,7 +333,7 @@ export default function RFQCTA() {
               transition={{ duration: 0.4, delay: 0.55 + i * 0.07, ease: "backOut" }}
               className="flex flex-col items-center justify-center py-7 px-4 bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
             >
-              <span className="font-serif text-3xl font-bold text-[#D4A017] leading-none">
+              <span className="text-3xl font-bold text-[#D4A017] leading-none">
                 {s.value}
               </span>
               <span className="text-white/35 text-[10px] uppercase tracking-widest mt-1.5 text-center">

@@ -58,7 +58,7 @@ export default function ContactHours() {
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Availability</p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             Global Business{" "}<span className="text-[#D4A017]">Hours</span>
           </h2>
           <p className="mt-4 text-green-200/60 text-sm md:text-base leading-relaxed">
@@ -88,7 +88,7 @@ export default function ContactHours() {
                 <span className="text-xl">{tz.flag}</span>
                 <p className="text-white text-xs font-semibold">{tz.region}</p>
               </div>
-              <p className="text-[#D4A017] text-2xl font-bold font-serif mb-1">{tz.offset}</p>
+              <p className="text-[#D4A017] text-2xl font-bold mb-1">{tz.offset}</p>
               <p className="text-green-200/50 text-[11px] uppercase tracking-wider">from IST</p>
               <div className="mt-3 pt-3 border-t border-white/5">
                 <p className="text-white/70 text-xs">{tz.localTime}</p>
@@ -105,7 +105,7 @@ export default function ContactHours() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10">
             {slas.map((sla) => (
               <div key={sla.label} className="flex flex-col items-center justify-center py-5 px-4 bg-white/[0.04]">
-                <span className="text-[#D4A017] text-2xl font-bold font-serif">{sla.pct}</span>
+                <span className="text-[#D4A017] text-2xl font-bold">{sla.pct}</span>
                 <span className="text-white/80 text-xs font-medium mt-0.5">{sla.label}</span>
                 <span className="text-green-200/40 text-[10px] mt-1">{sla.time}</span>
               </div>

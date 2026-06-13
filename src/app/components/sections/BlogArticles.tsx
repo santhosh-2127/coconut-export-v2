@@ -106,20 +106,20 @@ export default function BlogArticles() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent md:bg-gradient-to-r md:from-black/40 md:via-black/10 md:to-transparent" />
               <div className="absolute top-4 left-4">
-                <span className="inline-block px-3 py-1 text-[9px] uppercase tracking-[0.2em] font-semibold text-white bg-[#D4A017]/90 rounded-sm font-roboto">
+                <span className="inline-block px-3 py-1 text-[9px] uppercase tracking-[0.2em] font-semibold text-white bg-[#D4A017]/90 rounded-sm">
                   {featured.category}
                 </span>
               </div>
             </div>
             <div className="p-7 md:p-9 flex flex-col justify-center">
-              <span className="text-[10px] font-semibold text-[#D4A017] uppercase tracking-[0.15em] mb-2 font-roboto">{featured.readTime}</span>
-              <h2 className="font-serif text-xl md:text-2xl font-bold text-[#111827] mb-3 leading-tight group-hover:text-[#1B4332] transition-colors">
+              <span className="text-[10px] font-semibold text-[#D4A017] uppercase tracking-[0.15em] mb-2">{featured.readTime}</span>
+              <h2 className="text-xl md:text-2xl font-bold text-[#111827] mb-3 leading-tight group-hover:text-[#1B4332] transition-colors">
                 {featured.title}
               </h2>
               <p className="text-sm text-gray-500 leading-relaxed mb-6">{featured.excerpt}</p>
               <a
                 href="#"
-                className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#1B4332] hover:text-[#D4A017] transition-colors group/link font-roboto"
+                className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#1B4332] hover:text-[#D4A017] transition-colors group/link"
               >
                 Read Article
                 <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -144,7 +144,7 @@ export default function BlogArticles() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl text-[#1B4332] font-bold leading-tight">
+          <h2 className="text-3xl sm:text-4xl text-[#1B4332] font-bold leading-tight">
             Knowledge for{" "}
             <span className="text-[#D4A017]">Global Buyers</span>
           </h2>
@@ -162,18 +162,18 @@ export default function BlogArticles() {
               <div className="absolute top-0 inset-x-0 h-[2.5px] bg-[#D4A017] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
               <div className="p-7 flex flex-col flex-1">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#D4A017] bg-[#D4A017]/10 px-2.5 py-1 rounded-sm font-roboto">
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#D4A017] bg-[#D4A017]/10 px-2.5 py-1 rounded-sm">
                     {article.category}
                   </span>
-                  <span className="text-[10px] text-gray-400 font-roboto">{article.readTime}</span>
+                  <span className="text-[10px] text-gray-400">{article.readTime}</span>
                 </div>
-                <h3 className="font-serif text-base font-bold text-[#111827] mb-2 leading-snug group-hover:text-[#1B4332] transition-colors">
+                <h3 className="text-base font-bold text-[#111827] mb-2 leading-snug group-hover:text-[#1B4332] transition-colors">
                   {article.title}
                 </h3>
                 <p className="text-sm text-gray-500 leading-relaxed flex-1 mb-4">{article.excerpt}</p>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#1B4332] hover:text-[#D4A017] transition-colors mt-auto group/link font-roboto"
+                  className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#1B4332] hover:text-[#D4A017] transition-colors mt-auto group/link"
                 >
                   Read More
                   <svg className="w-3 h-3 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -196,7 +196,7 @@ export default function BlogArticles() {
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold mb-3">
               Browse by Category
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#1B4332] font-bold leading-tight">
+            <h2 className="text-3xl sm:text-4xl text-[#1B4332] font-bold leading-tight">
               Explore{" "}
               <span className="text-[#D4A017]">Topics</span>
             </h2>
@@ -215,10 +215,10 @@ export default function BlogArticles() {
                 <span
                   className="w-2 h-2 rounded-full bg-[#D4A017]/40 group-hover:bg-[#D4A017] transition-colors"
                 />
-                <span className="text-sm font-semibold text-[#111827] group-hover:text-[#1B4332] transition-colors font-roboto">
+                <span className="text-sm font-semibold text-[#111827] group-hover:text-[#1B4332] transition-colors">
                   {cat.name}
                 </span>
-                <span className="text-[11px] text-gray-400 font-medium font-roboto">({cat.count})</span>
+                <span className="text-[11px] text-gray-400 font-medium">({cat.count})</span>
               </motion.a>
             ))}
           </div>

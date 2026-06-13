@@ -84,7 +84,7 @@ export default function LogisticsIncoterms() {
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Shipping Terms</p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Incoterms{" "}<span className="text-[#D4A017]">Guide</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
@@ -107,7 +107,7 @@ export default function LogisticsIncoterms() {
                 {/* Header */}
                 <div className="flex items-start justify-between mb-5">
                   <div>
-                    <span className="text-3xl font-bold font-serif" style={{ color: term.color }}>{term.code}</span>
+                    <span className="text-3xl font-bold" style={{ color: term.color }}>{term.code}</span>
                     <p className="text-sm text-gray-500 mt-1 font-medium">{term.full}</p>
                   </div>
                   <div className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-black text-white" style={{ background: `linear-gradient(135deg, ${term.color}, ${term.color}dd)` }}>

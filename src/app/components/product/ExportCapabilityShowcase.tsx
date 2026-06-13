@@ -92,7 +92,7 @@ export default function ExportCapabilityShowcase() {
             </span>
             <span className="w-5 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
             End-to-End{" "}
             <span className="text-[#1B4332]">Export Excellence</span>
           </h2>
@@ -137,7 +137,7 @@ export default function ExportCapabilityShowcase() {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-serif text-xl lg:text-2xl font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-4">
+                <h3 className="text-xl lg:text-2xl font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-4">
                   {cap.title}
                 </h3>
 
@@ -173,7 +173,7 @@ export default function ExportCapabilityShowcase() {
           className="mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-between gap-5 px-8 py-7 border border-[#1B4332]/12 bg-[#1B4332]/[0.03]"
         >
           <div>
-            <p className="font-serif text-lg font-bold text-[#111827]">
+            <p className="text-lg font-bold text-[#111827]">
               Ready to start your export journey?
             </p>
             <p className="text-[#6B7280] text-sm mt-0.5">

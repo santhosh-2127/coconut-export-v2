@@ -80,7 +80,7 @@ export default function ContactOptions() {
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Reach Us</p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Contact{" "}<span className="text-[#D4A017]">Options</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">

@@ -79,7 +79,7 @@ export default function GlobalNetworkCountries() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1B4332] font-bold leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[#1B4332] font-bold leading-tight">
             15+ Countries{" "}
             <span className="text-[#D4A017]">Served</span>
           </h2>
@@ -108,7 +108,7 @@ export default function GlobalNetworkCountries() {
                 >
                   {region.icon}
                 </div>
-                <h3 className="font-serif text-lg font-bold text-[#111827] mb-2">{region.name}</h3>
+                <h3 className="text-lg font-bold text-[#111827] mb-2">{region.name}</h3>
                 <ul className="space-y-1">
                   {region.countries.map((country) => (
                     <li key={country} className="text-sm text-gray-500 flex items-center gap-2">
@@ -137,7 +137,7 @@ export default function GlobalNetworkCountries() {
               { value: "10+", label: "Years Exporting", desc: "Established global presence" },
             ].map((stat) => (
               <div key={stat.label} className="p-6 text-center hover:bg-[#1B4332]/[0.02] transition-colors">
-                <p className="font-serif text-2xl font-bold text-[#1B4332]">{stat.value}</p>
+                <p className="text-2xl font-bold text-[#1B4332]">{stat.value}</p>
                 <p className="text-[11px] font-semibold text-[#D4A017] uppercase tracking-[0.12em] mt-1">{stat.label}</p>
                 <p className="text-[11px] text-gray-400 mt-0.5">{stat.desc}</p>
               </div>

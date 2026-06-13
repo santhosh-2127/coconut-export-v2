@@ -51,7 +51,7 @@ function MetricItem({ value, label, index, isVisible }: { value: string; label: 
         {isVisible ? counted : 0}
         <span className="text-[#D4A017]">{suffix}</span>
       </p>
-      <p className="mt-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold font-roboto">
+      <p className="mt-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold">
         {label}
       </p>
     </motion.div>

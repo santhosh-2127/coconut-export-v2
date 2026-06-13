@@ -30,7 +30,7 @@ function AnimatedCTAStatItem({
       }}
       className="flex flex-col items-center justify-center py-6 px-4 bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
     >
-      <span className="font-serif text-2xl font-bold text-[#D4A017] leading-none" aria-label={`${value} ${label}`}>
+      <span className="text-2xl font-bold text-[#D4A017] leading-none" aria-label={`${value} ${label}`}>
         {isVisible ? counted : 0}
         <span className="text-[#D4A017]">{suffix}</span>
       </span>
@@ -115,7 +115,7 @@ export default function AboutFinalCTA() {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          className="font-serif text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-white leading-[1.12] tracking-[-0.02em]"
+          className="text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-white leading-[1.12] tracking-[-0.02em]"
         >
           Let&apos;s Discuss Your
           <br />

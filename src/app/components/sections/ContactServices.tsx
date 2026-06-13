@@ -67,7 +67,7 @@ export default function ContactServices() {
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">What We Offer</p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Export Support{" "}<span className="text-[#D4A017]">Services</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
@@ -93,7 +93,7 @@ export default function ContactServices() {
                     style={{ background: `${svc.color}10` }}>
                     {svc.icon}
                   </div>
-                  <span className="text-[40px] font-buda leading-none opacity-[0.04] select-none">
+                  <span className="text-[40px] leading-none opacity-[0.04] select-none">
                     {(i + 1).toString().padStart(2, "0")}
                   </span>
                 </div>

@@ -190,7 +190,7 @@ export default function Hero() {
               {/* ── Heading — luxury typography hierarchy (3 lines) ── */}
               <motion.h1
                 variants={fadeUp}
-                className="font-serif text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
+                className="text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
               >
                 <span className="block max-w-4xl">Premium Coconut Export</span>
                 <span className="block text-[clamp(1.4rem,3vw,2.4rem)] leading-[1.2] tracking-[-0.01em] text-[#D4A017] font-normal italic mt-2">
@@ -204,7 +204,7 @@ export default function Hero() {
               {/* ── Supporting description — enriched ── */}
               <motion.p
                 variants={fadeUp}
-                className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-light"
+                className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-medium"
               >
                 Supplying bulk coconut, copra and coco peat products to
                 importers, distributors and industrial buyers worldwide with
@@ -286,7 +286,7 @@ export default function Hero() {
               >
                 {trustMetrics.map((metric) => (
                   <div key={metric.label} className="flex flex-col">
-                    <span className="font-serif text-[clamp(1.5rem,2.5vw,2rem)] text-white font-bold leading-none tracking-tight">
+                    <span className="text-[clamp(1.5rem,2.5vw,2rem)] text-white font-bold leading-none tracking-tight">
                       {metric.value}
                     </span>
                     <span className="mt-1.5 text-[11px] text-white/50 font-medium uppercase tracking-[0.12em]">
@@ -296,7 +296,7 @@ export default function Hero() {
                 ))}
                 {/* New: 24h response metric */}
                 <div className="flex flex-col">
-                  <span className="font-serif text-[clamp(1.5rem,2.5vw,2rem)] text-[#D4A017] font-bold leading-none tracking-tight">
+                  <span className="text-[clamp(1.5rem,2.5vw,2rem)] text-[#D4A017] font-bold leading-none tracking-tight">
                     24h
                   </span>
                   <span className="mt-1.5 text-[11px] text-white/50 font-medium uppercase tracking-[0.12em]">

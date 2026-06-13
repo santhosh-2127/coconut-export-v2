@@ -179,7 +179,7 @@ export default function FAQAccordionSection({
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             {headingPrefix}{" "}
             <span className="text-[#D4A017]">{headingHighlight}</span>
           </h2>

@@ -56,7 +56,7 @@ export default function ContactHero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.08 }}
-              className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08] tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08] tracking-tight"
             >
               Connect With Our{" "}
               <span className="text-[#D4A017]">Export Team</span>
@@ -188,7 +188,7 @@ export default function ContactHero() {
                 transition={{ duration: 0.6, delay: 0.9 }}
                 className="absolute bottom-[35%] right-[15%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 w-[160px] shadow-2xl"
               >
-                <p className="text-[#D4A017] text-2xl font-bold font-serif">24h</p>
+                <p className="text-[#D4A017] text-2xl font-bold">24h</p>
                 <p className="text-white/50 text-[10px] uppercase tracking-wider mt-1">Response Time</p>
                 <div className="mt-2 h-1 bg-white/10 rounded-full overflow-hidden">
                   <motion.div

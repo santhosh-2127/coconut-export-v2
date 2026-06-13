@@ -91,7 +91,7 @@ export default function FAQHero() {
               {/* ── Heading ── */}
               <motion.h1
                 variants={fadeUp}
-                className="font-serif text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
+                className="text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
               >
                 <span className="block max-w-4xl">Frequently Asked</span>
                 <span className="block text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.02em] text-[#D4A017] mt-1">
@@ -102,7 +102,7 @@ export default function FAQHero() {
               {/* ── Subheading ── */}
               <motion.p
                 variants={fadeUp}
-                className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-light"
+                className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-medium"
               >
                 Answers to common questions regarding products, logistics,
                 documentation, quotations, and export processes — everything
@@ -182,7 +182,7 @@ export default function FAQHero() {
                 {trustMetrics.map((metric) => (
                   <div key={metric.label} className="flex flex-col">
                     <span
-                      className={`font-serif text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${
+                      className={`text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${
                         metric.highlight ? "text-[#D4A017]" : "text-white"
                       }`}
                     >
@@ -293,7 +293,7 @@ export default function FAQHero() {
 
                     {/* Decorative question mark */}
                     <div className="absolute bottom-[25%] left-[8%] w-16 h-16 rounded-full border border-[#D4A017]/20 flex items-center justify-center">
-                      <span className="text-[#D4A017]/30 text-3xl font-serif font-bold">?</span>
+                      <span className="text-[#D4A017]/30 text-3xl font-bold">?</span>
                     </div>
                     <div className="absolute top-[55%] right-[2%] w-10 h-10 rounded-full border border-white/10" />
                     <div className="absolute top-[22%] left-[15%] w-8 h-8 rounded-full border border-white/10" />

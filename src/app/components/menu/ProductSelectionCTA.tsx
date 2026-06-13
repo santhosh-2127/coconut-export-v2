@@ -49,7 +49,7 @@ export default function ProductSelectionCTA() {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          className="font-serif text-[clamp(1.8rem,4vw,3rem)] font-bold text-[#111827] leading-[1.12] tracking-[-0.02em]"
+          className="text-[clamp(1.8rem,4vw,3rem)] font-bold text-[#111827] leading-[1.12] tracking-[-0.02em]"
         >
           Need Help Choosing The{" "}
           <span className="text-[#1B4332]">Right Product?</span>

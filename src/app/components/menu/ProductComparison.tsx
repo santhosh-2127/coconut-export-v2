@@ -66,7 +66,7 @@ export default function ProductComparison() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Find the Right Product{" "}
             <span className="text-[#1B4332]">For Your Market</span>
           </h2>
@@ -110,7 +110,7 @@ export default function ProductComparison() {
                   >
                     {product.category}
                   </span>
-                  <h3 className="font-serif text-base font-bold text-[#111827] leading-tight">
+                  <h3 className="text-base font-bold text-[#111827] leading-tight">
                     {product.name}
                   </h3>
                 </div>

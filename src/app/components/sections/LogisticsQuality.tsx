@@ -88,7 +88,7 @@ export default function LogisticsQuality() {
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Packaging & Quality</p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Operational{" "}<span className="text-[#1B4332]">Excellence</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
@@ -116,7 +116,7 @@ export default function LogisticsQuality() {
                   <span className="text-[10px] font-semibold tracking-[0.2em] text-[#9CA3AF] uppercase">{String(i + 1).padStart(2, "0")}</span>
                 </div>
 
-                <h3 className="font-serif text-lg lg:text-xl font-bold text-[#111827] leading-tight mb-3">{pillar.title}</h3>
+                <h3 className="text-lg lg:text-xl font-bold text-[#111827] leading-tight mb-3">{pillar.title}</h3>
                 <p className="text-[#6B7280] text-sm leading-relaxed mb-4">{pillar.description}</p>
 
                 <ul className="space-y-2" role="list">

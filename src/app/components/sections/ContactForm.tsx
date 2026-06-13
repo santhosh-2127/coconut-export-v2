@@ -23,8 +23,8 @@ type SubmitStatus = "idle" | "loading" | "success" | "error";
 
 /* ─── Styles ─────────────────────────────────── */
 const inputCls =
-  "w-full bg-white border border-[#E5E7EB] rounded-xl px-4 py-3.5 text-sm text-[#111827] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D4A017]/30 focus:border-[#D4A017] transition-all duration-200 font-roboto";
-const labelCls = "block text-[11px] uppercase tracking-[2px] text-gray-500 font-semibold mb-1.5 font-roboto";
+  "w-full bg-white border border-[#E5E7EB] rounded-xl px-4 py-3.5 text-sm text-[#111827] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D4A017]/30 focus:border-[#D4A017] transition-all duration-200";
+const labelCls = "block text-[11px] uppercase tracking-[2px] text-gray-500 font-semibold mb-1.5";
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormData>({
@@ -95,7 +95,7 @@ export default function ContactForm() {
               <span className="w-8 h-px bg-[#D4A017]" />
               <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Send Inquiry</p>
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
               Quick{" "}<span className="text-[#D4A017]">Inquiry</span>
             </h2>
             <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed max-w-md">
@@ -139,13 +139,13 @@ export default function ContactForm() {
                       <path d="M2 10l8 8L26 2" stroke="#1B4332" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h3 className="font-serif text-2xl font-bold text-[#111827] mb-2">Inquiry Sent Successfully</h3>
+                  <h3 className="text-2xl font-bold text-[#111827] mb-2">Inquiry Sent Successfully</h3>
                   <p className="text-gray-500 text-sm leading-relaxed max-w-sm mx-auto">
                     Thank you for reaching out. Our export team will review your inquiry and respond within 24 hours.
                   </p>
                   <button
                     onClick={() => setStatus("idle")}
-                    className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-[#1B4332] text-white text-sm font-semibold rounded-full hover:bg-[#143a28] transition-colors font-roboto"
+                    className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-[#1B4332] text-white text-sm font-semibold rounded-full hover:bg-[#143a28] transition-colors"
                   >
                     Send Another Inquiry
                   </button>
@@ -216,7 +216,7 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full flex items-center justify-center gap-2.5 px-8 py-4 bg-[#1B4332] text-white font-semibold text-sm tracking-[0.04em] rounded-full hover:bg-[#143a28] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed font-roboto"
+                    className="w-full flex items-center justify-center gap-2.5 px-8 py-4 bg-[#1B4332] text-white font-semibold text-sm tracking-[0.04em] rounded-full hover:bg-[#143a28] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "loading" ? (
                       <>

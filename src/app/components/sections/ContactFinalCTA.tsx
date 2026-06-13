@@ -42,7 +42,7 @@ export default function ContactFinalCTA() {
         {/* Headline */}
         <motion.h2 initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1]">
+          className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1]">
           Ready To Discuss Your{" "}
           <span className="text-[#D4A017]">Requirements</span>?
         </motion.h2>
@@ -80,7 +80,7 @@ export default function ContactFinalCTA() {
             { value: "24h", label: "Response Time" },
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-2">
-              <span className="text-[#D4A017] font-bold font-serif">{item.value}</span>
+              <span className="text-[#D4A017] font-bold">{item.value}</span>
               <span className="text-green-200/40 text-xs uppercase tracking-wider">{item.label}</span>
             </div>
           ))}

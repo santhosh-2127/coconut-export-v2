@@ -139,7 +139,7 @@ export default function LogisticsFAQ() {
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">FAQ</p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Logistics{" "}<span className="text-[#D4A017]">FAQs</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">

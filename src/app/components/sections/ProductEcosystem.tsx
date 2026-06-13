@@ -124,7 +124,7 @@ function ProductVisualPanel({
       {/* Large ghost ordinal */}
       <span
         aria-hidden="true"
-        className="absolute -bottom-3 -right-2 font-buda text-[9rem] leading-none text-white/[0.06] select-none pointer-events-none"
+        className="absolute -bottom-3 -right-2 text-[9rem] leading-none text-white/[0.06] select-none pointer-events-none"
       >
         {ordinals[idx]}
       </span>
@@ -147,7 +147,7 @@ function ProductVisualPanel({
 
       {/* Product name overlay at bottom */}
       <div className="absolute bottom-5 left-5">
-        <p className="font-serif text-lg font-bold text-white leading-tight drop-shadow-lg">
+        <p className="text-lg font-bold text-white leading-tight drop-shadow-lg">
           {name}
         </p>
       </div>
@@ -179,7 +179,7 @@ function ProductContent({
       </div>
 
       {/* Product name */}
-      <h3 className="font-serif text-2xl lg:text-3xl font-bold text-[#111827] leading-tight tracking-[-0.02em] mb-4">
+      <h3 className="text-xl lg:text-2xl font-semibold text-[#111827] leading-tight tracking-[-0.02em] mb-4">
         {product.name}
       </h3>
 
@@ -290,7 +290,7 @@ export default function ProductEcosystem() {
                 Our Products
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
               Premium Coconut{" "}
               <span className="text-[#1B4332]">Product Range</span>
             </h2>
@@ -453,7 +453,7 @@ export default function ProductEcosystem() {
           className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-5 px-8 py-7 border border-[#1B4332]/12 bg-[#1B4332]/[0.03]"
         >
           <div>
-            <p className="font-serif text-lg font-bold text-[#111827]">
+            <p className="text-lg font-bold text-[#111827]">
               Need a custom product specification?
             </p>
             <p className="text-[#6B7280] text-sm mt-0.5">

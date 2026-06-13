@@ -74,7 +74,7 @@ export default function GlobalNetworkCapabilities() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1B4332] font-bold leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[#1B4332] font-bold leading-tight">
             End-to-End{" "}
             <span className="text-[#D4A017]">Export Capabilities</span>
           </h2>
@@ -97,7 +97,7 @@ export default function GlobalNetworkCapabilities() {
                 <div className="w-12 h-12 border border-[#1B4332]/15 rounded-xl flex items-center justify-center text-[#1B4332] group-hover:bg-[#1B4332] group-hover:text-white transition-all duration-300 mb-5">
                   {cap.icon}
                 </div>
-                <h3 className="font-serif text-lg font-bold text-[#111827] mb-2">{cap.title}</h3>
+                <h3 className="text-lg font-bold text-[#111827] mb-2">{cap.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed flex-1">{cap.description}</p>
               </div>
             </motion.article>

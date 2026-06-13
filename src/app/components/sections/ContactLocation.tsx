@@ -17,7 +17,7 @@ export default function ContactLocation() {
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Our Presence</p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Location &{" "}<span className="text-[#D4A017]">Presence</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
@@ -159,7 +159,7 @@ export default function ContactLocation() {
                 { value: "500+", label: "Containers Shipped" },
               ].map((stat) => (
                 <div key={stat.label} className="bg-white border border-[#E5E7EB] rounded-xl p-4 text-center hover:shadow-[0_4px_16px_rgba(27,67,50,0.05)] transition-shadow">
-                  <p className="text-[#D4A017] text-xl font-bold font-serif">{stat.value}</p>
+                  <p className="text-[#D4A017] text-xl font-bold">{stat.value}</p>
                   <p className="text-gray-400 text-[10px] uppercase tracking-wider mt-1">{stat.label}</p>
                 </div>
               ))}

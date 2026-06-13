@@ -19,7 +19,7 @@ export default function ProductGallery({ product }: { product: Product }) {
             <span className="w-5 h-px bg-[#D4A017]" />
             <span className="text-[#D4A017] text-[10px] font-semibold uppercase tracking-[0.26em]">Product Gallery</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
             Visual <span className="text-[#1B4332]">Showcase</span>
           </h2>
         </motion.div>

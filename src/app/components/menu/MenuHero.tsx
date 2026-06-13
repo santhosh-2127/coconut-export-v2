@@ -99,7 +99,7 @@ export default function MenuHero() {
               {/* ── Heading ── */}
               <motion.h1
                 variants={fadeUp}
-                className="font-serif text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
+                className="text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
               >
                 <span className="block max-w-4xl">Our Export Product</span>
                 <span className="block text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.02em] text-[#D4A017] mt-1">
@@ -110,7 +110,7 @@ export default function MenuHero() {
               {/* ── Subheading ── */}
               <motion.p
                 variants={fadeUp}
-                className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-light"
+                className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-medium"
               >
                 Explore our range of premium coconut and coir products developed
                 for international wholesale buyers, distributors, processors,
@@ -190,7 +190,7 @@ export default function MenuHero() {
                 {heroStats.map((metric) => (
                   <div key={metric.label} className="flex flex-col">
                     <span
-                      className={`font-serif text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${
+                      className={`text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${
                         metric.highlight ? "text-[#D4A017]" : "text-white"
                       }`}
                     >

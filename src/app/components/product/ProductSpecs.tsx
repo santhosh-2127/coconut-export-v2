@@ -19,7 +19,7 @@ export default function ProductSpecs({ product }: { product: Product }) {
             <span className="text-[#D4A017] text-[10px] font-semibold uppercase tracking-[0.26em]">Technical Data</span>
             <span className="w-5 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
             Product <span className="text-[#1B4332]">Specifications</span>
           </h2>
           <p className="mt-4 text-[#6B7280] text-sm max-w-lg mx-auto">Detailed technical parameters for procurement and quality verification teams.</p>

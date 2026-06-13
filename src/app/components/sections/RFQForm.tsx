@@ -155,7 +155,7 @@ const baseInput =
   "w-full px-4 py-3 rounded-xl border text-sm text-[#111827] placeholder-gray-400 " +
   "bg-[#FAFAFA] focus:outline-none transition-all duration-200 " +
   "focus:ring-2 focus:ring-[#1B4332]/25 focus:border-[#1B4332]/50 " +
-  "hover:border-[#1B4332]/25 font-roboto";
+  "hover:border-[#1B4332]/25";
 
 const inputCls = (err?: string) =>
   err
@@ -163,7 +163,7 @@ const inputCls = (err?: string) =>
     : `${baseInput} border-gray-200`;
 
 const labelCls =
-  "block text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5 font-roboto";
+  "block text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5";
 
 /* ─────────────────────────────────────────────────────────
    STEP TITLES
@@ -216,7 +216,7 @@ function StepIndicator({
                 )}
               </div>
               <span
-                className={`text-[10px] mt-1.5 font-semibold uppercase tracking-wider whitespace-nowrap font-roboto transition-colors duration-300 ${
+                className={`text-[10px] mt-1.5 font-semibold uppercase tracking-wider whitespace-nowrap transition-colors duration-300 ${
                   s.num <= currentStep
                     ? "text-[#1B4332]"
                     : "text-gray-300"
@@ -286,7 +286,7 @@ function SuccessPanel({
         </svg>
       </div>
 
-      <h3 className="font-serif text-xl font-bold text-[#111827] mb-2">
+      <h3 className="text-xl font-bold text-[#111827] mb-2">
         Thank You for Your Inquiry
       </h3>
       <p className="text-gray-500 text-sm max-w-xs leading-relaxed mb-2">
@@ -298,7 +298,7 @@ function SuccessPanel({
 
       {/* Next steps flow */}
       <div className="w-full max-w-md mb-8">
-        <p className="text-[10px] uppercase tracking-[4px] text-gray-400 mb-4 font-semibold font-roboto">
+        <p className="text-[10px] uppercase tracking-[4px] text-gray-400 mb-4 font-semibold">
           What Happens Next
         </p>
         <div className="grid grid-cols-4 gap-1">
@@ -323,7 +323,7 @@ function SuccessPanel({
 
       <button
         onClick={onReset}
-        className="text-sm text-[#1B4332] font-semibold underline underline-offset-4 hover:text-[#D4A017] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] font-roboto"
+        className="text-sm text-[#1B4332] font-semibold underline underline-offset-4 hover:text-[#D4A017] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017]"
       >
         Submit another RFQ
       </button>
@@ -431,7 +431,7 @@ function StepOne({
               placeholder="e.g. 25"
               value={data.volume}
               onChange={(e) => onChange("volume", e.target.value)}
-              className={inputCls(errors.volume)}
+              className={`${inputCls(errors.volume)} text-base leading-normal`}
               aria-invalid={!!errors.volume}
               aria-describedby={errors.volume ? "rfq-volume-error" : undefined}
             />
@@ -844,7 +844,7 @@ export default function RFQForm() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Tell Us What You{" "}
             <span className="text-[#D4A017]">Need</span>
           </h2>
@@ -919,7 +919,7 @@ export default function RFQForm() {
                         <button
                           type="button"
                           onClick={handleBack}
-                          className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-gray-600 border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] font-roboto"
+                          className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-gray-600 border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332]"
                         >
                           <svg
                             width="14"
@@ -947,7 +947,7 @@ export default function RFQForm() {
                         <button
                           type="submit"
                           disabled={status === "loading"}
-                          className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-[#1B4332] text-white font-bold text-sm rounded-xl hover:bg-[#143a28] active:scale-[0.99] transition-all duration-200 shadow-lg shadow-[#1B4332]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed font-roboto"
+                          className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-[#1B4332] text-white font-bold text-sm rounded-xl hover:bg-[#143a28] active:scale-[0.99] transition-all duration-200 shadow-lg shadow-[#1B4332]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
                         >
                           {status === "loading" ? (
                             <>
@@ -998,7 +998,7 @@ export default function RFQForm() {
                         <button
                           type="button"
                           onClick={handleNext}
-                          className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#1B4332] text-white font-bold text-sm rounded-xl hover:bg-[#143a28] active:scale-[0.99] transition-all duration-200 shadow-lg shadow-[#1B4332]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] focus-visible:ring-offset-2 font-roboto"
+                          className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#1B4332] text-white font-bold text-sm rounded-xl hover:bg-[#143a28] active:scale-[0.99] transition-all duration-200 shadow-lg shadow-[#1B4332]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] focus-visible:ring-offset-2"
                         >
                           Continue
                           <svg
@@ -1082,7 +1082,7 @@ export default function RFQForm() {
                 <span className="text-lg" aria-hidden="true">
                   {item.icon}
                 </span>
-                <p className="text-[11px] font-bold text-[#111827] leading-snug font-roboto">
+                <p className="text-[11px] font-bold text-[#111827] leading-snug">
                   {item.label}
                 </p>
                 <p className="text-[9px] text-gray-400 uppercase tracking-wider">

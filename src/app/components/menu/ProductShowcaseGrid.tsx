@@ -61,7 +61,7 @@ export default function ProductShowcaseGrid() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Complete Export{" "}
             <span className="text-[#1B4332]">Product Portfolio</span>
           </h2>
@@ -122,7 +122,7 @@ export default function ProductShowcaseGrid() {
                   </div>
 
                   {/* Ordinal */}
-                  <span className="absolute bottom-3 right-4 text-white/30 font-serif text-5xl font-bold leading-none">
+                  <span className="absolute bottom-3 right-4 text-white/30 text-5xl font-bold leading-none">
                     {String(product.id).padStart(2, "0")}
                   </span>
                 </div>
@@ -130,7 +130,7 @@ export default function ProductShowcaseGrid() {
                 {/* Content */}
                 <div className="flex flex-col flex-1 p-6 lg:p-7">
                   {/* Name */}
-                  <h3 className="font-serif text-xl lg:text-2xl font-bold text-[#111827] leading-tight mb-2">
+                  <h3 className="text-xl lg:text-2xl font-bold text-[#111827] leading-tight mb-2">
                     {product.name}
                   </h3>
 

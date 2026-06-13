@@ -57,7 +57,7 @@ function FeaturePanel({
       {/* Ghost ordinal — decorative depth layer */}
       <span
         aria-hidden="true"
-        className="absolute -bottom-4 -right-2 font-buda text-[7rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500"
+        className="absolute -bottom-4 -right-2 text-[7rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500"
       >
         {ordinals[index]}
       </span>
@@ -85,7 +85,7 @@ function FeaturePanel({
 
         {/* Content */}
         <div className="flex flex-col flex-1">
-          <h3 className="font-serif text-xl lg:text-2xl font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-4">
+          <h3 className="text-xl lg:text-2xl font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-4">
             {item.title}
           </h3>
           <p className="text-[#6B7280] text-sm leading-relaxed mb-5">
@@ -107,7 +107,7 @@ function FeaturePanel({
           {/* Stat pill — new */}
           {item.stat && (
             <div className="mt-auto flex items-center gap-2.5 pt-4 border-t border-[#E5E7EB]">
-              <span className="font-serif text-xl font-bold text-[#1B4332]">{item.stat.value}</span>
+              <span className="text-xl font-bold text-[#1B4332]">{item.stat.value}</span>
               <span className="text-[10px] text-[#9CA3AF] uppercase tracking-[0.12em]">{item.stat.label}</span>
             </div>
           )}
@@ -167,7 +167,7 @@ export default function WhyChooseUs() {
           whileInView="animate"
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
-          className="font-serif text-3xl sm:text-4xl font-bold text-[#111827] leading-tight tracking-[-0.02em]"
+          className="text-3xl sm:text-4xl font-bold text-[#111827] leading-tight tracking-[-0.02em]"
         >
           Built for Global{" "}
           <span className="text-[#1B4332] italic font-normal">Excellence</span>
@@ -203,7 +203,7 @@ export default function WhyChooseUs() {
             {/* Large ghost word — depth layer */}
             <span
               aria-hidden="true"
-              className="absolute -bottom-6 -left-4 font-buda text-[9rem] leading-none text-white/[0.04] select-none pointer-events-none"
+              className="absolute -bottom-6 -left-4 text-[9rem] leading-none text-white/[0.04] select-none pointer-events-none"
             >
               WHY
             </span>
@@ -231,7 +231,7 @@ export default function WhyChooseUs() {
                 whileInView="animate"
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
-                className="font-serif text-[2.25rem] lg:text-[2.5rem] font-bold text-white leading-[1.1] tracking-[-0.02em]"
+                className="text-[2.25rem] lg:text-[2.5rem] font-bold text-white leading-[1.1] tracking-[-0.02em]"
               >
                 Built for
                 <br />

@@ -70,7 +70,7 @@ export default function ProductCTA({ product }: { product: Product }) {
               </div>
               <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Ready to Order</p>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl xl:text-5xl font-bold text-white leading-[1.12] mb-6">
+            <h2 className="text-3xl sm:text-4xl xl:text-5xl font-bold text-white leading-[1.12] mb-6">
               Need Bulk Pricing For<br />
               <span className="text-[#D4A017]">{product.name}</span><br />?
             </h2>
@@ -113,7 +113,7 @@ export default function ProductCTA({ product }: { product: Product }) {
                 <div className="px-8 pt-8 pb-5 border-b border-gray-100">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="font-serif text-xl font-bold text-[#111827] leading-tight">Get Started Today</h3>
+                      <h3 className="text-xl font-bold text-[#111827] leading-tight">Get Started Today</h3>
                       <p className="text-gray-400 text-xs mt-1">Two simple ways to proceed</p>
                     </div>
                     <div className="flex-shrink-0 ml-4 flex flex-col items-center bg-[#1B4332]/6 border border-[#1B4332]/12 rounded-xl px-3 py-2">
@@ -178,7 +178,7 @@ export default function ProductCTA({ product }: { product: Product }) {
               whileInView="animate"
               viewport={{ once: true }}
               className="flex flex-col items-center justify-center py-7 px-4 bg-white/[0.03] hover:bg-white/[0.06] transition-colors">
-              <span className="font-serif text-3xl font-bold text-[#D4A017] leading-none">{s.value}</span>
+              <span className="text-3xl font-bold text-[#D4A017] leading-none">{s.value}</span>
               <span className="text-white/35 text-[10px] uppercase tracking-widest mt-1.5 text-center">{s.label}</span>
             </motion.div>
           ))}

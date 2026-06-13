@@ -74,14 +74,14 @@ export default function LogisticsHero() {
                 <span className="block w-8 h-px bg-[#D4A017]/50" />
               </motion.div>
 
-              <motion.h1 variants={fadeUp} className="font-serif text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold">
+              <motion.h1 variants={fadeUp} className="text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold">
                 <span className="block max-w-4xl">Global Logistics &amp;</span>
                 <span className="block text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.02em] text-[#D4A017] mt-1">
                   Export Operations
                 </span>
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-light">
+              <motion.p variants={fadeUp} className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-medium">
                 Supporting international buyers through reliable shipping,
                 documentation, container planning, and export coordination.
               </motion.p>
@@ -123,7 +123,7 @@ export default function LogisticsHero() {
               <motion.div variants={fadeUp} className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-x-10 gap-y-4">
                 {trustMetrics.map((metric) => (
                   <div key={metric.label} className="flex flex-col">
-                    <span className={`font-serif text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${metric.highlight ? "text-[#D4A017]" : "text-white"}`}>
+                    <span className={`text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${metric.highlight ? "text-[#D4A017]" : "text-white"}`}>
                       {metric.value}
                     </span>
                     <span className="mt-1.5 text-[11px] text-white/50 font-medium uppercase tracking-[0.12em]">{metric.label}</span>

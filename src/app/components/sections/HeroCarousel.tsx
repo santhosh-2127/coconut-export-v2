@@ -140,12 +140,12 @@ export default function HeroCarousel() {
                 </div>
 
                 {/* Headline */}
-                <h2 className="font-serif text-[clamp(1.5rem,4.5vw,4rem)] text-white font-bold leading-[1.08] tracking-[-0.02em]">
+                <h2 className="text-[clamp(1.5rem,4.5vw,4rem)] text-white font-bold leading-[1.08] tracking-[-0.02em]">
                   {slides[current].headline}
                 </h2>
 
                 {/* Subheading */}
-                <p className="mt-3 sm:mt-5 text-[13px] sm:text-base lg:text-lg text-white/65 leading-relaxed max-w-[600px] font-light">
+                <p className="mt-3 sm:mt-5 text-[13px] sm:text-base lg:text-lg text-white/65 leading-relaxed max-w-[600px] font-medium">
                   {slides[current].subheading}
                 </p>
 

@@ -134,7 +134,6 @@ function ComplianceSeal({
         textAnchor="middle"
         fontSize={size * 0.18}
         fill={accent}
-        fontFamily="Georgia, serif"
         fontWeight="700"
         filter={`url(#sealGlow-${abbr})`}
       >
@@ -219,7 +218,7 @@ function FeaturedCertCard({
             {meta.tagline}
           </span>
 
-          <h3 className="font-serif text-xl md:text-2xl font-bold text-[#111827] mb-2 tracking-tight">
+          <h3 className="text-xl md:text-2xl font-bold text-[#111827] mb-2 tracking-tight">
             {name}
           </h3>
           <p className="text-gray-500 text-sm leading-relaxed mb-4 max-w-lg">
@@ -333,7 +332,7 @@ function StandardCertCard({
           {meta.tagline}
         </span>
 
-        <h3 className="font-serif text-lg font-bold text-[#111827] mb-2 text-center tracking-tight">
+        <h3 className="text-lg font-bold text-[#111827] mb-2 text-center tracking-tight">
           {name}
         </h3>
         <p className="text-gray-500 text-xs leading-relaxed mb-4 text-center flex-1">
@@ -458,7 +457,6 @@ export default function Certifications() {
       >
         <span
           className="text-[22vw] font-black uppercase tracking-widest text-[#1B4332]/[0.025] whitespace-nowrap"
-          style={{ fontFamily: "Georgia, serif" }}
         >
           CERTIFIED
         </span>
@@ -486,7 +484,7 @@ export default function Certifications() {
             <div className="w-8 h-px bg-[#D4A017]" />
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Built on{" "}
             <span className="text-[#1B4332]">International</span>
             <br className="hidden sm:block" />{" "}

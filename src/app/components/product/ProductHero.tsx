@@ -48,12 +48,12 @@ export default function ProductHero({ product }: { product: Product }) {
               </motion.div>
 
               {/* Heading */}
-              <motion.h1 variants={fadeUpBig} className="font-serif text-[clamp(2.6rem,5.5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold">
+              <motion.h1 variants={fadeUpBig} className="text-[clamp(2.6rem,5.5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold">
                 <span className="block">{product.name}</span>
                 <span className="block text-[clamp(1.2rem,2.5vw,2rem)] leading-[1.3] tracking-[-0.01em] text-[#D4A017] font-normal italic mt-2">{product.subtitle}</span>
               </motion.h1>
 
-              <motion.p variants={fadeUpBig} className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[560px] font-light">
+              <motion.p variants={fadeUpBig} className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[560px] font-medium">
                 {product.shortDescription} Sourced from certified farms across Tamil Nadu's prime coconut belt and processed under ISO 22000 & HACCP certified facilities.
               </motion.p>
 
@@ -93,7 +93,7 @@ export default function ProductHero({ product }: { product: Product }) {
               <motion.div variants={fadeUpBig} className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-x-10 gap-y-4">
                 {product.heroStats.map((stat) => (
                   <div key={stat.label} className="flex flex-col">
-                    <span className="font-serif text-[clamp(1.3rem,2vw,1.8rem)] text-white font-bold leading-none tracking-tight">{stat.value}</span>
+                    <span className="text-[clamp(1.3rem,2vw,1.8rem)] text-white font-bold leading-none tracking-tight">{stat.value}</span>
                     <span className="mt-1.5 text-[11px] text-white/50 font-medium uppercase tracking-[0.12em]">{stat.label}</span>
                   </div>
                 ))}

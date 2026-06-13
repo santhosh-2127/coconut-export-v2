@@ -106,7 +106,7 @@ export default function RFQProcess() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#1B4332] font-bold">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl text-[#1B4332] font-bold">
             How It <span className="text-[#D4A017]">Works</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base">

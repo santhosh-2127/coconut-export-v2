@@ -86,7 +86,7 @@ function BenefitCard({
     >
       <span
         aria-hidden="true"
-        className="absolute -bottom-4 -right-2 font-buda text-[6rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500"
+        className="absolute -bottom-4 -right-2 text-[6rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500"
       >
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -103,7 +103,7 @@ function BenefitCard({
           </div>
         </div>
 
-        <h3 className="font-serif text-lg lg:text-xl font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-3">
+        <h3 className="text-lg lg:text-xl font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-3">
           {benefit.title}
         </h3>
         <p className="text-[#6B7280] text-sm leading-relaxed mb-5 flex-1">
@@ -111,7 +111,7 @@ function BenefitCard({
         </p>
 
         <div className="flex items-center gap-2.5 pt-4 border-t border-[#E5E7EB]">
-          <span className="font-serif text-xl font-bold text-[#1B4332]">
+          <span className="text-xl font-bold text-[#1B4332]">
             {benefit.stat.value}
           </span>
           <span className="text-[10px] text-[#9CA3AF] uppercase tracking-[0.12em]">
@@ -165,7 +165,7 @@ export default function AboutWhyBuyers() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Built for Buyer{" "}
             <span className="text-[#D4A017]">Confidence</span>
           </h2>

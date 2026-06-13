@@ -109,7 +109,7 @@ export default function AboutQuality() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Built on{" "}
             <span className="text-[#1B4332]">Consistent Quality</span>
           </h2>
@@ -147,7 +147,7 @@ export default function AboutQuality() {
                   </span>
                 </div>
 
-                <h3 className="font-serif text-lg lg:text-xl font-bold text-[#111827] leading-tight mb-3">
+                <h3 className="text-lg lg:text-xl font-bold text-[#111827] leading-tight mb-3">
                   {pillar.title}
                 </h3>
                 <p className="text-[#6B7280] text-sm leading-relaxed mb-4">

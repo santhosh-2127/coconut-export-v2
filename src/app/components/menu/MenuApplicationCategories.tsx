@@ -112,7 +112,7 @@ export default function MenuApplicationCategories() {
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             Products Grouped By{" "}
             <span className="text-[#1B4332]">Application</span>
           </h2>
@@ -163,7 +163,7 @@ export default function MenuApplicationCategories() {
 
                 {/* Title */}
                 <h3
-                  className="font-serif text-lg lg:text-xl font-bold leading-tight mb-3"
+                  className="text-lg lg:text-xl font-bold leading-tight mb-3"
                   style={{ color: category.color }}
                 >
                   {category.title}

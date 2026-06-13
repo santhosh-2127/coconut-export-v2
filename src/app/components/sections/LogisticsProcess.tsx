@@ -117,7 +117,7 @@ export default function LogisticsProcess() {
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Export Process</p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#1B4332] font-bold">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl text-[#1B4332] font-bold">
             End-to-End{" "}<span className="text-[#D4A017]">Export Process</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base">
