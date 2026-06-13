@@ -252,7 +252,7 @@ export default function RFQHero() {
                   >
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
-                  <span className="text-white text-[13px] font-medium tracking-wide whitespace-nowrap">
+                  <span className="text-white text-[11px] lg:text-[13px] font-medium tracking-wide whitespace-nowrap">
                     Fast &amp; Transparent
                   </span>
                 </div>
@@ -279,7 +279,7 @@ export default function RFQHero() {
                     <circle cx="12" cy="12" r="10" />
                     <polyline points="12 6 12 12 16 14" />
                   </svg>
-                  <span className="text-white text-[13px] font-medium tracking-wide whitespace-nowrap">
+                  <span className="text-white text-[11px] lg:text-[13px] font-medium tracking-wide whitespace-nowrap">
                     24h Response
                   </span>
                 </div>

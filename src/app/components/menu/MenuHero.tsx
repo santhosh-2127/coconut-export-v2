@@ -249,7 +249,7 @@ export default function MenuHero() {
                   >
                     <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                   </svg>
-                  <span className="text-white text-[13px] font-medium tracking-wide whitespace-nowrap">
+                  <span className="text-white text-[11px] lg:text-[13px] font-medium tracking-wide whitespace-nowrap">
                     {totalProducts} Export Products
                   </span>
                 </div>
@@ -275,7 +275,7 @@ export default function MenuHero() {
                   >
                     <path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="text-white text-[13px] font-medium tracking-wide whitespace-nowrap">
+                  <span className="text-white text-[11px] lg:text-[13px] font-medium tracking-wide whitespace-nowrap">
                     ISO &amp; HACCP Certified
                   </span>
                 </div>

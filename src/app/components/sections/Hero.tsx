@@ -352,7 +352,7 @@ export default function Hero() {
                 >
                   <div className="flex items-center gap-3 px-4 py-3 rounded-lg backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.30)] hover:bg-white/[0.12] transition-colors duration-300">
                     <span className="flex-shrink-0">{card.icon}</span>
-                    <span className="text-white text-[13px] font-medium tracking-wide whitespace-nowrap">
+                    <span className="text-white text-[11px] lg:text-[13px] font-medium tracking-wide whitespace-nowrap">
                       {card.label}
                     </span>
                   </div>

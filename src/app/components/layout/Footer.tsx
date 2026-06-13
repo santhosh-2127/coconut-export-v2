@@ -100,7 +100,7 @@ export default function Footer() {
           MAIN FOOTER GRID
       ════════════════════════════════════════ */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 pt-16 md:pt-20 pb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-10 lg:gap-8 xl:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr] gap-8 lg:gap-8 xl:gap-12">
 
           {/* ── COL 1: Brand Overview ── */}
           <div className="sm:col-span-2 lg:col-span-1">
@@ -120,10 +120,10 @@ export default function Footer() {
             </a>
 
             {/* Brand statement */}
-            <p className="text-white/55 text-sm leading-relaxed mb-3 max-w-[260px]">
+            <p className="text-white/55 text-sm leading-relaxed mb-3 max-w-full lg:max-w-[260px]">
               {companyInfo.tagline} For Global Markets.
             </p>
-            <p className="text-white/35 text-xs leading-relaxed mb-7 max-w-[260px]">
+            <p className="text-white/35 text-xs leading-relaxed mb-7 max-w-full lg:max-w-[260px]">
               Supporting importers, distributors, and industrial buyers worldwide with reliable supply and export expertise.
             </p>
 
@@ -213,7 +213,7 @@ export default function Footer() {
 
           {/* ── COL 2: Quick Navigation ── */}
           <div>
-            <h4 className="text-[10px] uppercase tracking-[3.5px] text-[#D4A017]/70 font-bold mb-6">
+            <h4 className="text-[15px] sm:text-base md:text-[18px] lg:text-[20px] xl:text-[22px] uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5 whitespace-nowrap">
               Navigation
             </h4>
             <ul className="space-y-3.5" role="list">
@@ -260,7 +260,7 @@ export default function Footer() {
 
           {/* ── COL 3: Products ── */}
           <div>
-            <h4 className="text-[10px] uppercase tracking-[3.5px] text-[#D4A017]/70 font-bold mb-6">
+            <h4 className="text-[15px] sm:text-base md:text-[18px] lg:text-[20px] xl:text-[22px] uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5 whitespace-nowrap">
               Our Products
             </h4>
             <ul className="space-y-3.5" role="list">
@@ -287,7 +287,7 @@ export default function Footer() {
 
           {/* ── COL 4: Export Support ── */}
           <div>
-            <h4 className="text-[10px] uppercase tracking-[3.5px] text-[#D4A017]/70 font-bold mb-6">
+            <h4 className="text-[15px] sm:text-base md:text-[18px] lg:text-[20px] xl:text-[22px] uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5 whitespace-nowrap">
               Export Support
             </h4>
             <ul className="space-y-3.5" role="list">
@@ -310,7 +310,7 @@ export default function Footer() {
 
           {/* ── COL 5: Start Trading CTA panel ── */}
           <div>
-            <h4 className="text-[10px] uppercase tracking-[3.5px] text-[#D4A017]/70 font-bold mb-6">
+            <h4 className="text-[15px] sm:text-base md:text-[18px] lg:text-[20px] xl:text-[22px] uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5 whitespace-nowrap">
               Start Trading
             </h4>
 

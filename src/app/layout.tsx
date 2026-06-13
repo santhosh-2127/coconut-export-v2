@@ -6,6 +6,8 @@ import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
 import Clarity from "./components/analytics/Clarity";
 import CookieConsent from "./components/analytics/CookieConsent";
 import TrackingInit from "./components/analytics/TrackingInit";
+import WhatsAppWidget from "./components/layout/WhatsAppWidget";
+import BackToTop from "./components/layout/BackToTop";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -122,6 +124,8 @@ export default function RootLayout({
         <Clarity />
         <CookieConsent />
         <TrackingInit />
+        <WhatsAppWidget />
+        <BackToTop />
         <main id="main-content">
           {children}
         </main>

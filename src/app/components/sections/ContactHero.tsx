@@ -149,7 +149,7 @@ export default function ContactHero() {
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="absolute top-[5%] right-[8%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-5 w-[200px] shadow-2xl"
+                className="absolute top-[5%] right-[8%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-5 w-[170px] xl:w-[200px] shadow-2xl"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-lg bg-[#25D366]/20 flex items-center justify-center text-lg">💬</div>
@@ -169,7 +169,7 @@ export default function ContactHero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="absolute bottom-[15%] left-[5%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-5 w-[220px] shadow-2xl"
+                className="absolute bottom-[15%] left-[5%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-5 w-[180px] xl:w-[220px] shadow-2xl"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-lg bg-[#D4A017]/20 flex items-center justify-center text-lg">✉️</div>

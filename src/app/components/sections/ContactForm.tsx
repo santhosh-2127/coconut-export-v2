@@ -102,15 +102,14 @@ export default function ContactForm() {
               Fill out the form and our export team will get back to you within 24 hours with the information you need.
             </p>
 
-            {/* Trust notes */}
-            <div className="mt-8 space-y-4">
+            {/* Trust notes */}              <div className="mt-8 space-y-4">
               {[
                 { icon: "🔒", text: "Your information is kept confidential" },
                 { icon: "⏱️", text: "Same-day response for urgent inquiries" },
                 { icon: "🌐", text: "International buyer support available" },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-3">
-                  <span className="text-lg">{item.icon}</span>
+                  <span className="text-lg flex-shrink-0">{item.icon}</span>
                   <span className="text-sm text-gray-500">{item.text}</span>
                 </div>
               ))}

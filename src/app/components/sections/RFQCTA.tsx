@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { trackOutboundClick } from "@/lib/analytics";
+import ConsultationModal from "./ConsultationModal";
 
 /* ─────────────────────────────────────────────────────
    INQUIRY → SHIPMENT JOURNEY  (left panel storytelling)
@@ -30,6 +31,7 @@ const TRUST = [
 export default function RFQCTA() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView   = useInView(sectionRef, { once: true, margin: "-80px" });
+  const [consultModalOpen, setConsultModalOpen] = useState(false);
 
   return (
     <section
@@ -285,11 +287,12 @@ export default function RFQCTA() {
                   </div>
 
                   {/* Secondary CTA */}
-                  <a
-                    href="mailto:info@globalcocoexports.com?subject=Schedule%20Consultation"
+                  <button
+                    type="button"
                     onClick={(e) => {
                       e.stopPropagation();
                       trackOutboundClick({ type: "schedule_consultation", label: "Homepage Schedule Consultation" });
+                      setConsultModalOpen(true);
                     }}
                     className="mt-3 w-full flex items-center justify-center gap-2 border border-[#1B4332]/20 text-[#1B4332] font-semibold text-sm py-3.5 rounded-xl hover:bg-[#1B4332]/5 hover:border-[#1B4332]/35 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] focus-visible:ring-offset-2"
                   >
@@ -299,7 +302,7 @@ export default function RFQCTA() {
                       <path d="M5 1v2M10 1v2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                     </svg>
                     Schedule Consultation
-                  </a>
+                  </button>
 
                   {/* Privacy note */}
                   <p className="text-[11px] text-gray-400 text-center mt-4 leading-relaxed">
@@ -344,6 +347,11 @@ export default function RFQCTA() {
         </motion.div>
 
       </div>
+
+      <ConsultationModal
+        isOpen={consultModalOpen}
+        onClose={() => setConsultModalOpen(false)}
+      />
     </section>
   );
 }

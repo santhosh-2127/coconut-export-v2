@@ -2,16 +2,24 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/constants/navLinks";
 import { trackOutboundClick } from "@/lib/analytics";
 
 export default function Navbar({ solid = false }: { solid?: boolean }) {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href === "/products/*") return pathname.startsWith("/products/") || pathname === "/menu";
+    return pathname === href;
+  };
 
   const isSolid = scrolled || solid;
 
@@ -57,7 +65,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             <Image src="/images/logo-image.png" alt="" width={32} height={32} className="w-full h-full object-contain" />
           </div>
           <span
-            className={`text-lg font-bold tracking-wide transition-colors duration-500 ${
+            className={`text-sm sm:text-base lg:text-lg font-bold tracking-wide transition-colors duration-500 ${
               isSolid ? "text-[#1B4332]" : "text-white"
             }`}
           >
@@ -71,7 +79,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
           <a
             href="/"
             className={`navbar-link tracking-wide transition-colors duration-300 hover:text-[#D4A017] ${
-              isSolid ? "text-gray-700" : "text-white/90"
+              isActive("/") ? "text-[#D4A017]" : isSolid ? "text-gray-700" : "text-white/90"
             }`}
           >
             Home
@@ -93,7 +101,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               onClick={() => setDropdownOpen(!dropdownOpen)}
               onKeyDown={(e) => e.key === "Escape" && setDropdownOpen(false)}
               className={`navbar-link tracking-wide transition-colors duration-300 hover:text-[#D4A017] ${
-                isSolid ? "text-gray-700" : "text-white/90"
+                isActive("/products/*") ? "text-[#D4A017]" : isSolid ? "text-gray-700" : "text-white/90"
               }`}
               aria-expanded={dropdownOpen}
               aria-haspopup="true"
@@ -123,7 +131,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               key={link.label}
               href={link.href}
               className={`navbar-link tracking-wide transition-colors duration-300 hover:text-[#D4A017] ${
-                isSolid ? "text-gray-700" : "text-white/90"
+                isActive(link.href) ? "text-[#D4A017]" : isSolid ? "text-gray-700" : "text-white/90"
               }`}
             >
               {link.label}
@@ -189,7 +197,11 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               <a
                 href="/"
                 onClick={() => setMobileOpen(false)}
-                className="text-gray-700 navbar-link-mobile py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5 transition-all min-h-[48px] flex items-center"
+                className={`navbar-link-mobile py-2.5 px-3 rounded-lg transition-all min-h-[48px] flex items-center ${
+                  isActive("/")
+                    ? "text-[#D4A017] bg-[#D4A017]/10 font-semibold"
+                    : "text-gray-700 hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5"
+                }`}
               >
                 Home
               </a>
@@ -198,7 +210,11 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               <div className="flex flex-col">
                 <button
                   onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                  className="flex items-center justify-between w-full text-gray-700 navbar-link-mobile py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-4 transition-all min-h-[48px]"
+                  className={`flex items-center justify-between w-full navbar-link-mobile py-2.5 px-3 rounded-lg transition-all min-h-[48px] ${
+                    isActive("/products/*")
+                      ? "text-[#D4A017] bg-[#D4A017]/10 font-semibold"
+                      : "text-gray-700 hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-4"
+                  }`}
                   aria-expanded={mobileProductsOpen}
                 >
                   <span>Products</span>
@@ -226,7 +242,11 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                             key={product.name}
                             href={product.href}
                             onClick={() => setMobileOpen(false)}
-                            className="text-[13px] text-gray-600 font-medium py-2 hover:text-[#D4A017] hover:bg-[#1B4332]/[0.03] hover:pl-3 rounded transition-all flex items-center gap-2"
+                            className={`text-[13px] font-medium py-2 rounded transition-all flex items-center gap-2 ${
+                              isActive(product.href)
+                                ? "text-[#D4A017] bg-[#D4A017]/10 pl-3"
+                                : "text-gray-600 hover:text-[#D4A017] hover:bg-[#1B4332]/[0.03] hover:pl-3"
+                            }`}
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#D4A017]/40" />
                             {product.name}
@@ -243,7 +263,11 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-gray-700 navbar-link-mobile py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5 transition-all min-h-[48px] flex items-center"
+                  className={`navbar-link-mobile py-2.5 px-3 rounded-lg transition-all min-h-[48px] flex items-center ${
+                    isActive(link.href)
+                      ? "text-[#D4A017] bg-[#D4A017]/10 font-semibold"
+                      : "text-gray-700 hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5"
+                  }`}
                 >
                   {link.label}
                 </a>

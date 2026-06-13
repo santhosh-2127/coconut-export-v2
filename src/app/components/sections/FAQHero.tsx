@@ -224,7 +224,7 @@ export default function FAQHero() {
                       initial={{ opacity: 0, y: 24, scale: 0.96 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       transition={{ duration: 0.6, delay: 0.5 }}
-                      className="absolute top-[8%] right-[5%] w-[240px]"
+                      className="absolute top-[8%] right-[5%] w-[200px] xl:w-[240px]"
                     >
                       <div className="rounded-xl backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.30)] p-5">
                         <div className="flex items-center gap-3 mb-2">
@@ -248,7 +248,7 @@ export default function FAQHero() {
                       initial={{ opacity: 0, y: 24, scale: 0.96 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       transition={{ duration: 0.6, delay: 0.7 }}
-                      className="absolute top-[38%] left-[3%] w-[220px]"
+                      className="absolute top-[38%] left-[3%] w-[180px] xl:w-[220px]"
                     >
                       <div className="rounded-xl backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.30)] p-5">
                         <div className="flex items-center gap-3 mb-2">
@@ -272,7 +272,7 @@ export default function FAQHero() {
                       initial={{ opacity: 0, y: 24, scale: 0.96 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       transition={{ duration: 0.6, delay: 0.85 }}
-                      className="absolute bottom-[12%] right-[10%] w-[230px]"
+                      className="absolute bottom-[12%] right-[10%] w-[190px] xl:w-[230px]"
                     >
                       <div className="rounded-xl backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.30)] p-5">
                         <div className="flex items-center gap-3 mb-2">

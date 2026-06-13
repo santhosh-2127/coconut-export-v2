@@ -227,7 +227,7 @@ function StepIndicator({
             </div>
             {/* Connector */}
             {i < STEPS.length - 1 && (
-              <div className="w-12 sm:w-20 h-px bg-gray-200 mx-2 sm:mx-3 relative">
+              <div className="w-8 sm:w-20 h-px bg-gray-200 mx-1 sm:mx-3 relative">
                 <div
                   className={`absolute inset-y-0 left-0 bg-[#1B4332] transition-all duration-500 ${
                     s.num < currentStep ? "w-full" : "w-0"
