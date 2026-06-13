@@ -1,0 +1,130 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+/* ─── FAQ data ───────────────────────────────── */
+const faqs = [
+  {
+    q: "How quickly do you respond to inquiries?",
+    a: "We typically respond within 24 hours on email and within 2 hours on WhatsApp. Urgent inquiries received before 2:00 PM IST are often answered the same business day. For out-of-hours submissions, we respond at the start of the next business day.",
+  },
+  {
+    q: "Can I request product specifications before placing an order?",
+    a: "Absolutely. We provide detailed technical specifications, quality parameters, and product certifications for all our coconut products — including moisture content, oil content, grading standards, and packaging options. Simply submit your inquiry and our team will share the relevant documentation.",
+  },
+  {
+    q: "Can I schedule a consultation with your export team?",
+    a: "Yes. We offer consultation calls for serious buyers to discuss product selection, volumes, shipping terms, and documentation requirements. Consultations can be scheduled via email or WhatsApp during business hours.",
+  },
+  {
+    q: "Can you support international shipments?",
+    a: "Yes. We export to buyers across the Middle East, Europe, North America, and Asia-Pacific. We handle FOB, CIF, and CFR terms from Chennai, Tuticorin, and Nhava Sheva ports. Full documentation and customs clearance support is included.",
+  },
+  {
+    q: "Do you provide samples for quality evaluation?",
+    a: "Yes, we can arrange product samples for serious buyers. Sample costs and shipping arrangements can be discussed with our export team. Sample requests are typically processed within 3–5 business days.",
+  },
+  {
+    q: "What payment terms do you accept?",
+    a: "We accept multiple payment methods for international trade including Letter of Credit (LC) at sight, Telegraphic Transfer (TT) — advance or against documents, and Documents Against Payment (DP) for established relationships. Payment terms are negotiated based on the order value, incoterm selected, and buyer history. Our team can advise on the most suitable structure for your procurement and trade finance requirements.",
+  },
+  {
+    q: "Can I place trial orders before committing to bulk volumes?",
+    a: "Yes, we accommodate trial orders for qualified buyers evaluating our products for the first time. Trial quantities can be arranged via LCL container consolidation, palletized shipments, or sample courier depending on the product category and destination. Pricing for trial orders is transparent, and we provide a comparison against FCL volume pricing so you can plan your procurement scale-up with full cost visibility.",
+  },
+  {
+    q: "What is the minimum order quantity for your products?",
+    a: "Minimum order quantities vary by product category. For Fresh Brown Coconut and Pollachi Fresh Coconut, the standard MOQ is 1 × 20ft FCL (approximately 24,000–25,000 nuts). For Copra, the MOQ is 1 × 20ft FCL (≈18 MT). For Coco Peat, the MOQ is 1 × 20ft FCL (≈500 blocks). We can discuss flexibility for trial orders and LCL shipments on a case-by-case basis. Contact our team to discuss your specific volume requirements.",
+  },
+];
+
+export default function ContactFAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
+
+  return (
+    <section id="contact-faq" aria-label="Frequently Asked Questions" className="relative py-20 md:py-24 overflow-hidden bg-[#FAFAFA]">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "radial-gradient(circle, #1B4332 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+      </div>
+
+      <div className="relative max-w-3xl mx-auto px-5 sm:px-8">
+        <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 mb-5">
+            <span className="w-8 h-px bg-[#D4A017]" />
+            <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">FAQs</p>
+            <span className="w-8 h-px bg-[#D4A017]" />
+          </div>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+            Frequently Asked{" "}<span className="text-[#D4A017]">Questions</span>
+          </h2>
+        </motion.div>
+
+        <div className="space-y-2">
+          {faqs.map((faq, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              className={`rounded-xl border transition-all duration-300 overflow-hidden ${
+                openIndex === i
+                  ? "border-[#D4A017]/30 bg-white shadow-[0_4px_20px_rgba(212,160,23,0.06)]"
+                  : "border-[#E5E7EB] bg-white hover:border-[#1B4332]/10 hover:shadow-sm"
+              }`}
+            >
+              <button
+                onClick={() => toggle(i)}
+                className="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017]/40 focus-visible:ring-inset rounded-xl"
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-answer-${i}`}
+              >
+                <span className="text-sm sm:text-base font-semibold text-[#111827] pr-4">{faq.q}</span>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                  openIndex === i ? "bg-[#D4A017] text-white" : "bg-[#1B4332]/10 text-[#1B4332]"
+                }`}>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"
+                    className={`transition-transform duration-300 ${openIndex === i ? "rotate-45" : ""}`}>
+                    <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </button>
+              <AnimatePresence initial={false}>
+                {openIndex === i && (
+                  <motion.div
+                    key="answer"
+                    id={`faq-answer-${i}`}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-5 sm:px-6 pb-5 sm:pb-6">
+                      <div className="w-10 h-px bg-[#D4A017]/40 mb-3" />
+                      <p className="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom link */}
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-10 text-center">
+          <p className="text-sm text-gray-400">
+            Still have questions?{" "}
+            <a href="#contact-form" className="text-[#1B4332] font-semibold underline underline-offset-4 hover:text-[#D4A017] transition-colors">
+              Send us a message
+            </a>
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
