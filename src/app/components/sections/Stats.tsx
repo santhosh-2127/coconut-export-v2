@@ -45,13 +45,13 @@ function MetricItem({ value, label, index, isVisible }: { value: string; label: 
       className="group relative flex flex-col items-center text-center py-6 sm:py-7 px-4 hover:bg-[#1B4332]/[0.03] transition-colors"
     >
       <p
-        className="font-serif text-[2rem] sm:text-[2.5rem] lg:text-[2.75rem] leading-none font-bold text-[#1B4332] tracking-[-0.02em] tabular-nums group-hover:scale-105 transition-transform duration-300"
+        className="font-roboto text-[2rem] sm:text-[2.5rem] lg:text-[2.75rem] leading-none font-bold text-[#1B4332] tracking-[-0.02em] tabular-nums group-hover:scale-105 transition-transform duration-300"
         aria-label={`${value} ${label}`}
       >
         {isVisible ? counted : 0}
         <span className="text-[#D4A017]">{suffix}</span>
       </p>
-      <p className="mt-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold">
+      <p className="mt-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold font-roboto">
         {label}
       </p>
     </motion.div>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cinzel, Lato, Roboto, Buda } from "next/font/google";
 import { OrganizationSchema, WebsiteSchema, LocalBusinessSchema } from "@/lib/schemas";
 import SkipNav from "./components/layout/SkipNav";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
@@ -8,20 +8,38 @@ import CookieConsent from "./components/analytics/CookieConsent";
 import TrackingInit from "./components/analytics/TrackingInit";
 import "./globals.css";
 
-const inter = Inter({
+const lato = Lato({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["100", "300", "400", "700", "900"],
+  variable: "--font-lato",
   display: "swap",
   preload: true,
   fallback: ["system-ui", "-apple-system", "sans-serif"],
 });
 
-const playfair = Playfair_Display({
+const cinzel = Cinzel({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-cinzel",
   display: "swap",
   preload: true,
   fallback: ["Georgia", "serif"],
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "sans-serif"],
+});
+
+const buda = Buda({
+  subsets: ["latin"],
+  weight: "300",
+  variable: "--font-buda",
+  display: "swap",
+  preload: true,
+  fallback: ["cursive", "sans-serif"],
 });
 
 const BASE_URL = "https://www.globalcocoexports.com";
@@ -122,7 +140,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-[#FAFAFA] text-[#111827]`}
+        className={`${lato.variable} ${cinzel.variable} ${roboto.variable} ${buda.variable} font-sans antialiased bg-[#FAFAFA] text-[#111827]`}
       >
         <SkipNav />
         <GoogleAnalytics />

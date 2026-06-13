@@ -124,7 +124,7 @@ function ProductVisualPanel({
       {/* Large ghost ordinal */}
       <span
         aria-hidden="true"
-        className="absolute -bottom-3 -right-2 font-serif font-bold text-[9rem] leading-none text-white/[0.06] select-none pointer-events-none"
+        className="absolute -bottom-3 -right-2 font-buda text-[9rem] leading-none text-white/[0.06] select-none pointer-events-none"
       >
         {ordinals[idx]}
       </span>

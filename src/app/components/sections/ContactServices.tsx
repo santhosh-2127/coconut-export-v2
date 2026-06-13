@@ -93,7 +93,7 @@ export default function ContactServices() {
                     style={{ background: `${svc.color}10` }}>
                     {svc.icon}
                   </div>
-                  <span className="text-[40px] font-black font-serif leading-none opacity-[0.04] select-none">
+                  <span className="text-[40px] font-buda leading-none opacity-[0.04] select-none">
                     {(i + 1).toString().padStart(2, "0")}
                   </span>
                 </div>

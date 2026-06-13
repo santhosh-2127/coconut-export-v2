@@ -132,7 +132,7 @@ export default function Footer() {
               {TRUST_PILLS.map((pill) => (
                 <span
                   key={pill.text}
-                  className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/50 bg-white/[0.05] border border-white/[0.08] rounded-full px-2.5 py-1"
+                  className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-white/50 bg-white/[0.05] border border-white/[0.08] rounded-full px-2.5 py-1 font-roboto"
                 >
                   <span aria-hidden="true">{pill.icon}</span>
                   {pill.text}
@@ -145,7 +145,7 @@ export default function Footer() {
               <a
                 href={`mailto:${companyInfo.email}`}
                 data-analytics={JSON.stringify({ type: "email", label: "Footer Email" })}
-                className="flex items-center gap-2.5 text-xs text-white/45 hover:text-[#D4A017] transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded"
+                className="flex items-center gap-2.5 text-xs text-white/45 hover:text-[#D4A017] transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded font-roboto"
               >
                 <span
                   className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 bg-white/[0.06] group-hover:bg-[#D4A017]/15 transition-colors"
@@ -162,7 +162,7 @@ export default function Footer() {
               <a
                 href={`tel:${companyInfo.phone}`}
                 data-analytics={JSON.stringify({ type: "phone", label: "Footer Phone" })}
-                className="flex items-center gap-2.5 text-xs text-white/45 hover:text-[#D4A017] transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded"
+                className="flex items-center gap-2.5 text-xs text-white/45 hover:text-[#D4A017] transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded font-roboto"
               >
                 <span
                   className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 bg-white/[0.06] group-hover:bg-[#D4A017]/15 transition-colors"
@@ -181,7 +181,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-analytics={JSON.stringify({ type: "whatsapp", label: "Footer WhatsApp" })}
-                className="flex items-center gap-2.5 text-xs text-white/45 hover:text-[#D4A017] transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded"
+                className="flex items-center gap-2.5 text-xs text-white/45 hover:text-[#D4A017] transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded font-roboto"
                 aria-label="Contact us on WhatsApp"
               >
                 <span
@@ -221,7 +221,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="group flex items-center gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded"
+                    className="group flex items-center gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded font-roboto"
                   >
                     <span
                       className="w-0 h-px bg-[#D4A017] transition-all duration-300 group-hover:w-3 flex-shrink-0"
@@ -234,7 +234,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/#certifications"
-                  className="group flex items-center gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded"
+                  className="group flex items-center gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded font-roboto"
                 >
                   <span
                     className="w-0 h-px bg-[#D4A017] transition-all duration-300 group-hover:w-3 flex-shrink-0"
@@ -246,7 +246,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/#destinations"
-                  className="group flex items-center gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded"
+                  className="group flex items-center gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded font-roboto"
                 >
                   <span
                     className="w-0 h-px bg-[#D4A017] transition-all duration-300 group-hover:w-3 flex-shrink-0"
@@ -271,7 +271,7 @@ export default function Footer() {
                   <li key={p.id}>
                     <a
                       href={productHref}
-                      className="group flex items-start gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded leading-snug"
+                      className="group flex items-start gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded leading-snug font-roboto"
                     >
                       <span
                         className="w-0 h-px bg-[#D4A017] mt-[0.6em] transition-all duration-300 group-hover:w-3 flex-shrink-0"
@@ -295,7 +295,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="group flex items-center gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded"
+                    className="group flex items-center gap-2 text-sm text-white/45 hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded font-roboto"
                   >
                     <span
                       className="w-0 h-px bg-[#D4A017] transition-all duration-300 group-hover:w-3 flex-shrink-0"
@@ -322,7 +322,7 @@ export default function Footer() {
                   "linear-gradient(145deg, rgba(27,67,50,0.5) 0%, rgba(13,45,31,0.4) 100%)",
               }}
             >
-              <p className="text-white/80 text-xs font-semibold leading-snug mb-1">
+              <p className="text-white/80 text-xs font-semibold leading-snug mb-1 font-roboto">
                 Ready to source at scale?
               </p>
               <p className="text-white/35 text-[11px] leading-relaxed mb-4">
@@ -349,7 +349,7 @@ export default function Footer() {
                 {CERTIFICATIONS.map((cert) => (
                   <span
                     key={cert}
-                    className="text-[9px] font-bold text-white/40 border border-white/[0.08] rounded-full px-2 py-0.5 bg-white/[0.03]"
+                    className="text-[9px] font-bold text-white/40 border border-white/[0.08] rounded-full px-2 py-0.5 bg-white/[0.03] font-roboto"
                   >
                     {cert}
                   </span>
@@ -378,7 +378,7 @@ export default function Footer() {
 
           {/* Left: copyright + legal links */}
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-center sm:text-left">
-            <p className="text-[11px] text-white/25">
+            <p className="text-[11px] text-white/25 font-roboto">
               &copy; {year}{" "}
               <span className="text-white/40 font-medium">Global Coco Exports</span>
               . All Rights Reserved.
@@ -402,16 +402,16 @@ export default function Footer() {
 
           {/* Right: origin + export badge */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.07] rounded-full pl-2 pr-3 py-1.5">
+            <div className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.07] rounded-full pl-2 pr-3 py-1.5 font-roboto">
               {/* India flag */}
               <span className="text-sm leading-none" aria-label="India" role="img">🇮🇳</span>
-              <span className="text-[10px] text-white/35 font-medium tracking-wide">
+              <span className="text-[10px] text-white/35 font-medium tracking-wide font-roboto">
                 Made in India
               </span>
             </div>
-            <div className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.07] rounded-full pl-2 pr-3 py-1.5">
+            <div className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.07] rounded-full pl-2 pr-3 py-1.5 font-roboto">
               <span className="text-sm leading-none" aria-hidden="true">🚢</span>
-              <span className="text-[10px] text-white/35 font-medium tracking-wide">
+              <span className="text-[10px] text-white/35 font-medium tracking-wide font-roboto">
                 Exporting Globally
               </span>
             </div>

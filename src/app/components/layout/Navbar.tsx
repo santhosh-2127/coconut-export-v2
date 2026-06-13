@@ -70,7 +70,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
           {/* Home */}
           <a
             href="/"
-            className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-[#D4A017] ${
+            className={`text-sm font-medium tracking-wide font-roboto transition-colors duration-300 hover:text-[#D4A017] ${
               isSolid ? "text-gray-700" : "text-white/90"
             }`}
           >
@@ -92,7 +92,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
               onKeyDown={(e) => e.key === "Escape" && setDropdownOpen(false)}
-              className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-[#D4A017] ${
+              className={`text-sm font-medium tracking-wide font-roboto transition-colors duration-300 hover:text-[#D4A017] ${
                 isSolid ? "text-gray-700" : "text-white/90"
               }`}
               aria-expanded={dropdownOpen}
@@ -107,7 +107,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                     <a
                       key={product.name}
                       href={product.href}
-                      className="block px-5 py-2.5 text-sm text-gray-700 hover:text-[#1B4332] hover:bg-[#1B4332]/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#1B4332]"
+                      className="block px-5 py-2.5 text-sm text-gray-700 hover:text-[#1B4332] hover:bg-[#1B4332]/5 transition-colors font-roboto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#1B4332]"
                       role="menuitem"
                     >
                       {product.name}
@@ -122,7 +122,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             <a
               key={link.label}
               href={link.href}
-              className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-[#D4A017] ${
+              className={`text-sm font-medium tracking-wide font-roboto transition-colors duration-300 hover:text-[#D4A017] ${
                 isSolid ? "text-gray-700" : "text-white/90"
               }`}
             >
@@ -135,7 +135,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         <a
           href="/#contact"
           onClick={() => trackOutboundClick({ type: "request_quote", label: "Navbar Request Quote" })}
-          className={`hidden md:inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+          className={`hidden md:inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold font-roboto transition-all duration-300 ${
             isSolid
               ? "bg-[#1B4332] text-white hover:bg-[#143A28]"
               : "bg-white/20 text-white backdrop-blur-sm hover:bg-white/30 border border-white/30"
@@ -189,7 +189,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               <a
                 href="/"
                 onClick={() => setMobileOpen(false)}
-                className="text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5 transition-all min-h-[48px] flex items-center text-[15px]"
+                className="text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5 transition-all min-h-[48px] flex items-center text-[15px] font-roboto"
               >
                 Home
               </a>
@@ -198,7 +198,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               <div className="flex flex-col">
                 <button
                   onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                  className="flex items-center justify-between w-full text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-4 transition-all min-h-[48px]"
+                  className="flex items-center justify-between w-full text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-4 transition-all min-h-[48px] font-roboto"
                   aria-expanded={mobileProductsOpen}
                 >
                   <span className="text-[15px]">Products</span>
@@ -226,7 +226,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                             key={product.name}
                             href={product.href}
                             onClick={() => setMobileOpen(false)}
-                            className="text-[13px] text-gray-600 font-medium py-2 hover:text-[#D4A017] hover:bg-[#1B4332]/[0.03] hover:pl-3 rounded transition-all flex items-center gap-2"
+                            className="text-[13px] text-gray-600 font-medium py-2 hover:text-[#D4A017] hover:bg-[#1B4332]/[0.03] hover:pl-3 rounded transition-all flex items-center gap-2 font-roboto"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#D4A017]/40" />
                             {product.name}
@@ -243,7 +243,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5 transition-all min-h-[48px] flex items-center text-[15px]"
+                  className="text-gray-700 font-semibold py-2.5 px-3 rounded-lg hover:bg-[#1B4332]/10 hover:text-[#1B4332] hover:pl-5 transition-all min-h-[48px] flex items-center text-[15px] font-roboto"
                 >
                   {link.label}
                 </a>
@@ -255,7 +255,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                   setMobileOpen(false);
                   trackOutboundClick({ type: "request_quote", label: "Mobile Navbar Request Quote" });
                 }}
-                className="mt-3 bg-[#1B4332] text-white text-center px-6 py-3 rounded-xl font-bold hover:bg-[#143A28] transition-all shadow-md active:scale-[0.98] flex items-center justify-center text-sm"
+                className="mt-3 bg-[#1B4332] text-white text-center px-6 py-3 rounded-xl font-bold font-roboto hover:bg-[#143A28] transition-all shadow-md active:scale-[0.98] flex items-center justify-center text-sm"
               >
                 Request Quote
               </a>

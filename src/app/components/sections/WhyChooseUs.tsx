@@ -57,7 +57,7 @@ function FeaturePanel({
       {/* Ghost ordinal — decorative depth layer */}
       <span
         aria-hidden="true"
-        className="absolute -bottom-4 -right-2 font-serif font-bold text-[7rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500"
+        className="absolute -bottom-4 -right-2 font-buda text-[7rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500"
       >
         {ordinals[index]}
       </span>
@@ -203,7 +203,7 @@ export default function WhyChooseUs() {
             {/* Large ghost word — depth layer */}
             <span
               aria-hidden="true"
-              className="absolute -bottom-6 -left-4 font-serif font-bold text-[9rem] leading-none text-white/[0.04] select-none pointer-events-none"
+              className="absolute -bottom-6 -left-4 font-buda text-[9rem] leading-none text-white/[0.04] select-none pointer-events-none"
             >
               WHY
             </span>

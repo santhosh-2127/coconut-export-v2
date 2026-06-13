@@ -31,7 +31,7 @@ export default function ApplicationsSection({ product }: { product: Product }) {
             <motion.article key={app.title} variants={fadeUp} initial="initial" whileInView="animate" viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.55, delay: i * 0.08 }}
               className="group relative bg-white border border-[#E5E7EB] hover:border-[#1B4332]/20 rounded-none overflow-hidden transition-all duration-400 hover:shadow-[0_16px_48px_rgba(27,67,50,0.09)] flex flex-col">
-              <span aria-hidden="true" className="absolute -bottom-4 -right-2 font-serif font-bold text-[6rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500">
+              <span aria-hidden="true" className="absolute -bottom-4 -right-2 font-buda text-[6rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="absolute top-0 inset-x-0 h-[2.5px] bg-[#D4A017] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />

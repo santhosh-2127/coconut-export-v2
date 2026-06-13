@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cinzel), ui-serif, Georgia, serif;
+  --font-roboto: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+  --font-buda: var(--font-buda), cursive, sans-serif;
 }
 
 :root {
@@ -22,11 +24,48 @@ body {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
+  line-height: 1.65;
 }
 
 #__next,
 #root {
   overflow-x: hidden;
+}
+
+/* ── Section label tags — Roboto for consistent UI labels ────────── */
+/* Gold uppercase section labels ("Why Choose Us", "Featured Article", etc.)
+   use Roboto for a cleaner, more consistent UI text appearance vs. Lato body */
+
+p.tracking-\[5px\] {
+  font-family: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+}
+
+span.tracking-\[0_24em\] {
+  font-family: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+}
+
+span.tracking-\[0_26em\] {
+  font-family: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Cinzel heading overrides ──────────────────────────────────────── */
+/* Cinzel is a Roman inscriptional display font with tighter capitals than
+   Playfair Display. It needs positive letter-spacing for readability.
+   These overrides replace the negative tracking that Playfair required. */
+
+h1.font-serif,
+h2.font-serif,
+h3.font-serif,
+h4.font-serif,
+h5.font-serif,
+h6.font-serif {
+  letter-spacing: 0.04em;
+}
+
+/* Hero H1 headings used extra-tight leading with Playfair; slightly more
+   line-height helps Cinzel's capital-heavy look breathe at large sizes */
+.font-serif.leading-\[1_08\] {
+  line-height: 1.15;
 }
 
 /* ── Touch target sizing ─────────────────────────────────────────────── */

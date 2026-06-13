@@ -23,8 +23,8 @@ type SubmitStatus = "idle" | "loading" | "success" | "error";
 
 /* ─── Styles ─────────────────────────────────── */
 const inputCls =
-  "w-full bg-white border border-[#E5E7EB] rounded-xl px-4 py-3.5 text-sm text-[#111827] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D4A017]/30 focus:border-[#D4A017] transition-all duration-200";
-const labelCls = "block text-[11px] uppercase tracking-[2px] text-gray-500 font-semibold mb-1.5";
+  "w-full bg-white border border-[#E5E7EB] rounded-xl px-4 py-3.5 text-sm text-[#111827] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D4A017]/30 focus:border-[#D4A017] transition-all duration-200 font-roboto";
+const labelCls = "block text-[11px] uppercase tracking-[2px] text-gray-500 font-semibold mb-1.5 font-roboto";
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormData>({
@@ -145,7 +145,7 @@ export default function ContactForm() {
                   </p>
                   <button
                     onClick={() => setStatus("idle")}
-                    className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-[#1B4332] text-white text-sm font-semibold rounded-full hover:bg-[#143a28] transition-colors"
+                    className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-[#1B4332] text-white text-sm font-semibold rounded-full hover:bg-[#143a28] transition-colors font-roboto"
                   >
                     Send Another Inquiry
                   </button>
@@ -216,7 +216,7 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full flex items-center justify-center gap-2.5 px-8 py-4 bg-[#1B4332] text-white font-semibold text-sm tracking-[0.04em] rounded-full hover:bg-[#143a28] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center gap-2.5 px-8 py-4 bg-[#1B4332] text-white font-semibold text-sm tracking-[0.04em] rounded-full hover:bg-[#143a28] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed font-roboto"
                   >
                     {status === "loading" ? (
                       <>

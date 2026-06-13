@@ -87,7 +87,7 @@ function BenefitCard({
       {/* Ghost ordinal */}
       <span
         aria-hidden="true"
-        className="absolute -bottom-4 -right-2 font-serif font-bold text-[6rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500"
+        className="absolute -bottom-4 -right-2 font-buda text-[6rem] leading-none text-[#1B4332]/[0.04] select-none pointer-events-none group-hover:text-[#1B4332]/[0.07] transition-colors duration-500"
       >
         {String(index + 1).padStart(2, "0")}
       </span>
