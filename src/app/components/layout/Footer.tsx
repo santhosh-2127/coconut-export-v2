@@ -213,7 +213,7 @@ export default function Footer() {
 
           {/* ── COL 2: Quick Navigation ── */}
           <div>
-            <h4 className="text-[15px] sm:text-base md:text-[18px] lg:text-[20px] xl:text-[22px] uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5 whitespace-nowrap">
+            <h4 className="text-[15px] sm:text-base uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5">
               Navigation
             </h4>
             <ul className="space-y-3.5" role="list">
@@ -260,7 +260,7 @@ export default function Footer() {
 
           {/* ── COL 3: Products ── */}
           <div>
-            <h4 className="text-[15px] sm:text-base md:text-[18px] lg:text-[20px] xl:text-[22px] uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5 whitespace-nowrap">
+            <h4 className="text-[15px] sm:text-base uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5">
               Our Products
             </h4>
             <ul className="space-y-3.5" role="list">
@@ -287,7 +287,7 @@ export default function Footer() {
 
           {/* ── COL 4: Export Support ── */}
           <div>
-            <h4 className="text-[15px] sm:text-base md:text-[18px] lg:text-[20px] xl:text-[22px] uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5 whitespace-nowrap">
+            <h4 className="text-[15px] sm:text-base uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5">
               Export Support
             </h4>
             <ul className="space-y-3.5" role="list">
@@ -310,7 +310,7 @@ export default function Footer() {
 
           {/* ── COL 5: Start Trading CTA panel ── */}
           <div>
-            <h4 className="text-[15px] sm:text-base md:text-[18px] lg:text-[20px] xl:text-[22px] uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5 whitespace-nowrap">
+            <h4 className="text-[15px] sm:text-base uppercase tracking-[1px] text-[#D4A017]/80 font-semibold mb-5">
               Start Trading
             </h4>
 

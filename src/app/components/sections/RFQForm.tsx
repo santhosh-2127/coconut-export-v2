@@ -441,7 +441,7 @@ function StepOne({
               </p>
             )}
           </div>
-          <div className="w-44">
+          <div className="w-36 sm:w-44">
             <div className="relative">
               <select
                 value={data.volumeUnit}

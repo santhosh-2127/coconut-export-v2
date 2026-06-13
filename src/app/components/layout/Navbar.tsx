@@ -74,7 +74,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
           {/* Home */}
           <a
             href="/"
@@ -143,7 +143,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         <a
           href="/#contact"
           onClick={() => trackOutboundClick({ type: "request_quote", label: "Navbar Request Quote" })}
-          className={`hidden md:inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+          className={`hidden lg:inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
             isSolid
               ? "bg-[#1B4332] text-white hover:bg-[#143A28]"
               : "bg-white/20 text-white backdrop-blur-sm hover:bg-white/30 border border-white/30"
@@ -156,7 +156,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         <button
           ref={hamburgerRef}
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={`md:hidden flex flex-col gap-1.5 p-3 min-w-[44px] min-h-[44px] items-center justify-center transition-colors ${
+          className={`lg:hidden flex flex-col gap-1.5 p-3 min-w-[44px] min-h-[44px] items-center justify-center transition-colors ${
             isSolid ? "text-[#1B4332]" : "text-white"
           }`}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -190,7 +190,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="md:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden rounded-b-2xl absolute w-full left-0"
+            className="lg:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden rounded-b-2xl absolute w-full left-0"
           >
             <div className="px-5 py-4 flex flex-col gap-0.5 max-h-[85vh] overflow-y-auto">
               {/* Home */}
