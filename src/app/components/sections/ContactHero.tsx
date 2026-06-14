@@ -133,7 +133,7 @@ export default function ContactHero() {
               {/* Background image – Contact page hero visual */}
               <div className="absolute inset-0 rounded-xl overflow-hidden">
                 <Image
-                  src="/images/EachPage/Contact-page-image.jpg"
+                  src="/images/EachPage/Contact-image.png"
                   alt="Professional export consultation and support — dedicated team for international buyer inquiries"
                   fill
                   className="object-cover object-center"

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { exportDestinations, regionGroups } from "@/data/sections";
+import { regionGroups } from "@/data/sections";
 
 /* ─────────────────────────────────────────────
    DESTINATION DATA  (lat/lng → SVG x/y mapped
@@ -47,6 +47,16 @@ const REGIONS = [
   { label: "Europe",       color: "#4A9E6B",  count: 2 },
   { label: "Asia Pacific", color: "#2D7D9A",  count: 3 },
   { label: "Americas",     color: "#9B59B6",  count: 1 },
+];
+
+/* ─────────────────────────────────────────────
+   NEW COMPACT STATS DATA
+───────────────────────────────────────────── */
+const NETWORK_STATS = [
+  { value: "15+", label: "Export Markets" },
+  { value: "500+", label: "Containers Exported" },
+  { value: "10+", label: "Years Experience" },
+  { value: "200+", label: "Commercial Partners" },
 ];
 
 /* ─────────────────────────────────────────────
@@ -193,6 +203,57 @@ function WorldMapSVG({ animationsActive }: { animationsActive: boolean }) {
 }
 
 /* ─────────────────────────────────────────────
+   COUNTER COMPONENT — animates on view
+───────────────────────────────────────────── */
+function AnimatedStat({ value, label, delay }: { value: string; label: string; delay: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (!isInView || !ref.current) return;
+
+    const target = parseInt(value.replace(/[^0-9]/g, ""));
+    if (isNaN(target)) {
+      ref.current.textContent = value;
+      return;
+    }
+
+    const suffix = value.replace(/[0-9]/g, "");
+    let current = 0;
+    const step = Math.max(1, Math.floor(target / 45));
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      if (ref.current) ref.current.textContent = current + suffix;
+    }, 25);
+
+    return () => clearInterval(timer);
+  }, [isInView, value]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.45, delay, ease: "easeOut" }}
+      className="bg-white/[0.05] border border-white/10 rounded-xl p-3.5 shadow-lg shadow-black/10 hover:bg-white/[0.08] transition-colors"
+    >
+      <span
+        ref={ref}
+        className="text-2xl font-bold text-[#D4A017] block leading-none"
+      >
+        {value}
+      </span>
+      <span className="text-[10px] uppercase tracking-[0.15em] text-green-200/50 mt-1 block">
+        {label}
+      </span>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────────────────────────────
    MAIN SECTION
 ───────────────────────────────────────────── */
 export default function ExportDestinations() {
@@ -208,11 +269,14 @@ export default function ExportDestinations() {
     }
   }, [isInView]);
 
+  /* Collect all unique countries for compact badges row */
+  const allCountries = regionGroups.flatMap((g) => g.countries);
+
   return (
     <section
       id="destinations"
       ref={sectionRef}
-      className="relative py-14 md:py-18 overflow-hidden"
+      className="relative py-10 md:py-14 overflow-hidden"
       style={{ background: "linear-gradient(160deg, #0d2d1f 0%, #102a1e 40%, #0a1f16 100%)" }}
       aria-label="Export Destinations"
     >
@@ -231,212 +295,129 @@ export default function ExportDestinations() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
 
-        {/* ── Section Header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-12 md:mb-14"
-        >
-          <p className="text-[#D4A017] uppercase tracking-[5px] text-xs font-semibold mb-4">
-            Global Trade Network
-          </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-            Shipping to{" "}
-            <span className="text-[#D4A017]">Every Corner</span>
-            <br className="hidden sm:block" /> of the World
-          </h2>
-          <p className="mt-5 text-green-200/60 text-base sm:text-lg max-w-2xl mx-auto">
-            From the coconut heartlands of Tamil Nadu, our export routes span 4 continents —
-            delivering consistent quality to premium buyers worldwide.
-          </p>
-        </motion.div>
+        {/* ══════════════════════════════════════════════════════════════
+            TWO-COLUMN LAYOUT — Desktop: left text+stats, right map
+        ══════════════════════════════════════════════════════════════ */}
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-10 items-center">
 
-        {/* ── Stats Bar ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden mb-10 md:mb-12 border border-white/10"
-        >
-          {[
-            { value: "4", label: "Continents" },
-            { value: "17+", label: "Active Markets" },
-            { value: "500+", label: "Containers Shipped" },
-            { value: "10+", label: "Years Exporting" },
-          ].map((stat, i) => (
-            <div key={stat.label}
-              className="flex flex-col items-center justify-center py-6 px-4 bg-white/[0.04] hover:bg-white/[0.08] transition-colors">
-              <motion.span
-                className="text-3xl sm:text-4xl font-bold text-[#D4A017] leading-none"
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + i * 0.08, ease: "backOut" }}
-              >
-                {stat.value}
-              </motion.span>
-              <span className="text-green-200/50 text-xs uppercase tracking-widest mt-1.5">{stat.label}</span>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* ── Map + Panel Layout ── */}
-        <div className="grid grid-cols-1 xl:grid-cols-[1fr_420px] gap-6 items-start">
-
-          {/* ── SVG World Map ── */}
+          {/* ── MAP COLUMN (order-first on mobile per user request) ── */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative rounded-2xl overflow-hidden border border-white/10"
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            className="relative rounded-xl overflow-hidden border border-white/10 order-first lg:order-none"
             style={{ background: "#0d2d1f" }}
           >
             <WorldMapSVG animationsActive={animationsActive} />
 
             {/* Region Legend overlay */}
-            <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+            <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
               {REGIONS.map((r) => (
                 <span key={r.label}
-                  className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-white/60 bg-black/30 backdrop-blur-sm rounded-full px-2.5 py-1 border border-white/10">
-                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: r.color }} />
+                  className="flex items-center gap-1 text-[9px] uppercase tracking-wider text-white/60 bg-black/30 backdrop-blur-sm rounded-full px-2 py-0.5 border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: r.color }} />
                   {r.label}
                 </span>
               ))}
             </div>
 
             {/* "Live Network" badge */}
-            <div className="absolute top-4 right-4 flex items-center gap-2 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10">
-              <span className="relative flex h-2 w-2">
+            <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm rounded-full px-2.5 py-1 border border-white/10">
+              <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4ade80]" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#4ade80]" />
               </span>
-              <span className="text-[10px] text-green-300 uppercase tracking-widest font-medium">Active Trade Routes</span>
+              <span className="text-[9px] text-green-300 uppercase tracking-widest font-medium">Active Routes</span>
             </div>
           </motion.div>
 
-          {/* ── Right Panel: Region Groups with descriptions ── */}
+          {/* ── CONTENT COLUMN: Heading + Description + Stats + Route (order-last on mobile) ── */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="space-y-5"
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="order-last lg:order-none"
           >
-            {/* Route path indicator */}
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-[10px] uppercase tracking-[3px] text-[#D4A017] mb-3 font-semibold">Export Route</p>
-              <div className="flex flex-wrap items-center gap-2 text-xs text-white/60">
-                {["India", "Middle East", "Europe", "Americas", "Asia Pacific"].map((leg, i, arr) => (
-                  <span key={leg} className="flex items-center gap-2">
-                    <span className="text-white/80 font-medium">{leg}</span>
-                    {i < arr.length - 1 && (
-                      <svg width="16" height="8" viewBox="0 0 16 8" fill="none" aria-hidden="true">
-                        <path d="M0 4h13M10 1l3 3-3 3" stroke="#D4A017" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    )}
-                  </span>
+            <div className="space-y-5">
+              {/* Small premium heading */}
+              <p className="text-[#D4A017] uppercase tracking-[5px] text-xs font-semibold">
+                Global Trade Network
+              </p>
+
+              {/* Main headline */}
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                Shipping to{" "}
+                <span className="text-[#D4A017]">Every Corner</span>
+                {" "}of the World
+              </h2>
+
+              {/* Short supporting description (2 lines max) */}
+              <p className="text-green-200/60 text-sm leading-relaxed max-w-md">
+                From the coconut heartlands of Tamil Nadu, our export routes span 4 continents — delivering consistent quality to premium buyers worldwide.
+              </p>
+
+              {/* ── Premium Mini Stats Cards (2x2 grid) ── */}
+              <div className="grid grid-cols-2 gap-3 pt-1">
+                {NETWORK_STATS.map((stat, i) => (
+                  <AnimatedStat
+                    key={stat.label}
+                    value={stat.value}
+                    label={stat.label}
+                    delay={0.2 + i * 0.08}
+                  />
                 ))}
               </div>
-            </div>
 
-            {/* Region groups with descriptions */}
-            {regionGroups.map((region, regionIndex) => (
-              <motion.div
-                key={region.region}
-                initial={{ opacity: 0, y: 16 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.55 + regionIndex * 0.1 }}
-                className="rounded-xl border border-white/10 bg-white/[0.03] overflow-hidden"
-              >
-                <div className="px-4 py-2.5 border-b border-white/5 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full" style={{ background: region.color }} />
-                    <p className="text-[10px] uppercase tracking-[3px] text-[#D4A017] font-semibold">{region.region}</p>
-                  </div>
-                  <span className="text-[10px] text-white/30 bg-white/5 rounded-full px-2 py-0.5">
-                    {region.countries.length} {region.countries.length === 1 ? "market" : "markets"}
-                  </span>
+              {/* ── Compact Export Route Indicator ── */}
+              <div className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5">
+                <div className="flex items-center flex-wrap gap-x-1.5 gap-y-1 text-[11px] text-white/50">
+                  <span className="text-[9px] uppercase tracking-[2px] text-[#D4A017]/80 font-semibold mr-1">Route:</span>
+                  {["India", "Middle East", "Europe", "Americas", "Asia Pacific"].map((leg, i, arr) => (
+                    <span key={leg} className="flex items-center gap-1">
+                      <span className="text-white/70 font-medium">{leg}</span>
+                      {i < arr.length - 1 && (
+                        <svg width="14" height="7" viewBox="0 0 14 7" fill="none" aria-hidden="true" className="flex-shrink-0">
+                          <path d="M0 3.5h11M8.5 1l3 2.5-3 2.5" stroke="#D4A017" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </span>
+                  ))}
                 </div>
-                <div className="p-4">
-                  {/* Region description — new */}
-                  <p className="text-[11px] text-white/50 leading-relaxed mb-3 border-l-2 border-[#D4A017]/30 pl-3">
-                    {region.description}
-                  </p>
-                  {/* Country pills */}
-                  <div className="flex flex-wrap gap-2">
-                    {region.countries.map((dest) => (
-                      <button
-                        key={dest.country}
-                        onClick={() => setActivePin(activePin === dest.country ? null : dest.country)}
-                        className={`
-                          flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium
-                          border transition-all duration-200 cursor-pointer
-                          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017]
-                          ${activePin === dest.country
-                            ? "bg-[#D4A017]/15 border-[#D4A017]/50 text-white"
-                            : "bg-white/[0.04] border-white/10 text-white/70 hover:border-[#D4A017]/30 hover:text-white hover:bg-white/[0.07]"
-                          }
-                        `}
-                        aria-pressed={activePin === dest.country}
-                      >
-                        <span className="text-sm leading-none" aria-hidden="true">{dest.flag}</span>
-                        <span>{dest.country}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-
-            {/* Bottom CTA */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 1.1 }}
-              className="rounded-xl border border-[#D4A017]/20 bg-[#D4A017]/5 p-4 flex items-start gap-3"
-            >
-              <span className="text-xl mt-0.5" aria-hidden="true">🌐</span>
-              <div>
-                <p className="text-white/90 text-sm font-semibold">Exploring a new market?</p>
-                <p className="text-white/40 text-xs mt-0.5 leading-relaxed">
-                  We ship to regions beyond this list. Reach out to discuss your destination.
-                </p>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
 
-        {/* ── Bottom Trust Bar ── */}
+        {/* ══════════════════════════════════════════════════════════════
+            COMPACT COUNTRY BADGES ROW (below map + text)
+        ══════════════════════════════════════════════════════════════ */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10"
+          transition={{ duration: 0.5, delay: 0.55, ease: "easeOut" }}
+          className="mt-6 flex flex-wrap items-center justify-center gap-2"
         >
-          {[
-            {
-              icon: "🛳️",
-              title: "Multi-Port Shipping",
-              desc: "Chennai, Tuticorin & Nhava Sheva — flexible loading to cut your lead times.",
-            },
-            {
-              icon: "📜",
-              title: "Full Documentation",
-              desc: "Certificate of Origin, Phytosanitary, BL & customs clearance handled end-to-end.",
-            },
-            {
-              icon: "🔒",
-              title: "Buyer Protection",
-              desc: "LC, TT & escrow-friendly. We work with your payment and compliance terms.",
-            },
-          ].map((item) => (
-            <div key={item.title}
-              className="flex items-start gap-4 p-6 bg-white/[0.03] hover:bg-white/[0.06] transition-colors">
-              <span className="text-2xl flex-shrink-0" aria-hidden="true">{item.icon}</span>
-              <div>
-                <p className="text-white font-semibold text-sm mb-1">{item.title}</p>
-                <p className="text-white/40 text-xs leading-relaxed">{item.desc}</p>
-              </div>
-            </div>
+          <span className="text-[9px] uppercase tracking-[2px] text-[#D4A017]/60 font-semibold mr-1">
+            Markets:
+          </span>
+          {allCountries.map((dest) => (
+            <button
+              key={dest.country}
+              onClick={() => setActivePin(activePin === dest.country ? null : dest.country)}
+              className={`
+                flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium
+                border transition-all duration-200 cursor-pointer
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017]
+                ${activePin === dest.country
+                  ? "bg-[#D4A017]/15 border-[#D4A017]/50 text-white"
+                  : "bg-white/[0.04] border-white/10 text-white/60 hover:border-[#D4A017]/30 hover:text-white hover:bg-white/[0.07]"
+                }
+              `}
+              aria-pressed={activePin === dest.country}
+            >
+              <span className="text-sm leading-none" aria-hidden="true">{dest.flag}</span>
+              <span>{dest.country}</span>
+            </button>
           ))}
         </motion.div>
 

@@ -40,6 +40,22 @@ export default function ProductHero({ product }: { product: Product }) {
                 <span className="text-[#D4A017]">{product.name}</span>
               </motion.div>
 
+              {/* Mobile: Hero Image */}
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.65, ease: "easeOut" }}
+                className="lg:hidden -mx-6 mb-4"
+              >
+                <motion.div
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative w-full aspect-[6/7]"
+                >
+                  <Image src={product.images.hero.src} alt={product.images.hero.alt} fill className="object-contain object-center" sizes="100vw" priority />
+                </motion.div>
+              </motion.div>
+
               {/* Premium Badge */}
               <motion.div variants={fadeUpBig} className="inline-flex items-center gap-3 mb-8">
                 <span className="block w-8 h-px bg-[#D4A017]" />

@@ -82,6 +82,21 @@ function PatternOverlay({ type }: { type: string }) {
 /* ─── Product ordinal labels ──────────────────────────────────────────── */
 const ordinals = ["01", "02", "03", "04", "05"];
 
+/* ─── Secondary image badge ──────────────────────────────────────────── */
+function SecondaryImageBadge({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="absolute bottom-3 right-3 z-10 w-14 h-14 sm:w-[4.25rem] sm:h-[4.25rem] lg:w-24 lg:h-24 rounded-lg overflow-hidden border-[1.5px] border-white/40 shadow-[0_4px_16px_rgba(0,0,0,0.30)] ring-1 ring-[#D4A017]/25 hover:scale-110 transition-transform duration-300">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover"
+        sizes="(max-width:640px) 56px, (max-width:1024px) 68px, 96px"
+      />
+    </div>
+  );
+}
+
 /* ─── Visual Panel (the "image" area) — enhanced with actual product images ── */
 function ProductVisualPanel({
   productId,
@@ -89,12 +104,16 @@ function ProductVisualPanel({
   category,
   tall = false,
   imageSrc,
+  secondaryImageSrc,
+  secondaryImageAlt,
 }: {
   productId: number;
   name: string;
   category?: string;
   tall?: boolean;
   imageSrc?: string;
+  secondaryImageSrc?: string;
+  secondaryImageAlt?: string;
 }) {
   const vis = productVisuals[productId] ?? productVisuals[1];
   const idx = productId - 1;
@@ -151,6 +170,11 @@ function ProductVisualPanel({
           {name}
         </p>
       </div>
+
+      {/* Secondary image badge — enhances visual storytelling */}
+      {secondaryImageSrc && secondaryImageAlt && (
+        <SecondaryImageBadge src={secondaryImageSrc} alt={secondaryImageAlt} />
+      )}
     </div>
   );
 }
@@ -347,6 +371,8 @@ export default function ProductEcosystem() {
                     category={coconutProducts[0].category}
                     tall
                     imageSrc={coconutProducts[0].images.hero.src}
+                    secondaryImageSrc={coconutProducts[0].images.packaging?.src}
+                    secondaryImageAlt={coconutProducts[0].images.packaging?.alt}
                   />
                 </div>
               </div>
@@ -374,6 +400,20 @@ export default function ProductEcosystem() {
                         category={product.category}
                         tall
                         imageSrc={product.images.hero.src}
+                        secondaryImageSrc={
+                          product.id === 2
+                            ? product.images.closeUp?.src
+                            : product.id === 3
+                            ? product.images.closeUp?.src
+                            : undefined
+                        }
+                        secondaryImageAlt={
+                          product.id === 2
+                            ? product.images.closeUp?.alt
+                            : product.id === 3
+                            ? product.images.closeUp?.alt
+                            : undefined
+                        }
                       />
                     </div>
                   </div>
@@ -429,8 +469,22 @@ export default function ProductEcosystem() {
                       name={product.name}
                       category={product.category}
                       tall
-                    imageSrc={product.images.hero.src}
-                  />
+                      imageSrc={product.images.hero.src}
+                      secondaryImageSrc={
+                        product.id === 4
+                          ? product.images.qualityInspection?.src
+                          : product.id === 5
+                          ? product.images.packaging?.src
+                          : undefined
+                      }
+                      secondaryImageAlt={
+                        product.id === 4
+                          ? product.images.qualityInspection?.alt
+                          : product.id === 5
+                          ? product.images.packaging?.alt
+                          : undefined
+                      }
+                    />
                   </div>
                 </div>
 
