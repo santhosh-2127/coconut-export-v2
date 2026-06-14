@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { certifications } from "@/data/company";
 
 /* ─────────────────────────────────────────────────────────────
@@ -437,10 +437,34 @@ function ComplianceNarrative({ isInView }: { isInView: boolean }) {
 export default function Certifications() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   // Split by tier
   const featured = certifications.filter((c) => CERT_META[c.name]?.tier === "featured");
   const standard = certifications.filter((c) => CERT_META[c.name]?.tier === "standard");
+
+  if (!hasMounted) {
+    return (
+      <section
+        id="certifications"
+        className="relative py-14 md:py-16 overflow-hidden"
+        style={{ background: "#FAFAFA" }}
+      >
+        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 text-center">
+          <div className="h-4 w-32 bg-gray-200 rounded animate-pulse mx-auto mb-4" />
+          <div className="h-10 w-64 bg-gray-200 rounded animate-pulse mx-auto mb-8" />
+          <div className="space-y-4">
+            <div className="h-32 w-full bg-gray-100 rounded-2xl animate-pulse" />
+            <div className="h-32 w-full bg-gray-100 rounded-2xl animate-pulse" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

@@ -262,16 +262,42 @@ export default function ExportDestinations() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [animationsActive, setAnimationsActive] = useState(false);
   const [activePin, setActivePin] = useState<string | null>(null);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    if (isInView) {
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isInView && hasMounted) {
       const t = setTimeout(() => setAnimationsActive(true), 200);
       return () => clearTimeout(t);
     }
-  }, [isInView]);
+  }, [isInView, hasMounted]);
 
   /* Collect all unique countries for compact badges row */
   const allCountries = regionGroups.flatMap((g) => g.countries);
+
+  if (!hasMounted) {
+    return (
+      <section
+        id="destinations"
+        className="relative py-10 md:py-14 overflow-hidden"
+        style={{ background: "#0d2d1f" }}
+      >
+        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-10 items-center">
+            <div className="relative rounded-xl overflow-hidden border border-white/10 order-first lg:order-none h-[300px] bg-[#0d2d1f]" />
+            <div className="order-last lg:order-none space-y-5">
+              <div className="h-4 w-32 bg-white/10 rounded animate-pulse" />
+              <div className="h-10 w-64 bg-white/10 rounded animate-pulse" />
+              <div className="h-20 w-full bg-white/10 rounded animate-pulse" />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
