@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 import { certifications } from "@/data/company";
 
 /* ─────────────────────────────────────────────────────────────
@@ -163,17 +163,15 @@ function FeaturedCertCard({
   name,
   meta,
   delay,
-  isInView,
 }: {
   name: string;
   meta: CertMeta;
   delay: number;
-  isInView: boolean;
 }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 28 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.65, delay, ease: "easeOut" }}
       className="group relative rounded-2xl overflow-hidden border bg-white"
       style={{ borderColor: `${meta.accent}22` }}
@@ -197,7 +195,7 @@ function FeaturedCertCard({
         {/* Seal */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: delay + 0.15, ease: "backOut" }}
           className="flex-shrink-0"
         >
@@ -277,17 +275,15 @@ function StandardCertCard({
   name,
   meta,
   delay,
-  isInView,
 }: {
   name: string;
   meta: CertMeta;
   delay: number;
-  isInView: boolean;
 }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
       className="group relative rounded-2xl overflow-hidden border bg-white flex flex-col"
       style={{ borderColor: `${meta.accent}22` }}
@@ -306,7 +302,7 @@ function StandardCertCard({
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.65 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: delay + 0.18, ease: "backOut" }}
         >
           <ComplianceSeal name={name} accent={meta.accent} size={84} />
@@ -376,11 +372,11 @@ const NARRATIVE = [
   { step: "04", label: "Independent Verification", sub: "SGS Third-Party Audit" },
 ];
 
-function ComplianceNarrative({ isInView }: { isInView: boolean }) {
+function ComplianceNarrative() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 18 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.15 }}
       className="mb-8 md:mb-10"
       aria-label="Compliance assurance chain"
@@ -436,35 +432,10 @@ function ComplianceNarrative({ isInView }: { isInView: boolean }) {
 ───────────────────────────────────────────────────────────────*/
 export default function Certifications() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
 
   // Split by tier
   const featured = certifications.filter((c) => CERT_META[c.name]?.tier === "featured");
   const standard = certifications.filter((c) => CERT_META[c.name]?.tier === "standard");
-
-  if (!hasMounted) {
-    return (
-      <section
-        id="certifications"
-        className="relative py-14 md:py-16 overflow-hidden"
-        style={{ background: "#FAFAFA" }}
-      >
-        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 text-center">
-          <div className="h-4 w-32 bg-gray-200 rounded animate-pulse mx-auto mb-4" />
-          <div className="h-10 w-64 bg-gray-200 rounded animate-pulse mx-auto mb-8" />
-          <div className="space-y-4">
-            <div className="h-32 w-full bg-gray-100 rounded-2xl animate-pulse" />
-            <div className="h-32 w-full bg-gray-100 rounded-2xl animate-pulse" />
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section
@@ -495,7 +466,7 @@ export default function Certifications() {
         {/* ── Section Header ── */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65 }}
           className="text-center mb-8 md:mb-10"
         >
@@ -539,7 +510,7 @@ export default function Certifications() {
         </motion.div>
 
         {/* ── Compliance Chain Narrative ── */}
-        <ComplianceNarrative isInView={isInView} />
+        <ComplianceNarrative />
 
         {/* ── Featured Certifications (ISO 22000, HACCP) ── */}
         <div className="space-y-4 mb-4">
@@ -552,7 +523,6 @@ export default function Certifications() {
                 name={cert.name}
                 meta={meta}
                 delay={0.25 + i * 0.12}
-                isInView={isInView}
               />
             );
           })}
@@ -569,7 +539,6 @@ export default function Certifications() {
                 name={cert.name}
                 meta={meta}
                 delay={0.5 + i * 0.12}
-                isInView={isInView}
               />
             );
           })}
@@ -577,9 +546,9 @@ export default function Certifications() {
 
         {/* ── Bottom Compliance Footer Bar ── */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.75 }}
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.75 }}
           className="rounded-2xl border border-[#1B4332]/10 bg-[#1B4332] overflow-hidden"
         >
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
