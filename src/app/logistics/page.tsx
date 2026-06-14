@@ -13,9 +13,8 @@ import LogisticsFAQ from "../components/sections/LogisticsFAQ";
 import LogisticsFinalCTA from "../components/sections/LogisticsFinalCTA";
 
 export const metadata: Metadata = {
-  title: "Logistics — Coconut Shipping from India",
-  description:
-    "Global coconut export logistics from India — container planning, FOB/CIF/CFR shipping, export documentation, and delivery from Chennai, Tuticorin, and Nhava Sheva ports to destinations worldwide for wholesale buyers.",
+  title: "Logistics — Coconut Shipping from India",    description:
+    "Global coconut export logistics from India — container planning, FOB/CIF/CFR shipping, documentation, and delivery from Chennai, Tuticorin, and Nhava Sheva ports worldwide for wholesale buyers.",
   keywords: [
     "coconut export logistics",
     "shipping coconut from India",

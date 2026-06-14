@@ -9,9 +9,8 @@ import GlobalNetworkWhy from "../components/sections/GlobalNetworkWhy";
 import GlobalNetworkCTA from "../components/sections/GlobalNetworkCTA";
 
 export const metadata: Metadata = {
-  title: "Global Export Network — 15+ Countries",
-  description:
-    "Global coconut export network spanning 15+ countries across Middle East, Europe, North America, and Asia-Pacific. International supply chain and multi-port logistics for wholesale buyers and importers.",
+  title: "Global Export Network — 15+ Countries",    description:
+    "Global coconut export network spanning 15+ countries across Middle East, Europe, North America, and Asia-Pacific. International supply chain and logistics for wholesale buyers and importers.",
   keywords: [
     "global export network",
     "coconut export network",

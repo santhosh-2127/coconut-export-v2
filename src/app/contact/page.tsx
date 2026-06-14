@@ -12,9 +12,8 @@ import ContactFAQ from "@/app/components/sections/ContactFAQ";
 import ContactFinalCTA from "@/app/components/sections/ContactFinalCTA";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Bulk Coconut Export Inquiry",
-  description:
-    "Contact our coconut export specialists for bulk coconut, copra, and coco peat sourcing. Get quotations, logistics support, and technical specifications within 24 hours for international buyers.",
+  title: "Contact Us — Bulk Coconut Export Inquiry",    description:
+    "Contact our coconut export specialists for bulk coconut, copra, and coco peat sourcing. Get quotations, logistics support, and specifications within 24 hours for global buyers.",
   keywords: [
     "contact coconut exporter",
     "coconut export inquiry",

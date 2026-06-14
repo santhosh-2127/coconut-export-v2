@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `${product.name} — Premium Bulk Exporter | Global Coco Exports`,
-      description: `${product.shortDescription} Export quality, wholesale supply from India.`,
+      description: product.shortDescription,
       images: [
         {
           url: ogImage,
@@ -41,12 +41,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://www.globalcocoexports.com/products/${product.slug}`,
       type: "website",
       locale: "en_IN",
-      siteName: "Global Coco Exports",
+    siteName: "Global Coco Exports",
     },
     twitter: {
       card: "summary_large_image",
       title: `${product.name} — Premium Bulk Exporter | Global Coco Exports`,
-      description: `${product.shortDescription} Export quality, wholesale supply from India.`,
+      description: product.shortDescription,
       images: [ogImage],
     },
     alternates: {

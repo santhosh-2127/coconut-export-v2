@@ -11,9 +11,8 @@ import AboutCertifications from "../components/sections/AboutCertifications";
 import AboutFinalCTA from "../components/sections/AboutFinalCTA";
 
 export const metadata: Metadata = {
-  title: "About Us — Coconut Export Company",
-  description:
-    "Trusted coconut export company in Tamil Nadu, India. ISO 22000 & HACCP certified supplier of fresh coconut, copra, and coco peat for international importers and distributors worldwide.",
+  title: "About Us — Coconut Export Company",    description:
+    "Trusted coconut export company in Tamil Nadu, India. ISO & HACCP certified supplier of fresh coconut, copra, and coco peat for international importers and distributors.",
   keywords: [
     "about coconut export company",
     "coconut exporter Tamil Nadu",

@@ -26,9 +26,8 @@ const Certifications = dynamic(
   { ssr: true }
 );
 
-export const metadata: Metadata = {
-  description:
-    "Premium coconut exporter in India supplying bulk fresh brown coconut, Pollachi coconut, copra, and coco peat to importers and distributors worldwide. ISO & HACCP certified export quality.",
+export const metadata: Metadata = {    description:
+    "Premium coconut exporter in India supplying bulk fresh coconut, copra, and coco peat to importers and distributors worldwide. ISO & HACCP certified, export quality wholesale supply.",
   keywords: [
     "coconut exporter India",
     "fresh brown coconut exporter",

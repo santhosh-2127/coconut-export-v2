@@ -7,9 +7,8 @@ import BlogArticles from "../components/sections/BlogArticles";
 import BlogCTA from "../components/sections/BlogCTA";
 
 export const metadata: Metadata = {
-  title: "Blog — Coconut Export Insights",
-  description:
-    "Expert articles on coconut exports, logistics, quality assurance, and international trade for global buyers. Market insights, export guides, and industry news for importers and distributors.",
+  title: "Blog — Coconut Export Insights",    description:
+    "Expert articles on coconut exports, logistics, quality assurance, and international trade for global buyers. Market insights, export guides, and industry news.",
   keywords: [
     "coconut export blog",
     "coconut industry insights",

@@ -5,9 +5,8 @@ import Footer from "../components/layout/Footer";
 import Certifications from "../components/sections/Certifications";
 
 export const metadata: Metadata = {
-  title: "Certifications — ISO & HACCP Certified",
-  description:
-    "Global Coco Exports holds ISO 22000, HACCP, APEDA, and SGS certifications — ensuring food safety, quality compliance, and traceability for every coconut export shipment from India to international buyers.",
+  title: "Certifications — ISO & HACCP Certified",    description:
+    "Global Coco Exports holds ISO 22000, HACCP, APEDA, and SGS certifications — ensuring food safety, quality compliance, and traceability for every coconut export from India.",
   keywords: [
     "coconut export certifications",
     "ISO 22000 certified coconut exporter",

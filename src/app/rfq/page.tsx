@@ -17,9 +17,8 @@ const RFQForm = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Request a Quote — Bulk Coconut RFQ",
-  description:
-    "Submit a Request For Quotation (RFQ) for bulk coconut, copra, and coco peat. Get customized pricing, logistics support, technical specifications, and export consultation within 24 hours.",
+  title: "Request a Quote — Bulk Coconut RFQ",    description:
+    "Submit a Request For Quotation (RFQ) for bulk coconut, copra, and coco peat. Get customized pricing, logistics support, and export consultation within 24 hours.",
   keywords: [
     "coconut export RFQ",
     "bulk coconut quotation",

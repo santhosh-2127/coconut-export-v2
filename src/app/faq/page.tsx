@@ -206,9 +206,8 @@ const rfqFaqs: FAQItem[] = [
    ═══════════════════════════════════════════════════════════════════════ */
 
 export const metadata: Metadata = {
-  title: "FAQ — Coconut Export Questions Answered",
-  description:
-    "Comprehensive answers about bulk coconut export — products, minimum order quantities, shipping terms, FOB/CIF pricing, documentation, quality standards, and payment terms for international buyers.",
+  title: "FAQ — Coconut Export Questions Answered",    description:
+    "Comprehensive answers about bulk coconut export — products, MOQs, shipping terms, FOB/CIF pricing, documentation, quality standards, and payment terms for international buyers.",
   keywords: [
     "coconut export FAQ",
     "coconut export questions",
