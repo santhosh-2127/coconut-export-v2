@@ -132,48 +132,36 @@ export default function StatsStrip() {
     setHasMounted(true);
   }, []);
 
-  if (!hasMounted) {
-    return (
-      <section
-        id="stats"
-        className="relative overflow-hidden bg-[#0C1A12] py-10 lg:py-14"
-      >
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-40 bg-white/5 rounded-2xl animate-pulse" />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section
       id="stats"
       ref={ref}
-      aria-label="Company statistics"
       className="relative overflow-hidden bg-gradient-to-b from-[#0C1A12] via-[#0d2d1f] to-[#0C1A12]"
     >
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#D4A017]/[0.02] rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl" />
-      </div>
+      {hasMounted && (
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#D4A017]/[0.02] rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl" />
+        </div>
+      )}
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
-          {metrics.map((m, i) => (
-            <StatCard
-              key={m.label}
-              value={m.value}
-              label={m.label}
-              supporting={m.supporting}
-              Icon={m.Icon}
-              index={i}
-              isVisible={isInView}
-            />
-          ))}
+          {hasMounted
+            ? metrics.map((m, i) => (
+                <StatCard
+                  key={m.label}
+                  value={m.value}
+                  label={m.label}
+                  supporting={m.supporting}
+                  Icon={m.Icon}
+                  index={i}
+                  isVisible={isInView}
+                />
+              ))
+            : [1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-40 bg-white/5 rounded-2xl animate-pulse" />
+              ))}
         </div>
       </div>
     </section>

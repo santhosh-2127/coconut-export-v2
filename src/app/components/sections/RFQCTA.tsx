@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { trackOutboundClick } from "@/lib/analytics";
 import ConsultationModal from "./ConsultationModal";
@@ -32,25 +32,6 @@ export default function RFQCTA() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView   = useInView(sectionRef, { once: true, margin: "-80px" });
   const [consultModalOpen, setConsultModalOpen] = useState(false);
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  if (!hasMounted) {
-    return (
-      <section
-        id="contact"
-        className="relative py-10 md:py-14 overflow-hidden"
-        style={{ background: "#0a1f16" }}
-      >
-        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
-          <div className="h-64 w-full bg-white/5 rounded-2xl animate-pulse" />
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section
