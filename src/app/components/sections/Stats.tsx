@@ -136,7 +136,7 @@ export default function StatsStrip() {
     return (
       <section
         id="stats"
-        className="relative overflow-hidden bg-[#0C1A12] py-16 lg:py-20"
+        className="relative overflow-hidden bg-[#0C1A12] py-10 lg:py-14"
       >
         <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
@@ -161,7 +161,7 @@ export default function StatsStrip() {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
           {metrics.map((m, i) => (
             <StatCard

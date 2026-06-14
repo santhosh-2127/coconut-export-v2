@@ -441,7 +441,7 @@ export default function Certifications() {
     <section
       id="certifications"
       ref={sectionRef}
-      className="relative py-14 md:py-16 overflow-hidden"
+      className="relative py-10 md:py-12 overflow-hidden"
       style={{ background: "linear-gradient(170deg, #FAFAFA 0%, #f4f8f5 50%, #FAFAFA 100%)" }}
       aria-label="Certifications and Compliance"
     >

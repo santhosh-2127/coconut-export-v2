@@ -282,7 +282,7 @@ export default function ProductEcosystem() {
     <section
       id="products"
       aria-label="Product range — premium coconut export categories"
-      className="relative overflow-hidden bg-[#FAFAFA] py-16 md:py-20"
+      className="relative overflow-hidden bg-[#FAFAFA] py-10 md:py-14"
     >
       {/* ── Background ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">

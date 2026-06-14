@@ -42,7 +42,7 @@ export default function RFQCTA() {
     return (
       <section
         id="contact"
-        className="relative py-14 md:py-18 overflow-hidden"
+        className="relative py-10 md:py-14 overflow-hidden"
         style={{ background: "#0a1f16" }}
       >
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
@@ -56,7 +56,7 @@ export default function RFQCTA() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative py-14 md:py-18 overflow-hidden"
+      className="relative py-10 md:py-14 overflow-hidden"
       style={{
         background:
           "linear-gradient(145deg, #0a1f16 0%, #0d2d1f 35%, #102a1e 65%, #0a1a12 100%)",

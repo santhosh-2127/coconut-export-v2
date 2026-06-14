@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     images: [
       {
-        url: "/images/og-default.png",
+        url: "/images/og-default.jpg",
         width: 1200,
         height: 630,
         alt: "Global Coco Exports — Premium Coconut Export Solutions",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title: "Global Coco Exports | Premium Coconut Export Solutions",
     description:
       "Supplying bulk coconut, copra and coco peat to importers worldwide. ISO & HACCP certified exporter from India.",
-    images: ["/images/og-default.png"],
+    images: ["/images/og-default.jpg"],
     creator: "@globalcocoexports",
   },
   icons: {
