@@ -18,13 +18,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/rfq`,
+      url: `${BASE_URL}/blog`,
       lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
     },
     {
-      url: `${BASE_URL}/logistics`,
+      url: `${BASE_URL}/certifications`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
@@ -35,17 +35,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
-  ];
-
-  const productPages = products.map((product) => {
-    const slug = product.name.toLowerCase().replace(/\s+/g, "-");
-    return {
-      url: `${BASE_URL}/products/${slug}`,
+    {
+      url: `${BASE_URL}/faq`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/global-network`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/logistics`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/menu`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.9,
-    };
-  });
+    },
+    {
+      url: `${BASE_URL}/rfq`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+  ];
+
+  const productPages = products.map((product) => ({
+    url: `${BASE_URL}/products/${product.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  }));
 
   return [...staticPages, ...productPages];
 }

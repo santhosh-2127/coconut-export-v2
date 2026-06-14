@@ -7,9 +7,9 @@ import {
 import MenuPageClient from "../components/menu/MenuPageClient";
 
 export const metadata: Metadata = {
-  title: "Export Product Portfolio | Coconut Export Products",
+  title: "Products — Bulk Coconut Export Portfolio",
   description:
-    "Explore our premium export-quality coconut and coir products including fresh coconuts, copra, and coco peat for international markets.",
+    "Explore our premium export-quality coconut products — fresh brown coconut, Pollachi coconut, copra, and coco peat for international wholesale buyers and distributors.",
   keywords: [
     "coconut export products",
     "coconut product catalog",
@@ -20,19 +20,31 @@ export const metadata: Metadata = {
     "coconut B2B products",
     "coconut supplier India",
     "coconut product portfolio",
+    "bulk coconut export catalog",
   ],
   openGraph: {
-    title: "Export Product Portfolio | Coconut Export Products | Global Coco Exports",
+    title: "Products — Bulk Coconut Export Portfolio | Global Coco Exports",
     description:
-      "Explore our premium export-quality coconut and coir products including fresh coconuts, copra, and coco peat for international markets.",
+      "Explore our premium export-quality coconut products — fresh coconuts, copra, and coco peat for international wholesale buyers.",
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Export Product Portfolio — Global Coco Exports",
+        alt: "Products — Bulk Coconut Export Portfolio | Global Coco Exports",
       },
     ],
+    url: "https://www.globalcocoexports.com/menu",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Global Coco Exports",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Products — Bulk Coconut Export Portfolio | Global Coco Exports",
+    description:
+      "Explore our premium export-quality coconut products for international wholesale buyers.",
+    images: ["/images/og-image.jpg"],
   },
   alternates: {
     canonical: "https://www.globalcocoexports.com/menu",

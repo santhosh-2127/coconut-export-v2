@@ -12,21 +12,41 @@ import ContactFAQ from "@/app/components/sections/ContactFAQ";
 import ContactFinalCTA from "@/app/components/sections/ContactFinalCTA";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Coconut Export Inquiry",
+  title: "Contact Us — Bulk Coconut Export Inquiry",
   description:
-    "Contact our coconut export specialists for bulk coconut, copra, and coco peat sourcing. Get quotations, logistics support, technical specifications, and documentation assistance within 24 hours.",
+    "Contact our coconut export specialists for bulk coconut, copra, and coco peat sourcing. Get quotations, logistics support, and technical specifications within 24 hours for international buyers.",
   keywords: [
     "contact coconut exporter",
     "coconut export inquiry",
     "bulk coconut supplier contact",
     "coco peat exporter WhatsApp",
     "coconut export company email",
+    "coconut supplier India contact",
+    "wholesale coconut export inquiry",
   ],
   openGraph: {
-    title: "Contact Us — Coconut Export Inquiry | Global Coco Exports",
+    title: "Contact Us — Bulk Coconut Export Inquiry | Global Coco Exports",
     description:
-      "Contact our export specialists for bulk coconut sourcing, quotations, logistics support, and documentation assistance.",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Contact Us — Coconut Export Inquiry | Global Coco Exports" }],
+      "Contact our export specialists for bulk coconut sourcing, quotations, logistics support, and documentation assistance within 24 hours.",
+    images: [
+      {
+        url: "/images/og-contact.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Contact Us — Bulk Coconut Export Inquiry | Global Coco Exports",
+      },
+    ],
+    url: "https://www.globalcocoexports.com/contact",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Global Coco Exports",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us — Bulk Coconut Export Inquiry | Global Coco Exports",
+    description:
+      "Contact our export specialists for bulk coconut sourcing, quotations, and logistics support.",
+    images: ["/images/og-contact.jpg"],
   },
   alternates: {
     canonical: "https://www.globalcocoexports.com/contact",

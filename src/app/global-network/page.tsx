@@ -9,9 +9,9 @@ import GlobalNetworkWhy from "../components/sections/GlobalNetworkWhy";
 import GlobalNetworkCTA from "../components/sections/GlobalNetworkCTA";
 
 export const metadata: Metadata = {
-  title: "Global Export Network | Global Coco Exports",
+  title: "Global Export Network — 15+ Countries",
   description:
-    "Explore our international export capabilities, logistics expertise, and global supply network.",
+    "Global coconut export network spanning 15+ countries across Middle East, Europe, North America, and Asia-Pacific. International supply chain and multi-port logistics for wholesale buyers and importers.",
   keywords: [
     "global export network",
     "coconut export network",
@@ -20,12 +20,32 @@ export const metadata: Metadata = {
     "global supply chain coconut",
     "export logistics network",
     "coconut trade network",
+    "coconut export markets",
+    "international coconut distribution",
   ],
   openGraph: {
-    title: "Global Export Network | Global Coco Exports",
+    title: "Global Export Network — 15+ Countries | Global Coco Exports",
     description:
-      "Explore our international export capabilities, logistics expertise, and global supply network spanning 15+ countries.",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Global Coco Exports — Global Export Network" }],
+      "Global coconut export network spanning 15+ countries across Middle East, Europe, North America, and Asia-Pacific. International supply for wholesale buyers.",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Global Export Network — 15+ Countries | Global Coco Exports",
+      },
+    ],
+    url: "https://www.globalcocoexports.com/global-network",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Global Coco Exports",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Global Export Network — 15+ Countries | Global Coco Exports",
+    description:
+      "Global coconut export network spanning 15+ countries. International supply for wholesale buyers.",
+    images: ["/images/og-image.jpg"],
   },
   alternates: {
     canonical: "https://www.globalcocoexports.com/global-network",

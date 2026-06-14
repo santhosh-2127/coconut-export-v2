@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FAQSchema } from "@/lib/schemas";
+import { BreadcrumbSchema, FAQSchema } from "@/lib/schemas";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import LogisticsHero from "../components/sections/LogisticsHero";
@@ -13,9 +13,9 @@ import LogisticsFAQ from "../components/sections/LogisticsFAQ";
 import LogisticsFinalCTA from "../components/sections/LogisticsFinalCTA";
 
 export const metadata: Metadata = {
-  title: "Logistics & Export Operations — Coconut Shipping from India",
+  title: "Logistics — Coconut Shipping from India",
   description:
-    "Global coconut export logistics from India — container planning, FOB/CIF/CFR shipping, export documentation, and delivery from Chennai, Tuticorin, and Nhava Sheva ports to worldwide destinations.",
+    "Global coconut export logistics from India — container planning, FOB/CIF/CFR shipping, export documentation, and delivery from Chennai, Tuticorin, and Nhava Sheva ports to destinations worldwide for wholesale buyers.",
   keywords: [
     "coconut export logistics",
     "shipping coconut from India",
@@ -23,12 +23,33 @@ export const metadata: Metadata = {
     "coconut export documentation",
     "coconut freight India",
     "incoterms coconut export",
+    "coconut shipping logistics",
+    "bulk coconut freight",
+    "coconut FOB CIF CFR",
   ],
   openGraph: {
-    title: "Logistics & Export Operations — Coconut Shipping from India",
+    title: "Logistics — Coconut Shipping from India | Global Coco Exports",
     description:
-      "Global coconut export logistics — container planning, shipping, documentation, and delivery from Indian ports to destinations worldwide.",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Logistics & Export Operations — Coconut Shipping from India" }],
+      "Global coconut export logistics — container planning, FOB/CIF/CFR shipping, documentation, and delivery from Indian ports to worldwide destinations.",
+    images: [
+      {
+        url: "/images/og-logistics.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Logistics — Coconut Shipping from India | Global Coco Exports",
+      },
+    ],
+    url: "https://www.globalcocoexports.com/logistics",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Global Coco Exports",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Logistics — Coconut Shipping from India | Global Coco Exports",
+    description:
+      "Global coconut export logistics — container planning, shipping, and documentation from Indian ports.",
+    images: ["/images/og-logistics.jpg"],
   },
   alternates: {
     canonical: "https://www.globalcocoexports.com/logistics",
@@ -38,6 +59,12 @@ export const metadata: Metadata = {
 export default function LogisticsPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Logistics", url: "/logistics" },
+        ]}
+      />
       <Navbar />
       <LogisticsHero />
       <LogisticsProcess />

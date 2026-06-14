@@ -11,13 +11,18 @@ export function OrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Global Coco Exports",
+    alternateName: "GCE",
     url: BASE_URL,
     logo: `${BASE_URL}/images/logo-image.png`,
     description:
-      "Premium coconut, copra and coco peat export solutions for global markets. ISO & HACCP certified exporter from India.",
+      "ISO & HACCP certified exporter of premium coconut, copra, and coco peat products from Tamil Nadu, India. Serving importers, distributors, and industrial buyers across 15+ countries.",
+    foundingDate: "2015",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "123, Coconut Export Hub, Industrial Estate",
+      addressLocality: "Coimbatore",
       addressRegion: "Tamil Nadu",
+      postalCode: "641001",
       addressCountry: "IN",
     },
     contactPoint: [
@@ -25,12 +30,29 @@ export function OrganizationSchema() {
         "@type": "ContactPoint",
         telephone: "+91-XXXXXXXXXX",
         contactType: "sales",
-        email: "info@globalcocoexports.com",
+        email: "sales@globalcocoexports.com",
+        availableLanguage: ["English", "Hindi", "Tamil"],
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: "+91-XXXXXXXXXX",
+        contactType: "customer support",
+        email: "support@globalcocoexports.com",
         availableLanguage: ["English", "Hindi"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "procurement",
+        email: "procurement@globalcocoexports.com",
+        availableLanguage: ["English", "Tamil"],
       },
     ],
     sameAs: [
       "https://www.linkedin.com/company/globalcocoexports",
+      "https://www.facebook.com/globalcocoexports",
+      "https://www.instagram.com/globalcocoexports",
+      "https://twitter.com/globalcocoexports",
+      "https://www.youtube.com/@globalcocoexports",
     ],
     knowsAbout: [
       "Coconut Export",
@@ -38,6 +60,37 @@ export function OrganizationSchema() {
       "Coco Peat Export",
       "Bulk Coconut Trading",
       "Agricultural Commodity Export",
+      "Fresh Brown Coconut Exporter",
+      "Pollachi Coconut Export",
+      "Wholesale Coconut Supply",
+    ],
+    areaServed: [
+      { "@type": "Country", name: "AE" },
+      { "@type": "Country", name: "SA" },
+      { "@type": "Country", name: "DE" },
+      { "@type": "Country", name: "NL" },
+      { "@type": "Country", name: "US" },
+      { "@type": "Country", name: "GB" },
+      { "@type": "Country", name: "AU" },
+      { "@type": "Country", name: "SG" },
+      { "@type": "Country", name: "MY" },
+      { "@type": "Country", name: "QA" },
+      { "@type": "Country", name: "KW" },
+      { "@type": "Country", name: "OM" },
+      { "@type": "Country", name: "BH" },
+      { "@type": "Country", name: "FR" },
+      { "@type": "Country", name: "BE" },
+      { "@type": "Country", name: "ES" },
+      { "@type": "Country", name: "CA" },
+      { "@type": "Country", name: "NZ" },
+      { "@type": "Country", name: "ZA" },
+      { "@type": "Country", name: "MU" },
+    ],
+    hasCertification: [
+      { "@type": "Certification", name: "ISO 22000" },
+      { "@type": "Certification", name: "HACCP" },
+      { "@type": "Certification", name: "APEDA Registered" },
+      { "@type": "Certification", name: "SGS Verified" },
     ],
   };
 
@@ -58,6 +111,7 @@ export function WebsiteSchema() {
     url: BASE_URL,
     description:
       "Premium coconut export solutions — fresh coconut, copra, and coco peat for international buyers.",
+    inLanguage: "en-IN",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -89,8 +143,14 @@ export function LocalBusinessSchema() {
     email: "info@globalcocoexports.com",
     address: {
       "@type": "PostalAddress",
+      addressLocality: "Coimbatore",
       addressRegion: "Tamil Nadu",
       addressCountry: "IN",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 11.0168,
+      longitude: 76.9558,
     },
     areaServed: [
       { "@type": "Country", name: "AE" },
@@ -104,6 +164,20 @@ export function LocalBusinessSchema() {
     hasCertification: [
       { "@type": "Certification", name: "ISO 22000" },
       { "@type": "Certification", name: "HACCP" },
+    ],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "09:00",
+        closes: "13:00",
+      },
     ],
   };
 
@@ -146,6 +220,10 @@ export function ProductSchema({
     sku,
     category: category ?? "Agricultural Commodity",
     countryOfOrigin: { "@type": "Country", name: "India" },
+    brand: {
+      "@type": "Brand",
+      name: "Global Coco Exports",
+    },
     manufacturer: {
       "@type": "Organization",
       name: "Global Coco Exports",

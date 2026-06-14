@@ -28,11 +28,42 @@ const Certifications = dynamic(
 
 export const metadata: Metadata = {
   description:
-    "Premium coconut exporter in India supplying bulk fresh brown coconut, Pollachi coconut, copra, and coco peat to importers and distributors in UAE, Europe, USA, and Asia-Pacific. ISO & HACCP certified.",
+    "Premium coconut exporter in India supplying bulk fresh brown coconut, Pollachi coconut, copra, and coco peat to importers and distributors worldwide. ISO & HACCP certified export quality.",
+  keywords: [
+    "coconut exporter India",
+    "fresh brown coconut exporter",
+    "Pollachi coconut export",
+    "copra export supplier",
+    "coco peat exporter",
+    "bulk coconut supplier",
+    "wholesale coconut export",
+    "global coconut export company",
+    "B2B coconut procurement",
+    "coconut shipping India",
+  ],
   openGraph: {
+    title: "Global Coco Exports | Premium Coconut Export Solutions",
     description:
-      "Premium coconut exporter in India supplying bulk fresh coconut, copra, and coco peat to importers and distributors worldwide. ISO & HACCP certified.",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Global Coco Exports — Premium Coconut Export Solutions" }],
+      "Premium coconut exporter in India supplying bulk fresh coconut, copra, and coco peat to importers worldwide. ISO & HACCP certified.",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Global Coco Exports — Premium Coconut Export Solutions — Bulk Coconut Exporter India",
+      },
+    ],
+    url: "https://www.globalcocoexports.com",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Global Coco Exports",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Global Coco Exports | Premium Coconut Export Solutions",
+    description:
+      "Premium coconut exporter in India supplying bulk fresh coconut, copra, and coco peat worldwide. ISO & HACCP certified.",
+    images: ["/images/og-image.jpg"],
   },
   alternates: {
     canonical: "https://www.globalcocoexports.com",

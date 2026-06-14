@@ -206,9 +206,9 @@ const rfqFaqs: FAQItem[] = [
    ═══════════════════════════════════════════════════════════════════════ */
 
 export const metadata: Metadata = {
-  title: "FAQ — Frequently Asked Questions About Coconut Export",
+  title: "FAQ — Coconut Export Questions Answered",
   description:
-    "Comprehensive answers to common questions about bulk coconut export including products, minimum order quantities, shipping terms, FOB/CIF pricing, export documentation, quality standards, and payment terms. Buyer knowledge center for international coconut procurement.",
+    "Comprehensive answers about bulk coconut export — products, minimum order quantities, shipping terms, FOB/CIF pricing, documentation, quality standards, and payment terms for international buyers.",
   keywords: [
     "coconut export FAQ",
     "coconut export questions",
@@ -220,12 +220,31 @@ export const metadata: Metadata = {
     "coconut payment terms",
     "coconut RFQ process",
     "bulk coconut procurement guide",
+    "coconut export knowledge base",
   ],
   openGraph: {
-    title: "FAQ — Frequently Asked Questions About Coconut Export | Global Coco Exports",
+    title: "FAQ — Coconut Export Questions Answered | Global Coco Exports",
     description:
-      "Comprehensive answers about bulk coconut export — products, MOQs, shipping, documentation, quality, and payment. Knowledge center for international coconut buyers.",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "FAQ — Frequently Asked Questions About Coconut Export | Global Coco Exports" }],
+      "Comprehensive answers about bulk coconut export — products, MOQs, shipping, documentation, quality, and payment for international buyers.",
+    images: [
+      {
+        url: "/images/og-faq.jpg",
+        width: 1200,
+        height: 630,
+        alt: "FAQ — Coconut Export Questions Answered | Global Coco Exports",
+      },
+    ],
+    url: "https://www.globalcocoexports.com/faq",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Global Coco Exports",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FAQ — Coconut Export Questions Answered | Global Coco Exports",
+    description:
+      "Comprehensive answers about bulk coconut export — products, MOQs, shipping, documentation, and payment.",
+    images: ["/images/og-faq.jpg"],
   },
   alternates: {
     canonical: "https://www.globalcocoexports.com/faq",

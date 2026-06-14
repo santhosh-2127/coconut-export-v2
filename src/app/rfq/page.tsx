@@ -17,7 +17,7 @@ const RFQForm = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Request A Quote — Bulk Coconut RFQ",
+  title: "Request a Quote — Bulk Coconut RFQ",
   description:
     "Submit a Request For Quotation (RFQ) for bulk coconut, copra, and coco peat. Get customized pricing, logistics support, technical specifications, and export consultation within 24 hours.",
   keywords: [
@@ -27,12 +27,32 @@ export const metadata: Metadata = {
     "coconut supplier quote",
     "B2B coconut procurement",
     "copra price request",
+    "coconut RFQ form",
+    "wholesale coconut quote",
   ],
   openGraph: {
-    title: "Request A Quote — Bulk Coconut RFQ | Global Coco Exports",
+    title: "Request a Quote — Bulk Coconut RFQ | Global Coco Exports",
     description:
       "Submit a Request For Quotation (RFQ) for bulk coconut, copra, and coco peat. Get pricing and export consultation within 24 hours.",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Request A Quote — Bulk Coconut RFQ | Global Coco Exports" }],
+    images: [
+      {
+        url: "/images/og-rfq.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Request a Quote — Bulk Coconut RFQ | Global Coco Exports",
+      },
+    ],
+    url: "https://www.globalcocoexports.com/rfq",
+    type: "website",
+    locale: "en_IN",
+    siteName: "Global Coco Exports",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Request a Quote — Bulk Coconut RFQ | Global Coco Exports",
+    description:
+      "Submit an RFQ for bulk coconut, copra, and coco peat. Get pricing and export consultation within 24 hours.",
+    images: ["/images/og-rfq.jpg"],
   },
   alternates: {
     canonical: "https://www.globalcocoexports.com/rfq",
