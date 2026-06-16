@@ -102,7 +102,7 @@ export default function ProductCategories() {
         </motion.div>
 
         {/* ── Product Grid / Mobile Swipe Carousel ── */}
-        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto md:overflow-visible snap-x md:snap-none snap-mandatory scroll-smooth -mx-6 md:mx-0 px-6 md:px-0">
+        <div className="flex min-[426px]:grid min-[426px]:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto min-[426px]:overflow-visible snap-x min-[426px]:snap-none snap-mandatory scroll-smooth -mx-6 min-[426px]:mx-0 px-6 min-[426px]:px-0">
           {products.map((product, i) => {
             const info = buyerInfo[product.id] ?? { forWhom: "", benefit: product.shortDescription };
             return (
@@ -113,7 +113,7 @@ export default function ProductCategories() {
                 whileInView="animate"
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
-                className="min-w-[85vw] md:min-w-0 snap-start md:snap-none flex-shrink-0 group relative bg-white rounded-xl overflow-hidden border border-[#E5E7EB] hover:border-[#1B4332]/20 hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] transition-all duration-300 flex flex-col"
+                className="min-w-[85vw] min-[426px]:min-w-0 snap-start min-[426px]:snap-none flex-shrink-0 group relative bg-white rounded-xl overflow-hidden border border-[#E5E7EB] hover:border-[#1B4332]/20 hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] transition-all duration-300 flex flex-col"
               >
                 {/* ═══ Image ═══ */}
                 <div className="relative h-48 overflow-hidden bg-[#1B4332]">
@@ -196,7 +196,7 @@ export default function ProductCategories() {
         </div>
 
         {/* ── Swipe Hint (mobile only) ── */}
-        <p className="md:hidden text-center text-[11px] text-gray-400 mt-4">
+        <p className="hidden max-[425px]:block text-center text-[11px] text-gray-400 mt-4">
           Swipe to explore &rarr;
         </p>
 

@@ -126,7 +126,7 @@ export default function RootLayout({
         <TrackingInit />
         <WhatsAppWidget />
         <BackToTop />
-        <main id="main-content">
+        <main id="main-content" className="overflow-x-hidden">
           {children}
         </main>
         <OrganizationSchema />
