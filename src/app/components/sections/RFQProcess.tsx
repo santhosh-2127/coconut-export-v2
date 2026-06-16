@@ -23,7 +23,7 @@ const processSteps = [
     step: 2,
     title: "Export Consultation",
     description:
-      "We review your requirements and reach out within 24 hours to discuss specs, compliance, and logistics.",
+      "We review your requirements and reach out within minutes to discuss specs, compliance, and logistics.",
     phase: "Consultation",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-6 h-6">
@@ -216,7 +216,7 @@ export default function RFQProcess() {
           {[
             {
               icon: "⏱",
-              label: "24-Hour Response",
+              label: "Fast Response",
               desc: "Initial consultation within one business day",
             },
             {

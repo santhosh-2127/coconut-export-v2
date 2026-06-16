@@ -19,7 +19,7 @@ const JOURNEY = [
    TRUST SIGNALS
 ───────────────────────────────────────────────────────*/
 const TRUST = [
-  { icon: "⏱", text: "Response within 24 hours"         },
+  { icon: "⏱", text: "Response Within Minutes"         },
   { icon: "🌐", text: "Export Consultation Available"    },
   { icon: "📦", text: "Logistics Assistance"             },
   { icon: "📋", text: "Documentation Support"            },
@@ -255,7 +255,7 @@ export default function RFQCTA() {
                     </div>
                     {/* 24h response badge */}
                     <div className="flex-shrink-0 ml-4 flex flex-col items-center text-center bg-[#1B4332]/6 border border-[#1B4332]/12 rounded-xl px-3 py-2">
-                      <span className="text-[#1B4332] font-black text-lg leading-none">24h</span>
+                      <span className="text-[#1B4332] font-black text-lg leading-none">Min</span>
                       <span className="text-[#1B4332]/60 text-[9px] uppercase tracking-wider font-semibold leading-none mt-0.5">Response</span>
                     </div>
                   </div>
@@ -329,7 +329,7 @@ export default function RFQCTA() {
             { value: "15+",   label: "Countries Served"    },
             { value: "500+",  label: "Containers Exported" },
             { value: "10+",   label: "Years of Exporting"  },
-            { value: "24 h",  label: "Response Guarantee"  },
+            { value: "Fast",  label: "Response Guarantee"  },
           ].map((s, i) => (
             <motion.div
               key={s.label}

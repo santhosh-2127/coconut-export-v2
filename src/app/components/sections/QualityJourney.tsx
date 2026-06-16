@@ -169,77 +169,83 @@ function StickyCard({
   scrollYProgress: MotionValue<number>;
   numCards: number;
 }) {
-  const rangeStart = index / numCards;
-  const rangeEnd = (index + 1) / numCards;
+  const start = index / numCards;
+  const end = (index + 1) / numCards;
 
+  // Slide up from bottom
   const y = useTransform(
     scrollYProgress,
-    [rangeStart, rangeStart + 0.05, rangeEnd - 0.04, rangeEnd],
-    ["120%", "0%", "0%", "-40%"],
+    [start - 0.08, start],
+    [index === 0 ? "0%" : "100%", "0%"]
   );
 
+  // Layered stacking: Previous card scales down and fades as next card enters
   const scale = useTransform(
     scrollYProgress,
-    [rangeStart, rangeStart + 0.05, rangeEnd - 0.04, rangeEnd],
-    [0.85, 1, 1, 0.92],
+    [end, end + 0.08],
+    [1, 0.94]
   );
 
   const opacity = useTransform(
     scrollYProgress,
-    [rangeStart, rangeStart + 0.04, rangeEnd - 0.04, rangeEnd],
-    [0, 1, 1, 0],
+    [end, end + 0.08],
+    [1, 0.4]
   );
 
   return (
-    <div
-      className="sticky top-0 flex items-center justify-center px-4"
-      style={{ height: "100dvh", zIndex: index }}
+    <motion.div
+      style={{
+        y,
+        scale: index === numCards - 1 ? 1 : scale,
+        opacity: index === numCards - 1 ? 1 : opacity,
+        zIndex: index,
+      }}
+      className="absolute inset-0 flex items-center justify-center px-6"
     >
-      <motion.div
-        style={{ y, scale, opacity }}
-        className="w-full max-w-sm"
-      >
-        <div className="relative bg-white rounded-xl overflow-hidden border border-[#E5E7EB] shadow-sm">
-          <div className="relative h-36 overflow-hidden bg-[#1B4332]">
-            <Image
-              src={step.image}
-              alt={step.alt}
-              fill
-              className="object-cover object-center"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+      <div className="w-full max-w-[300px] min-[375px]:max-w-sm bg-white rounded-2xl overflow-hidden border border-[#E5E7EB] shadow-[0_20px_50px_rgba(0,0,0,0.12)]">
+        {/* ── Image ── */}
+        <div className="relative h-40 overflow-hidden bg-[#1B4332]">
+          <Image
+            src={step.image}
+            alt={step.alt}
+            fill
+            className="object-cover object-center"
+            sizes="(max-width:425px) 100vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-            <div className="absolute top-3 left-3">
-              <span className="inline-flex items-center justify-center w-7 h-7 rounded-md bg-[#D4A017] text-white text-[10px] font-bold shadow-sm">
-                {step.number}
-              </span>
-            </div>
-
-            <div className="absolute bottom-3 left-3 right-3">
-              <h3 className="text-base font-bold text-white leading-tight drop-shadow-sm">
-                {step.title}
-              </h3>
-            </div>
+          {/* Step number badge */}
+          <div className="absolute top-4 left-4">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#D4A017] text-white text-xs font-bold shadow-md">
+              {step.number}
+            </span>
           </div>
 
-          <div className="p-4">
-            <p className="text-xs text-gray-500 leading-relaxed mb-3 line-clamp-2">
-              {step.description}
-            </p>
-
-            <div className="flex items-start gap-2 p-2.5 bg-[#D4A017]/5 border border-[#D4A017]/15 rounded-lg">
-              <svg className="w-3.5 h-3.5 text-[#D4A017] mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <p className="text-[11px] text-[#1B4332] font-medium leading-snug">
-                {step.value}
-              </p>
-            </div>
+          {/* Step title overlay */}
+          <div className="absolute bottom-4 left-4 right-4">
+            <h3 className="text-lg font-bold text-white leading-tight drop-shadow-md">
+              {step.title}
+            </h3>
           </div>
         </div>
-      </motion.div>
-    </div>
+
+        {/* ── Content ── */}
+        <div className="p-5">
+          <p className="text-xs text-gray-500 leading-relaxed mb-4">
+            {step.description}
+          </p>
+
+          <div className="flex items-start gap-2.5 p-3 bg-[#D4A017]/5 border border-[#D4A017]/15 rounded-xl">
+            <svg className="w-4 h-4 text-[#D4A017] mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p className="text-[11px] text-[#1B4332] font-semibold leading-snug">
+              {step.value}
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -251,7 +257,14 @@ function MobileStack() {
     offset: ["start start", "end end"],
   });
 
-  const mobileSteps = steps.slice(0, 5);
+  // Steps for mobile storytelling: Farm -> Inspection -> Processing -> Packaging -> Shipping
+  const mobileSteps = [
+    steps[0],
+    steps[1],
+    steps[2],
+    steps[3],
+    { ...steps[5], title: "Shipping" }, // Use Global Delivery (step 06) as "Shipping"
+  ];
   const numCards = mobileSteps.length;
 
   return (
@@ -260,15 +273,17 @@ function MobileStack() {
       className="relative"
       style={{ height: `${numCards * 100}vh` }}
     >
-      {mobileSteps.map((step, i) => (
-        <StickyCard
-          key={step.number}
-          step={step}
-          index={i}
-          scrollYProgress={scrollYProgress}
-          numCards={numCards}
-        />
-      ))}
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {mobileSteps.map((step, i) => (
+          <StickyCard
+            key={step.number}
+            step={step}
+            index={i}
+            scrollYProgress={scrollYProgress}
+            numCards={numCards}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -290,7 +290,7 @@ function SuccessPanel({
         Thank You
       </h3>
       <p className="text-gray-500 text-sm max-w-sm leading-relaxed mb-6">
-        Your quotation request has been received. Our export specialists will contact you within 24 hours.
+        Your quotation request has been received. Our export specialists will reach out shortly.
       </p>
 
       {/* Next steps flow */}
@@ -855,7 +855,7 @@ export default function RFQForm() {
             <span className="text-[#D4A017]">Need</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
-            Fill in the form — we'll prepare a customized quotation within 24 hours.
+            Fill in the form — we'll prepare a customized quotation within minutes.
           </p>
         </motion.div>
 
@@ -1051,53 +1051,6 @@ export default function RFQForm() {
               </>
             )}
           </div>
-
-          {/* ── Trust badges below form ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3"
-          >
-            {[
-              {
-                icon: "🔒",
-                label: "Secure Submission",
-                desc: "SSL encrypted",
-              },
-              {
-                icon: "⏱",
-                label: "24h Response",
-                desc: "Guaranteed turnaround",
-              },
-              {
-                icon: "📋",
-                label: "Detailed Quote",
-                desc: "Itemized pricing",
-              },
-              {
-                icon: "🤝",
-                label: "No Obligation",
-                desc: "Free consultation",
-              },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="flex flex-col items-center text-center gap-1 p-4 rounded-xl bg-white border border-gray-100 shadow-sm"
-              >
-                <span className="text-lg" aria-hidden="true">
-                  {item.icon}
-                </span>
-                <p className="text-[11px] font-bold text-[#111827] leading-snug">
-                  {item.label}
-                </p>
-                <p className="text-[9px] text-gray-400 uppercase tracking-wider">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
     </section>

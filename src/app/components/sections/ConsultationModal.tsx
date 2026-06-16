@@ -221,7 +221,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   Consultation Request Received
                 </h3>
                 <p className="text-white/70 text-base leading-relaxed max-w-md mx-auto">
-                  Thank you. Our export team will contact you within 24 business hours to schedule your consultation.
+                  Thank you. Our export team will reach out shortly to schedule your consultation.
                 </p>
                 <button
                   onClick={handleReset}

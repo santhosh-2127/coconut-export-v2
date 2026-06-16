@@ -109,7 +109,7 @@ export default function ContactForm() {
               Quick{" "}<span className="text-[#D4A017]">Inquiry</span>
             </h2>
             <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed max-w-md">
-              Fill out the form and our export team will get back to you within 24 hours with the information you need.
+              Fill out the form and our export team will get back to you within minutes with the information you need.
             </p>
 
             {/* Trust notes */}              <div className="mt-8 space-y-4">
@@ -146,7 +146,7 @@ export default function ContactForm() {
                   <SuccessScreen
                     title="Thank You for Contacting Global Coco Exports"
                     message="Our team will respond shortly."
-                    responseTime="24 hours"
+                    responseTime="Minutes"
                     showTrust={true}
                     primaryCta={{
                       label: "Back to Home",

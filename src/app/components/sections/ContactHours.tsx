@@ -36,9 +36,9 @@ const timeZones = [
 
 /* ─── Response SLAs ──────────────────────────── */
 const slas = [
-  { label: "Email Response", time: "Within 24 hours", pct: "95%" },
+  { label: "Email Response", time: "Within Minutes", pct: "95%" },
   { label: "WhatsApp Response", time: "Within 2 hours", pct: "90%" },
-  { label: "Quotation Delivery", time: "Within 24 hours", pct: "98%" },
+  { label: "Quotation Delivery", time: "Within Minutes", pct: "98%" },
   { label: "Urgent Inquiry", time: "Same day", pct: "85%" },
 ];
 

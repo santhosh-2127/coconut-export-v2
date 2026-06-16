@@ -124,7 +124,7 @@ export default function ContactHero() {
                 </div>
                 <div>
                   <p className="text-[10px] text-white/40 uppercase tracking-wider font-medium">Response Time</p>
-                  <p className="text-white text-sm font-semibold">Within 24 hours</p>
+                  <p className="text-white text-sm font-semibold">Within Minutes</p>
                 </div>
               </div>
 
@@ -312,7 +312,7 @@ export default function ContactHero() {
                 transition={{ duration: 0.6, delay: 0.9 }}
                 className="absolute bottom-[35%] right-[15%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 w-[160px] shadow-2xl"
               >
-                <p className="text-[#D4A017] text-2xl font-bold">24h</p>
+                <p className="text-[#D4A017] text-2xl font-bold">Min</p>
                 <p className="text-white/50 text-[10px] uppercase tracking-wider mt-1">Response Time</p>
                 <div className="mt-2 h-1 bg-white/10 rounded-full overflow-hidden">
                   <motion.div

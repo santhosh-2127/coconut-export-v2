@@ -8,7 +8,7 @@ const services = [
     icon: "📄",
     title: "Quotation Support",
     description:
-      "Detailed commercial quotations tailored to your product selection, volume, and shipping terms — delivered within 24 hours.",
+      "Detailed commercial quotations tailored to your product selection, volume, and shipping terms — delivered promptly.",
     detail: "Custom pricing, volume breaks, incoterm options",
     color: "#D4A017",
   },

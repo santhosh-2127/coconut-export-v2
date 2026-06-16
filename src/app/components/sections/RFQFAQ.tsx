@@ -9,7 +9,7 @@ const faqs = [
   {
     question: "How soon will I receive a quotation?",
     answer:
-      "We review all RFQ submissions within 24 business hours and provide a detailed quotation including pricing, shipping, and delivery timelines within 1–2 business days.",
+      "We review all RFQ submissions promptly and provide a detailed quotation including pricing, shipping, and delivery timelines within 1–2 business days.",
   },
   {
     question: "What is the minimum order quantity?",

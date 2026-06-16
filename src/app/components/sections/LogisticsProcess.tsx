@@ -19,7 +19,7 @@ const processSteps = [
   },
   {
     step: 2, title: "Quotation", phase: "Step 2",
-    description: "Detailed quotation within 24 hours — product pricing, shipping costs, and delivery timeline based on your chosen incoterm.",
+    description: "Detailed quotation within minutes — product pricing, shipping costs, and delivery timeline based on your chosen incoterm.",
     businessValue: "Itemized pricing for informed procurement decisions.",
     image: "/images/storytelling/QUOTATION-image.png",
     icon: (

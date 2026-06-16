@@ -190,7 +190,7 @@ export default function RequestQuoteSection() {
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
             Tell us your requirements and our export specialists will prepare a
-            customized quotation within 24 hours.
+            customized quotation within minutes.
           </p>
         </motion.div>
 
@@ -205,7 +205,7 @@ export default function RequestQuoteSection() {
             className="grid grid-cols-1 min-[400px]:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3"
           >
             {[
-              { label: "Response Within 24 Hours" },
+              { label: "Response Within Minutes" },
               { label: "Export Specialists" },
               { label: "Global Shipping Support" },
               { label: "Bulk Order Assistance" },
@@ -262,8 +262,8 @@ export default function RequestQuoteSection() {
             {status === "success" ? (
               <SuccessScreen
                 title="Thank You. Your quotation request has been received."
-                message="Our export specialists will contact you within 24 hours."
-                responseTime="24 hours"
+                message="Our export specialists will reach out shortly."
+                responseTime="Minutes"
                 showTrust={true}
                 primaryCta={{
                   label: "Return Home",
@@ -473,32 +473,6 @@ export default function RequestQuoteSection() {
                 </form>
               </div>
             )}
-          </motion.div>
-
-          {/* ── Trust badges below form ── */}
-          <motion.div
-            variants={fadeUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-8 grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-4 gap-3"
-          >
-            {[
-              { icon: "🔒", label: "Secure Submission", desc: "SSL encrypted" },
-              { icon: "⏱", label: "24h Response", desc: "Guaranteed turnaround" },
-              { icon: "📋", label: "Detailed Quote", desc: "Itemized pricing" },
-              { icon: "🤝", label: "No Obligation", desc: "Free consultation" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="flex flex-col items-center text-center gap-1 p-4 rounded-xl bg-white border border-gray-100 shadow-sm"
-              >
-                <span className="text-lg" aria-hidden="true">{item.icon}</span>
-                <p className="text-[11px] font-bold text-[#111827] leading-snug">{item.label}</p>
-                <p className="text-[9px] text-gray-400 uppercase tracking-wider">{item.desc}</p>
-              </div>
-            ))}
           </motion.div>
         </div>
       </div>

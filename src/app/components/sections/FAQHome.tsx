@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "How quickly will I receive a quotation?",
     answer:
-      "We respond to all inquiries within 24 hours on business days. Urgent requests received before 2:00 PM IST are often quoted the same day. Detailed quotations include per-unit pricing, freight costs, and delivery timelines.",
+      "We respond to all inquiries within minutes. Urgent requests received before 2:00 PM IST are often quoted the same day. Detailed quotations include per-unit pricing, freight costs, and delivery timelines.",
   },
   {
     question: "What payment terms do you accept?",
