@@ -198,70 +198,57 @@ export default function ContactHero() {
               Get assistance with pricing, logistics, documentation and export requirements — all in one place.
             </motion.p>
 
-            {/* Contact info cards — Response Time, WhatsApp, Email, Business Hours */}
+            {/* Contact info cards — Email, Phone, WhatsApp, Location */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3"
+              className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-2"
             >
-              {/* Response Time */}
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.05] border border-white/[0.08]">
-                <div className="w-9 h-9 rounded-lg bg-[#D4A017]/15 flex items-center justify-center flex-shrink-0">
-                  <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4 text-[#D4A017]">
-                    <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.3" />
-                    <path d="M10 6v4l3 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-                  </svg>
+              {/* Email */}
+              <a href="mailto:exports@globalcoco.com"
+                className="group flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#D4A017]/30 transition-all duration-300">
+                <div className="w-8 h-8 rounded-lg bg-[#D4A017]/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <span className="text-base">📧</span>
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[9px] text-white/40 uppercase tracking-wider font-medium">Email</p>
+                  <p className="text-white text-xs font-semibold truncate">exports@globalcoco.com</p>
+                </div>
+              </a>
+
+              {/* Phone */}
+              <a href="tel:+919876543210"
+                className="group flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#D4A017]/30 transition-all duration-300">
+                <div className="w-8 h-8 rounded-lg bg-[#1B4332]/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <span className="text-base">📱</span>
                 </div>
                 <div>
-                  <p className="text-[10px] text-white/40 uppercase tracking-wider font-medium">Response Time</p>
-                  <p className="text-white text-sm font-semibold">Within Minutes</p>
+                  <p className="text-[9px] text-white/40 uppercase tracking-wider font-medium">Phone</p>
+                  <p className="text-white text-xs font-semibold">+91 98765 43210</p>
                 </div>
-              </div>
+              </a>
 
               {/* WhatsApp */}
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.05] border border-white/[0.08]">
-                <div className="w-9 h-9 rounded-lg bg-[#25D366]/15 flex items-center justify-center flex-shrink-0">
-                  <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-[#25D366]">
-                    <path d="M10 0C4.5 0 0 4.5 0 10c0 1.8.5 3.5 1.3 5L0 20l5.1-1.3C6.7 19.5 8.3 20 10 20c5.5 0 10-4.5 10-10S15.5 0 10 0zm4.5 14.2c-.2.5-.8 1-1.3 1.1-.3.1-.8.2-2.5-.5-1.1-.5-2.2-1.2-3-2.1-.8-.8-1.5-1.8-1.9-2.9-.5-1.2-.4-1.8-.2-2.2.2-.3.5-.6.8-.8.3-.2.5-.3.7-.3h.5c.2 0 .3 0 .5.4.2.4.6 1.5.6 1.6.1.2.1.3 0 .5-.1.2-.3.4-.4.5-.2.2-.3.3-.2.5.3.6.7 1.1 1.1 1.5.4.4.9.8 1.5 1.1.2.1.3.2.5.2.1 0 .3-.1.4-.2.1-.2.5-.6.6-.8.1-.2.3-.2.5-.1.2.1.1.2.2.3l.6.8c.2.2.3.4.3.5z" />
-                  </svg>
+              <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer"
+                className="group flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#25D366]/30 transition-all duration-300">
+                <div className="w-8 h-8 rounded-lg bg-[#25D366]/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <span className="text-base">💬</span>
                 </div>
                 <div>
-                  <p className="text-[10px] text-white/40 uppercase tracking-wider font-medium">WhatsApp</p>
-                  <p className="text-white text-sm font-semibold">+91 98765 43210</p>
+                  <p className="text-[9px] text-white/40 uppercase tracking-wider font-medium">WhatsApp</p>
+                  <p className="text-white text-xs font-semibold">Chat With Us</p>
                 </div>
-              </div>
+              </a>
 
-              {/* Email */}
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.05] border border-white/[0.08]">
-                <div className="w-9 h-9 rounded-lg bg-[#D4A017]/15 flex items-center justify-center flex-shrink-0">
-                  <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4 text-[#D4A017]">
-                    <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="1.3" />
-                    <path d="M2 6l8 5 8-5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+              {/* Location */}
+              <div className="group flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#2D7D9A]/30 transition-all duration-300">
+                <div className="w-8 h-8 rounded-lg bg-[#2D7D9A]/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <span className="text-base">📍</span>
                 </div>
                 <div>
-                  <p className="text-[10px] text-white/40 uppercase tracking-wider font-medium">Email</p>
-                  <p className="text-white text-sm font-semibold">exports@globalcoco.com</p>
-                </div>
-              </div>
-
-              {/* Business Hours */}
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.05] border border-white/[0.08]">
-                <div className="w-9 h-9 rounded-lg bg-[#1B4332]/20 flex items-center justify-center flex-shrink-0">
-                  <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4 text-[#4ade80]">
-                    <rect x="2" y="3" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.3" />
-                    <path d="M6 1v4M14 1v4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-                    <path d="M2 8h16" stroke="currentColor" strokeWidth="1.3" />
-                    <path d="M8 12h1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M12 12h1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M8 15h1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M12 15h1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-[10px] text-white/40 uppercase tracking-wider font-medium">Business Hours</p>
-                  <p className="text-white text-sm font-semibold">Mon–Sat, 9 AM – 6 PM IST</p>
+                  <p className="text-[9px] text-white/40 uppercase tracking-wider font-medium">Location</p>
+                  <p className="text-white text-xs font-semibold">Tamil Nadu, India</p>
                 </div>
               </div>
             </motion.div>
@@ -396,23 +383,21 @@ export default function ContactHero() {
                 <p className="text-white/40 text-[10px]">Business queries only</p>
               </motion.div>
 
-              {/* Card 3 - 24h */}
+              {/* Card 3 - Phone */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
                 className="absolute bottom-[35%] right-[15%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 w-[160px] shadow-2xl"
               >
-                <p className="text-[#D4A017] text-2xl font-bold">Min</p>
-                <p className="text-white/50 text-[10px] uppercase tracking-wider mt-1">Response Time</p>
-                <div className="mt-2 h-1 bg-white/10 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: "85%" }}
-                    transition={{ duration: 1.2, delay: 1.4, ease: "easeOut" }}
-                    className="h-full rounded-full bg-[#D4A017]"
-                  />
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-8 h-8 rounded-lg bg-[#1B4332]/20 flex items-center justify-center text-lg">📱</div>
+                  <div>
+                    <p className="text-white/50 text-[10px] uppercase tracking-wider">Phone</p>
+                    <p className="text-white text-xs font-semibold">+91 98765 43210</p>
+                  </div>
                 </div>
+                <p className="text-white/40 text-[10px]">Mon–Sat, 9 AM – 6 PM IST</p>
               </motion.div>
 
               {/* Decorative elements */}

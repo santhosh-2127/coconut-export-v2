@@ -199,19 +199,19 @@ export default function AboutHero() {
               >
                 <span className="block w-8 h-px bg-[#D4A017]" />
                 <span className="text-[#D4A017] text-[11px] font-semibold uppercase tracking-[0.24em]">
-                  About Global Coco Exports
+                  Export Partner
                 </span>
                 <span className="block w-8 h-px bg-[#D4A017]/50" />
               </motion.div>
 
-              {/* ── Heading — direct, buyer-focused ── */}
+              {/* ── Heading — company introduction ── */}
               <motion.h1
                 variants={fadeUp}
                 className="text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
               >
-                <span className="block max-w-4xl">Trusted Coconut Export Partner</span>
+                <span className="block max-w-4xl">About</span>
                 <span className="block text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.02em] text-[#D4A017] mt-1">
-                  From India
+                  Global Coco Exports
                 </span>
               </motion.h1>
 
@@ -220,16 +220,10 @@ export default function AboutHero() {
                 variants={fadeUp}
                 className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-medium"
               >
-                Global Coco Exports specializes in sourcing, processing, and exporting premium coconut products to international buyers. From farm sourcing and quality assurance to packaging and global logistics, we support importers, distributors, wholesalers, and industrial buyers with dependable export solutions.
+                Global Coco Exports is a trusted Indian supplier of premium coconut products, supporting importers, distributors, and industrial buyers with reliable sourcing, quality assurance, and export-ready operations.
               </motion.p>
 
-              {/* ── Product trust line ── */}
-              <motion.p
-                variants={fadeUp}
-                className="mt-5 text-[13px] text-white/45 leading-relaxed max-w-[600px]"
-              >
-                Supplying Fresh Brown Coconuts, Pollachi Coconuts, Copra, and Coco Peat to international markets with a focus on quality, consistency, and reliable export operations.
-              </motion.p>
+
 
               {/* ── Trust indicator pills ── */}
               <motion.div
@@ -349,24 +343,7 @@ export default function AboutHero() {
                 </div>
               </motion.div>
 
-              {/* ── Floating export badge ── */}
-              <motion.div
-                initial={{ opacity: 0, y: 24, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.85 }}
-                className="absolute bottom-[15%] right-[18%]"
-              >
-                <div className="flex items-center gap-3 px-4 py-3 rounded-lg backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.30)]">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4A017" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="2" y1="12" x2="22" y2="12" />
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                  </svg>
-                  <span className="text-white text-[11px] lg:text-[13px] font-medium tracking-wide whitespace-nowrap">
-                    15+ Export Markets
-                  </span>
-                </div>
-              </motion.div>
+
 
               {/* ── Product name badge (bottom-right) ── */}
               <div className="absolute bottom-3 right-3 z-20">

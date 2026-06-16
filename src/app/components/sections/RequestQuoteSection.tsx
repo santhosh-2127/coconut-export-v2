@@ -180,7 +180,7 @@ export default function RequestQuoteSection() {
           <div className="inline-flex items-center gap-2 mb-5">
             <span className="w-8 h-px bg-[#D4A017]" />
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">
-              Get A Quotation
+              Get Export Quotation
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
@@ -189,8 +189,7 @@ export default function RequestQuoteSection() {
             <span className="text-[#D4A017]">Quotation</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
-            Tell us your requirements and our export specialists will prepare a
-            customized quotation within minutes.
+            Connect with our export specialists for product sourcing, pricing, logistics planning, shipment coordination, and export support.
           </p>
         </motion.div>
 
@@ -202,10 +201,9 @@ export default function RequestQuoteSection() {
             whileInView="animate"
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="grid grid-cols-1 min-[400px]:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3"
+            className="grid grid-cols-1 min-[400px]:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3"
           >
             {[
-              { label: "Response Within Minutes" },
               { label: "Export Specialists" },
               { label: "Global Shipping Support" },
               { label: "Bulk Order Assistance" },
@@ -225,22 +223,6 @@ export default function RequestQuoteSection() {
               </div>
             ))}
           </motion.div>
-
-          {/* ── Social Proof Statement ── */}
-          <motion.p
-            variants={fadeUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            className="mt-4 text-center text-[12px] sm:text-[13px] text-gray-400 leading-relaxed max-w-2xl mx-auto"
-          >
-            Join importers and distributors across{" "}
-            <span className="text-[#1B4332] font-semibold">15+ countries</span>{" "}
-            who trust{" "}
-            <span className="text-[#1B4332] font-semibold">Global Coco Exports</span>{" "}
-            for reliable coconut supply.
-          </motion.p>
         </div>
 
         {/* ── Form Card ── */}

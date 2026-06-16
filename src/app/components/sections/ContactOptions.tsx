@@ -3,62 +3,79 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-/* ─── Contact methods ────────────────────────── */
-const contactMethods = [
+/* ─── 6 premium contact & presence cards ────── */
+const cards = [
   {
-    icon: "💬",
-    label: "WhatsApp",
-    value: "+91 98765 43210",
-    action: "Send Message",
-    href: "https://wa.me/919876543210",
-    description: "Instant messaging for quick queries. Share photos, documents, and get real-time responses.",
-    response: "Typically replies within 2 hours",
-    color: "#25D366",
-    bgGlow: "bg-[#25D366]/5",
-  },
-  {
-    icon: "✉️",
-    label: "Email",
+    icon: "📧",
+    label: "Email Us",
     value: "exports@globalcoco.com",
     action: "Send Email",
     href: "mailto:exports@globalcoco.com",
-    description: "For detailed inquiries, specifications, and formal quotation requests. We respond within minutes.",
+    description:
+      "For detailed inquiries, specifications, and formal quotation requests.",
     response: "Response Within Minutes",
-    color: "#D4A017",
-    bgGlow: "bg-[#D4A017]/5",
+    accent: "#2563EB",
+    bgLight: "bg-[#2563EB]/5",
   },
   {
-    icon: "📞",
-    label: "Phone",
+    icon: "📱",
+    label: "Call Us",
     value: "+91 98765 43210",
     action: "Call Now",
     href: "tel:+919876543210",
-    description: "Speak with our export team during business hours for urgent sourcing needs.",
+    description:
+      "Speak with our export team during business hours for urgent sourcing needs.",
     response: "Mon–Sat, 9 AM – 6 PM IST",
-    color: "#1B4332",
-    bgGlow: "bg-[#1B4332]/5",
+    accent: "#059669",
+    bgLight: "bg-[#059669]/5",
+  },
+  {
+    icon: "💬",
+    label: "WhatsApp Support",
+    value: "Chat With Us",
+    action: "Send Message",
+    href: "https://wa.me/919876543210",
+    description:
+      "Instant messaging for quick queries. Share photos, documents, and get real-time responses.",
+    response: "Typically replies within 2 hours",
+    accent: "#25D366",
+    bgLight: "bg-[#25D366]/5",
   },
   {
     icon: "📍",
-    label: "Office",
+    label: "Office Location",
     value: "Tamil Nadu, India",
-    action: "Get Directions",
-    href: "#location",
-    description: "Headquartered in Southern India's coconut heartlands, close to major export ports.",
-    response: "Operational region",
-    color: "#2D7D9A",
-    bgGlow: "bg-[#2D7D9A]/5",
+    action: null as string | null,
+    href: null as string | null,
+    description:
+      "Our operations are headquartered in the coconut-producing regions of Southern India, providing direct access to farm sourcing and major export ports.",
+    response: "Operational HQ",
+    accent: "#D4A017",
+    bgLight: "bg-[#D4A017]/5",
   },
   {
-    icon: "🕐",
-    label: "Business Hours",
-    value: "Mon–Sat, 9 AM – 6 PM IST",
-    action: "International Buyer Support",
-    href: "#hours",
-    description: "Our team works across time zones to support international buyers worldwide.",
-    response: "Extended hours available",
-    color: "#9B59B6",
-    bgGlow: "bg-[#9B59B6]/5",
+    icon: "🌏",
+    label: "Operations Region",
+    value: "South India Coconut Belt",
+    action: null as string | null,
+    href: null as string | null,
+    description:
+      "Sourcing from premium coconut-growing regions across Tamil Nadu, Kerala, and Karnataka — the heart of India's coconut industry.",
+    response: "Primary sourcing region",
+    accent: "#0D9488",
+    bgLight: "bg-[#0D9488]/5",
+  },
+  {
+    icon: "🚢",
+    label: "Export Coverage",
+    value: "4 Continents, 17+ Markets",
+    action: "View Logistics Details",
+    href: "/logistics",
+    description:
+      "Shipping from Chennai, Tuticorin, and Nhava Sheva ports to buyers across the Middle East, Europe, North America, and Asia-Pacific.",
+    response: "Multi-port shipping capability",
+    accent: "#4F46E5",
+    bgLight: "bg-[#4F46E5]/5",
   },
 ];
 
@@ -67,80 +84,168 @@ export default function ContactOptions() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <section id="contact-options" aria-label="Contact Options" className="relative py-20 md:py-24 overflow-hidden bg-white">
+    <section
+      id="contact-options"
+      aria-label="Contact Options"
+      className="relative py-20 md:py-24 overflow-hidden bg-white"
+    >
+      {/* Background accents */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle, #1B4332 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+        <div
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, #1B4332 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-[#1B4332]/[0.03] blur-[120px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
-        <motion.div initial={mounted ? { opacity: 0, y: 28 } : false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center max-w-2xl mx-auto mb-10">
+        {/* Section header */}
+        <motion.div
+          initial={mounted ? { opacity: 0, y: 28 } : false}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-10"
+        >
           <div className="inline-flex items-center gap-2 mb-5">
             <span className="w-8 h-px bg-[#D4A017]" />
-            <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Reach Us</p>
+            <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">
+              Reach Us
+            </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
-            Contact{" "}<span className="text-[#D4A017]">Options</span>
+            Contact{" "}
+            <span className="text-[#D4A017]">Options</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
-            Choose the method that works best for you. Every channel is monitored by our export team.
+            Reach our export team directly or explore our operational presence.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 max-w-7xl mx-auto">
-          {contactMethods.map((method, i) => (
-            <motion.article
-              key={method.label}
-              initial={mounted ? { opacity: 0, y: 24 } : false}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.07, ease: "easeOut" }}
-              className="group relative bg-white border border-[#E5E7EB] hover:border-[#1B4332]/20 rounded-2xl overflow-hidden transition-all duration-400 hover:shadow-[0_12px_40px_rgba(27,67,50,0.08)] flex flex-col"
-            >
-              {/* Top accent bar */}
-              <div className="absolute top-0 inset-x-0 h-[2.5px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
-                style={{ background: `linear-gradient(90deg, ${method.color} 0%, ${method.color}44 100%)` }} />
+        {/* 3×2 card grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+          {cards.map((card, i) => {
+            const isActionable = card.href && card.action;
+            const CardWrapper = isActionable ? "a" : "div";
+            const wrapperProps = isActionable
+              ? {
+                  href: card.href,
+                  target: card.href?.startsWith("http")
+                    ? ("_blank" as const)
+                    : undefined,
+                  rel: card.href?.startsWith("http")
+                    ? ("noopener noreferrer" as const)
+                    : undefined,
+                  "data-analytics": JSON.stringify({
+                    type: card.label.toLowerCase().replace(/\s+/g, "_"),
+                    label: card.label,
+                  }),
+                }
+              : {};
 
-              <div className="p-6 lg:p-7 flex flex-col flex-1">
-                {/* Icon */}
-                <div className={`w-12 h-12 rounded-xl ${method.bgGlow} flex items-center justify-center text-2xl mb-4`}>
-                  {method.icon}
+            return (
+              <motion.article
+                key={card.label}
+                initial={mounted ? { opacity: 0, y: 24 } : false}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: i * 0.07,
+                  ease: "easeOut",
+                }}
+                className="group relative bg-white border border-[#E5E7EB] hover:border-[#1B4332]/20 rounded-2xl overflow-hidden transition-all duration-400 hover:shadow-[0_12px_40px_rgba(27,67,50,0.08)] flex flex-col"
+              >
+                {/* Gradient accent strip — visible on hover */}
+                <div
+                  className="absolute top-0 inset-x-0 h-[3px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
+                  style={{
+                    background: `linear-gradient(90deg, ${card.accent} 0%, ${card.accent}44 100%)`,
+                  }}
+                />
+
+                {/* Subtle permanent accent line (visible when not hovered) */}
+                <div
+                  className="absolute top-0 inset-x-0 h-[1px] opacity-40 group-hover:opacity-0 transition-opacity duration-300"
+                  style={{ background: card.accent }}
+                />
+
+                <div className="p-6 flex flex-col flex-1">
+                  {/* Icon */}
+                  <div
+                    className={`w-11 h-11 rounded-xl ${card.bgLight} flex items-center justify-center text-xl mb-3.5 group-hover:scale-105 transition-transform duration-300`}
+                  >
+                    {card.icon}
+                  </div>
+
+                  {/* Label */}
+                  <p
+                    className="text-[10px] uppercase tracking-[3px] font-semibold mb-1"
+                    style={{ color: card.accent }}
+                  >
+                    {card.label}
+                  </p>
+
+                  {/* Value */}
+                  <p className="text-[#111827] font-semibold text-sm mb-2.5">
+                    {card.value}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-[#6B7280] text-xs leading-relaxed mb-3.5 flex-1">
+                    {card.description}
+                  </p>
+
+                  {/* Meta indicator */}
+                  <div className="flex items-center gap-1.5 mb-3.5">
+                    <span
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ background: card.accent }}
+                    />
+                    <span className="text-[10px] text-gray-400">
+                      {card.response}
+                    </span>
+                  </div>
+
+                  {/* Action link */}
+                  {isActionable ? (
+                    <CardWrapper
+                      {...(wrapperProps as any)}
+                      className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[2px] transition-all duration-200 hover:gap-2.5"
+                      style={{ color: card.accent }}
+                    >
+                      {card.action}
+                      <svg
+                        width="12"
+                        height="10"
+                        viewBox="0 0 12 10"
+                        fill="none"
+                        aria-hidden="true"
+                        className="transition-transform duration-200 group-hover:translate-x-1"
+                      >
+                        <path
+                          d="M7 1l4 4-4 4M1 5h10"
+                          stroke="currentColor"
+                          strokeWidth="1.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </CardWrapper>
+                  ) : (
+                    <span className="text-[10px] uppercase tracking-[2px] text-gray-300/0 select-none">
+                      ⋅
+                    </span>
+                  )}
                 </div>
-
-                {/* Label + Value */}
-                <p className="text-[10px] uppercase tracking-[3px] font-semibold mb-1" style={{ color: method.color }}>{method.label}</p>
-                <p className="text-[#111827] font-semibold text-sm mb-3">{method.value}</p>
-
-                {/* Description */}
-                <p className="text-[#6B7280] text-xs leading-relaxed mb-4 flex-1">{method.description}</p>
-
-                {/* Response time */}
-                <div className="flex items-center gap-1.5 mb-4">
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: method.color }} />
-                  <span className="text-[10px] text-gray-400">{method.response}</span>
-                </div>
-
-                {/* Action link */}
-                <a
-                  href={method.href}
-                  data-analytics={JSON.stringify({
-                    type: method.label.toLowerCase(),
-                    label: method.label,
-                  })}
-                  className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[2px] transition-colors duration-200"
-                  style={{ color: method.color }}
-                  target={method.href.startsWith("http") ? "_blank" : undefined}
-                  rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                >
-                  {method.action}
-                  <svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">
-                    <path d="M7 1l4 4-4 4M1 5h10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

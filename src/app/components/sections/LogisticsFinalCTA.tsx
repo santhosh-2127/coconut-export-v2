@@ -29,14 +29,14 @@ export default function LogisticsFinalCTA() {
 
         <motion.h2 initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           className="text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-white leading-[1.12] tracking-[-0.02em]">
-          Ready To Import{" "}
+          Ready to Discuss Your{" "}
           <br />
-          <span className="text-[#D4A017]">Premium Coconut Products?</span>
+          <span className="text-[#D4A017]">Requirements?</span>
         </motion.h2>
 
         <motion.p initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
           className="mt-6 text-white/60 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-          Request your customized export quotation today.
+          Connect with our export team for product sourcing, logistics planning, pricing, and export support.
         </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.28, ease: "easeOut" }}
@@ -51,7 +51,7 @@ export default function LogisticsFinalCTA() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a id="logistics-cta-request-quote" data-tracking-id="logistics-cta-request-quote" href="/#request-quote" className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]">
-            <span className="relative z-10">Request Quote</span>
+            <span className="relative z-10">Request Export Quotation</span>
             <svg aria-hidden="true" className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

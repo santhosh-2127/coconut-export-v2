@@ -75,21 +75,7 @@ export default function ContactFinalCTA() {
           </a>
         </motion.div>
 
-        {/* Bottom stats */}
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.45 }}
-          className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-green-200/50">
-          {[
-            { value: "15+", label: "Years Exporting" },
-            { value: "500+", label: "Containers Shipped" },
-            { value: "24h", label: "Response Time" },
-          ].map((item) => (
-            <div key={item.label} className="flex items-center gap-2">
-              <span className="text-[#D4A017] font-bold">{item.value}</span>
-              <span className="text-green-200/40 text-xs uppercase tracking-wider">{item.label}</span>
-            </div>
-          ))}
-        </motion.div>
+
       </div>
     </section>
   );

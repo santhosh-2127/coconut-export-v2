@@ -438,3 +438,142 @@ export const blogPosts: BlogPost[] = [
       "complete-coconut-export-guide",
     ],
   },
+
+  /* ─────────────────────────────────────────────────────────────────
+     BLOG 5 — Complete Coconut Export Guide
+  ───────────────────────────────────────────────────────────────── */
+  {
+    slug: "complete-coconut-export-guide",
+    title: "Complete Coconut Export Process From India: Documentation, Shipping & Quality Standards",
+    category: "Industry Guide",
+    excerpt:
+      "A comprehensive walkthrough of the coconut export process from India — export documentation, container shipping, quality compliance, and import requirements for international buyers.",
+    readTime: "10 min read",
+    publishDate: "2024-12-20",
+    heroImage: "/images/storytelling/CONTAINER LOADING-image.png",
+    heroImageAlt: "Coconut container loading and export logistics at Indian port",
+    ogImage: "/images/storytelling/CONTAINER LOADING-image.png",
+    intro:
+      "Exporting coconut products from India involves a structured process spanning farm sourcing, processing, quality certification, documentation, and logistics. For international buyers, understanding this end-to-end process is essential for successful procurement planning. This guide covers every stage of the coconut export journey from India — from initial inquiry to final delivery at your destination port.",
+    tableOfContents: [
+      "Export Process Overview",
+      "Required Documentation",
+      "Shipping & Container Logistics",
+      "Quality Standards & Certifications",
+      "Import Requirements by Region",
+      "Cost Considerations",
+      "How to Place Your First Order",
+    ],
+    sections: [
+      {
+        type: "text",
+        heading: "Export Process Overview",
+        content:
+          "The coconut export process from India follows a structured sequence. It begins with buyer inquiry and product specification, followed by quotation and order confirmation. The exporter then coordinates farm sourcing, processing, and quality inspection. Documentation is prepared in parallel with production. Once the shipment is ready, container loading and customs clearance are arranged, and the goods are shipped to the destination port. Post-shipment, the exporter provides tracking updates and handles any arrival formalities. The entire cycle typically takes 14–21 days from order confirmation to vessel departure.",
+      },
+      {
+        type: "image",
+        image: "/images/storytelling/QUOTATION-image.png",
+        imageAlt: "Export order confirmation and quotation process for coconut shipments",
+        heading: "Order to Shipment Cycle",
+      },
+      {
+        type: "text",
+        heading: "Required Documentation",
+        content:
+          "Every coconut export shipment requires a specific set of documents for customs clearance at both origin and destination. The commercial invoice and packing list form the basic documentation package. The Bill of Lading serves as the contract of carriage and title document. A Certificate of Origin (typically issued by the Chamber of Commerce or FIEO) certifies the goods were produced in India. A Phytosanitary Certificate issued by the Plant Quarantine Authority confirms the products are free from pests and diseases. For food-grade products, a Health Certificate or Certificate of Analysis may be required by the importing country.",
+      },
+      {
+        type: "list",
+        heading: "Essential Export Documents",
+        items: [
+          "Commercial Invoice: Detailed product description, quantity, unit price, total value",
+          "Packing List: Weight, number of packages, container and seal numbers",
+          "Bill of Lading: Ocean carrier contract and title to goods",
+          "Certificate of Origin: Chamber-certified proof of Indian origin",
+          "Phytosanitary Certificate: Plant health certification per ISPM 15 standards",
+          "Health Certificate: For food-grade coconut products (where required)",
+          "Certificate of Analysis: Lab test results for moisture, oil content, aflatoxin",
+          "Insurance Certificate: Cargo insurance coverage (typically 110% of invoice value)",
+        ],
+      },
+      {
+        type: "callout",
+        calloutLabel: "Documentation Tip",
+        content:
+          "Buyers should share their country-specific import document requirements with the exporter at the time of order confirmation. Some destination countries require additional certifications such as Halal certification or country-specific health certificates that may take 3–5 business days to arrange.",
+      },
+      {
+        type: "text",
+        heading: "Shipping & Container Logistics",
+        content:
+          "Coconut products are shipped in standard 20-foot or 40-foot FCL (Full Container Load) containers. Fresh brown coconuts require ventilated containers to prevent condensation and mould during transit. Copra and coco peat can be shipped in standard dry containers. The major export ports for coconut products from South India are Chennai (Madras), Tuticorin (V.O. Chidambaranar), and Nhava Sheva (JNPT, Mumbai). Transit times vary by destination: 8–12 days to the Middle East, 18–22 days to Europe, and 25–30 days to North America.",
+      },
+      {
+        type: "image",
+        image: "/images/storytelling/SHIPMENT-image.png",
+        imageAlt: "Coconut shipment tracking and logistics management for international export",
+        heading: "Shipping & Logistics",
+      },
+      {
+        type: "text",
+        heading: "Quality Standards & Certifications",
+        content:
+          "Indian coconut exporters operate under multiple quality frameworks. ISO 22000:2018 (Food Safety Management) and HACCP certifications are standard for processing facilities. The Agricultural and Processed Food Products Export Development Authority (APEDA) oversees coconut exports from India and provides quality assurance programs. Buyers should verify that their supplier holds current certifications and can provide third-party lab test reports for each shipment. Many European buyers also request organic certification (USDA Organic, EU Organic, or NPOP certification) for premium product lines.",
+      },
+      {
+        type: "list",
+        heading: "Key Quality Parameters by Product",
+        items: [
+          "Fresh Brown Coconut: Shell integrity, weight uniformity, absence of mould, proper maturity",
+          "Copra: Moisture ≤6%, oil content ≥65%, free fatty acid ≤1%, aflatoxin ≤4 ppb (EU)",
+          "Coco Peat: EC ≤0.5 mS/cm (washed), pH 5.8–6.8, expansion ratio verified per batch",
+          "All Products: No visible pests, no foreign matter, compliance with destination country MRLs",
+        ],
+      },
+      {
+        type: "callout",
+        calloutLabel: "Quality Insight",
+        content:
+          "Multi-stage quality inspection is the industry best practice. Reputable exporters conduct inspection at three points: farm intake (raw material), post-processing (finished product), and pre-shipment (container loading). Buyers can also appoint third-party inspection agencies such as SGS or Bureau Veritas for independent pre-shipment inspection.",
+      },
+      {
+        type: "text",
+        heading: "Import Requirements by Region",
+        content:
+          "Import requirements for coconut products vary significantly by destination region. The European Union enforces strict aflatoxin limits (4 ppb for copra) and requires full traceability documentation under EU Regulation 178/2002. Middle Eastern countries require Halal certification and specific labelling in Arabic. The United States requires FDA prior notice for food shipments and compliance with FSMA (Food Safety Modernization Act) preventive controls. Buyers should familiarise themselves with their local import regulations and communicate any special requirements to the exporter during the quotation stage.",
+      },
+      {
+        type: "image",
+        image: "/images/storytelling/DELIVERY-image.png",
+        imageAlt: "Global delivery of coconut products to international destinations",
+        heading: "Global Delivery Network",
+      },
+      {
+        type: "text",
+        heading: "Cost Considerations",
+        content:
+          "The total landed cost of imported coconut products includes the FOB (Free on Board) price, ocean freight, insurance, destination port charges, customs duties, and inland transportation. FOB pricing covers the product cost, packaging, and loading onto the vessel. Incoterms such as CIF (Cost, Insurance, Freight) or DAP (Delivered at Place) shift responsibility for various cost components between buyer and seller. Buyers should clearly specify the preferred incoterm when requesting a quotation to ensure accurate pricing comparisons between suppliers.",
+      },
+      {
+        type: "text",
+        heading: "How to Place Your First Order",
+        content:
+          "First-time buyers should begin by contacting exporters with their product requirements, target quantity, destination port, and preferred incoterm. The exporter will respond with a formal quotation including FOB or CIF pricing. Once terms are agreed, a proforma invoice is issued, and the buyer arranges payment (typically by TT wire transfer or Letter of Credit). The exporter then initiates production and provides regular updates until shipment. Buyers are advised to start with a trial order of 1–2 containers to evaluate product quality and supplier reliability before committing to long-term volume contracts.",
+      },
+    ],
+    keyTakeaways: [
+      "Full export cycle from order to vessel departure typically takes 14–21 days",
+      "Essential documents: Commercial Invoice, Packing List, Bill of Lading, Phytosanitary Certificate",
+      "Chennai, Tuticorin, and Nhava Sheva are the primary coconut export ports",
+      "EU requires aflatoxin ≤4 ppb; Middle East requires Halal certification",
+      "Multi-stage quality inspection — farm, processing, and pre-shipment — is industry best practice",
+      "Start with a trial order of 1–2 containers before committing to volume contracts",
+    ],
+    relatedSlugs: [
+      "fresh-brown-coconut-export-guide",
+      "copra-coconut-export-guide",
+      "coco-peat-export-guide",
+    ],
+  },
+];

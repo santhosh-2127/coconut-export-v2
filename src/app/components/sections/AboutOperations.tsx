@@ -140,11 +140,13 @@ export default function AboutOperations() {
           </p>
         </motion.div>
 
-        {/* ── Timeline ── */}
-        <div className="relative max-w-5xl mx-auto">
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#1B4332]/30 via-[#D4A017]/20 to-[#1B4332]/30" />
+        {/* ═════════════════════════════════════════════════════════════════════ */}
+        {/* DESKTOP / TABLET — Timeline (unchanged)                            */}
+        {/* ═════════════════════════════════════════════════════════════════════ */}
+        <div className="hidden md:block relative max-w-5xl mx-auto">
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#1B4332]/30 via-[#D4A017]/20 to-[#1B4332]/30" />
 
-          <div className="space-y-10 md:space-y-12">
+          <div className="space-y-12">
             {operationsSteps.map((step, index) => (
               <motion.div
                 key={step.step}
@@ -153,32 +155,31 @@ export default function AboutOperations() {
                 whileInView="animate"
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className={`relative flex flex-col md:flex-row items-start gap-6 ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                className={`relative flex flex-row items-start gap-6 ${
+                  index % 2 === 0 ? "flex-row" : "flex-row-reverse"
                 }`}
               >
-                <div className="absolute left-6 sm:left-8 md:left-1/2 -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-[#1B4332] flex items-center justify-center z-10 shadow-lg overflow-hidden">
+                <div className="absolute left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-white border-2 border-[#1B4332] flex items-center justify-center z-10 shadow-lg overflow-hidden">
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${stepBgGradients[index]} opacity-10`}
                   />
-                  <span className="text-[#1B4332] scale-75 sm:scale-100">{step.icon}</span>
+                  <span className="text-[#1B4332]">{step.icon}</span>
                 </div>
 
                 <div
-                  className={`ml-16 sm:ml-24 md:ml-0 md:w-[calc(50%-40px)] ${
-                    index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"
+                  className={`md:w-[calc(50%-40px)] ${
+                    index % 2 === 0 ? "pr-8 text-right" : "pl-8"
                   }`}
                 >
                   <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-[#D4A017]/20 transition-all duration-300 overflow-hidden">
-                    {/* Storytelling image at top of card */}
                     {step.image && (
-                      <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-[#1B4332]">
+                      <div className="relative w-full h-56 overflow-hidden bg-[#1B4332]">
                         <Image
                           src={step.image}
                           alt={step.title}
                           fill
                           className="object-cover object-center transition-transform duration-700 hover:scale-105"
-                          sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 40vw"
+                          sizes="(max-width:1024px) 50vw, 40vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
                         <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-[#D4A017]/50" />
@@ -190,38 +191,120 @@ export default function AboutOperations() {
                         </div>
                       </div>
                     )}
-                    <div className="p-6 md:p-8">
-                    <div
-                      className={`flex items-center gap-3 mb-3 ${
-                        index % 2 === 0 ? "md:flex-row-reverse md:justify-end" : ""
-                      }`}
-                    >
+                    <div className="p-8">
+                      <div
+                        className={`flex items-center gap-3 mb-3 ${
+                          index % 2 === 0 ? "flex-row-reverse justify-end" : ""
+                        }`}
+                      >
+                        <span className="text-[#D4A017] text-[10px] font-bold uppercase tracking-[0.2em]">
+                          Step {step.step}
+                        </span>
+                        <span className="w-4 h-px bg-[#D4A017]/40" />
+                      </div>
+
+                      <h3
+                        className={`text-lg font-bold text-[#1B4332] mb-3 ${
+                          index % 2 === 0 ? "text-right" : ""
+                        }`}
+                      >
+                        {step.title}
+                      </h3>
+                      <p
+                        className={`text-sm text-gray-500 leading-relaxed mb-4 ${
+                          index % 2 === 0 ? "text-right" : ""
+                        }`}
+                      >
+                        {step.description}
+                      </p>
+
+                      <div
+                        className={`p-3 bg-[#1B4332]/[0.04] border border-[#1B4332]/[0.08] rounded-lg ${
+                          index % 2 === 0 ? "text-right" : ""
+                        }`}
+                      >
+                        <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#D4A017]">
+                          Business Value
+                        </span>
+                        <p className="text-[12px] text-[#111827] mt-0.5 leading-snug">
+                          {step.businessValue}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="md:w-[calc(50%-40px)]" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* ═════════════════════════════════════════════════════════════════════ */}
+        {/* MOBILE — Horizontal swipe carousel                                  */}
+        {/* ═════════════════════════════════════════════════════════════════════ */}
+        <div
+          className="md:hidden -mx-6 px-4 overflow-x-auto snap-x snap-mandatory"
+          style={{
+            WebkitOverflowScrolling: "touch",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
+          <div className="flex gap-4">
+            {operationsSteps.map((step, index) => (
+              <motion.div
+                key={step.step}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                className="w-[calc(100vw-32px)] shrink-0 snap-center"
+              >
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                  {/* Image + icon overlay */}
+                  {step.image && (
+                    <div className="relative w-full h-48 overflow-hidden bg-[#1B4332]">
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        fill
+                        className="object-cover object-center"
+                        sizes="calc(100vw - 32px)"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+                      <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-[#D4A017]/50" />
+                      <div className="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-[#D4A017]/30" />
+                      {/* Step icon at top-right of image */}
+                      <div className="absolute top-3 left-3 w-10 h-10 rounded-full bg-white border-2 border-[#1B4332] flex items-center justify-center shadow-lg overflow-hidden">
+                        <div
+                          className={`absolute inset-0 bg-gradient-to-br ${stepBgGradients[index]} opacity-10`}
+                        />
+                        <span className="text-[#1B4332] scale-[0.6]">{step.icon}</span>
+                      </div>
+                      <div className="absolute top-3 right-3">
+                        <span className="inline-block px-3 py-1 text-[9px] uppercase tracking-[0.2em] font-semibold text-white/90 bg-black/30 backdrop-blur-sm border border-white/20 rounded-sm">
+                          {step.phase}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  <div className="p-5">
+                    <div className="flex items-center gap-2 mb-2">
                       <span className="text-[#D4A017] text-[10px] font-bold uppercase tracking-[0.2em]">
                         Step {step.step}
                       </span>
                       <span className="w-4 h-px bg-[#D4A017]/40" />
                     </div>
 
-                    <h3
-                      className={`text-lg font-bold text-[#1B4332] mb-3 ${
-                        index % 2 === 0 ? "md:text-right" : ""
-                      }`}
-                    >
+                    <h3 className="text-lg font-bold text-[#1B4332] mb-3">
                       {step.title}
                     </h3>
-                    <p
-                      className={`text-sm text-gray-500 leading-relaxed mb-4 ${
-                        index % 2 === 0 ? "md:text-right" : ""
-                      }`}
-                    >
+                    <p className="text-sm text-gray-500 leading-relaxed mb-4">
                       {step.description}
                     </p>
 
-                    <div
-                      className={`p-3 bg-[#1B4332]/[0.04] border border-[#1B4332]/[0.08] rounded-lg ${
-                        index % 2 === 0 ? "md:text-right" : ""
-                      }`}
-                    >
+                    <div className="p-3 bg-[#1B4332]/[0.04] border border-[#1B4332]/[0.08] rounded-lg">
                       <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#D4A017]">
                         Business Value
                       </span>
@@ -229,11 +312,8 @@ export default function AboutOperations() {
                         {step.businessValue}
                       </p>
                     </div>
-                    </div>
                   </div>
                 </div>
-
-                <div className="hidden md:block md:w-[calc(50%-40px)]" />
               </motion.div>
             ))}
           </div>

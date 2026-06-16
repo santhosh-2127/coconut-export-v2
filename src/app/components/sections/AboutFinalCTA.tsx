@@ -2,44 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { useCountUp, parseStatValue } from "@/lib/countUp";
-
-/* ─── Animated CTA stat item ──────────────────────────────────────────── */
-function AnimatedCTAStatItem({
-  value,
-  label,
-  index,
-  isVisible,
-}: {
-  value: string;
-  label: string;
-  index: number;
-  isVisible: boolean;
-}) {
-  const { numeric, suffix } = parseStatValue(value);
-  const counted = useCountUp(numeric, 1600 + index * 100, isVisible);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={isVisible ? { opacity: 1, scale: 1 } : {}}
-      transition={{
-        duration: 0.4,
-        delay: 0.6 + index * 0.07,
-        ease: "backOut",
-      }}
-      className="flex flex-col items-center justify-center py-6 px-4 bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
-    >
-      <span className="text-2xl font-bold text-[#D4A017] leading-none" aria-label={`${value} ${label}`}>
-        {isVisible ? counted : 0}
-        <span className="text-[#D4A017]">{suffix}</span>
-      </span>
-      <span className="text-white/35 text-[9px] uppercase tracking-widest mt-1 text-center">
-        {label}
-      </span>
-    </motion.div>
-  );
-}
 
 export default function AboutFinalCTA() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -117,9 +79,9 @@ export default function AboutFinalCTA() {
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           className="text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-white leading-[1.12] tracking-[-0.02em]"
         >
-          Ready To Import{" "}
+          Ready to Discuss Your{" "}
           <br />
-          <span className="text-[#D4A017]">Premium Coconut Products?</span>
+          <span className="text-[#D4A017]">Requirements?</span>
         </motion.h2>
 
         {/* ── Sub copy ── */}
@@ -129,7 +91,7 @@ export default function AboutFinalCTA() {
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
           className="mt-6 text-white/60 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto"
         >
-          Request your customized export quotation today.
+          Connect with our export team for product sourcing, logistics planning, pricing, and export support.
         </motion.p>
 
         {/* ── CTA Buttons ── */}
@@ -145,7 +107,7 @@ export default function AboutFinalCTA() {
             href="/#request-quote"
             className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]"
           >
-            <span className="relative z-10">Request Quote</span>
+            <span className="relative z-10">Request Export Quotation</span>
             <svg
               aria-hidden="true"
               className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -178,26 +140,37 @@ export default function AboutFinalCTA() {
           </a>
         </motion.div>
 
-        {/* ── Bottom stats (animated) ── */}
+        {/* ── Trust bar ── */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: 0.5 }}
-          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/8 rounded-2xl overflow-hidden border border-white/8 max-w-3xl mx-auto"
+          transition={{ duration: 0.45, delay: 0.5, ease: "easeOut" }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
         >
           {[
-            { value: "15+", label: "Countries Served" },
-            { value: "500+", label: "Containers Exported" },
-            { value: "10+", label: "Years of Exporting" },
-            { value: "24h", label: "Response Guarantee" },
-          ].map((s, i) => (
-            <AnimatedCTAStatItem
-              key={s.label}
-              value={s.value}
-              label={s.label}
-              index={i}
-              isVisible={isInView}
-            />
+            "Export Specialists",
+            "Product Sourcing Support",
+            "Global Logistics Assistance",
+          ].map((item) => (
+            <span
+              key={item}
+              className="inline-flex items-center gap-1.5 text-[11px] text-white/50 font-medium"
+            >
+              <svg
+                className="w-3 h-3 text-[#D4A017] shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 12.75l6 6 9-13.5"
+                />
+              </svg>
+              {item}
+            </span>
           ))}
         </motion.div>
       </div>

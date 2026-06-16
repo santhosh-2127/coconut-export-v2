@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 /* ─── Animation ───────────────────────────────────────────────────────── */
 const fadeUp = {
@@ -9,122 +9,99 @@ const fadeUp = {
   animate: { opacity: 1, y: 0 },
 };
 
-/* ─── Top Buyer Questions ─────────────────────────────────────────────── */
-const faqs = [
+/* ─── Testimonials ────────────────────────────────────────────────────── */
+const testimonials = [
   {
-    question: "What is the minimum order quantity (MOQ)?",
-    answer:
-      "MOQ varies by product: Fresh Coconuts — 1 × 20ft FCL (≈24,000–25,000 nuts), Copra — 1 × 20ft FCL (≈18 MT), Coco Peat — 1 × 20ft FCL (≈500 blocks). Smaller trial orders can be arranged on request — contact our team to discuss your specific needs.",
+    quote:
+      "Consistent quality and professional export support throughout the shipment process.",
+    name: "Ahmed Al Mansouri",
+    country: "UAE",
+    role: "Importer",
   },
   {
-    question: "Which countries do you export to?",
-    answer:
-      "We export to 15+ countries across the Middle East (UAE, Saudi Arabia, Qatar, Kuwait, Oman, Bahrain), Europe (Germany, Netherlands, UK), North America (USA, Canada), Asia-Pacific (Singapore, Malaysia, Australia, New Zealand), and Africa. We support FOB, CIF, and CFR terms from Chennai, Tuticorin, and Nhava Sheva ports.",
+    quote:
+      "Reliable communication, quality packaging, and smooth documentation handling.",
+    name: "Tan Wei Ling",
+    country: "Malaysia",
+    role: "Distributor",
   },
   {
-    question: "How is quality verified before shipment?",
-    answer:
-      "Quality is verified through a four-stage process: (1) Farm-level inspection for maturity and size, (2) Incoming inspection at our ISO 22000 facility, (3) Process monitoring during sorting and packing, (4) Pre-shipment container inspection. Third-party inspection by SGS, Bureau Veritas, or Intertek is available on request.",
+    quote:
+      "Excellent sourcing support and dependable shipment coordination.",
+    name: "Rajesh Kumar",
+    country: "Singapore",
+    role: "Wholesale Buyer",
   },
   {
-    question: "Do you provide product samples?",
-    answer:
-      "Yes — samples are available for all product categories and are shipped via DHL or FedEx. Sample costs are typically deducted from your first bulk order. Requests are processed within 3–5 business days. Contact our team to arrange samples for your quality evaluation.",
-  },
-  {
-    question: "How quickly will I receive a quotation?",
-    answer:
-      "We respond to all inquiries within minutes. Urgent requests received before 2:00 PM IST are often quoted the same day. Detailed quotations include per-unit pricing, freight costs, and delivery timelines.",
-  },
-  {
-    question: "What payment terms do you accept?",
-    answer:
-      "We accept Letter of Credit (LC) at sight — preferred for first transactions, Telegraphic Transfer (TT) — 30% advance, 70% against documents for established relationships, and Documents Against Payment (DP) for verified buyers. All terms are formalised in a sales contract.",
+    quote:
+      "Professional team and export-ready products that meet our procurement requirements.",
+    name: "Saud Al Busaidi",
+    country: "Oman",
+    role: "Commercial Buyer",
   },
 ];
 
-/* ─── Accordion Item ──────────────────────────────────────────────────── */
-function AccordionItem({
-  faq,
-  isOpen,
-  onToggle,
-}: {
-  faq: (typeof faqs)[0];
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  return (
-    <div
-      className={`border rounded-xl overflow-hidden transition-all duration-300 ${
-        isOpen
-          ? "border-[#1B4332]/20 bg-white shadow-sm"
-          : "border-gray-100 bg-white hover:border-gray-200"
-      }`}
-    >
-      <button
-        onClick={onToggle}
-        className="flex items-center justify-between w-full px-6 py-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] focus-visible:ring-inset"
-        aria-expanded={isOpen}
-      >
-        <span className="text-sm font-semibold text-[#111827] pr-4 leading-snug">
-          {faq.question}
-        </span>
-        <span
-          className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-            isOpen ? "bg-[#1B4332] text-white" : "bg-gray-100 text-gray-400"
-          }`}
-        >
-          <svg
-            className={`w-4 h-4 transition-transform duration-300 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </span>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <div className="px-6 pb-5 pt-0">
-              <div className="w-8 h-px bg-[#D4A017]/40 mb-4" />
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+/* ─── Duplicated for seamless auto-scroll ─────────────────────────────── */
+const allSlides = [...testimonials, ...testimonials];
 
 /* ─── Section ─────────────────────────────────────────────────────────── */
 export default function FAQHome() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const handleScroll = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollPos = el.scrollLeft;
+    const cardWidth = el.scrollWidth / testimonials.length;
+    const newIndex = Math.round(scrollPos / cardWidth);
+    setActiveMobileIndex(Math.min(newIndex, testimonials.length - 1));
+  }, []);
+
+  /* ── Auto-scroll for desktop ── */
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el || isPaused) return;
+
+    let animationId: number;
+    const speed = 0.35; // px per frame (~21px/s)
+
+    const animate = () => {
+      if (!el) return;
+      el.scrollLeft += speed;
+
+      // Reset to start when reaching the duplicate set
+      if (el.scrollLeft >= el.scrollWidth / 2) {
+        el.scrollLeft = 0;
+      }
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, [isPaused]);
 
   return (
     <section
-      id="faq"
-      aria-label="Frequently Asked Questions"
-      className="relative py-14 md:py-18 overflow-hidden bg-white"
+      id="testimonials"
+      aria-label="Buyer Testimonials"
+      className="relative py-14 md:py-18 overflow-hidden bg-[#FAFAFA]"
     >
-      <div className="relative max-w-3xl mx-auto px-6">
+      {/* Background accents */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-[0.018]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(90deg, #1B4332 0px, #1B4332 1px, transparent 1px, transparent 80px)",
+          }}
+        />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
         {/* ── Section Header ── */}
         <motion.div
           variants={fadeUp}
@@ -137,61 +114,141 @@ export default function FAQHome() {
           <div className="inline-flex items-center gap-2 mb-5">
             <span className="w-8 h-px bg-[#D4A017]" />
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">
-              Quick Answers
+              Buyer Testimonials
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#111827] leading-tight">
-            Common Buyer{" "}
-            <span className="text-[#1B4332]">Questions</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+            What Our{" "}
+            <span className="text-[#1B4332]">Buyers Say</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
-            Everything you need to know before placing your first order.
+            Feedback from importers, distributors, and commercial buyers who value quality, consistency, and export support.
           </p>
         </motion.div>
 
-        {/* ── FAQ Accordion ── */}
-        <div className="space-y-3">
-          {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              variants={fadeUp}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06, ease: "easeOut" }}
-            >
-              <AccordionItem
-                faq={faq}
-                isOpen={openIndex === i}
-                onToggle={() => handleToggle(i)}
-              />
-            </motion.div>
-          ))}
+        {/* ── Desktop: Auto-scrolling carousel ── */}
+        <div
+          className="hidden md:block overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div
+            ref={scrollRef}
+            className="flex gap-5 overflow-x-hidden"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {allSlides.map((t, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 w-[380px]"
+              >
+                <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm p-6 h-full flex flex-col hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] hover:border-[#1B4332]/15 transition-all duration-300">
+                  {/* Quote icon */}
+                  <svg
+                    className="w-8 h-8 text-[#D4A017]/30 mb-3 flex-shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.69 11 13.166 11 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179zM15.583 17.321C14.553 16.227 14 15 14 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C20.591 11.69 22 13.166 22 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179z" />
+                  </svg>
+
+                  {/* Quote */}
+                  <p className="text-sm text-gray-600 leading-relaxed mb-5 flex-1 italic">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-3 pt-4 border-t border-[#E5E7EB]">
+                    <div className="w-9 h-9 rounded-full bg-[#1B4332]/10 flex items-center justify-center flex-shrink-0 text-[#1B4332] font-bold text-xs">
+                      {t.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-semibold text-[#111827] leading-tight">
+                        {t.name}
+                      </p>
+                      <p className="text-[11px] text-gray-400">
+                        {t.role} &middot; {t.country}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* ── Bottom CTA ── */}
-        <motion.div
-          variants={fadeUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          transition={{ duration: 0.45, delay: 0.3 }}
-          className="mt-10 text-center"
-        >
-          <p className="text-sm text-gray-500 mb-4">
-            Have a different question? Our export team is ready to help.
-          </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#1B4332] text-white font-semibold text-sm rounded-xl hover:bg-[#143A28] active:scale-[0.98] transition-all duration-200"
+        {/* ── Mobile: Swipeable testimonial cards ── */}
+        <div className="md:hidden -mx-6">
+          <div
+            ref={carouselRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 pb-2 gap-5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            Contact Export Team
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </motion.div>
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
+              >
+                <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm p-6 h-full flex flex-col">
+                  <svg
+                    className="w-8 h-8 text-[#D4A017]/30 mb-3 flex-shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.69 11 13.166 11 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179zM15.583 17.321C14.553 16.227 14 15 14 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C20.591 11.69 22 13.166 22 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179z" />
+                  </svg>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-5 flex-1 italic">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-3 pt-4 border-t border-[#E5E7EB]">
+                    <div className="w-9 h-9 rounded-full bg-[#1B4332]/10 flex items-center justify-center flex-shrink-0 text-[#1B4332] font-bold text-xs">
+                      {t.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-semibold text-[#111827] leading-tight">
+                        {t.name}
+                      </p>
+                      <p className="text-[11px] text-gray-400">
+                        {t.role} &middot; {t.country}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-4">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  const el = carouselRef.current;
+                  if (!el) return;
+                  const cardWidth = el.scrollWidth / testimonials.length;
+                  el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+                }}
+                className={`rounded-full transition-all duration-300 ${
+                  i === activeMobileIndex
+                    ? "w-6 h-1.5 bg-[#D4A017]"
+                    : "w-1.5 h-1.5 bg-[#1B4332]/20 hover:bg-[#1B4332]/40"
+                }`}
+                aria-label={`Go to testimonial ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

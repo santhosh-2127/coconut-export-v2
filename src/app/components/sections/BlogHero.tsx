@@ -31,10 +31,10 @@ const backgroundSlides = [
 ];
 
 const badges = [
-  { label: "Export Guides" },
-  { label: "Market Insights" },
-  { label: "Industry News" },
-  { label: "Logistics Knowledge" },
+  { label: "Product Guides" },
+  { label: "Export Documentation" },
+  { label: "Quality Standards" },
+  { label: "Shipping & Logistics" },
 ];
 
 /* ─── Mobile Background Carousel ────────────────────────────────────── */

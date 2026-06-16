@@ -19,16 +19,8 @@ const QualityJourney = dynamic(
   () => import("./components/sections/QualityJourney"),
   { ssr: true }
 );
-const Certifications = dynamic(
-  () => import("./components/sections/Certifications"),
-  { ssr: true }
-);
 const FAQHome = dynamic(
   () => import("./components/sections/FAQHome"),
-  { ssr: true }
-);
-const FinalCTA = dynamic(
-  () => import("./components/sections/FinalCTA"),
   { ssr: true }
 );
 const RequestQuoteSection = dynamic(
@@ -101,16 +93,10 @@ export default function Home() {
       {/* SECTION 5: Quality Journey — Farm → Ship */}
       <QualityJourney />
 
-      {/* SECTION 6: Certifications — ISO, HACCP, APEDA, SGS */}
-      <Certifications />
-
-      {/* SECTION 8: FAQ — Top buyer questions */}
+      {/* SECTION 6: Buyer Testimonials */}
       <FAQHome />
 
-      {/* SECTION 9: Final CTA */}
-      <FinalCTA />
-
-      {/* SECTION 10: Request Quote — Centralized quotation form */}
+      {/* SECTION 9: Request Quote — Centralized quotation form */}
       <RequestQuoteSection />
 
       {/*

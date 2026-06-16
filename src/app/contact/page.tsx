@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { BreadcrumbSchema, FAQSchema } from "@/lib/schemas";
+import { BreadcrumbSchema } from "@/lib/schemas";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import ContactHero from "@/app/components/sections/ContactHero";
@@ -8,10 +8,7 @@ import ContactOptions from "@/app/components/sections/ContactOptions";
 
 // ═══ Code-split: below-fold sections ═══
 const ContactForm = dynamic(() => import("@/app/components/sections/ContactForm"), { ssr: true });
-const ContactServices = dynamic(() => import("@/app/components/sections/ContactServices"), { ssr: true });
 const ContactHours = dynamic(() => import("@/app/components/sections/ContactHours"), { ssr: true });
-const ContactLocation = dynamic(() => import("@/app/components/sections/ContactLocation"), { ssr: true });
-const ContactFAQ = dynamic(() => import("@/app/components/sections/ContactFAQ"), { ssr: true });
 const ContactFinalCTA = dynamic(() => import("@/app/components/sections/ContactFinalCTA"), { ssr: true });
 
 export const metadata: Metadata = {
@@ -69,17 +66,7 @@ export default function ContactPage() {
         <ContactHero />
         <ContactOptions />
         <ContactForm />
-        <ContactServices />
         <ContactHours />
-        <ContactLocation />
-      <ContactFAQ />
-      <FAQSchema questions={[
-        { question: "How quickly do you respond to inquiries?", answer: "We respond within minutes on email and within 2 hours on WhatsApp. Urgent inquiries received before 2:00 PM IST are often answered the same business day." },
-        { question: "Can I request product specifications before placing an order?", answer: "Absolutely. We provide detailed technical specifications, quality parameters, and product certifications for all our coconut products — including moisture content, oil content, grading standards, and packaging options." },
-        { question: "Can I schedule a consultation with your export team?", answer: "Yes. We offer consultation calls for serious buyers to discuss product selection, volumes, shipping terms, and documentation requirements. Consultations can be scheduled via email or WhatsApp during business hours." },
-        { question: "Can you support international shipments?", answer: "Yes. We export to buyers across the Middle East, Europe, North America, and Asia-Pacific. We handle FOB, CIF, and CFR terms from Chennai, Tuticorin, and Nhava Sheva ports." },
-        { question: "Do you provide samples for quality evaluation?", answer: "Yes, we can arrange product samples for serious buyers. Sample costs and shipping arrangements can be discussed with our export team. Sample requests are typically processed within 3–5 business days." },
-      ]} />
       <ContactFinalCTA />
       </main>
       <Footer />

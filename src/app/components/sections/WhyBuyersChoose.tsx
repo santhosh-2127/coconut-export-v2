@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
 
 /* ─── Animation ───────────────────────────────────────────────────────── */
 const fadeUp = {
@@ -132,6 +133,18 @@ function PillarCard({
 
 /* ─── Section ─────────────────────────────────────────────────────────── */
 export default function WhyBuyersChoose() {
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollPos = el.scrollLeft;
+    const cardWidth = el.scrollWidth / pillars.length;
+    const newIndex = Math.round(scrollPos / cardWidth);
+    setActiveMobileIndex(newIndex);
+  }, []);
+
   return (
     <section
       id="why-choose-us"
@@ -174,8 +187,70 @@ export default function WhyBuyersChoose() {
           </p>
         </motion.div>
 
-        {/* ── Pillars Grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* ── Mobile: Swipeable carousel ── */}
+        <div className="md:hidden -mx-6">
+          <div
+            ref={carouselRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 pb-2 gap-5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {pillars.map((pillar) => (
+              <div
+                key={pillar.id}
+                className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
+              >
+                <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-sm hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] transition-all duration-300 p-6 h-full flex flex-col">
+                  <div className="flex items-center justify-center w-10 h-10 border border-[#D4A017]/25 bg-[#D4A017]/5 rounded-lg mb-5 text-[#D4A017]">
+                    <pillar.Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-base font-bold text-[#111827] leading-tight mb-2.5">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                    {pillar.description}
+                  </p>
+                  <div className="mt-auto pt-3.5 border-t border-[#D4A017]/15">
+                    <div className="flex items-start gap-2">
+                      <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[#D4A017]/10 flex items-center justify-center mt-0.5">
+                        <svg viewBox="0 0 12 12" fill="none" className="w-2.5 h-2.5 text-[#D4A017]">
+                          <path d="M4 6l1.5 1.5L8 4" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                      <p className="text-[12px] text-[#1B4332] font-semibold leading-snug">
+                        {pillar.value}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-4">
+            {pillars.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  const el = carouselRef.current;
+                  if (!el) return;
+                  const cardWidth = el.scrollWidth / pillars.length;
+                  el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+                }}
+                className={`rounded-full transition-all duration-300 ${
+                  i === activeMobileIndex
+                    ? "w-6 h-1.5 bg-[#D4A017]"
+                    : "w-1.5 h-1.5 bg-[#1B4332]/20 hover:bg-[#1B4332]/40"
+                }`}
+                aria-label={`Go to card ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── Desktop / Tablet: Pillars Grid ── */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-5">
           {pillars.map((pillar, i) => (
             <PillarCard key={pillar.id} pillar={pillar} index={i} />
           ))}

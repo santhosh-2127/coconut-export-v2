@@ -9,9 +9,7 @@ import AboutWhoWeAre from "../components/sections/AboutWhoWeAre";
 // ═══ Code-split: below-fold sections ═══
 const AboutOperations = dynamic(() => import("../components/sections/AboutOperations"), { ssr: true });
 const AboutQuality = dynamic(() => import("../components/sections/AboutQuality"), { ssr: true });
-const AboutGlobalMarkets = dynamic(() => import("../components/sections/AboutGlobalMarkets"), { ssr: true });
 const AboutWhyBuyers = dynamic(() => import("../components/sections/AboutWhyBuyers"), { ssr: true });
-const AboutCertifications = dynamic(() => import("../components/sections/AboutCertifications"), { ssr: true });
 const AboutFinalCTA = dynamic(() => import("../components/sections/AboutFinalCTA"), { ssr: true });
 
 export const metadata: Metadata = {
@@ -68,11 +66,9 @@ export default function AboutPage() {
       <Navbar />
       <AboutHero />
       <AboutWhoWeAre />
+      <AboutWhyBuyers />
       <AboutOperations />
       <AboutQuality />
-      <AboutGlobalMarkets />
-      <AboutWhyBuyers />
-      <AboutCertifications />
       <AboutFinalCTA />
       <Footer />
     </>

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRef, useState, useCallback } from "react";
 
 
 /* ─── Animation ───────────────────────────────────────────────────────── */
@@ -146,19 +147,69 @@ function ConnectorArrow({ direction }: { direction: "right" | "down" }) {
   );
 }
 
-/* ─── Mobile down arrow ──────────────────────────────────────────────── */
-function MobileArrow() {
+/* ─── Mobile Step Card (for swipeable carousel) ──────────────────────── */
+function MobileStepCard({ step }: { step: (typeof steps)[0] }) {
   return (
-    <div className="flex lg:hidden justify-center py-1">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M7 2v10M3 9l4 3 4-3" stroke="#D4A017" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
+    <div className="bg-white rounded-xl overflow-hidden border border-[#E5E7EB] shadow-sm h-full flex flex-col">
+      {/* ── Image ── */}
+      <div className="relative h-44 overflow-hidden bg-[#1B4332]">
+        <Image
+          src={step.image}
+          alt={step.alt}
+          fill
+          className="object-cover object-center"
+          sizes="calc(100vw - 32px)"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+
+        {/* Step number badge */}
+        <div className="absolute top-3 left-3">
+          <span className="inline-flex items-center justify-center w-7 h-7 rounded-md bg-[#D4A017] text-white text-[10px] font-bold shadow-sm">
+            {step.number}
+          </span>
+        </div>
+
+        {/* Step title overlay at bottom */}
+        <div className="absolute bottom-3 left-3 right-3">
+          <h3 className="text-base font-bold text-white leading-tight drop-shadow-sm">
+            {step.title}
+          </h3>
+        </div>
+      </div>
+
+      {/* ── Content ── */}
+      <div className="p-4 flex flex-col flex-1">
+        <p className="text-xs text-gray-500 leading-relaxed mb-3">
+          {step.description}
+        </p>
+
+        <div className="mt-auto flex items-start gap-2 p-2.5 bg-[#D4A017]/5 border border-[#D4A017]/15 rounded-lg">
+          <svg className="w-3.5 h-3.5 text-[#D4A017] mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-[11px] text-[#1B4332] font-medium leading-snug">
+            {step.value}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
 
 /* ─── Section ─────────────────────────────────────────────────────────── */
 export default function QualityJourney() {
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollPos = el.scrollLeft;
+    const cardWidth = el.scrollWidth / steps.length;
+    const newIndex = Math.round(scrollPos / cardWidth);
+    setActiveMobileIndex(Math.min(newIndex, steps.length - 1));
+  }, []);
+
   return (
     <section
       id="quality-journey"
@@ -202,9 +253,54 @@ export default function QualityJourney() {
           </p>
         </motion.div>
 
-        {/* ── Journey Steps Grid ── */}
-        <div className="relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
+        {/* ── Mobile: Swipeable carousel ── */}
+        <div className="md:hidden -mx-6">
+          <div
+            ref={carouselRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 pb-2 gap-5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {steps.map((step) => (
+              <div
+                key={step.number}
+                className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
+              >
+                <MobileStepCard step={step} />
+              </div>
+            ))}
+          </div>
+
+          {/* Step counter + pagination dots */}
+          <div className="flex items-center justify-center gap-3 mt-5">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-gray-400">
+              Step {activeMobileIndex + 1} of {steps.length}
+            </span>
+            <div className="flex items-center gap-1.5">
+              {steps.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    const el = carouselRef.current;
+                    if (!el) return;
+                    const cardWidth = el.scrollWidth / steps.length;
+                    el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+                  }}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === activeMobileIndex
+                      ? "w-6 h-1.5 bg-[#D4A017]"
+                      : "w-1.5 h-1.5 bg-[#1B4332]/20 hover:bg-[#1B4332]/40"
+                  }`}
+                  aria-label={`Go to step ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── Desktop / Tablet: Journey Steps Grid ── */}
+        <div className="hidden md:block relative">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
               {steps.map((step, i) => (
                 <div key={step.number} className="relative">
                   {/* Horizontal connectors on desktop */}
@@ -214,9 +310,6 @@ export default function QualityJourney() {
                   {(i === 3 || i === 4) && <ConnectorArrow direction="right" />}
 
                   <StepCard step={step} index={i} />
-
-                  {/* Mobile arrow between steps */}
-                  {i < steps.length - 1 && <MobileArrow />}
                 </div>
               ))}
             </div>

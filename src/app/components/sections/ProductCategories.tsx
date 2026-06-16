@@ -196,27 +196,6 @@ export default function ProductCategories() {
         </div>
 
 
-        {/* ── Bottom CTA ── */}
-        <motion.div
-          variants={fadeUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          transition={{ duration: 0.45, delay: 0.3 }}
-          className="mt-10 text-center"
-        >
-          <a
-            id="product-categories-cta-get-pricing"
-            data-tracking-id="product-categories-cta-get-pricing"
-            href="/#request-quote"
-            className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#1B4332] text-white font-bold text-sm tracking-[0.04em] rounded-xl hover:bg-[#143A28] active:scale-[0.98] transition-all duration-200 shadow-[0_4px_20px_rgba(27,67,50,0.20)]"
-          >
-            Get Bulk Pricing
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </motion.div>
       </div>
     </section>
   );
