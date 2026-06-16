@@ -87,7 +87,7 @@ function StatCard({
 
       {/* Number */}
       <p
-        className="text-[clamp(2rem,4vw,3.5rem)] leading-none font-bold text-white tracking-[-0.02em] tabular-nums"
+        className="text-4xl sm:text-5xl lg:text-6xl leading-none font-bold text-white tracking-[-0.02em] tabular-nums"
         aria-label={`${value} ${label}`}
       >
         {isVisible ? counted : 0}
@@ -95,7 +95,7 @@ function StatCard({
       </p>
 
       {/* Label */}
-      <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-white/70 font-semibold">
+      <p className="mt-3 text-[12px] uppercase tracking-[0.18em] text-white/70 font-semibold">
         {label}
       </p>
 
@@ -136,7 +136,7 @@ export default function StatsStrip() {
                 />
               ))
             : Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="h-[200px] bg-white/5 rounded-xl animate-pulse" />
+                <div key={i} className="h-[240px] bg-white/5 rounded-xl animate-pulse" />
               ))}
         </div>
       </div>

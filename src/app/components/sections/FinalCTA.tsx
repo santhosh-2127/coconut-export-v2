@@ -178,56 +178,6 @@ export default function FinalCTA() {
             </a>
           </motion.div>
 
-          {/* ── Certification Badges ── */}
-          <motion.div
-            variants={fadeUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.44 }}
-            className="mt-12 pt-8 border-t border-white/8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
-          >
-            <span className="text-[9px] uppercase tracking-widest text-white/25 font-semibold">
-              Certified
-            </span>
-            {["ISO 22000", "HACCP", "APEDA", "SGS Verified"].map((cert) => (
-              <span
-                key={cert}
-                className="text-[10px] font-bold text-white/50 border border-white/10 rounded-full px-3 py-1.5 bg-white/[0.04]"
-              >
-                {cert}
-              </span>
-            ))}
-          </motion.div>
-
-          {/* ── Stats Bar ── */}
-          <motion.div
-            variants={fadeUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.5 }}
-            className="mt-8 grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 gap-px bg-white/8 rounded-xl overflow-hidden border border-white/8"
-          >
-            {[
-              { value: "15+", label: "Countries Served" },
-              { value: "500+", label: "Containers Exported" },
-              { value: "10+", label: "Years Exporting" },
-              { value: "24h", label: "Response Guarantee" },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="flex flex-col items-center justify-center py-6 px-4 bg-white/[0.03]"
-              >
-                <span className="text-2xl font-bold text-[#D4A017] leading-none">
-                  {s.value}
-                </span>
-                <span className="text-white/35 text-[9px] uppercase tracking-widest mt-1.5 text-center">
-                  {s.label}
-                </span>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
     </section>

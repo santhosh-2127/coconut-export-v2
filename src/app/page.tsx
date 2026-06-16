@@ -19,10 +19,6 @@ const QualityJourney = dynamic(
   () => import("./components/sections/QualityJourney"),
   { ssr: true }
 );
-const TrustGallery = dynamic(
-  () => import("./components/sections/TrustGallery"),
-  { ssr: true }
-);
 const Certifications = dynamic(
   () => import("./components/sections/Certifications"),
   { ssr: true }
@@ -105,10 +101,7 @@ export default function Home() {
       {/* SECTION 5: Quality Journey — Farm → Ship */}
       <QualityJourney />
 
-      {/* SECTION 6: Trust Gallery — Real facility photos & operations */}
-      <TrustGallery />
-
-      {/* SECTION 7: Certifications — ISO, HACCP, APEDA, SGS */}
+      {/* SECTION 6: Certifications — ISO, HACCP, APEDA, SGS */}
       <Certifications />
 
       {/* SECTION 8: FAQ — Top buyer questions */}
