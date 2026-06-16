@@ -9,10 +9,9 @@ import ProductHero from "@/app/components/product/ProductHero";
 import ProductSpecs from "@/app/components/product/ProductSpecs";
 import PackagingSection from "@/app/components/product/PackagingSection";
 import ProductQuality from "@/app/components/product/ProductQuality";
-import ProductExportAvailability from "@/app/components/product/ProductExportAvailability";
 import ApplicationsSection from "@/app/components/product/ApplicationsSection";
+import ProductSupplyMetrics from "@/app/components/product/ProductSupplyMetrics";
 import ProductCTA from "@/app/components/product/ProductCTA";
-import ProductFAQ from "@/app/components/product/ProductFAQ";
 import ProductContactCTA from "@/app/components/product/ProductContactCTA";
 
 export default function ProductPageClient() {
@@ -49,28 +48,24 @@ export default function ProductPageClient() {
       {/* SECTION 2: Specifications — Technical details */}
       <ProductSpecs product={product} />
 
-      {/* SECTION 3: Packaging — How is it packed? */}
-      <PackagingSection product={product} />
-
-      {/* SECTION 4: Quality Inspection — How is quality maintained? */}
-      <ProductQuality
-        name={product.name}
-        certifications={product.certifications}
-      />
-
-      {/* SECTION 5: Export Availability — Shipping options */}
-      <ProductExportAvailability product={product} />
-
-      {/* SECTION 6: Applications — What is it used for? */}
+      {/* SECTION 3: Applications — What is it used for? */}
       <ApplicationsSection product={product} />
 
-      {/* SECTION 7: Request Quote — How do I order? */}
+      {/* SECTION 4: Commercial Supply Capabilities — Bulk supply metrics */}
+      <ProductSupplyMetrics product={product} />
+
+      {/* SECTION 5: Quality Inspection — How is quality maintained? */}
+      <ProductQuality name={product.name} />
+
+      {/* SECTION 5: Packaging — How is it packed? */}
+      <PackagingSection product={product} />
+
+
+      {/* SECTION 6: Request Quote — How do I order? */}
       <ProductCTA product={product} />
 
-      {/* SECTION 8: FAQ — Common buyer questions */}
-      <ProductFAQ product={product} />
 
-      {/* SECTION 9: Contact CTA */}
+      {/* SECTION 7: Contact CTA */}
       <ProductContactCTA product={product} />
 
       <Footer />

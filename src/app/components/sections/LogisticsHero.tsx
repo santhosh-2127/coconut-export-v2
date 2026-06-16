@@ -32,6 +32,94 @@ const backgroundSlides = [
   },
 ];
 
+/* ─── Mobile Background Carousel ────────────────────────────────────── */
+function MobileBackgroundCarousel() {
+  const [index, setIndex] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const next = useCallback(() => {
+    setIndex((prev) => (prev + 1) % backgroundSlides.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setIndex((prev) => (prev - 1 + backgroundSlides.length) % backgroundSlides.length);
+  }, []);
+
+  useEffect(() => {
+    intervalRef.current = setInterval(next, 5000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [next]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next();
+      else prev();
+    }
+    intervalRef.current = setInterval(next, 5000);
+  };
+
+  return (
+    <div
+      className="absolute inset-0 lg:hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={backgroundSlides[index].image}
+            alt={`${backgroundSlides[index].name} — premium coconut export product`}
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority={index === 0}
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A12]/70 via-[#0C1A12]/50 to-[#0C1A12]/85" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40" />
+
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
+        {backgroundSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`rounded-full transition-all duration-300 ${
+              i === index
+                ? "w-5 h-1.5 bg-[#D4A017]"
+                : "w-1.5 h-1.5 bg-white/40"
+            }`}
+            aria-label={`Slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ─── Trust indicators ────────────────────────────────────────────────── */
 const trustIndicators = [
   { label: "Export Ready" },
@@ -69,10 +157,13 @@ export default function LogisticsHero() {
     <section
       id="logistics-hero"
       aria-label="Logistics — Global Logistics & Export Operations"
-      className="relative min-h-[80vh] flex items-center overflow-hidden bg-[#0C1A12]"
+      className="relative min-h-screen min-h-[100dvh] lg:min-h-[80vh] max-h-screen max-h-[100dvh] lg:max-h-none flex items-center overflow-hidden bg-[#0C1A12]"
     >
+      {/* Mobile background carousel */}
+      <MobileBackgroundCarousel />
+
       {/* BACKGROUND: layered depth */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden lg:block">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0C1A12] via-[#0F2218] to-[#162A1D]" />
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -89,8 +180,8 @@ export default function LogisticsHero() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/20 to-transparent" />
       </div>
 
-      <div className="relative z-10 w-full min-h-[70vh] flex items-center">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-28 md:py-0">
+      <div className="relative z-10 w-full overflow-y-auto max-h-[100dvh] lg:max-h-none lg:overflow-visible">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 lg:min-h-[70vh] flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
             {/* LEFT: Content */}
             <motion.div

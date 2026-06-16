@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/lib/schemas";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import CertificationsHero from "../components/sections/CertificationsHero";
 import Certifications from "../components/sections/Certifications";
 
 export const metadata: Metadata = {
@@ -55,7 +56,7 @@ export default function CertificationsPage() {
         ]}
       />
       <Navbar solid={true} />
-      <div className="h-16 sm:h-20" />
+      <CertificationsHero />
       <Certifications />
       <Footer />
     </>

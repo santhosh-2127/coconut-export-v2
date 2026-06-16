@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useCountUp, parseStatValue } from "@/lib/countUp";
 import { fadeUp } from "@/constants/animations";
 
 const regions = [
@@ -123,27 +124,106 @@ export default function GlobalNetworkCountries() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: 0.5 }}
-          className="mt-12 rounded-2xl border border-[#1B4332]/10 bg-white overflow-hidden shadow-sm"
-        >
-          <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-4 divide-x divide-y min-[400px]:divide-y-0 sm:divide-y-0 divide-[#E5E7EB]">
-            {[
-              { value: "15+", label: "Countries Served", desc: "Across 4 continents" },
-              { value: "500+", label: "Containers Exported", desc: "Annual shipping volume" },
-              { value: "3", label: "Port Corridors", desc: "Chennai, Tuticorin, Nhava Sheva" },
-              { value: "10+", label: "Years Exporting", desc: "Established global presence" },
-            ].map((stat) => (
-              <div key={stat.label} className="p-6 text-center hover:bg-[#1B4332]/[0.02] transition-colors">
-                <p className="text-2xl font-bold text-[#1B4332]">{stat.value}</p>
-                <p className="text-[11px] font-semibold text-[#D4A017] uppercase tracking-[0.12em] mt-1">{stat.label}</p>
-                <p className="text-[11px] text-gray-400 mt-0.5">{stat.desc}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {[
+            {
+              value: "15+", label: "Countries Served", desc: "Across 4 continents",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+                  <circle cx="12" cy="12" r="10" />
+                  <path strokeLinecap="round" d="M2 12h20" />
+                  <path strokeLinecap="round" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              ),
+              accent: "#D4A017",
+            },
+            {
+              value: "500+", label: "Containers Exported", desc: "Annual shipping volume",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+                  <rect x="1" y="6" width="22" height="12" rx="1.5" />
+                  <path strokeLinecap="round" d="M5 18v2M19 18v2" />
+                  <path strokeLinecap="round" d="M8 10h8" />
+                </svg>
+              ),
+              accent: "#4A9E6B",
+            },
+            {
+              value: "3", label: "Port Corridors", desc: "Chennai, Tuticorin, Nhava Sheva",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+                  <path strokeLinecap="round" d="M12 2v20M12 2l-4 4M12 2l4 4" />
+                  <path strokeLinecap="round" d="M8 16h8" />
+                </svg>
+              ),
+              accent: "#2D7D9A",
+            },
+            {
+              value: "10+", label: "Years Exporting", desc: "Established global presence",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+                  <path strokeLinecap="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path strokeLinecap="round" d="M9 12l2 2 4-4" />
+                </svg>
+              ),
+              accent: "#9B59B6",
+            },
+          ].map((stat, i) => {
+            const { numeric, suffix } = parseStatValue(stat.value);
+            const counted = useCountUp(numeric, 1800 + i * 100, isInView);
+            return (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 24 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.55, delay: 0.5 + i * 0.1, ease: "easeOut" }}
+                className="group relative bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden hover:border-[#1B4332]/20 hover:shadow-[0_12px_40px_rgba(27,67,50,0.08)] transition-all duration-300"
+              >
+                {/* Top accent stripe */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-[3px] opacity-70"
+                  style={{ background: `linear-gradient(90deg, ${stat.accent} 0%, ${stat.accent}33 100%)` }}
+                />
+
+                <div className="p-5 sm:p-6">
+                  {/* Icon */}
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
+                    style={{ background: `${stat.accent}12`, color: stat.accent }}
+                  >
+                    {stat.icon}
+                  </div>
+
+                  {/* Large animated number */}
+                  <div className="text-[clamp(2rem,3.5vw,3.75rem)] font-bold text-[#1B4332] leading-none tracking-tight">
+                    <motion.span
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.5, delay: 0.5 + i * 0.1, ease: "easeOut" }}
+                      aria-label={`${stat.value} ${stat.label}`}
+                    >
+                      {isInView ? counted : 0}
+                    </motion.span>
+                    <span className="text-[#D4A017]">{suffix}</span>
+                  </div>
+
+                  {/* Label */}
+                  <p className="mt-2 text-[12px] font-bold text-[#D4A017] uppercase tracking-[0.14em]">
+                    {stat.label}
+                  </p>
+
+                  {/* Description */}
+                  <p className="mt-1 text-[12px] text-gray-400 leading-snug">
+                    {stat.desc}
+                  </p>
+                </div>
+
+                {/* Bottom shimmer on hover */}
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

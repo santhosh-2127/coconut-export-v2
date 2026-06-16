@@ -39,10 +39,9 @@ const stages = [
 /* ─── Props ───────────────────────────────────────────────────────────── */
 interface ProductQualityProps {
   name: string;
-  certifications: string[];
 }
 
-export default function ProductQuality({ name, certifications }: ProductQualityProps) {
+export default function ProductQuality({ name }: ProductQualityProps) {
   return (
     <section
       id="quality"
@@ -103,43 +102,6 @@ export default function ProductQuality({ name, certifications }: ProductQualityP
           ))}
         </div>
 
-        {/* ── Certifications & Testing Bar ── */}
-        <motion.div
-          variants={fadeUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="rounded-2xl border border-[#1B4332]/10 bg-[#1B4332]/[0.03] overflow-hidden"
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E5E7EB]">
-            {certifications.map((cert) => (
-              <div key={cert} className="flex items-center gap-3 p-5 hover:bg-white/[0.04] transition-colors">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1B4332]/10 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-[#1B4332]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-.702 3.142 3.745 3.745 0 01-3.142.702 3.745 3.745 0 01-3.068 1.593c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 01-3.142-.702 3.745 3.745 0 01-.702-3.142A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 01.702-3.142 3.745 3.745 0 013.142-.702A3.745 3.745 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 013.142.702 3.745 3.745 0 01.702 3.142A3.745 3.745 0 0121 12z" />
-                  </svg>
-                </span>
-                <div>
-                  <p className="text-sm font-bold text-[#111827]">{cert}</p>
-                  <p className="text-[10px] text-gray-400">Certified &amp; Verified</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* ── Bottom Trust Note ── */}
-        <motion.p
-          variants={fadeUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          className="text-center text-[11px] text-gray-400 mt-6"
-        >
-          Full lab reports and Certificate of Analysis provided with every shipment · Third-party inspection (SGS, Bureau Veritas) available on request
-        </motion.p>
       </div>
     </section>
   );

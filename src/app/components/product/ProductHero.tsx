@@ -1,22 +1,146 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { fadeUpBig, fadeIn } from "./ProductConstants";
 import type { Product } from "@/types";
 
 const badgeColors = ["#D4A017", "#4A9E6B", "#2D7D9A", "#9B59B6"];
 
+/* ─── Collect carousel images from product data ───────────────────── */
+function getCarouselImages(product: Product) {
+  const imgs = product.images;
+  const rawImages = [
+    imgs.hero,
+    imgs.closeUp,
+    imgs.packaging,
+    imgs.warehouse,
+    imgs.containerLoading,
+    imgs.qualityInspection,
+  ].filter(Boolean);
+
+  const imageList = rawImages as { src: string; alt: string }[];
+
+  // Also add gallery images if available
+  if (product.gallery?.length) {
+    product.gallery.forEach((img) => {
+      if (img?.src && !imageList.some((i) => i.src === img.src)) {
+        imageList.push({ src: img.src, alt: img.alt });
+      }
+    });
+  }
+
+  return imageList;
+}
+
+/* ─── Mobile Background Carousel ────────────────────────────────────── */
+function MobileBackgroundCarousel({ images }: { images: { src: string; alt: string }[] }) {
+  const [index, setIndex] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const len = images.length;
+
+  const next = useCallback(() => {
+    setIndex((prev) => (prev + 1) % len);
+  }, [len]);
+
+  const prev = useCallback(() => {
+    setIndex((prev) => (prev - 1 + len) % len);
+  }, [len]);
+
+  // Autoplay
+  useEffect(() => {
+    intervalRef.current = setInterval(next, 5000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [next]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next();
+      else prev();
+    }
+    // Resume autoplay
+    intervalRef.current = setInterval(next, 5000);
+  };
+
+  return (
+    <div
+      className="absolute inset-0 lg:hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={images[index].src}
+            alt={images[index].alt}
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority={index === 0}
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Dark gradient overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A12]/70 via-[#0C1A12]/50 to-[#0C1A12]/85" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40" />
+
+      {/* Dots indicator */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`rounded-full transition-all duration-300 ${
+              i === index
+                ? "w-5 h-1.5 bg-[#D4A017]"
+                : "w-1.5 h-1.5 bg-white/40"
+            }`}
+            aria-label={`Slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ProductHero({ product }: { product: Product }) {
   const { scrollYProgress } = useScroll();
   const imageParallax = useTransform(scrollYProgress, [0, 0.3], [0, -40]);
+  const carouselImages = getCarouselImages(product);
 
   return (
     <section
       aria-label={`${product.name} — Premium Export Product`}
-      className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#0C1A12]"
+      className="relative min-h-screen min-h-[100dvh] lg:min-h-[90vh] max-h-screen max-h-[100dvh] lg:max-h-none flex items-center overflow-hidden bg-[#0C1A12]"
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      {/* Mobile background carousel — full viewport width */}
+      <MobileBackgroundCarousel images={carouselImages} />
+
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden lg:block">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0C1A12] via-[#0F2218] to-[#162A1D]" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(212,160,23,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(212,160,23,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
         <div className="absolute -top-48 right-[-10%] w-[900px] h-[900px] rounded-full bg-[#D4A017]/[0.06] blur-[160px]" />
@@ -26,8 +150,8 @@ export default function ProductHero({ product }: { product: Product }) {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/20 to-transparent" />
       </div>
 
-      <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-24 md:py-0 min-h-[70vh] flex items-center">
+      <div className="relative z-10 w-full overflow-y-auto max-h-[100dvh] lg:max-h-none lg:overflow-visible">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 lg:min-h-[70vh] flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
             {/* Left: Content */}
             <motion.div initial="initial" animate="animate" className="lg:col-span-3 max-w-[640px]">
@@ -38,22 +162,6 @@ export default function ProductHero({ product }: { product: Product }) {
                 <span className="text-white/60">Products</span>
                 <span className="text-white/20">/</span>
                 <span className="text-[#D4A017]">{product.name}</span>
-              </motion.div>
-
-              {/* Mobile: Hero Image */}
-              <motion.div
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.65, ease: "easeOut" }}
-                className="lg:hidden -mx-6 mb-4"
-              >
-                <motion.div
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative w-full aspect-[6/7]"
-                >
-                  <Image src={product.images.hero.src} alt={product.images.hero.alt} fill className="object-contain object-center" sizes="(max-width: 768px) 100vw, 50vw" priority />
-                </motion.div>
               </motion.div>
 
               {/* Premium Badge */}
@@ -105,15 +213,6 @@ export default function ProductHero({ product }: { product: Product }) {
                 </a>
               </motion.div>
 
-              {/* Quick stats */}
-              <motion.div variants={fadeUpBig} className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-x-10 gap-y-4">
-                {product.heroStats.map((stat) => (
-                  <div key={stat.label} className="flex flex-col">
-                    <span className="text-[clamp(1.3rem,2vw,1.8rem)] text-white font-bold leading-none tracking-tight">{stat.value}</span>
-                    <span className="mt-1.5 text-[11px] text-white/50 font-medium uppercase tracking-[0.12em]">{stat.label}</span>
-                  </div>
-                ))}
-              </motion.div>
             </motion.div>
 
             {/* Right: Hero Image */}

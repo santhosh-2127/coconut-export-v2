@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useCallback, useRef, useState } from "react";
+
 
 /* ─── Animation ───────────────────────────────────────────────────────── */
 const fadeUp = {
@@ -157,136 +157,6 @@ function MobileArrow() {
   );
 }
 
-/* ─── Mobile Journey Carousel ──────────────────────────────────────────── */
-function MobileJourneyCarousel() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  // Steps for mobile: Farm -> Inspection -> Processing -> Packaging -> Shipping
-  const mobileSteps = [
-    steps[0],
-    steps[1],
-    steps[2],
-    steps[3],
-    { ...steps[5], title: "Shipping" },
-  ];
-
-  // Track which card is active based on scroll position
-  const handleScroll = useCallback(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const card = container.querySelector("[data-index]");
-    if (!card) return;
-    const cardWidth = card.getBoundingClientRect().width;
-    const step = cardWidth + 20; // gap-5 = 20px
-    const index = Math.round(container.scrollLeft / step);
-    setActiveIndex(Math.min(index, mobileSteps.length - 1));
-  }, [mobileSteps.length]);
-
-  return (
-    <div>
-      {/* ── Process Step Indicator ── */}
-      <div className="flex items-center justify-center gap-1 mb-5 overflow-x-auto">
-        {mobileSteps.map((step, i) => (
-          <span key={step.number} className="flex items-center gap-1">
-            <span
-              className={`text-[9px] font-bold uppercase tracking-wider whitespace-nowrap px-1.5 py-0.5 rounded transition-all duration-300 ${
-                i === activeIndex
-                  ? "text-[#1B4332] bg-[#1B4332]/10"
-                  : i < activeIndex
-                    ? "text-[#D4A017]"
-                    : "text-gray-300"
-              }`}
-            >
-              {
-              i === activeIndex
-                ? step.title
-                : i < activeIndex
-                  ? "\u2713"
-                  : step.title === "Quality Inspection"
-                    ? "Inspect"
-                    : step.title === "Container Loading"
-                      ? "Loading"
-                      : step.title}
-            </span>
-            {i < mobileSteps.length - 1 && (
-              <span className={`text-[9px] ${i < activeIndex ? "text-[#D4A017]" : "text-gray-200"}`}>
-                &rarr;
-              </span>
-            )}
-          </span>
-        ))}
-      </div>
-
-      {/* ── Horizontal Swipeable Cards ── */}
-      <div
-        ref={containerRef}
-        onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth -mx-6 px-4 gap-5"
-      >
-        {mobileSteps.map((step, i) => (
-          <div
-            key={step.number}
-            data-index={i}
-            className={`min-w-[calc(100vw-32px)] snap-start flex-shrink-0 bg-white rounded-xl overflow-hidden border transition-all duration-300 ${
-              i === activeIndex
-                ? "border-[#1B4332]/20 scale-[1.02] shadow-[0_8px_30px_rgba(27,67,50,0.10)]"
-                : "border-[#E5E7EB] scale-100 shadow-sm"
-            }`}
-          >
-            {/* ── Image ── */}
-            <div className="relative h-40 overflow-hidden bg-[#1B4332]">
-              <Image
-                src={step.image}
-                alt={step.alt}
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 426px) calc(100vw - 32px), 85vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-              {/* Step number badge */}
-              <div className="absolute top-4 left-4">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#D4A017] text-white text-xs font-bold shadow-md">
-                  {step.number}
-                </span>
-              </div>
-
-              {/* Step title overlay */}
-              <div className="absolute bottom-4 left-4 right-4">
-                <h3 className="text-lg font-bold text-white leading-tight drop-shadow-md">
-                  {step.title}
-                </h3>
-              </div>
-            </div>
-
-            {/* ── Content ── */}
-            <div className="p-5">
-              <p className="text-xs text-gray-500 leading-relaxed mb-4">
-                {step.description}
-              </p>
-
-              <div className="flex items-start gap-2.5 p-3 bg-[#D4A017]/5 border border-[#D4A017]/15 rounded-xl">
-                <svg className="w-4 h-4 text-[#D4A017] mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-[11px] text-[#1B4332] font-semibold leading-snug">
-                  {step.value}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Swipe Hint ── */}
-      <p className="text-center text-[11px] text-gray-400 mt-4">
-        Swipe through our export journey &rarr;
-      </p>
-    </div>
-  );
-}
-
 /* ─── Section ─────────────────────────────────────────────────────────── */
 export default function QualityJourney() {
   return (
@@ -332,15 +202,9 @@ export default function QualityJourney() {
           </p>
         </motion.div>
 
-        {/* ── Mobile Journey Carousel (≤ 425px) ── */}
-        <div className="hidden max-[425px]:block">
-          <MobileJourneyCarousel />
-        </div>
-
-        {/* ── Desktop / Tablet Grid (> 425px) ── */}
-        <div className="max-[425px]:hidden">
-          <div className="relative">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
+        {/* ── Journey Steps Grid ── */}
+        <div className="relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
               {steps.map((step, i) => (
                 <div key={step.number} className="relative">
                   {/* Horizontal connectors on desktop */}
@@ -357,7 +221,6 @@ export default function QualityJourney() {
               ))}
             </div>
           </div>
-        </div>
       </div>
     </section>
   );
