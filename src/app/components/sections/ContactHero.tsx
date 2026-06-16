@@ -112,7 +112,7 @@ export default function ContactHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="mt-8 grid grid-cols-2 gap-3"
+              className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3"
             >
               {/* Response Time */}
               <div className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.05] border border-white/[0.08]">

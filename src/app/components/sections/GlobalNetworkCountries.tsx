@@ -129,7 +129,7 @@ export default function GlobalNetworkCountries() {
           transition={{ duration: 0.55, delay: 0.5 }}
           className="mt-12 rounded-2xl border border-[#1B4332]/10 bg-white overflow-hidden shadow-sm"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-[#E5E7EB]">
+          <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-4 divide-x divide-y min-[400px]:divide-y-0 sm:divide-y-0 divide-[#E5E7EB]">
             {[
               { value: "15+", label: "Countries Served", desc: "Across 4 continents" },
               { value: "500+", label: "Containers Exported", desc: "Annual shipping volume" },

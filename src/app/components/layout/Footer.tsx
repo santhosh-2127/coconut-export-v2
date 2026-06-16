@@ -110,9 +110,7 @@ export default function Footer() {
               className="inline-flex items-center gap-3 mb-5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] rounded-lg"
               aria-label="Global Coco Exports — return to top"
             >
-              <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 transition-all duration-200 group-hover:brightness-110">
-                <Image src="/images/logo-image.png" alt="Global Coco Exports" width={40} height={40} className="w-full h-full object-contain" />
-              </div>
+              <Image src="/images/logo-image.png" alt="Global Coco Exports" width={40} height={40} className="rounded-xl flex-shrink-0 transition-all duration-200 group-hover:brightness-110" />
               <span className="font-bold text-base tracking-wide text-white leading-tight">
                 GLOBAL COCO{" "}
                 <span className="text-[#D4A017]">EXPORTS</span>
@@ -385,7 +383,7 @@ export default function Footer() {
               <span className="text-white/40 font-medium">Global Coco Exports</span>
               . All Rights Reserved.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item, i, arr) => (
                 <span key={item} className="flex items-center gap-4">
                   <a

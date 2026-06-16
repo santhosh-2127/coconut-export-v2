@@ -39,7 +39,7 @@ const photoCategories = [
     id: "packaging",
     label: "Export Packaging",
     description: "Climate-optimised packaging — ventilated bags for coconuts, compressed blocks for coco peat.",
-    image: "/images/storytelling/PRODUCTION-AND-PACKAGING-image.png",
+    image: "/images/storytelling/PRODUCTION & PACKAGING-image.png",
     alt: "Export packaging of coconut products for container shipment",
     stat: "Custom Packaging",
   },

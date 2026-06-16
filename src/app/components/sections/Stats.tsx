@@ -78,16 +78,16 @@ function StatCard({
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, delay: 0.08 + index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-      className="relative flex flex-col items-center text-center px-4 py-6 sm:py-7 rounded-xl bg-white/[0.04] border border-white/[0.08]"
+      className="relative flex flex-col items-center text-center px-6 py-10 sm:py-12 rounded-xl bg-white/[0.04] border border-white/[0.08]"
     >
       {/* Icon */}
-      <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#D4A017]/[0.1] mb-4">
-        <Icon className="w-[18px] h-[18px] text-[#D4A017]" />
+      <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#D4A017]/[0.1] mb-4">
+        <Icon className="w-[24px] h-[24px] text-[#D4A017]" />
       </div>
 
       {/* Number */}
       <p
-        className="text-[clamp(1.8rem,3.5vw,2.8rem)] leading-none font-bold text-white tracking-[-0.02em] tabular-nums"
+        className="text-[clamp(2rem,4vw,3.5rem)] leading-none font-bold text-white tracking-[-0.02em] tabular-nums"
         aria-label={`${value} ${label}`}
       >
         {isVisible ? counted : 0}
@@ -95,7 +95,7 @@ function StatCard({
       </p>
 
       {/* Label */}
-      <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-white/60 font-semibold">
+      <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-white/70 font-semibold">
         {label}
       </p>
 
@@ -122,8 +122,8 @@ export default function StatsStrip() {
       ref={ref}
       className="bg-[#0C1A12]"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8 lg:py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-6">
           {hasMounted
             ? metrics.map((m, i) => (
                 <StatCard
@@ -136,7 +136,7 @@ export default function StatsStrip() {
                 />
               ))
             : Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="h-[140px] bg-white/5 rounded-xl animate-pulse" />
+                <div key={i} className="h-[200px] bg-white/5 rounded-xl animate-pulse" />
               ))}
         </div>
       </div>

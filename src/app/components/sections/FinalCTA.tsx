@@ -207,7 +207,7 @@ export default function FinalCTA() {
             whileInView="animate"
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.5 }}
-            className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/8 rounded-xl overflow-hidden border border-white/8"
+            className="mt-8 grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 gap-px bg-white/8 rounded-xl overflow-hidden border border-white/8"
           >
             {[
               { value: "15+", label: "Countries Served" },

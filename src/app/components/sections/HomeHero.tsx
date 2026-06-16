@@ -74,7 +74,7 @@ export default function HomeHero() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-label="Hero — Premium Coconut Exports From India"
-      className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#0C1A12]"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#0C1A12]"
     >
       {/* ═══════════════════════════════════════════════════════════════
          BACKGROUND CAROUSEL: Product visuals that crossfade
@@ -149,8 +149,8 @@ export default function HomeHero() {
          MAIN CONTENT
          ═══════════════════════════════════════════════════════════════ */}
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-32 md:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-12 md:py-16 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* ═══ LEFT: Content ═══════════════════════════════════════ */}
             <motion.div
               variants={container}
@@ -161,7 +161,7 @@ export default function HomeHero() {
               {/* ── Top Trust Bar — Certifications ── */}
               <motion.div
                 variants={fadeUp}
-                className="flex flex-wrap gap-2.5 mb-8"
+                className="flex flex-wrap gap-2 mb-6 lg:mb-8"
               >
                 {[
                   { label: "ISO 22000 Certified", verified: true },
@@ -195,14 +195,14 @@ export default function HomeHero() {
               {/* ── Subheadline ── */}
               <motion.p
                 variants={fadeUp}
-                className="mt-5 text-[16px] sm:text-lg text-white/70 leading-relaxed max-w-[580px] font-medium"
+                className="mt-3 lg:mt-5 text-[16px] sm:text-lg text-white/70 leading-relaxed max-w-[580px] font-medium"
               >                Trusted by importers, distributors and wholesalers worldwide for export-grade coconuts, copra and coco peat.
               </motion.p>
 
               {/* ── CTA Buttons ── */}
               <motion.div
                 variants={fadeUp}
-                className="mt-8 flex flex-col sm:flex-row gap-4"
+                className="mt-5 lg:mt-8 flex flex-col sm:flex-row gap-3 lg:gap-4"
               >
                 <a
                   id="hero-request-quote"
@@ -243,28 +243,6 @@ export default function HomeHero() {
                   </svg>
                   Chat on WhatsApp
                 </a>
-              </motion.div>
-
-              {/* ── Trust Indicators Below CTA ── */}
-              <motion.div
-                variants={fadeUp}
-                className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-x-10 gap-y-4"
-              >
-                {[
-                  { value: "15+", label: "Export Markets" },
-                  { value: "500+", label: "Containers Exported" },
-                  { value: "10+", label: "Years Experience" },
-                  { value: "200+", label: "Commercial Partners" },
-                ].map((metric) => (
-                  <div key={metric.label} className="flex flex-col">
-                    <span className="text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight text-white">
-                      {metric.value}
-                    </span>
-                    <span className="mt-1.5 text-[11px] text-white/50 font-medium uppercase tracking-[0.12em]">
-                      {metric.label}
-                    </span>
-                  </div>
-                ))}
               </motion.div>
             </motion.div>
 

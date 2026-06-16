@@ -62,7 +62,14 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5" aria-label="Global Coco Exports — Home">
           <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
-            <Image src="/images/logo-image.png" alt="Global Coco Exports" width={32} height={32} className="w-full h-full object-contain" />
+            <Image
+              src="/images/logo-image.png"
+              alt="Global Coco Exports"
+              width={32}
+              height={32}
+              className="w-full h-full object-contain"
+              priority
+            />
           </div>
           <span
             className={`text-sm sm:text-base lg:text-lg font-bold tracking-wide transition-colors duration-500 ${

@@ -202,7 +202,7 @@ export default function RequestQuoteSection() {
             whileInView="animate"
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3"
+            className="grid grid-cols-1 min-[400px]:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3"
           >
             {[
               { label: "Response Within 24 Hours" },
@@ -482,7 +482,7 @@ export default function RequestQuoteSection() {
             whileInView="animate"
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3"
+            className="mt-8 grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-4 gap-3"
           >
             {[
               { icon: "🔒", label: "Secure Submission", desc: "SSL encrypted" },

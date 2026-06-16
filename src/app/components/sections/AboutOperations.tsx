@@ -157,15 +157,15 @@ export default function AboutOperations() {
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-white border-2 border-[#1B4332] flex items-center justify-center z-10 shadow-lg overflow-hidden">
+                <div className="absolute left-6 sm:left-8 md:left-1/2 -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-[#1B4332] flex items-center justify-center z-10 shadow-lg overflow-hidden">
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${stepBgGradients[index]} opacity-10`}
                   />
-                  <span className="text-[#1B4332]">{step.icon}</span>
+                  <span className="text-[#1B4332] scale-75 sm:scale-100">{step.icon}</span>
                 </div>
 
                 <div
-                  className={`ml-24 sm:ml-28 md:ml-0 md:w-[calc(50%-40px)] ${
+                  className={`ml-16 sm:ml-24 md:ml-0 md:w-[calc(50%-40px)] ${
                     index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"
                   }`}
                 >

@@ -52,7 +52,7 @@ export default function ProductHero({ product }: { product: Product }) {
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="relative w-full aspect-[6/7]"
                 >
-                  <Image src={product.images.hero.src} alt={product.images.hero.alt} fill className="object-contain object-center" sizes="100vw" priority />
+                  <Image src={product.images.hero.src} alt={product.images.hero.alt} fill className="object-contain object-center" sizes="(max-width: 768px) 100vw, 50vw" priority />
                 </motion.div>
               </motion.div>
 
