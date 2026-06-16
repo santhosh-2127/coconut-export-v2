@@ -125,7 +125,97 @@ export default function LogisticsProcess() {
           </p>
         </motion.div>
 
-        <div className="relative max-w-5xl mx-auto">
+        {/* ── MOBILE: horizontal snap-scroll carousel (hidden on md+) ── */}
+        <div className="block md:hidden -mx-6">
+          {/* Scroll hint label */}
+          <p className="px-6 mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1B4332]/40 text-center">
+            Swipe to explore
+          </p>
+
+          <div
+            className="lp-carousel flex overflow-x-auto gap-4 px-4"
+            style={{
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+              scrollBehavior: "smooth",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
+
+            {processSteps.map((step, index) => (
+              <div
+                key={step.step}
+                style={{
+                  scrollSnapAlign: "center",
+                  flexShrink: 0,
+                  width: "calc(100vw - 32px)",
+                }}
+              >
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-full">
+                  {/* Storytelling image */}
+                  {step.image && (
+                    <div className="relative w-full h-48 overflow-hidden bg-[#1B4332]">
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        fill
+                        className="object-cover object-center"
+                        sizes="calc(100vw - 32px)"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+                      <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-[#D4A017]/50" />
+                      <div className="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-[#D4A017]/30" />
+                      <div className="absolute top-4 right-4">
+                        <span className="inline-block px-3 py-1 text-[9px] uppercase tracking-[0.2em] font-semibold text-white/90 bg-black/30 backdrop-blur-sm border border-white/20 rounded-sm">
+                          {step.phase}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="p-6">
+                    {/* Icon + step label */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className={`relative w-10 h-10 rounded-full bg-white border-2 border-[#1B4332] flex items-center justify-center shadow-sm overflow-hidden flex-shrink-0`}>
+                        <div className={`absolute inset-0 bg-gradient-to-br ${stepBgGradients[index]} opacity-10`} />
+                        <span className="text-[#1B4332]">{step.icon}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[#D4A017] text-[10px] font-bold uppercase tracking-[0.2em]">Step {step.step}</span>
+                        <span className="w-4 h-px bg-[#D4A017]/40" />
+                      </div>
+                    </div>
+
+                    <h3 className="text-lg font-bold text-[#1B4332] mb-3">{step.title}</h3>
+                    <p className="text-sm text-gray-500 leading-relaxed mb-4">{step.description}</p>
+
+                    <div className="p-3 bg-[#1B4332]/[0.04] border border-[#1B4332]/[0.08] rounded-lg">
+                      <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#D4A017]">Operational Value</span>
+                      <p className="text-[12px] text-[#111827] mt-0.5 leading-snug">{step.businessValue}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Right padding sentinel so last card snaps correctly */}
+            <div style={{ flexShrink: 0, width: "4px" }} aria-hidden="true" />
+          </div>
+
+          {/* Step progress dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-5 px-6">
+            {processSteps.map((step) => (
+              <span
+                key={step.step}
+                className="w-1.5 h-1.5 rounded-full bg-[#1B4332]/20"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── TABLET / DESKTOP: existing vertical timeline (hidden on mobile) ── */}
+        <div className="hidden md:block relative max-w-5xl mx-auto">
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#1B4332]/30 via-[#D4A017]/20 to-[#1B4332]/30" />
           <div className="space-y-10 md:space-y-12">
             {processSteps.map((step, index) => (
@@ -142,7 +232,6 @@ export default function LogisticsProcess() {
                 </div>
                 <div className={`ml-24 sm:ml-28 md:ml-0 md:w-[calc(50%-40px)] ${index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"}`}>
                   <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-[#D4A017]/20 transition-all duration-300 overflow-hidden">
-                    {/* Storytelling image at top of card */}
                     {step.image && (
                       <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-[#1B4332]">
                         <Image
@@ -163,16 +252,16 @@ export default function LogisticsProcess() {
                       </div>
                     )}
                     <div className="p-6 md:p-8">
-                    <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? "md:flex-row-reverse md:justify-end" : ""}`}>
-                      <span className="text-[#D4A017] text-[10px] font-bold uppercase tracking-[0.2em]">Step {step.step}</span>
-                      <span className="w-4 h-px bg-[#D4A017]/40" />
-                    </div>
-                    <h3 className={`text-lg font-bold text-[#1B4332] mb-3 ${index % 2 === 0 ? "md:text-right" : ""}`}>{step.title}</h3>
-                    <p className={`text-sm text-gray-500 leading-relaxed mb-4 ${index % 2 === 0 ? "md:text-right" : ""}`}>{step.description}</p>
-                    <div className={`p-3 bg-[#1B4332]/[0.04] border border-[#1B4332]/[0.08] rounded-lg ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                      <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#D4A017]">Operational Value</span>
-                      <p className="text-[12px] text-[#111827] mt-0.5 leading-snug">{step.businessValue}</p>
-                    </div>
+                      <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? "md:flex-row-reverse md:justify-end" : ""}`}>
+                        <span className="text-[#D4A017] text-[10px] font-bold uppercase tracking-[0.2em]">Step {step.step}</span>
+                        <span className="w-4 h-px bg-[#D4A017]/40" />
+                      </div>
+                      <h3 className={`text-lg font-bold text-[#1B4332] mb-3 ${index % 2 === 0 ? "md:text-right" : ""}`}>{step.title}</h3>
+                      <p className={`text-sm text-gray-500 leading-relaxed mb-4 ${index % 2 === 0 ? "md:text-right" : ""}`}>{step.description}</p>
+                      <div className={`p-3 bg-[#1B4332]/[0.04] border border-[#1B4332]/[0.08] rounded-lg ${index % 2 === 0 ? "md:text-right" : ""}`}>
+                        <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#D4A017]">Operational Value</span>
+                        <p className="text-[12px] text-[#111827] mt-0.5 leading-snug">{step.businessValue}</p>
+                      </div>
                     </div>
                   </div>
                 </div>

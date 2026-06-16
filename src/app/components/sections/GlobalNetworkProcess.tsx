@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useCallback } from "react";
 
 const steps = [
   {
@@ -80,6 +80,18 @@ export default function GlobalNetworkProcess() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollPos = el.scrollLeft;
+    const cardWidth = el.scrollWidth / steps.length;
+    const newIndex = Math.round(scrollPos / cardWidth);
+    setActiveMobileIndex(newIndex);
+  }, []);
+
   return (
     <section
       id="export-process-overview"
@@ -96,7 +108,7 @@ export default function GlobalNetworkProcess() {
           initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65 }}
-          className="text-center max-w-2xl mx-auto mb-14"
+          className="text-center max-w-2xl mx-auto mb-10 md:mb-14"
         >
           <div className="inline-flex items-center gap-2 mb-5">
             <span className="w-8 h-px bg-[#D4A017]" />
@@ -114,36 +126,96 @@ export default function GlobalNetworkProcess() {
           </p>
         </motion.div>
 
-        <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#1B4332]/30 via-[#D4A017]/20 to-[#1B4332]/30" />
+        {/* ── Mobile: Swipeable card carousel ── */}
+        <div className="md:hidden -mx-6">
+          <div
+            ref={carouselRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 pb-2 gap-5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {steps.map((step) => (
+              <div
+                key={step.step}
+                className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: (step.step - 1) * 0.08, ease: "easeOut" }}
+                  className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-[#D4A017]/20 transition-all duration-300 p-5"
+                >
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-9 h-9 rounded-full bg-[#1B4332]/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[#1B4332]">{step.icon}</span>
+                    </div>
+                    <div>
+                      <span className="text-[#D4A017] text-[10px] font-bold uppercase tracking-[0.2em]">
+                        Step {step.step}
+                      </span>
+                      <span className="w-4 h-px bg-[#D4A017]/40 ml-2 inline-block" />
+                    </div>
+                  </div>
+                  <h3 className="text-base font-bold text-[#1B4332] mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    {step.description}
+                  </p>
+                </motion.div>
+              </div>
+            ))}
+          </div>
 
-          <div className="space-y-10 md:space-y-12">
+          {/* Pagination dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-4">
+            {steps.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  const el = carouselRef.current;
+                  if (!el) return;
+                  const cardWidth = el.scrollWidth / steps.length;
+                  el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+                }}
+                className={`rounded-full transition-all duration-300 ${
+                  i === activeMobileIndex
+                    ? "w-6 h-1.5 bg-[#D4A017]"
+                    : "w-1.5 h-1.5 bg-[#1B4332]/20 hover:bg-[#1B4332]/40"
+                }`}
+                aria-label={`Go to step ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── Desktop / Tablet: Vertical timeline ── */}
+        <div className="hidden md:block relative max-w-4xl mx-auto">
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#1B4332]/30 via-[#D4A017]/20 to-[#1B4332]/30" />
+
+          <div className="space-y-12">
             {steps.map((step, index) => (
               <motion.div
                 key={step.step}
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-                className={`relative flex flex-col md:flex-row items-start gap-6 ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                className={`relative flex items-start ${
+                  index % 2 === 0 ? "flex-row" : "flex-row-reverse"
                 }`}
               >
-                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-white border-2 border-[#1B4332] flex items-center justify-center z-10 shadow-lg overflow-hidden">
+                <div className="absolute left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-white border-2 border-[#1B4332] flex items-center justify-center z-10 shadow-lg overflow-hidden">
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${stepBgGradients[index]} opacity-10`}
                   />
                   <span className="text-[#1B4332]">{step.icon}</span>
                 </div>
 
-                <div
-                  className={`ml-24 sm:ml-28 md:ml-0 md:w-[calc(50%-40px)] ${
-                    index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"
-                  }`}
-                >
+                <div className={`w-[calc(50%-40px)] ${index % 2 === 0 ? "pr-8 text-right" : "pl-8"}`}>
                   <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-[#D4A017]/20 transition-all duration-300 p-6 md:p-7">
                     <div
                       className={`flex items-center gap-3 mb-2 ${
-                        index % 2 === 0 ? "md:flex-row-reverse md:justify-end" : ""
+                        index % 2 === 0 ? "flex-row-reverse justify-end" : ""
                       }`}
                     >
                       <span className="text-[#D4A017] text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -151,24 +223,14 @@ export default function GlobalNetworkProcess() {
                       </span>
                       <span className="w-4 h-px bg-[#D4A017]/40" />
                     </div>
-                    <h3
-                      className={`text-base font-bold text-[#1B4332] mb-2 ${
-                        index % 2 === 0 ? "md:text-right" : ""
-                      }`}
-                    >
+                    <h3 className={`text-base font-bold text-[#1B4332] mb-2 ${index % 2 === 0 ? "text-right" : ""}`}>
                       {step.title}
                     </h3>
-                    <p
-                      className={`text-sm text-gray-500 leading-relaxed ${
-                        index % 2 === 0 ? "md:text-right" : ""
-                      }`}
-                    >
+                    <p className={`text-sm text-gray-500 leading-relaxed ${index % 2 === 0 ? "text-right" : ""}`}>
                       {step.description}
                     </p>
                   </div>
                 </div>
-
-                <div className="hidden md:block md:w-[calc(50%-40px)]" />
               </motion.div>
             ))}
           </div>

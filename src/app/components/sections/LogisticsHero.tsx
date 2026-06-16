@@ -128,13 +128,6 @@ const trustIndicators = [
   { label: "Container Planning Expertise" },
 ];
 
-/* ─── Trust metrics ───────────────────────────────────────────────────── */
-const trustMetrics = [
-  { value: "500+", label: "Containers Shipped" },
-  { value: "3", label: "Port Corridors", highlight: true },
-  { value: "15+", label: "Destination Countries" },
-  { value: "10+", label: "Years Experience" },
-];
 
 export default function LogisticsHero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -244,17 +237,6 @@ export default function LogisticsHero() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
                 </a>
-              </motion.div>
-
-              <motion.div variants={fadeUp} className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-x-10 gap-y-4">
-                {trustMetrics.map((metric) => (
-                  <div key={metric.label} className="flex flex-col">
-                    <span className={`text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${metric.highlight ? "text-[#D4A017]" : "text-white"}`}>
-                      {metric.value}
-                    </span>
-                    <span className="mt-1.5 text-[11px] text-white/50 font-medium uppercase tracking-[0.12em]">{metric.label}</span>
-                  </div>
-                ))}
               </motion.div>
             </motion.div>
 

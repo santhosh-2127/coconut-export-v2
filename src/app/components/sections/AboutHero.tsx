@@ -2,8 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useCountUp, parseStatValue } from "@/lib/countUp";
+import { motion, AnimatePresence } from "framer-motion";
 
 /* ─── Animation variants ──────────────────────────────────────────────── */
 const container = {
@@ -137,59 +136,7 @@ const trustIndicators = [
   { label: "Commercial Scale Support" },
 ];
 
-/* ─── Trust metrics ───────────────────────────────────────────────────── */
-const trustMetrics = [
-  { value: "15+", label: "Countries Served" },
-  { value: "500+", label: "Containers Exported" },
-  { value: "10+", label: "Years Experience" },
-  { value: "200+", label: "Partner Farms", highlight: true },
-];
-
-/* ─── Animated metric item ────────────────────────────────────────────── */
-function AnimatedMetric({
-  value,
-  label,
-  highlight,
-  index,
-  isVisible,
-}: {
-  value: string;
-  label: string;
-  highlight?: boolean;
-  index: number;
-  isVisible: boolean;
-}) {
-  const { numeric, suffix } = parseStatValue(value);
-  const counted = useCountUp(numeric, 1600 + index * 100, isVisible);
-
-  return (
-    <div className="flex flex-col">
-      <span
-        className={`text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-none tracking-tight ${
-          highlight ? "text-[#D4A017]" : "text-white"
-        }`}
-      >
-        <motion.span
-          initial={{ opacity: 0, y: 12 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 + index * 0.1, ease: "easeOut" }}
-          aria-label={`${value} ${label}`}
-        >
-          {isVisible ? counted : 0}
-        </motion.span>
-        <span className="text-[#D4A017]">{suffix}</span>
-      </span>
-      <span className="mt-1.5 text-[11px] text-white/50 font-medium uppercase tracking-[0.12em]">
-        {label}
-      </span>
-    </div>
-  );
-}
-
 export default function AboutHero() {
-  const metricsRef = useRef<HTMLDivElement>(null);
-  const isMetricsVisible = useInView(metricsRef, { once: true, margin: "-60px" });
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -262,26 +209,32 @@ export default function AboutHero() {
                 variants={fadeUp}
                 className="text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
               >
-                <span className="block max-w-4xl">Your Trusted</span>
+                <span className="block max-w-4xl">Trusted Coconut Export Partner</span>
                 <span className="block text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.02em] text-[#D4A017] mt-1">
-                  Coconut Export Partner
+                  From India
                 </span>
               </motion.h1>
 
-              {/* ── Subheading — simplified ── */}
+              {/* ── Description ── */}
               <motion.p
                 variants={fadeUp}
                 className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[620px] font-medium"
               >
-                We help importers, distributors, and industrial buyers source
-                premium coconut products reliably. ISO &amp; HACCP certified,
-                with end-to-end export support.
+                Global Coco Exports specializes in sourcing, processing, and exporting premium coconut products to international buyers. From farm sourcing and quality assurance to packaging and global logistics, we support importers, distributors, wholesalers, and industrial buyers with dependable export solutions.
+              </motion.p>
+
+              {/* ── Product trust line ── */}
+              <motion.p
+                variants={fadeUp}
+                className="mt-5 text-[13px] text-white/45 leading-relaxed max-w-[600px]"
+              >
+                Supplying Fresh Brown Coconuts, Pollachi Coconuts, Copra, and Coco Peat to international markets with a focus on quality, consistency, and reliable export operations.
               </motion.p>
 
               {/* ── Trust indicator pills ── */}
               <motion.div
                 variants={fadeUp}
-                className="mt-6 flex flex-wrap gap-2"
+                className="mt-5 flex flex-wrap gap-2"
               >
                 {trustIndicators.map((indicator) => (
                   <span
@@ -305,7 +258,7 @@ export default function AboutHero() {
                   href="/#request-quote"
                   className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]"
                 >
-                  <span className="relative z-10">Request Quote</span>
+                  <span className="relative z-10">Request Export Quotation</span>
                   <svg
                     aria-hidden="true"
                     className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -327,7 +280,7 @@ export default function AboutHero() {
                   href="#who-we-are"
                   className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white/90 font-semibold text-sm tracking-[0.04em] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/40 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
                 >
-                  Learn More
+                  Contact Export Team
                   <svg
                     aria-hidden="true"
                     className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"
@@ -343,24 +296,6 @@ export default function AboutHero() {
                     />
                   </svg>
                 </a>
-              </motion.div>
-
-              {/* ── Trust Metrics Row (animated) ── */}
-              <motion.div
-                ref={metricsRef}
-                variants={fadeUp}
-                className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-x-10 gap-y-4"
-              >
-                {trustMetrics.map((metric, i) => (
-                  <AnimatedMetric
-                    key={metric.label}
-                    value={metric.value}
-                    label={metric.label}
-                    highlight={metric.highlight}
-                    index={i}
-                    isVisible={isMetricsVisible}
-                  />
-                ))}
               </motion.div>
             </motion.div>
 

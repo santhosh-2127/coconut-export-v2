@@ -3,158 +3,173 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/constants/animations";
 
-/* ─── Document categories ─────────────────────────────────────────────── */
-const documents = [
+/* ─── Benefit cards ───────────────────────────────────────────────────── */
+const benefits = [
   {
-    title: "Certificate of Origin",
-    description:
-      "Official document certifying country of origin for customs and tariff purposes. Issued by authorized chambers of commerce under APEDA.",
-    usage: "Required by destination customs for duty assessment and trade agreement benefits.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
-      </svg>
-    ),
+    title: "Export Documentation",
+    description: "We prepare the required shipping and export paperwork for every order.",
     color: "#D4A017",
-  },
-  {
-    title: "Phytosanitary Certificate",
-    description:
-      "Government-issued certificate confirming the consignment meets the importing country's plant health requirements.",
-    usage: "Mandatory for agricultural product imports. Required by most destination country quarantine authorities.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-      </svg>
-    ),
-    color: "#2D7D9A",
-  },
-  {
-    title: "Bill of Lading",
-    description:
-      "Legal document from the shipping line confirming receipt of goods. Serves as contract of carriage and title document.",
-    usage: "Required for the buyer to take possession of cargo at destination. Key document for letter of credit transactions.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
-      </svg>
-    ),
-    color: "#1B4332",
-  },
-  {
-    title: "Commercial Invoice",
-    description:
-      "Official invoice detailing transaction value, product description, quantity, unit price, and total amount. Used by customs for duty assessment.",
-    usage: "Essential for customs clearance at both export and import stages. Required for payment processing.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-5 h-5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
       </svg>
     ),
+  },
+  {
+    title: "Compliance Support",
+    description: "Documentation is prepared according to the requirements of your destination country.",
+    color: "#1B4332",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Customs Readiness",
+    description: "Supporting paperwork is organized to help ensure smooth processing at customs.",
+    color: "#2D7D9A",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+      </svg>
+    ),
+  },
+  {
+    title: "Buyer Assistance",
+    description: "Our export team is available to assist with any documentation-related questions.",
     color: "#4A9E6B",
-  },
-  {
-    title: "Packing List",
-    description:
-      "Lists contents of each package — weight, dimensions, and markings. Complements the commercial invoice for customs.",
-    usage: "Used by customs for physical verification. Helps buyers verify shipment contents against order.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
       </svg>
     ),
-    color: "#9B59B6",
-  },
-  {
-    title: "SGS Inspection Report",
-    description:
-      "Independent third-party inspection report by SGS verifying product quality, quantity, and loading conditions.",
-    usage: "Provides independent quality assurance for buyers. Often required for letter of credit compliance.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.3} className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-      </svg>
-    ),
-    color: "#D4A017",
   },
 ];
 
+/* ─── Main section ────────────────────────────────────────────────────── */
 export default function LogisticsDocs() {
   return (
-    <section id="export-docs" aria-label="Export Documentation Center" className="relative py-14 md:py-18 overflow-hidden bg-white">
+    <section
+      id="export-docs"
+      aria-label="Export Documentation Support"
+      className="relative py-14 md:py-20 overflow-hidden bg-[#FAFAFA]"
+    >
+      {/* Subtle background texture */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "repeating-linear-gradient(135deg, #1B4332 0px, #1B4332 1px, transparent 1px, transparent 40px)" }} />
+        <div
+          className="absolute inset-0 opacity-[0.018]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(135deg, #1B4332 0px, #1B4332 1px, transparent 1px, transparent 40px)",
+          }}
+        />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#1B4332]/[0.03] blur-[120px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6">
-        <motion.div variants={fadeUp} initial="initial" whileInView="animate" viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center max-w-2xl mx-auto mb-12">
+
+        {/* ── Section header ── */}
+        <motion.div
+          variants={fadeUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-12"
+        >
           <div className="inline-flex items-center gap-2 mb-5">
             <span className="w-8 h-px bg-[#D4A017]" />
-            <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Documentation Center</p>
+            <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Documentation</p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
-            Export Documentation{" "}<span className="text-[#D4A017]">Vault</span>
+            We Handle{" "}
+            <span className="text-[#D4A017]">Export Documentation</span>
           </h2>
           <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
-            Every shipment includes a complete documentation package. Our team manages all paperwork so you can focus on your core business.
+            Our team prepares and manages the required export documentation to help
+            ensure smooth international shipments.
           </p>
         </motion.div>
 
-        {/* Document grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
-          {documents.map((doc, i) => (
+        {/* ── Benefit cards — 4 columns desktop, 2×2 tablet, stacked mobile ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+          {benefits.map((benefit, i) => (
             <motion.div
-              key={doc.title}
+              key={benefit.title}
               variants={fadeUp}
-              initial="initial" whileInView="animate" viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
-              className="group relative bg-white border border-[#E5E7EB] hover:border-[#1B4332]/20 rounded-2xl overflow-hidden transition-all duration-400 hover:shadow-[0_12px_40px_rgba(27,67,50,0.08)]"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.09, ease: "easeOut" }}
+              className="group relative bg-white border border-[#E5E7EB] hover:border-[#1B4332]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(27,67,50,0.08)]"
             >
-              <div className="absolute top-0 inset-x-0 h-[2.5px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" style={{ background: `linear-gradient(90deg, ${doc.color} 0%, ${doc.color}44 100%)` }} />
+              {/* Top accent bar — reveals on hover */}
+              <div
+                className="absolute top-0 inset-x-0 h-[2.5px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
+                style={{
+                  background: `linear-gradient(90deg, ${benefit.color}, ${benefit.color}55)`,
+                }}
+                aria-hidden="true"
+              />
+
               <div className="p-6 lg:p-7">
-                <div className="flex items-start gap-4 mb-4">
-                  {/* Icon in colored ring */}
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300" style={{ background: `${doc.color}12`, color: doc.color }}>
-                    {doc.icon}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-sm text-[#111827] leading-snug">{doc.title}</h3>
-                  </div>
-                  <span className="text-[9px] font-mono font-bold tracking-wider text-[#9CA3AF] uppercase flex-shrink-0">DOC-{String(i + 1).padStart(2, "0")}</span>
+                {/* Icon */}
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 border transition-colors duration-300"
+                  style={{
+                    color: benefit.color,
+                    backgroundColor: `${benefit.color}10`,
+                    borderColor: `${benefit.color}20`,
+                  }}
+                >
+                  {benefit.icon}
                 </div>
 
-                <p className="text-[#6B7280] text-xs leading-relaxed mb-3">{doc.description}</p>
+                {/* Title */}
+                <h3 className="font-bold text-[#111827] text-base leading-snug mb-2">
+                  {benefit.title}
+                </h3>
 
-                {/* Usage tag */}
-                <div className="p-2.5 rounded-lg" style={{ background: `${doc.color}08`, borderColor: `${doc.color}15`, border: "1px solid" }}>
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.16em]" style={{ color: doc.color }}>Purpose</span>
-                  <p className="text-[11px] text-gray-500 mt-0.5 leading-snug">{doc.usage}</p>
-                </div>
+                {/* Description */}
+                <p className="text-[#6B7280] text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Document assurance bar */}
-        <motion.div variants={fadeUp} initial="initial" whileInView="animate" viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.5 }} className="mt-10 max-w-4xl mx-auto rounded-2xl border border-[#1B4332]/10 bg-[#1B4332] overflow-hidden">
-          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-            {[
-              { icon: "✅", title: "100% Accuracy", desc: "Double-checked documentation before every shipment" },
-              { icon: "📬", title: "Digital Copies", desc: "All documents shared electronically before cargo arrival" },
-              { icon: "🌐", title: "Destination Compliant", desc: "Documents prepared per destination country requirements" },
-            ].map((item) => (
-              <div key={item.title} className="flex items-start gap-4 p-6 md:p-7 hover:bg-white/[0.04] transition-colors">
-                <span className="text-2xl flex-shrink-0 mt-0.5" aria-hidden="true">{item.icon}</span>
-                <div>
-                  <p className="text-white font-semibold text-sm mb-1">{item.title}</p>
-                  <p className="text-white/50 text-xs leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
+        {/* ── Trust message ── */}
+        <motion.div
+          variants={fadeUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="mt-10 max-w-2xl mx-auto text-center"
+        >
+          <div className="inline-flex items-start sm:items-center gap-3 px-6 py-4 rounded-2xl bg-[#1B4332]/[0.04] border border-[#1B4332]/10">
+            <span className="flex-shrink-0 text-[#1B4332] mt-0.5 sm:mt-0" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+              </svg>
+            </span>
+            <p className="text-sm text-[#374151] leading-relaxed text-left sm:text-center">
+              Need destination-specific documentation support?{" "}
+              <a
+                id="logistics-docs-contact"
+                data-tracking-id="logistics-docs-contact"
+                href="/contact"
+                className="font-semibold text-[#1B4332] underline underline-offset-4 hover:text-[#D4A017] transition-colors"
+              >
+                Our export team will guide you through the requirements.
+              </a>
+            </p>
           </div>
         </motion.div>
+
       </div>
     </section>
   );

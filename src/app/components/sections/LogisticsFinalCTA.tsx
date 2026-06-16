@@ -39,6 +39,15 @@ export default function LogisticsFinalCTA() {
           Request your customized export quotation today.
         </motion.p>
 
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.28, ease: "easeOut" }}
+          className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-white/45 text-xs tracking-wide">
+          <span>✓ Export Specialists</span>
+          <span className="hidden sm:inline text-white/20">•</span>
+          <span>✓ Global Shipping Support</span>
+          <span className="hidden sm:inline text-white/20">•</span>
+          <span>✓ Bulk Order Assistance</span>
+        </motion.div>
+
         <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a id="logistics-cta-request-quote" data-tracking-id="logistics-cta-request-quote" href="/#request-quote" className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]">
@@ -55,23 +64,6 @@ export default function LogisticsFinalCTA() {
             </svg>
             Chat On WhatsApp
           </a>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, y: 18 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, delay: 0.5 }}
-          className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/8 rounded-2xl overflow-hidden border border-white/8 max-w-3xl mx-auto">
-          {[
-            { value: "500+", label: "Containers Shipped" },
-            { value: "3", label: "Port Corridors" },
-            { value: "17+", label: "Destination Markets" },
-            { value: "24h", label: "Response Guarantee" },
-          ].map((s, i) => (
-            <motion.div key={s.label} initial={{ opacity: 0, scale: 0.8 }} animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.6 + i * 0.07, ease: "backOut" }}
-              className="flex flex-col items-center justify-center py-6 px-4 bg-white/[0.03] hover:bg-white/[0.06] transition-colors">
-              <span className="text-2xl font-bold text-[#D4A017] leading-none">{s.value}</span>
-              <span className="text-white/35 text-[9px] uppercase tracking-widest mt-1 text-center">{s.label}</span>
-            </motion.div>
-          ))}
         </motion.div>
       </div>
     </section>

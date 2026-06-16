@@ -285,6 +285,11 @@ input, textarea, select, button {
   color: white;
 }
 
+/* ── Logistics Process mobile carousel: hide scrollbar ── */
+.lp-carousel::-webkit-scrollbar {
+  display: none;
+}
+
 /* WhatsApp widget gentle pulse */
 @keyframes whatsappPulse {
   0%, 100% {
