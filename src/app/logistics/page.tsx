@@ -9,7 +9,6 @@ import LogisticsProcess from "../components/sections/LogisticsProcess";
 // ═══ Code-split: below-fold sections ═══
 const LogisticsIncoterms = dynamic(() => import("../components/sections/LogisticsIncoterms"), { ssr: true });
 const LogisticsDocs = dynamic(() => import("../components/sections/LogisticsDocs"), { ssr: true });
-const LogisticsShipping = dynamic(() => import("../components/sections/LogisticsShipping"), { ssr: true });
 const LogisticsQuality = dynamic(() => import("../components/sections/LogisticsQuality"), { ssr: true });
 const LogisticsFinalCTA = dynamic(() => import("../components/sections/LogisticsFinalCTA"), { ssr: true });
 
@@ -70,7 +69,6 @@ export default function LogisticsPage() {
       <LogisticsProcess />
       <LogisticsIncoterms />
       <LogisticsDocs />
-      <LogisticsShipping />
       <LogisticsQuality />
       <LogisticsFinalCTA />
       <Footer />

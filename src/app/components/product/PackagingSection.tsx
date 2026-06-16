@@ -6,42 +6,38 @@ import { fadeUp } from "./ProductConstants";
 import { ProductIcon } from "./ProductIcons";
 import type { Product } from "@/types";
 
-const AMBER = "#D97706";
-const AMBER_LIGHT = "#F59E0B";
+const GOLD = "#D4A017";
 
-/* ─── Packaging Card ──────────────────────────────────────────────────── */
-function PackagingCard({ item }: { item: Product["logisticsItems"][0] }) {
+/* ─── Logistics Card ──────────────────────────────────────────────────── */
+function LogisticsCard({ item }: { item: Product["logisticsItems"][0] }) {
   return (
-    <div className="relative bg-white/5 backdrop-blur-sm border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(217,119,6,0.1)] hover:border-[#D97706]/30 group h-full flex flex-col"
-      style={{ borderColor: "rgba(217,119,6,0.12)" }}
+    <div
+      className="relative bg-white border border-[#E5E7EB] rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(27,67,50,0.1)] hover:border-[#1B4332]/20 group h-full flex flex-col"
     >
-      {/* Amber top accent strip */}
-      <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#D97706] via-[#F59E0B] to-[#D97706] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+      {/* Deep Green top accent strip */}
+      <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#1B4332] via-[#1B4332] to-[#1B4332]/40 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
 
       <div className="p-6 flex flex-col flex-1">
         {/* Icon + Stat */}
         <div className="flex items-start justify-between mb-4">
           <div
-            className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:bg-[#D97706] group-hover:text-white"
-            style={{ background: "rgba(217,119,6,0.1)", color: AMBER }}
+            className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:bg-[#D4A017] group-hover:text-white"
+            style={{ background: "rgba(212,160,23,0.1)", color: GOLD }}
           >
             <ProductIcon icon={item.icon} />
           </div>
-          <span
-            className="text-[10px] font-semibold uppercase tracking-[0.14em] text-right max-w-[120px] leading-tight"
-            style={{ color: AMBER }}
-          >
+          <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-right max-w-[120px] leading-tight text-[#1B4332]">
             {item.stat}
           </span>
         </div>
 
         {/* Title */}
-        <h3 className="text-xl lg:text-2xl font-bold text-white leading-tight tracking-[-0.01em] mb-3">
+        <h3 className="text-xl lg:text-2xl font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-3">
           {item.title}
         </h3>
 
         {/* Description */}
-        <p className="text-white/50 text-sm leading-relaxed flex-1">
+        <p className="text-[#6B7280] text-sm leading-relaxed flex-1">
           {item.desc}
         </p>
       </div>
@@ -64,36 +60,36 @@ export default function PackagingSection({ product }: { product: Product }) {
   }, [product.logisticsItems.length]);
 
   return (
-    <section className="relative overflow-hidden py-14 md:py-18"
+    <section
+      className="relative overflow-hidden py-14 md:py-18"
       style={{
-        background: "linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #0f172a 65%, #0c1222 100%)",
+        background: "linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%)",
       }}
     >
-      {/* Background textures */}
+      {/* Background texture — subtle dot grid */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: "repeating-linear-gradient(90deg, #D97706 0px, #D97706 1px, transparent 1px, transparent 60px)",
+            backgroundImage: "repeating-linear-gradient(90deg, #D4A017 0px, #D4A017 1px, transparent 1px, transparent 60px)",
             backgroundSize: "60px 60px",
           }}
         />
-        {/* Amber glow top-right */}
+        {/* Gold glow top-right */}
         <div
-          className="absolute top-0 right-0 w-[450px] h-[450px] rounded-full opacity-10 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #D97706 0%, transparent 70%)" }}
+          className="absolute top-0 right-0 w-[450px] h-[450px] rounded-full opacity-[0.06] pointer-events-none"
+          style={{ background: "radial-gradient(circle, #D4A017 0%, transparent 70%)" }}
         />
-        {/* Slate glow bottom */}
+        {/* Green glow bottom */}
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full opacity-8 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #334155 0%, transparent 70%)" }}
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full opacity-[0.04] pointer-events-none"
+          style={{ background: "radial-gradient(circle, #1B4332 0%, transparent 70%)" }}
         />
       </div>
 
       {/* Top accent bar */}
       <div
-        className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D97706]/30 to-transparent"
+        className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4A017]/30 to-transparent"
         aria-hidden="true"
       />
 
@@ -108,17 +104,17 @@ export default function PackagingSection({ product }: { product: Product }) {
           className="mb-12 md:mb-16"
         >
           <div className="flex items-center gap-2.5 mb-5">
-            <span className="w-5 h-px" style={{ backgroundColor: AMBER }} />
+            <span className="w-5 h-px" style={{ backgroundColor: GOLD }} />
             <span
               className="text-[10px] font-semibold uppercase tracking-[0.26em]"
-              style={{ color: AMBER }}
+              style={{ color: GOLD }}
             >
               Packaging & Logistics
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-white leading-tight tracking-[-0.02em]">
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
             From Packing to{" "}
-            <span style={{ color: AMBER }}>Port</span>
+            <span style={{ color: GOLD }}>Port</span>
           </h2>
         </motion.div>
 
@@ -135,7 +131,7 @@ export default function PackagingSection({ product }: { product: Product }) {
                 key={item.title}
                 className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
               >
-                <PackagingCard item={item} />
+                <LogisticsCard item={item} />
               </div>
             ))}
           </div>
@@ -157,7 +153,7 @@ export default function PackagingSection({ product }: { product: Product }) {
                     : "w-1.5 h-1.5 hover:opacity-50"
                 }`}
                 style={{
-                  backgroundColor: i === activeMobileIndex ? AMBER : "rgba(255,255,255,0.25)",
+                  backgroundColor: i === activeMobileIndex ? GOLD : "rgba(27,67,50,0.25)",
                 }}
                 aria-label={`Go to packaging option ${i + 1}`}
               />
@@ -176,7 +172,7 @@ export default function PackagingSection({ product }: { product: Product }) {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
             >
-              <PackagingCard item={item} />
+              <LogisticsCard item={item} />
             </motion.div>
           ))}
         </div>

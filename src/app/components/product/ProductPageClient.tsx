@@ -11,7 +11,6 @@ import PackagingSection from "@/app/components/product/PackagingSection";
 import ProductQuality from "@/app/components/product/ProductQuality";
 import ApplicationsSection from "@/app/components/product/ApplicationsSection";
 import ProductCTA from "@/app/components/product/ProductCTA";
-import ProductContactCTA from "@/app/components/product/ProductContactCTA";
 
 export default function ProductPageClient() {
   const params = useParams();
@@ -59,10 +58,6 @@ export default function ProductPageClient() {
 
       {/* SECTION 6: Request Quote — How do I order? */}
       <ProductCTA product={product} />
-
-
-      {/* SECTION 7: Contact CTA */}
-      <ProductContactCTA product={product} />
 
       <Footer />
     </>

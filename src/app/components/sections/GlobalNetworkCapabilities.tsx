@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useCallback } from "react";
 
 const capabilities = [
   {
@@ -49,6 +49,17 @@ const capabilities = [
 export default function GlobalNetworkCapabilities() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollPos = el.scrollLeft;
+    const cardWidth = el.scrollWidth / capabilities.length;
+    const newIndex = Math.round(scrollPos / cardWidth);
+    setActiveMobileIndex(Math.min(newIndex, capabilities.length - 1));
+  }, []);
 
   return (
     <section
@@ -83,7 +94,60 @@ export default function GlobalNetworkCapabilities() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* ── Mobile: Swipeable carousel ── */}
+        <div className="sm:hidden -mx-6">
+          <div
+            ref={carouselRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 pb-2 gap-5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {capabilities.map((cap) => (
+              <div
+                key={cap.title}
+                className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
+              >
+                <article className="group relative bg-white border border-[#E5E7EB] hover:border-[#1B4332]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(27,67,50,0.08)] flex flex-col h-full">
+                  <div className="absolute top-0 inset-x-0 h-[2.5px] bg-[#D4A017] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+                  <div className="p-7 flex flex-col flex-1">
+                    <div className="w-12 h-12 border border-[#1B4332]/15 rounded-xl flex items-center justify-center text-[#1B4332] group-hover:bg-[#1B4332] group-hover:text-white transition-all duration-300 mb-5">
+                      {cap.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-[#111827] mb-2">{cap.title}</h3>
+                    <p className="text-sm text-gray-500 leading-relaxed flex-1">{cap.description}</p>
+                  </div>
+                </article>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-4">
+            {capabilities.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  const el = carouselRef.current;
+                  if (!el) return;
+                  const cardWidth = el.scrollWidth / capabilities.length;
+                  el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+                }}
+                className={`rounded-full transition-all duration-300 ${
+                  i === activeMobileIndex
+                    ? "w-6 h-1.5"
+                    : "w-1.5 h-1.5 hover:opacity-50"
+                }`}
+                style={{
+                  backgroundColor: i === activeMobileIndex ? "#D4A017" : "rgba(27,67,50,0.25)",
+                }}
+                aria-label={`Go to capability ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── Desktop / Tablet: Grid ── */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {capabilities.map((cap, i) => (
             <motion.article
               key={cap.title}
