@@ -157,7 +157,7 @@ export default function AboutHero() {
     <section
       id="about-hero"
       aria-label="About — Building Global Supply Relationships"
-      className="relative min-h-screen min-h-[100dvh] lg:min-h-[80vh] max-h-screen max-h-[100dvh] lg:max-h-none flex items-center overflow-hidden bg-[#0C1A12]"
+      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* Mobile background carousel */}
       <MobileBackgroundCarousel />
@@ -182,7 +182,7 @@ export default function AboutHero() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/20 to-transparent" />
       </div>
 
-      <div className="relative z-10 w-full overflow-y-auto max-h-[100dvh] lg:max-h-none lg:overflow-visible">
+      <div className="relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 lg:min-h-[80vh] flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
             {/* ═══ LEFT: Content — 3/5 cols ════════════════════ */}

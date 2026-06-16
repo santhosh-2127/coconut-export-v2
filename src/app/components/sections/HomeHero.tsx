@@ -74,7 +74,7 @@ export default function HomeHero() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-label="Hero — Premium Coconut Exports From India"
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#0C1A12]"
+      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* ═══════════════════════════════════════════════════════════════
          BACKGROUND CAROUSEL: Product visuals that crossfade

@@ -139,7 +139,7 @@ export default function ContactHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen min-h-[100dvh] lg:min-h-[80vh] max-h-screen max-h-[100dvh] lg:max-h-none flex items-center overflow-hidden"
+      className="relative min-h-[100dvh] min-h-screen lg:h-screen lg:max-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: "linear-gradient(160deg, #0C1A12 0%, #0d2d1f 40%, #0a1f16 100%)" }}
       aria-label="Contact Hero"
     >
@@ -160,9 +160,9 @@ export default function ContactHero() {
       <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] rounded-full opacity-10 pointer-events-none"
         style={{ background: "radial-gradient(circle, #D4A017 0%, transparent 70%)" }} />
 
-      <div className="relative z-10 w-full overflow-y-auto max-h-[100dvh] lg:max-h-none lg:overflow-visible">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full py-16 md:py-0 lg:pt-32 lg:pb-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full py-16 md:py-0 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
           {/* Left content */}
           <div>

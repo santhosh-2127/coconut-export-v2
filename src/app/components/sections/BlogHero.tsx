@@ -130,7 +130,7 @@ export default function BlogHero() {
     <section
       id="blog-hero"
       aria-label="Industry Insights & Export Knowledge"
-      className="relative min-h-screen min-h-[100dvh] lg:min-h-[70vh] max-h-screen max-h-[100dvh] lg:max-h-none flex items-center overflow-hidden bg-[#0C1A12]"
+      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* Mobile background carousel */}
       <MobileBackgroundCarousel />
@@ -151,7 +151,7 @@ export default function BlogHero() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/20 to-transparent" />
       </div>
 
-      <div className="relative z-10 w-full overflow-y-auto max-h-[100dvh] lg:max-h-none lg:overflow-visible">
+      <div className="relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 lg:min-h-[60vh] flex items-center">
           <motion.div
             variants={container}

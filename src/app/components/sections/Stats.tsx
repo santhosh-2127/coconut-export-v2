@@ -10,22 +10,22 @@ const metrics = [
   {
     value: "15+",
     label: "Export Markets",
-    description: "Active trade relationships across Middle East, Europe, North America, and Asia-Pacific.",
+    description: "Active trade relationships across international markets.",
   },
   {
-    value: "500+",
-    label: "Containers Exported",
-    description: "Supporting commercial export operations worldwide.",
+    value: "3",
+    label: "Founding Partners",
+    description: "Industry expertise driving sourcing and export operations.",
   },
   {
-    value: "10+",
-    label: "Years Experience",
-    description: "Decade of expertise in international coconut trade and logistics.",
+    value: "8+",
+    label: "Product Categories",
+    description: "Serving diverse coconut and coconut-derived product requirements.",
   },
   {
-    value: "200+",
-    label: "Commercial Partners",
-    description: "Trusted by importers, distributors, and industrial buyers globally.",
+    value: "2026",
+    label: "Established",
+    description: "Focused on building long-term global trade partnerships.",
   },
 ];
 
@@ -53,13 +53,13 @@ function StatBlock({
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: 0.08 + index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      {/* Large white number */}
+      {/* Large white number — dominating visual hierarchy */}
       <p
-        className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-none font-bold text-white tracking-[-0.03em] tabular-nums"
+        className="leading-none font-extrabold lg:font-black text-white tracking-[-0.03em] tabular-nums text-[clamp(2.5rem,8vw,3.5rem)] lg:text-[clamp(4rem,8vw,6rem)]"
         aria-label={`${value} ${label}`}
       >
         {isVisible ? counted : 0}
-        <span className="text-[#D4A017]">{suffix}</span>
+        {suffix && <span className="text-[#D4A017]">{suffix}</span>}
       </p>
 
       {/* Stat label */}
@@ -67,8 +67,8 @@ function StatBlock({
         {label}
       </p>
 
-      {/* Description */}
-      <p className="mt-1.5 text-sm text-green-200/50 leading-relaxed">
+      {/* Description — smaller supporting text */}
+      <p className="mt-1.5 text-xs text-green-200/40 leading-relaxed">
         {description}
       </p>
     </motion.div>
@@ -116,7 +116,7 @@ export default function StatsStrip() {
           </p>
         </motion.div>
 
-        {/* Stat blocks grid */}
+        {/* Stat blocks grid — 2 cols mobile/tablet, 4 cols desktop */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12">
           {hasMounted
             ? metrics.map((m, i) => (

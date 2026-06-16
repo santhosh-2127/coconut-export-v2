@@ -1,13 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback } from "react";
 
 /* ─── Animation ───────────────────────────────────────────────────────── */
 const fadeUp = {
   initial: { opacity: 0, y: 28 },
   animate: { opacity: 1, y: 0 },
 };
+
+/* ─── Marquee keyframes ──────────────────────────────────────────────── */
+const marqueeStyle = `
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+`;
 
 /* ─── Testimonials ────────────────────────────────────────────────────── */
 const testimonials = [
@@ -44,12 +52,51 @@ const testimonials = [
 /* ─── Duplicated for seamless auto-scroll ─────────────────────────────── */
 const allSlides = [...testimonials, ...testimonials];
 
+/* ─── Testimonial card (shared between desktop & mobile) ──────────────── */
+function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
+  return (
+    <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm p-6 h-full flex flex-col hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] hover:border-[#1B4332]/15 transition-all duration-300">
+      {/* Quote icon */}
+      <svg
+        className="w-8 h-8 text-[#D4A017]/30 mb-3 flex-shrink-0"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.69 11 13.166 11 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179zM15.583 17.321C14.553 16.227 14 15 14 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C20.591 11.69 22 13.166 22 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179z" />
+      </svg>
+
+      {/* Quote */}
+      <p className="text-sm text-gray-600 leading-relaxed mb-5 flex-1 italic">
+        &ldquo;{t.quote}&rdquo;
+      </p>
+
+      {/* Author */}
+      <div className="flex items-center gap-3 pt-4 border-t border-[#E5E7EB]">
+        <div className="w-9 h-9 rounded-full bg-[#1B4332]/10 flex items-center justify-center flex-shrink-0 text-[#1B4332] font-bold text-xs">
+          {t.name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")}
+        </div>
+        <div>
+          <p className="text-[13px] font-semibold text-[#111827] leading-tight">
+            {t.name}
+          </p>
+          <p className="text-[11px] text-gray-400">
+            {t.role} &middot; {t.country}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Section ─────────────────────────────────────────────────────────── */
 export default function FAQHome() {
   const [activeMobileIndex, setActiveMobileIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = useCallback(() => {
     const el = carouselRef.current;
@@ -60,36 +107,15 @@ export default function FAQHome() {
     setActiveMobileIndex(Math.min(newIndex, testimonials.length - 1));
   }, []);
 
-  /* ── Auto-scroll for desktop ── */
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el || isPaused) return;
-
-    let animationId: number;
-    const speed = 0.35; // px per frame (~21px/s)
-
-    const animate = () => {
-      if (!el) return;
-      el.scrollLeft += speed;
-
-      // Reset to start when reaching the duplicate set
-      if (el.scrollLeft >= el.scrollWidth / 2) {
-        el.scrollLeft = 0;
-      }
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, [isPaused]);
-
   return (
     <section
       id="testimonials"
       aria-label="Buyer Testimonials"
       className="relative py-14 md:py-18 overflow-hidden bg-[#FAFAFA]"
     >
+      {/* Marquee keyframes */}
+      <style>{marqueeStyle}</style>
+
       {/* Background accents */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div
@@ -127,103 +153,47 @@ export default function FAQHome() {
           </p>
         </motion.div>
 
-        {/* ── Desktop: Auto-scrolling carousel ── */}
+        {/* ── Desktop: Auto-scrolling marquee ── */}
         <div
           className="hidden md:block overflow-hidden"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
           <div
-            ref={scrollRef}
-            className="flex gap-5 overflow-x-hidden"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            className="flex gap-5"
+            style={{
+              width: "fit-content",
+              animation: "marquee 30s linear infinite",
+              animationPlayState: isPaused ? "paused" : "running",
+            }}
           >
             {allSlides.map((t, i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 w-[380px]"
-              >
-                <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm p-6 h-full flex flex-col hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] hover:border-[#1B4332]/15 transition-all duration-300">
-                  {/* Quote icon */}
-                  <svg
-                    className="w-8 h-8 text-[#D4A017]/30 mb-3 flex-shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.69 11 13.166 11 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179zM15.583 17.321C14.553 16.227 14 15 14 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C20.591 11.69 22 13.166 22 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179z" />
-                  </svg>
-
-                  {/* Quote */}
-                  <p className="text-sm text-gray-600 leading-relaxed mb-5 flex-1 italic">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-
-                  {/* Author */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-[#E5E7EB]">
-                    <div className="w-9 h-9 rounded-full bg-[#1B4332]/10 flex items-center justify-center flex-shrink-0 text-[#1B4332] font-bold text-xs">
-                      {t.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-semibold text-[#111827] leading-tight">
-                        {t.name}
-                      </p>
-                      <p className="text-[11px] text-gray-400">
-                        {t.role} &middot; {t.country}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <div key={i} className="flex-shrink-0 w-[380px]">
+                <TestimonialCard t={t} />
               </div>
             ))}
           </div>
         </div>
 
-        {/* ── Mobile: Swipeable testimonial cards ── */}
+        {/* ── Mobile: Touch swipe carousel with snap scrolling ── */}
         <div className="md:hidden -mx-6">
           <div
             ref={carouselRef}
             onScroll={handleScroll}
             className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 pb-2 gap-5"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
+              overscrollBehaviorX: "contain",
+            }}
           >
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
+                className="w-[calc(100vw-48px)] flex-shrink-0 snap-center"
               >
-                <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm p-6 h-full flex flex-col">
-                  <svg
-                    className="w-8 h-8 text-[#D4A017]/30 mb-3 flex-shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.69 11 13.166 11 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179zM15.583 17.321C14.553 16.227 14 15 14 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C20.591 11.69 22 13.166 22 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.358-.686-2.917-1.179z" />
-                  </svg>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-5 flex-1 italic">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-[#E5E7EB]">
-                    <div className="w-9 h-9 rounded-full bg-[#1B4332]/10 flex items-center justify-center flex-shrink-0 text-[#1B4332] font-bold text-xs">
-                      {t.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-semibold text-[#111827] leading-tight">
-                        {t.name}
-                      </p>
-                      <p className="text-[11px] text-gray-400">
-                        {t.role} &middot; {t.country}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <TestimonialCard t={t} />
               </div>
             ))}
           </div>

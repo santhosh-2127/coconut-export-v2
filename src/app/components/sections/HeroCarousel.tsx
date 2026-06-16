@@ -92,7 +92,7 @@ export default function HeroCarousel() {
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative h-[80vh] sm:h-[85vh] lg:h-screen overflow-hidden bg-[#0C1A12] select-none"
+      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12] select-none"
       aria-label="Hero carousel — premium coconut export showcase"
       role="region"
     >
