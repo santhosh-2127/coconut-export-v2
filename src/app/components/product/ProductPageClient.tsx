@@ -10,7 +10,6 @@ import ProductSpecs from "@/app/components/product/ProductSpecs";
 import PackagingSection from "@/app/components/product/PackagingSection";
 import ProductQuality from "@/app/components/product/ProductQuality";
 import ApplicationsSection from "@/app/components/product/ApplicationsSection";
-import ProductSupplyMetrics from "@/app/components/product/ProductSupplyMetrics";
 import ProductCTA from "@/app/components/product/ProductCTA";
 import ProductContactCTA from "@/app/components/product/ProductContactCTA";
 
@@ -51,10 +50,7 @@ export default function ProductPageClient() {
       {/* SECTION 3: Applications — What is it used for? */}
       <ApplicationsSection product={product} />
 
-      {/* SECTION 4: Commercial Supply Capabilities — Bulk supply metrics */}
-      <ProductSupplyMetrics product={product} />
-
-      {/* SECTION 5: Quality Inspection — How is quality maintained? */}
+      {/* SECTION 4: Quality Inspection — How is quality maintained? */}
       <ProductQuality name={product.name} />
 
       {/* SECTION 5: Packaging — How is it packed? */}
