@@ -75,7 +75,9 @@ export default function ProductSelectionCTA() {
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link
-            href="/rfq"
+            id="menu-selection-cta-request-quote"
+            data-tracking-id="menu-selection-cta-request-quote"
+            href="/#request-quote"
             onClick={() =>
               trackOutboundClick({
                 type: "request_quote",

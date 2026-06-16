@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { trackNewsletterSignup } from "@/lib/analytics";
 
 export default function BlogCTA() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,14 +35,29 @@ export default function BlogCTA() {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
+        body: JSON.stringify({
+          email: email.trim(),
+          source: document.referrer ? "referral" : "direct",
+          page: window.location.pathname,
+        }),
       });
 
       if (!res.ok) throw new Error("Server error");
 
+      // Track newsletter signup in GA4 + Clarity
+      trackNewsletterSignup({
+        email: email.trim(),
+        page: window.location.pathname,
+      });
+
       setSubmitted(true);
       setEmail("");
     } catch {
+      // Still track the attempted signup
+      trackNewsletterSignup({
+        email: email.trim(),
+        page: window.location.pathname,
+      });
       setSubmitted(true);
       setEmail("");
     } finally {
@@ -128,7 +144,7 @@ export default function BlogCTA() {
             className="mt-8 max-w-lg mx-auto p-6 rounded-xl bg-white/[0.06] border border-[#D4A017]/30"
           >
             <p className="text-[#D4A017] font-semibold text-base">
-              Thank you for subscribing. We will keep you updated with industry insights.
+              You have successfully subscribed to export updates and industry insights.
             </p>
           </motion.div>
         ) : (
@@ -151,6 +167,8 @@ export default function BlogCTA() {
                 className="flex-1 px-5 py-3.5 bg-white/[0.06] border border-white/15 rounded-xl text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#D4A017]/60 focus:bg-white/[0.08] transition-all disabled:opacity-50"
               />
               <button
+                id="newsletter-submit"
+                data-tracking-id="newsletter-submit"
                 type="submit"
                 disabled={submitting}
                 className="group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017] rounded-xl whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"

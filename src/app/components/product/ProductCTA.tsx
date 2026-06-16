@@ -123,7 +123,7 @@ export default function ProductCTA({ product }: { product: Product }) {
                   </div>
                 </div>
                 <div className="px-8 py-8 space-y-4">
-                  <a href={`/rfq?product=${product.slug}&source=product-page`}
+                  <a id="product-cta-request-quote" data-tracking-id="product-cta-request-quote" href="/#request-quote"
                     onClick={() => trackOutboundClick({ type: "request_quote", label: "Product Page RFQ", product: product.name })}
                     className="w-full flex items-center justify-center gap-2.5 bg-[#1B4332] text-white font-bold text-sm py-4 rounded-xl hover:bg-[#143a28] active:scale-[0.99] transition-all duration-200 shadow-lg shadow-[#1B4332]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] focus-visible:ring-offset-2">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -131,7 +131,7 @@ export default function ProductCTA({ product }: { product: Product }) {
                     </svg>
                     Request Bulk Quotation
                   </a>
-                  <a href={`mailto:info@globalcocoexports.com?subject=Technical%20Datasheet%20Request%20-%20${encodeURIComponent(product.name)}`}
+                  <a id="product-cta-datasheet" data-tracking-id="product-cta-datasheet" href={`mailto:info@globalcocoexports.com?subject=Technical%20Datasheet%20Request%20-%20${encodeURIComponent(product.name)}`}
                     onClick={() => trackOutboundClick({ type: "download_datasheet", label: "Product Datasheet", product: product.name })}
                     className="w-full flex items-center justify-center gap-2 border border-[#1B4332]/20 text-[#1B4332] font-semibold text-sm py-3.5 rounded-xl hover:bg-[#1B4332]/5 hover:border-[#1B4332]/35 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] focus-visible:ring-offset-2">
                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">

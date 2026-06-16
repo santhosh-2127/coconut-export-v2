@@ -153,7 +153,9 @@ export default function FAQHero() {
                 </a>
 
                 <a
-                  href="/rfq"
+                  id="faq-hero-request-quote"
+                  data-tracking-id="faq-hero-request-quote"
+                  href="/#request-quote"
                   className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white/90 font-semibold text-sm tracking-[0.04em] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/40 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
                 >
                   Request Quotation

@@ -12,7 +12,7 @@ import "./globals.css";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["400", "500", "700"],
   variable: "--font-roboto",
   display: "swap",
   preload: true,
@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Global Coco Exports | Premium Coconut Export Solutions",
+    default: "Coconut Exporters India — Premium Coconut Exports Since 2015 | Global Coco Exports",
     template: "%s | Global Coco Exports",
   },
   description:

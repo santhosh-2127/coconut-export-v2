@@ -162,6 +162,8 @@ export default function ProductShowcaseGrid() {
 
                   {/* View Details Button */}
                   <Link
+                    id={`product-showcase-view-${product.slug}`}
+                    data-tracking-id={`product-showcase-view-${product.slug}`}
                     href={`/products/${product.slug}`}
                     onClick={() =>
                       trackOutboundClick({

@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useCountUp, parseStatValue } from "@/lib/countUp";
 
 /* ─── Animation variants ──────────────────────────────────────────────── */
@@ -20,6 +20,26 @@ const fadeUp = {
     transition: { duration: 0.7 },
   },
 };
+
+/* ─── Background slides ──────────────────────────────────────────────── */
+const backgroundSlides = [
+  {
+    image: "/images/products/fresh-brown-coconut/Fresh-Brown-image.png",
+    name: "Fresh Brown Coconut",
+  },
+  {
+    image: "/images/products/pollachi-fresh-coconut/hero.jpg",
+    name: "Pollachi Fresh Coconut",
+  },
+  {
+    image: "/images/products/copra-coconut/hero.jpg",
+    name: "Copra Coconut",
+  },
+  {
+    image: "/images/products/coco-peat/hero.jpg",
+    name: "Coco Peat",
+  },
+];
 
 /* ─── Trust indicators ────────────────────────────────────────────────── */
 const trustIndicators = [
@@ -79,11 +99,24 @@ function AnimatedMetric({
 }
 
 export default function AboutHero() {
-  const { scrollYProgress } = useScroll();
-  const imageParallax = useTransform(scrollYProgress, [0, 0.3], [0, -40]);
-
   const metricsRef = useRef<HTMLDivElement>(null);
   const isMetricsVisible = useInView(metricsRef, { once: true, margin: "-60px" });
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % backgroundSlides.length);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) return;
+    intervalRef.current = setInterval(nextSlide, 5000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPaused, nextSlide]);
 
   return (
     <section
@@ -176,7 +209,9 @@ export default function AboutHero() {
                 className="mt-8 flex flex-col sm:flex-row gap-4"
               >
                 <a
-                  href="/rfq"
+                  id="about-hero-request-quote"
+                  data-tracking-id="about-hero-request-quote"
+                  href="/#request-quote"
                   className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]"
                 >
                   <span className="relative z-10">Request Quote</span>
@@ -238,25 +273,34 @@ export default function AboutHero() {
               </motion.div>
             </motion.div>
 
-            {/* ═══ RIGHT: Visual — 2/5 cols ════════════════════════ */}
+            {/* ═══ RIGHT: Visual Carousel — 2/5 cols ═══════════════ */}
             <motion.div
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
               variants={fadeUp}
               className="lg:col-span-2 relative hidden lg:block select-none h-[480px] xl:h-[540px]"
             >
               <div className="absolute inset-0 rounded-[2px] overflow-hidden">
-                <motion.div
-                  style={{ y: imageParallax }}
-                  className="w-full h-[125%] -top-[12.5%] relative"
-                >
-                  <Image
-                    src="/images/EachPage/About-page-image.png"
-                    alt="Farmers harvesting premium coconuts in Tamil Nadu — direct farm sourcing from certified partner farms for global export"
-                    fill
-                    className="object-cover object-center"
-                    sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 38vw"
-                    priority
-                  />
-                </motion.div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={backgroundSlides[currentSlide].image}
+                      alt={`${backgroundSlides[currentSlide].name} — premium coconut export product from India`}
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 38vw"
+                      priority={currentSlide === 0}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A12]/90 via-[#0C1A12]/10 to-[#0C1A12]/40" />
                 <div className="absolute inset-0 bg-gradient-to-l from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40" />
                 <div className="absolute top-[15%] left-0 w-[2px] h-[30%] bg-gradient-to-b from-[#D4A017]/80 to-transparent" />
@@ -270,16 +314,7 @@ export default function AboutHero() {
                 className="absolute top-[15%] right-[8%]"
               >
                 <div className="flex items-center gap-3 px-4 py-3 rounded-lg backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.30)]">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#D4A017"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4A017" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
                   <span className="text-white text-[11px] lg:text-[13px] font-medium tracking-wide whitespace-nowrap">
@@ -296,16 +331,7 @@ export default function AboutHero() {
                 className="absolute bottom-[15%] right-[18%]"
               >
                 <div className="flex items-center gap-3 px-4 py-3 rounded-lg backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.30)]">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#D4A017"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4A017" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <line x1="2" y1="12" x2="22" y2="12" />
                     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
@@ -316,13 +342,32 @@ export default function AboutHero() {
                 </div>
               </motion.div>
 
+              {/* ── Product name badge (bottom-right) ── */}
+              <div className="absolute bottom-3 right-3 z-20">
+                <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-white/15 select-none">
+                  {backgroundSlides[currentSlide].name}
+                </span>
+              </div>
+
+              {/* ── Pagination dots ── */}
+              <div className="absolute bottom-3 left-3 z-20 flex items-center gap-1.5">
+                {backgroundSlides.map((slide, i) => (
+                  <button
+                    key={slide.name}
+                    onClick={() => setCurrentSlide(i)}
+                    className={`transition-all duration-500 rounded-full focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-[#D4A017] ${
+                      i === currentSlide
+                        ? "w-4 h-1.5 bg-[#D4A017]/60"
+                        : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                    }`}
+                    aria-label={`Show ${slide.name} background`}
+                  />
+                ))}
+              </div>
+
               <div className="absolute top-4 right-4 z-10 opacity-40">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M20 0H0M20 0v20M20 0L0 20"
-                    stroke="#D4A017"
-                    strokeWidth="1.5"
-                  />
+                  <path d="M20 0H0M20 0v20M20 0L0 20" stroke="#D4A017" strokeWidth="1.5" />
                 </svg>
               </div>
             </motion.div>

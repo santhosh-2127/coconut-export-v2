@@ -181,7 +181,9 @@ export default function ExportCapabilityShowcase() {
             </p>
           </div>
           <a
-            href="/rfq"
+            id="export-capability-cta-request-quote"
+            data-tracking-id="export-capability-cta-request-quote"
+            href="/#request-quote"
             className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3 bg-[#1B4332] text-white text-sm font-semibold tracking-wide hover:bg-[#143a28] active:scale-[0.98] transition-all duration-200 shadow-[0_4px_20px_rgba(27,67,50,0.20)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B4332]"
           >
             Request Bulk Quotation

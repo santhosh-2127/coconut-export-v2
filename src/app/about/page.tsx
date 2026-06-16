@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { BreadcrumbSchema } from "@/lib/schemas";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import AboutHero from "../components/sections/AboutHero";
 import AboutWhoWeAre from "../components/sections/AboutWhoWeAre";
-import AboutOperations from "../components/sections/AboutOperations";
-import AboutQuality from "../components/sections/AboutQuality";
-import AboutGlobalMarkets from "../components/sections/AboutGlobalMarkets";
-import AboutWhyBuyers from "../components/sections/AboutWhyBuyers";
-import AboutCertifications from "../components/sections/AboutCertifications";
-import AboutFinalCTA from "../components/sections/AboutFinalCTA";
+
+// ═══ Code-split: below-fold sections ═══
+const AboutOperations = dynamic(() => import("../components/sections/AboutOperations"), { ssr: true });
+const AboutQuality = dynamic(() => import("../components/sections/AboutQuality"), { ssr: true });
+const AboutGlobalMarkets = dynamic(() => import("../components/sections/AboutGlobalMarkets"), { ssr: true });
+const AboutWhyBuyers = dynamic(() => import("../components/sections/AboutWhyBuyers"), { ssr: true });
+const AboutCertifications = dynamic(() => import("../components/sections/AboutCertifications"), { ssr: true });
+const AboutFinalCTA = dynamic(() => import("../components/sections/AboutFinalCTA"), { ssr: true });
 
 export const metadata: Metadata = {
   title: "About Us — Coconut Export Company",    description:
@@ -55,6 +59,12 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "About", url: "/about" },
+        ]}
+      />
       <Navbar />
       <AboutHero />
       <AboutWhoWeAre />

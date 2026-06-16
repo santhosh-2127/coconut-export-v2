@@ -6,13 +6,14 @@ import { products } from "@/data/products";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import ProductHero from "@/app/components/product/ProductHero";
-import ProductOverview from "@/app/components/product/ProductOverview";
 import ProductSpecs from "@/app/components/product/ProductSpecs";
-import ProductGallery from "@/app/components/product/ProductGallery";
 import PackagingSection from "@/app/components/product/PackagingSection";
+import ProductQuality from "@/app/components/product/ProductQuality";
+import ProductExportAvailability from "@/app/components/product/ProductExportAvailability";
 import ApplicationsSection from "@/app/components/product/ApplicationsSection";
 import ProductCTA from "@/app/components/product/ProductCTA";
-import ExportCapabilityShowcase from "@/app/components/product/ExportCapabilityShowcase";
+import ProductFAQ from "@/app/components/product/ProductFAQ";
+import ProductContactCTA from "@/app/components/product/ProductContactCTA";
 
 export default function ProductPageClient() {
   const params = useParams();
@@ -41,14 +42,37 @@ export default function ProductPageClient() {
   return (
     <>
       <Navbar />
+
+      {/* SECTION 1: Hero — What is it? */}
       <ProductHero product={product} />
-      <ProductOverview product={product} />
+
+      {/* SECTION 2: Specifications — Technical details */}
       <ProductSpecs product={product} />
-      <ProductGallery product={product} />
+
+      {/* SECTION 3: Packaging — How is it packed? */}
       <PackagingSection product={product} />
+
+      {/* SECTION 4: Quality Inspection — How is quality maintained? */}
+      <ProductQuality
+        name={product.name}
+        certifications={product.certifications}
+      />
+
+      {/* SECTION 5: Export Availability — Shipping options */}
+      <ProductExportAvailability product={product} />
+
+      {/* SECTION 6: Applications — What is it used for? */}
       <ApplicationsSection product={product} />
+
+      {/* SECTION 7: Request Quote — How do I order? */}
       <ProductCTA product={product} />
-      <ExportCapabilityShowcase />
+
+      {/* SECTION 8: FAQ — Common buyer questions */}
+      <ProductFAQ product={product} />
+
+      {/* SECTION 9: Contact CTA */}
+      <ProductContactCTA product={product} />
+
       <Footer />
     </>
   );

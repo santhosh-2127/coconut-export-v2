@@ -1,0 +1,146 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+/* ─── Animation ───────────────────────────────────────────────────────── */
+const fadeUp = {
+  initial: { opacity: 0, y: 28 },
+  animate: { opacity: 1, y: 0 },
+};
+
+/* ─── Quality Stages ──────────────────────────────────────────────────── */
+const stages = [
+  {
+    step: "01",
+    title: "Farm-Level Screening",
+    description: "Coconuts are inspected at source for maturity, size uniformity, and visual integrity before harvest approval.",
+    icon: "🌴",
+  },
+  {
+    step: "02",
+    title: "Incoming Inspection",
+    description: "Every batch is checked at our ISO 22000 facility for weight calibration, shell integrity, and grade compliance before processing.",
+    icon: "🔍",
+  },
+  {
+    step: "03",
+    title: "Process Monitoring",
+    description: "Critical control points monitored throughout sorting, grading, and packing — temperature, humidity, hygiene, and product integrity.",
+    icon: "⚙️",
+  },
+  {
+    step: "04",
+    title: "Pre-Shipment Verification",
+    description: "Final container inspection including visual check, moisture testing, packaging integrity, and documentation verification before sealing.",
+    icon: "✅",
+  },
+];
+
+/* ─── Props ───────────────────────────────────────────────────────────── */
+interface ProductQualityProps {
+  name: string;
+  certifications: string[];
+}
+
+export default function ProductQuality({ name, certifications }: ProductQualityProps) {
+  return (
+    <section
+      id="quality"
+      aria-label="Quality Inspection"
+      className="relative py-14 md:py-18 overflow-hidden bg-white"
+    >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 opacity-[0.015]" style={{ backgroundImage: "repeating-linear-gradient(135deg, #1B4332 0px, #1B4332 1px, transparent 1px, transparent 60px)" }} />
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full bg-[#1B4332]/[0.04] blur-[100px]" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* ── Section Header ── */}
+        <motion.div
+          variants={fadeUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-12"
+        >
+          <div className="inline-flex items-center gap-2 mb-5">
+            <span className="w-8 h-px bg-[#D4A017]" />
+            <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">Quality Assurance</p>
+            <span className="w-8 h-px bg-[#D4A017]" />
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+            How We Maintain <span className="text-[#1B4332]">Quality</span>
+          </h2>
+          <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed">
+            Every shipment of {name} passes through our certified quality control process — from farm to container.
+          </p>
+        </motion.div>
+
+        {/* ── Quality Stages Grid ── */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+          {stages.map((stage, i) => (
+            <motion.div
+              key={stage.step}
+              variants={fadeUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+              className="relative bg-white border border-[#E5E7EB] hover:border-[#1B4332]/20 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(27,67,50,0.08)] group"
+            >
+              <div className="absolute top-0 inset-x-0 h-[2.5px] bg-[#D4A017] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+              <div className="p-6">
+                {/* Step number */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-2xl" aria-hidden="true">{stage.icon}</span>
+                  <span className="text-[10px] font-bold text-[#D4A017] uppercase tracking-[0.15em]">{stage.step}</span>
+                </div>
+                <h3 className="text-base font-bold text-[#111827] mb-2">{stage.title}</h3>
+                <p className="text-xs text-gray-500 leading-relaxed">{stage.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* ── Certifications & Testing Bar ── */}
+        <motion.div
+          variants={fadeUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="rounded-2xl border border-[#1B4332]/10 bg-[#1B4332]/[0.03] overflow-hidden"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E5E7EB]">
+            {certifications.map((cert) => (
+              <div key={cert} className="flex items-center gap-3 p-5 hover:bg-white/[0.04] transition-colors">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1B4332]/10 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-[#1B4332]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-.702 3.142 3.745 3.745 0 01-3.142.702 3.745 3.745 0 01-3.068 1.593c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 01-3.142-.702 3.745 3.745 0 01-.702-3.142A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 01.702-3.142 3.745 3.745 0 013.142-.702A3.745 3.745 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 013.142.702 3.745 3.745 0 01.702 3.142A3.745 3.745 0 0121 12z" />
+                  </svg>
+                </span>
+                <div>
+                  <p className="text-sm font-bold text-[#111827]">{cert}</p>
+                  <p className="text-[10px] text-gray-400">Certified &amp; Verified</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* ── Bottom Trust Note ── */}
+        <motion.p
+          variants={fadeUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+          className="text-center text-[11px] text-gray-400 mt-6"
+        >
+          Full lab reports and Certificate of Analysis provided with every shipment · Third-party inspection (SGS, Bureau Veritas) available on request
+        </motion.p>
+      </div>
+    </section>
+  );
+}

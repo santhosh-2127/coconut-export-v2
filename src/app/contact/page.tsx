@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { FAQSchema } from "@/lib/schemas";
+import dynamic from "next/dynamic";
+import { BreadcrumbSchema, FAQSchema } from "@/lib/schemas";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import ContactHero from "@/app/components/sections/ContactHero";
 import ContactOptions from "@/app/components/sections/ContactOptions";
-import ContactForm from "@/app/components/sections/ContactForm";
-import ContactServices from "@/app/components/sections/ContactServices";
-import ContactHours from "@/app/components/sections/ContactHours";
-import ContactLocation from "@/app/components/sections/ContactLocation";
-import ContactFAQ from "@/app/components/sections/ContactFAQ";
-import ContactFinalCTA from "@/app/components/sections/ContactFinalCTA";
+
+// ═══ Code-split: below-fold sections ═══
+const ContactForm = dynamic(() => import("@/app/components/sections/ContactForm"), { ssr: true });
+const ContactServices = dynamic(() => import("@/app/components/sections/ContactServices"), { ssr: true });
+const ContactHours = dynamic(() => import("@/app/components/sections/ContactHours"), { ssr: true });
+const ContactLocation = dynamic(() => import("@/app/components/sections/ContactLocation"), { ssr: true });
+const ContactFAQ = dynamic(() => import("@/app/components/sections/ContactFAQ"), { ssr: true });
+const ContactFinalCTA = dynamic(() => import("@/app/components/sections/ContactFinalCTA"), { ssr: true });
 
 export const metadata: Metadata = {
   title: "Contact Us — Bulk Coconut Export Inquiry",    description:
@@ -55,6 +58,12 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Contact", url: "/contact" },
+        ]}
+      />
       <Navbar />
       <main>
         <ContactHero />

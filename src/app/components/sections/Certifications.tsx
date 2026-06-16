@@ -1,589 +1,229 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef } from "react";
-import { certifications } from "@/data/company";
 
-/* ─────────────────────────────────────────────────────────────
-   CERTIFICATION METADATA
-   Each cert carries: description, issuer, scope, tier, colour
-   Tier controls visual hierarchy (featured = large, standard = normal)
-───────────────────────────────────────────────────────────────*/
-interface CertMeta {
-  description: string;
-  issuer: string;
-  scope: string;
-  tier: "featured" | "standard";
-  accent: string;       // border / ring colour
-  tagline: string;      // one-line authority statement
-  pillars: string[];    // 3 short compliance pillars shown as tags
-}
-
-const CERT_META: Record<string, CertMeta> = {
-  "ISO 22000": {
-    description:
-      "International standard for Food Safety Management Systems — the globally recognised benchmark for safe supply chains from farm to buyer.",
-    issuer: "ISO / International Organization for Standardization",
-    scope: "Food Safety Management System",
-    tier: "featured",
-    accent: "#D4A017",
-    tagline: "Global Food Safety Benchmark",
-    pillars: ["FSMS Framework", "Hazard Control", "Continual Improvement"],
-  },
-  HACCP: {
-    description:
-      "Hazard Analysis & Critical Control Points — the science-based approach mandated by international food trade bodies to control food-safety hazards.",
-    issuer: "Codex Alimentarius Commission (FAO / WHO)",
-    scope: "Preventive Food Safety Controls",
-    tier: "featured",
-    accent: "#2D7D9A",
-    tagline: "FAO / WHO Preventive Standard",
-    pillars: ["Hazard Analysis", "Critical Control Points", "Corrective Actions"],
-  },
-  APEDA: {
-    description:
-      "Registered exporter under the Agricultural & Processed Food Products Export Development Authority (APEDA), Government of India — mandatory for agricultural commodity exports.",
-    issuer: "Ministry of Commerce & Industry, Government of India",
-    scope: "Agricultural Export Compliance",
-    tier: "standard",
-    accent: "#4A9E6B",
-    tagline: "Govt. of India Registered Exporter",
-    pillars: ["Export Registration", "Agri. Compliance", "DGFT Aligned"],
-  },
-  "SGS Verified": {
-    description:
-      "Third-party product and process verification by SGS — the world's leading inspection, testing, and certification company with operations in 140+ countries.",
-    issuer: "SGS S.A. — Geneva, Switzerland",
-    scope: "Independent Third-Party Verification",
-    tier: "standard",
-    accent: "#9B59B6",
-    tagline: "World's #1 Inspection Body",
-    pillars: ["Lab Testing", "Process Audit", "140+ Countries"],
-  },
+/* ─── Animation ───────────────────────────────────────────────────────── */
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
 };
 
-/* ─────────────────────────────────────────────────────────────
-   SVG COMPLIANCE SEAL
-   Renders a professional-looking round seal for each cert.
-───────────────────────────────────────────────────────────────*/
-function ComplianceSeal({
-  name,
-  accent,
-  size = 96,
-}: {
-  name: string;
-  accent: string;
-  size?: number;
-}) {
-  const abbr = name.replace("SGS Verified", "SGS").split(" ")[0].toUpperCase();
-  const r = size / 2;
-  const innerR = r * 0.82;
-  const textR = r * 0.66;
-
-  // Build the circular text path
-  const circumference = 2 * Math.PI * textR;
-  const sealText = `✦  CERTIFIED  ✦  COMPLIANT  ✦  VERIFIED`;
-
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox={`0 0 ${size} ${size}`}
-      aria-hidden="true"
-      role="img"
-    >
-      <defs>
-        <radialGradient id={`sealBg-${abbr}`} cx="50%" cy="40%" r="60%">
-          <stop offset="0%" stopColor={accent} stopOpacity="0.15" />
-          <stop offset="100%" stopColor={accent} stopOpacity="0.04" />
-        </radialGradient>
-        <path
-          id={`sealCircle-${abbr}`}
-          d={`M ${r},${r} m -${textR},0 a ${textR},${textR} 0 1,1 ${textR * 2},0 a ${textR},${textR} 0 1,1 -${textR * 2},0`}
-        />
-        <filter id={`sealGlow-${abbr}`} x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="1.5" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      {/* Outer ring */}
-      <circle cx={r} cy={r} r={r - 2} fill="url(#sealBg-${abbr})" stroke={accent} strokeWidth="1.5" strokeOpacity="0.5" />
-      {/* Inner ring */}
-      <circle cx={r} cy={r} r={innerR} fill="none" stroke={accent} strokeWidth="0.8" strokeOpacity="0.35" strokeDasharray="3 2" />
-      {/* Circular text */}
-      <text
-        fontSize={size * 0.065}
-        fill={accent}
-        fillOpacity="0.7"
-        fontFamily="system-ui, sans-serif"
-        letterSpacing="1.4"
-        fontWeight="600"
-      >
-        <textPath href={`#sealCircle-${abbr}`} startOffset="0%">
-          {sealText}
-        </textPath>
-      </text>
-      {/* Cert abbreviation */}
-      <text
-        x={r}
-        y={r + size * 0.07}
-        textAnchor="middle"
-        fontSize={size * 0.18}
-        fill={accent}
-        fontWeight="700"
-        filter={`url(#sealGlow-${abbr})`}
-      >
-        {abbr}
-      </text>
-      {/* Check mark */}
-      <text
-        x={r}
-        y={r - size * 0.06}
-        textAnchor="middle"
-        fontSize={size * 0.14}
-        fill={accent}
-        fillOpacity="0.8"
-        fontFamily="system-ui"
-      >
-        ✓
+/* ─── SVG authority badge per cert ────────────────────────────────────── */
+const certIcons: Record<string, React.ReactNode> = {
+  "ISO 22000": (
+    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
+      <rect x="1" y="1" width="38" height="38" rx="8" stroke="#D4A017" strokeWidth="1.5" />
+      <rect x="4" y="4" width="32" height="32" rx="6" fill="#D4A017" fillOpacity="0.08" />
+      <text x="20" y="24" textAnchor="middle" fill="#D4A017" fontSize="11" fontWeight="800" fontFamily="system-ui">
+        ISO
       </text>
     </svg>
-  );
+  ),
+  HACCP: (
+    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
+      <rect x="1" y="1" width="38" height="38" rx="8" stroke="#2D7D9A" strokeWidth="1.5" />
+      <rect x="4" y="4" width="32" height="32" rx="6" fill="#2D7D9A" fillOpacity="0.08" />
+      <text x="20" y="24" textAnchor="middle" fill="#2D7D9A" fontSize="8" fontWeight="800" fontFamily="system-ui">
+        HACCP
+      </text>
+    </svg>
+  ),
+  APEDA: (
+    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
+      <rect x="1" y="1" width="38" height="38" rx="8" stroke="#4A9E6B" strokeWidth="1.5" />
+      <rect x="4" y="4" width="32" height="32" rx="6" fill="#4A9E6B" fillOpacity="0.08" />
+      <text x="20" y="24" textAnchor="middle" fill="#4A9E6B" fontSize="8" fontWeight="800" fontFamily="system-ui">
+        APEDA
+      </text>
+    </svg>
+  ),
+  "SGS Verified": (
+    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
+      <rect x="1" y="1" width="38" height="38" rx="8" stroke="#9B59B6" strokeWidth="1.5" />
+      <rect x="4" y="4" width="32" height="32" rx="6" fill="#9B59B6" fillOpacity="0.08" />
+      <text x="20" y="24" textAnchor="middle" fill="#9B59B6" fontSize="12" fontWeight="800" fontFamily="system-ui">
+        SGS
+      </text>
+    </svg>
+  ),
+};
+
+/* ─── Certification authority data ────────────────────────────────────── */
+interface CertAuthority {
+  name: string;
+  issuer: string;
+  whatItMeans: string;
+  whyItMatters: string;
+  accent: string;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   FEATURED CERT CARD  (ISO 22000, HACCP)
-   Large horizontal layout — left: seal, right: detail block
-───────────────────────────────────────────────────────────────*/
-function FeaturedCertCard({
-  name,
-  meta,
-  delay,
-}: {
-  name: string;
-  meta: CertMeta;
-  delay: number;
-}) {
+const certs: CertAuthority[] = [
+  {
+    name: "ISO 22000",
+    issuer: "International Organization for Standardization",
+    whatItMeans:
+      "International standard for Food Safety Management Systems. Every batch is processed under certified protocols — from farm intake to container loading.",
+    whyItMatters:
+      "Accepted by food safety authorities across 140+ countries. Your import clearance is simplified because our system meets global benchmarks.",
+    accent: "#D4A017",
+  },
+  {
+    name: "HACCP",
+    issuer: "Codex Alimentarius Commission (FAO / WHO)",
+    whatItMeans:
+      "Hazard Analysis & Critical Control Points. Every production stage is monitored — temperature, humidity, hygiene, and product integrity — to prevent food safety risks.",
+    whyItMatters:
+      "Preventive controls mean zero recalls, zero contamination risks, and full traceability for every shipment. Your supply chain is protected.",
+    accent: "#2D7D9A",
+  },
+  {
+    name: "APEDA",
+    issuer: "Ministry of Commerce & Industry, Government of India",
+    whatItMeans:
+      "Registered with India's agricultural export authority — mandatory for all agricultural commodity exporters. Our registration is current and fully compliant.",
+    whyItMatters:
+      "Hassle-free customs clearance for Indian agricultural exports. Every shipment meets Government of India export regulations, so your cargo never gets held up.",
+    accent: "#4A9E6B",
+  },
+  {
+    name: "SGS Verified",
+    issuer: "SGS S.A. — Geneva, Switzerland",
+    whatItMeans:
+      "Third-party verification by SGS — the world's leading inspection, testing, and certification company operating in 140+ countries with 2,600+ offices.",
+    whyItMatters:
+      "Independent verification you can present to your QA team with confidence. Lab reports, process audits, and inspection certificates available for every order.",
+    accent: "#9B59B6",
+  },
+];
+
+/* ─── Authority Card ──────────────────────────────────────────────────── */
+function AuthorityCard({ cert, index }: { cert: CertAuthority; index: number }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 28 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.65, delay, ease: "easeOut" }}
-      className="group relative rounded-2xl overflow-hidden border bg-white"
-      style={{ borderColor: `${meta.accent}22` }}
-      aria-label={`${name} certification`}
+      variants={fadeUp}
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+      className="group relative bg-white border border-[#E5E7EB] rounded-xl overflow-hidden hover:border-[#1B4332]/15 hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] transition-all duration-300"
     >
       {/* Top accent stripe */}
       <div
-        className="absolute top-0 left-0 right-0 h-[3px]"
-        style={{ background: `linear-gradient(90deg, ${meta.accent} 0%, ${meta.accent}44 100%)` }}
+        className="absolute top-0 left-0 right-0 h-[3px] opacity-70"
+        style={{ background: `linear-gradient(90deg, ${cert.accent} 0%, ${cert.accent}33 100%)` }}
       />
 
-      {/* Subtle paper texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23${meta.accent.replace('#', '')}' opacity='0.4'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23000' opacity='0.08'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23000' opacity='0.05'/%3E%3C/svg%3E")`,
-        }}
-      />
+      <div className="relative p-5 md:p-6">
+        {/* Header row — icon + name + issuer */}
+        <div className="flex items-start gap-4 mb-4">
+          <div className="flex-shrink-0 mt-0.5">
+            {certIcons[cert.name]}
+          </div>
+          <div className="min-w-0">
+            <h3 className="text-lg font-bold text-[#111827] leading-tight">
+              {cert.name}
+            </h3>
+            <p className="text-[11px] text-gray-400 mt-0.5 font-medium">
+              {cert.issuer}
+            </p>
+          </div>
+        </div>
 
-      <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 md:p-8">
-        {/* Seal */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: delay + 0.15, ease: "backOut" }}
-          className="flex-shrink-0"
-        >
-          <ComplianceSeal name={name} accent={meta.accent} size={108} />
-        </motion.div>
-
-        {/* Content */}
-        <div className="flex-1 min-w-0 text-center sm:text-left">
-          {/* Tagline badge */}
-          <span
-            className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[3px] font-bold px-3 py-1 rounded-full mb-3"
-            style={{ background: `${meta.accent}14`, color: meta.accent }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-              style={{ background: meta.accent }}
-            />
-            {meta.tagline}
-          </span>
-
-          <h3 className="text-xl md:text-2xl font-bold text-[#111827] mb-2 tracking-tight">
-            {name}
-          </h3>
-          <p className="text-gray-500 text-sm leading-relaxed mb-4 max-w-lg">
-            {meta.description}
+        {/* What it means */}
+        <div className="mb-3">
+          <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-gray-400 mb-1">
+            What it means
           </p>
-
-          {/* Issuer */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
-            <div className="flex items-center gap-2 text-xs text-gray-400">
-              <span
-                className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 text-[8px] font-bold"
-                style={{ background: `${meta.accent}18`, color: meta.accent }}
-              >
-                ✦
-              </span>
-              <span className="font-medium text-gray-600">{meta.issuer}</span>
-            </div>
-          </div>
-
-          {/* Compliance pillars */}
-          <div className="flex flex-wrap gap-2">
-            {meta.pillars.map((p) => (
-              <span
-                key={p}
-                className="text-[11px] font-semibold px-2.5 py-1 rounded-md border"
-                style={{
-                  color: meta.accent,
-                  borderColor: `${meta.accent}30`,
-                  background: `${meta.accent}08`,
-                }}
-              >
-                {p}
-              </span>
-            ))}
-          </div>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            {cert.whatItMeans}
+          </p>
         </div>
 
-        {/* Verified badge — top-right */}
-        <div className="absolute top-5 right-5 flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-bold text-emerald-600 bg-emerald-50 border border-emerald-200/60 rounded-full px-2.5 py-1">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-          </span>
-          Verified
+        {/* Why it matters */}
+        <div className="p-3 rounded-lg" style={{ background: `${cert.accent}08`, border: `1px solid ${cert.accent}18` }}>
+          <p className="text-[10px] uppercase tracking-[0.15em] font-bold mb-1" style={{ color: cert.accent }}>
+            Why it matters to you
+          </p>
+          <p className="text-[13px] leading-snug font-medium text-[#111827]">
+            {cert.whyItMatters}
+          </p>
         </div>
       </div>
     </motion.article>
   );
 }
 
-/* ─────────────────────────────────────────────────────────────
-   STANDARD CERT CARD  (APEDA, SGS Verified)
-   Compact stacked card — seal top, content below
-───────────────────────────────────────────────────────────────*/
-function StandardCertCard({
-  name,
-  meta,
-  delay,
-}: {
-  name: string;
-  meta: CertMeta;
-  delay: number;
-}) {
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className="group relative rounded-2xl overflow-hidden border bg-white flex flex-col"
-      style={{ borderColor: `${meta.accent}22` }}
-      aria-label={`${name} certification`}
-    >
-      {/* Accent stripe */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[3px]"
-        style={{ background: `linear-gradient(90deg, ${meta.accent} 0%, ${meta.accent}44 100%)` }}
-      />
-
-      {/* Header area */}
-      <div
-        className="relative flex flex-col items-center pt-6 pb-4 px-6"
-        style={{ background: `linear-gradient(180deg, ${meta.accent}08 0%, transparent 100%)` }}
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.65 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: delay + 0.18, ease: "backOut" }}
-        >
-          <ComplianceSeal name={name} accent={meta.accent} size={84} />
-        </motion.div>
-
-        {/* Verified badge */}
-        <div className="absolute top-4 right-4 flex items-center gap-1 text-[9px] uppercase tracking-widest font-bold text-emerald-600 bg-emerald-50 border border-emerald-200/60 rounded-full px-2 py-0.5">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-          </span>
-          Active
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col flex-1 px-6 pb-6 pt-1">
-        {/* Tagline */}
-        <span
-          className="inline-flex self-center items-center gap-1 text-[9px] uppercase tracking-[2.5px] font-bold px-2.5 py-1 rounded-full mb-3"
-          style={{ background: `${meta.accent}12`, color: meta.accent }}
-        >
-          {meta.tagline}
-        </span>
-
-        <h3 className="text-lg font-bold text-[#111827] mb-2 text-center tracking-tight">
-          {name}
-        </h3>
-        <p className="text-gray-500 text-xs leading-relaxed mb-4 text-center flex-1">
-          {meta.description}
-        </p>
-
-        {/* Issuer */}
-        <p className="text-[10px] text-center text-gray-400 mb-4 font-medium">
-          {meta.issuer}
-        </p>
-
-        {/* Pillars */}
-        <div className="flex flex-wrap justify-center gap-1.5">
-          {meta.pillars.map((p) => (
-            <span
-              key={p}
-              className="text-[10px] font-semibold px-2 py-0.5 rounded border"
-              style={{
-                color: meta.accent,
-                borderColor: `${meta.accent}28`,
-                background: `${meta.accent}06`,
-              }}
-            >
-              {p}
-            </span>
-          ))}
-        </div>
-      </div>
-    </motion.article>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   COMPLIANCE NARRATIVE BAR
-   Horizontal progress-style bar explaining the trust chain
-───────────────────────────────────────────────────────────────*/
-const NARRATIVE = [
-  { step: "01", label: "Quality Assurance", sub: "ISO 22000 FSMS" },
-  { step: "02", label: "Food Safety Standards", sub: "HACCP Preventive Controls" },
-  { step: "03", label: "Export Compliance", sub: "APEDA Registered" },
-  { step: "04", label: "Independent Verification", sub: "SGS Third-Party Audit" },
-];
-
-function ComplianceNarrative() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.15 }}
-      className="mb-8 md:mb-10"
-      aria-label="Compliance assurance chain"
-    >
-      <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-0 rounded-2xl overflow-hidden border border-[#1B4332]/10 bg-white shadow-sm">
-        {NARRATIVE.map((item, i) => (
-          <div
-            key={item.step}
-            className="relative flex-1 flex flex-col sm:flex-row items-center gap-3 px-4 py-3 sm:py-4 group"
-          >
-            {/* Connector line between items */}
-            {i < NARRATIVE.length - 1 && (
-              <div
-                className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 z-10"
-                aria-hidden="true"
-              >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M2 9h12M10 5l4 4-4 4" stroke="#D4A017" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-            )}
-
-            {/* Step number */}
-            <span
-              className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black text-white"
-              style={{ background: "linear-gradient(135deg, #1B4332 0%, #2d6a4f 100%)" }}
-              aria-hidden="true"
-            >
-              {item.step}
-            </span>
-
-            {/* Text */}
-            <div className="text-center sm:text-left">
-              <p className="text-xs font-bold text-[#111827] leading-snug">{item.label}</p>
-              <p className="text-[10px] text-[#D4A017] font-semibold uppercase tracking-widest leading-snug mt-0.5">
-                {item.sub}
-              </p>
-            </div>
-
-            {/* Horizontal divider (mobile only) */}
-            {i < NARRATIVE.length - 1 && (
-              <div className="sm:hidden absolute bottom-0 left-5 right-5 h-px bg-gray-100" aria-hidden="true" />
-            )}
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   MAIN SECTION
-───────────────────────────────────────────────────────────────*/
+/* ─── Section ─────────────────────────────────────────────────────────── */
 export default function Certifications() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Split by tier
-  const featured = certifications.filter((c) => CERT_META[c.name]?.tier === "featured");
-  const standard = certifications.filter((c) => CERT_META[c.name]?.tier === "standard");
-
   return (
     <section
       id="certifications"
-      ref={sectionRef}
-      className="relative py-10 md:py-12 overflow-hidden"
-      style={{ background: "linear-gradient(170deg, #FAFAFA 0%, #f4f8f5 50%, #FAFAFA 100%)" }}
-      aria-label="Certifications and Compliance"
+      aria-label="Certifications and Regulatory Compliance"
+      className="relative py-14 md:py-18 overflow-hidden bg-[#FAFAFA]"
     >
-      {/* ── Watermark — large faded "CERTIFIED" text ── */}
-      <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
-        aria-hidden="true"
-      >
-        <span
-          className="text-[22vw] font-black uppercase tracking-widest text-[#1B4332]/[0.025] whitespace-nowrap"
-        >
-          CERTIFIED
-        </span>
-      </div>
-
-      {/* ── Subtle top/bottom edge lines ── */}
+      {/* Subtle top/bottom edge lines */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1B4332]/15 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1B4332]/15 to-transparent" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
-
+      <div className="relative max-w-7xl mx-auto px-6">
         {/* ── Section Header ── */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65 }}
-          className="text-center mb-8 md:mb-10"
+          variants={fadeUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-10"
         >
-          {/* Pre-label */}
           <div className="inline-flex items-center gap-2 mb-5">
-            <div className="w-8 h-px bg-[#D4A017]" />
+            <span className="w-8 h-px bg-[#D4A017]" />
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">
-              Compliance Center
+              Regulatory Authority
             </p>
-            <div className="w-8 h-px bg-[#D4A017]" />
+            <span className="w-8 h-px bg-[#D4A017]" />
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
-            Our{" "}
-            <span className="text-[#1B4332]">Certifications</span>
-            <br className="hidden sm:block" />{" "}
-            <span className="text-[#D4A017]">& Compliance</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
+            Internationally{" "}
+            <span className="text-[#1B4332]">Certified</span>
+            <br />
+            <span className="text-[#D4A017]">Globally Compliant</span>
           </h2>
-          <p className="mt-5 text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Every shipment carries ISO 22000, HACCP, APEDA, and SGS certified compliance — from food safety to third-party audit verification.
+          <p className="mt-4 text-gray-500 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+            Every shipment carries four internationally recognised certifications — from food safety management to government export compliance and third-party verification.
           </p>
-
-          {/* Trust signal pills */}
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            {[
-              { icon: "🌐", text: "Globally Recognised" },
-              { icon: "🔬", text: "Lab Tested" },
-              { icon: "📋", text: "Audit Ready" },
-              { icon: "✅", text: "Export Compliant" },
-            ].map((pill) => (
-              <span
-                key={pill.text}
-                className="flex items-center gap-1.5 text-[11px] font-semibold text-[#1B4332] bg-[#1B4332]/6 border border-[#1B4332]/12 rounded-full px-3 py-1.5"
-              >
-                <span aria-hidden="true">{pill.icon}</span>
-                {pill.text}
-              </span>
-            ))}
-          </div>
         </motion.div>
 
-        {/* ── Compliance Chain Narrative ── */}
-        <ComplianceNarrative />
-
-        {/* ── Featured Certifications (ISO 22000, HACCP) ── */}
-        <div className="space-y-4 mb-4">
-          {featured.map((cert, i) => {
-            const meta = CERT_META[cert.name];
-            if (!meta) return null;
-            return (
-              <FeaturedCertCard
-                key={cert.name}
-                name={cert.name}
-                meta={meta}
-                delay={0.25 + i * 0.12}
-              />
-            );
-          })}
+        {/* ── Certifications Grid ── */}
+        <div className="grid sm:grid-cols-2 gap-5">
+          {certs.map((cert, i) => (
+            <AuthorityCard key={cert.name} cert={cert} index={i} />
+          ))}
         </div>
 
-        {/* ── Standard Certifications (APEDA, SGS) ── */}
-        <div className="grid sm:grid-cols-2 gap-5 mb-8 md:mb-12">
-          {standard.map((cert, i) => {
-            const meta = CERT_META[cert.name];
-            if (!meta) return null;
-            return (
-              <StandardCertCard
-                key={cert.name}
-                name={cert.name}
-                meta={meta}
-                delay={0.5 + i * 0.12}
-              />
-            );
-          })}
-        </div>
-
-        {/* ── Bottom Compliance Footer Bar ── */}
+        {/* ── Authority Statement Bar ── */}
         <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.75 }}
-          className="rounded-2xl border border-[#1B4332]/10 bg-[#1B4332] overflow-hidden"
+          variants={fadeUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-8 rounded-xl border border-[#1B4332]/10 bg-[#1B4332] p-5 md:p-6"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-            {[
-            {
-              icon: "🏛️",
-              title: "Audit-Ready Documentation",
-              desc: "Compliance records available for buyer audits, phytosanitary checks, and customs clearance.",
-            },
-            {
-              icon: "🔏",
-              title: "Certified at Every Stage",
-              desc: "From farm sourcing to processing, packaging, and export — every step under certified protocols.",
-            },
-            {
-              icon: "📞",
-              title: "Compliance Queries Welcome",
-              desc: "We can provide certification documents and scope letters to your procurement or QA team.",
-            },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="flex items-start gap-4 p-5 md:p-6 hover:bg-white/[0.04] transition-colors"
-              >
-                <span className="text-2xl flex-shrink-0 mt-0.5" aria-hidden="true">
-                  {item.icon}
-                </span>
-                <div>
-                  <p className="text-white font-semibold text-sm mb-1">{item.title}</p>
-                  <p className="text-white/50 text-xs leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#D4A017]/20 flex items-center justify-center">
+              <svg viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 text-[#D4A017]">
+                <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm3.95 4.79l-4.5 4.5a.5.5 0 01-.7 0l-2.5-2.5a.5.5 0 11.7-.7L7 9.29l4.15-4.15a.5.5 0 11.7.7z" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-white font-semibold text-sm mb-0.5">Every shipment is compliance-ready</p>
+              <p className="text-white/60 text-xs leading-relaxed">
+                We provide certification documents, lab reports, and compliance records with every order — giving you and your QA team full confidence at customs clearance.
+              </p>
+            </div>
           </div>
         </motion.div>
-
       </div>
     </section>
   );

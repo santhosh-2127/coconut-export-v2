@@ -80,7 +80,7 @@ export default function GlobalNetworkHero() {
 
             <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row gap-4">
               <a
-                href="/rfq"
+                href="/#request-quote"
                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]"
               >
                 <span className="relative z-10">Request Quote</span>

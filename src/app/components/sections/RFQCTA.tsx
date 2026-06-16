@@ -232,7 +232,7 @@ export default function RFQCTA() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
           >
-            <div                  onClick={() => {
+            <div id="rfq-homepage-cta-card" data-tracking-id="rfq-homepage-cta-card" onClick={() => {
                     trackOutboundClick({ type: "request_quote", label: "Homepage RFQ CTA Card" });
                     window.location.href = '/rfq';
                   }}
@@ -288,6 +288,8 @@ export default function RFQCTA() {
 
                   {/* Secondary CTA */}
                   <button
+                    id="rfq-homepage-schedule-consultation"
+                    data-tracking-id="rfq-homepage-schedule-consultation"
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();

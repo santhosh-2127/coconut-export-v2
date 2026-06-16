@@ -8,15 +8,24 @@ interface Props {
   children: React.ReactNode;
 }
 
+const productTitleOverrides: Record<string, string> = {
+  "fresh-brown-coconut": "Fresh Brown Coconut Exporter — Premium Grade A Bulk Supply",
+  "pollachi-fresh-coconut": "Pollachi Coconut Supplier — Premium Sweet Water Exporter",
+  "high-grade-coconut": "Bulk Coconut Supplier — Triple-A Premium Export Quality",
+  "copra-coconut": "Copra Exporter — Industrial Grade 65-68% Oil Content",
+  "coco-peat": "Coco Peat Exporter — Low EC Horticultural Grade Bulk Supply",
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = products.find((p) => p.slug === slug);
   if (!product) return { title: "Product Not Found" };
 
   const ogImage = product.images.hero?.src ?? "/images/og-image.jpg";
+  const seoTitle = productTitleOverrides[product.slug] ?? `${product.name} — Premium Bulk Exporter`;
 
   return {
-    title: `${product.name} — Premium Bulk Exporter`,
+    title: seoTitle,
     description: product.shortDescription,
     keywords: [
       `${product.name.toLowerCase()} exporter`,
@@ -28,24 +37,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${product.name.toLowerCase()} export price`,
     ],
     openGraph: {
-      title: `${product.name} — Premium Bulk Exporter | Global Coco Exports`,
+      title: `${seoTitle} | Global Coco Exports`,
       description: product.shortDescription,
       images: [
         {
           url: ogImage,
           width: 1200,
           height: 1400,
-          alt: `${product.name} — Premium Bulk Exporter | Global Coco Exports`,
+          alt: `${product.name} — Premium Export Quality | Global Coco Exports`,
         },
       ],
       url: `https://www.globalcocoexports.com/products/${product.slug}`,
       type: "website",
       locale: "en_IN",
-    siteName: "Global Coco Exports",
+      siteName: "Global Coco Exports",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} — Premium Bulk Exporter | Global Coco Exports`,
+      title: `${seoTitle} | Global Coco Exports`,
       description: product.shortDescription,
       images: [ogImage],
     },

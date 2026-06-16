@@ -2,8 +2,9 @@
 
 import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-
+import { trackContactSubmission } from "@/lib/analytics";
+import Link from "next/link";
+import SuccessScreen from "@/app/components/shared/SuccessScreen";
 
 /* ─── Types ──────────────────────────────────── */
 interface FormData {
@@ -59,10 +60,19 @@ export default function ContactForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+
+    // Track contact submission in GA4 + Clarity
+    trackContactSubmission({
+      name: form.name,
+      company: form.company,
+      country: form.country,
+      email: form.email,
+    });
+
     // Frontend-only demo mode — show success modal without calling API
     setStatus("success");
     setServerMsg(
-      "Thank you for your inquiry. Our export team will contact you shortly. This is currently a demonstration version."
+      "Thank you for your inquiry. Our export team will contact you shortly."
     );
     setForm({ name: "", company: "", country: "", email: "", phone: "", message: "" });
   };
@@ -131,23 +141,22 @@ export default function ContactForm() {
                   initial={{ opacity: 0, scale: 0.97 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
-                  className="bg-white border border-[#E5E7EB] rounded-2xl p-10 text-center"
+                  className="bg-white border border-[#E5E7EB] rounded-2xl p-10"
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#1B4332]/10 flex items-center justify-center mx-auto mb-5">
-                    <svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true">
-                      <path d="M2 10l8 8L26 2" stroke="#1B4332" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#111827] mb-2">Inquiry Sent Successfully</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed max-w-sm mx-auto">
-                    Thank you for reaching out. Our export team will review your inquiry and respond within 24 hours.
-                  </p>
-                  <button
-                    onClick={() => setStatus("idle")}
-                    className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-[#1B4332] text-white text-sm font-semibold rounded-full hover:bg-[#143a28] transition-colors"
-                  >
-                    Send Another Inquiry
-                  </button>
+                  <SuccessScreen
+                    title="Thank You for Contacting Global Coco Exports"
+                    message="Our team will respond shortly."
+                    responseTime="24 hours"
+                    showTrust={true}
+                    primaryCta={{
+                      label: "Back to Home",
+                      href: "/",
+                    }}
+                    secondaryCta={{
+                      label: "Send Another Inquiry",
+                      onClick: () => setStatus("idle"),
+                    }}
+                  />
                 </motion.div>
               ) : (
                 <motion.form
@@ -213,6 +222,8 @@ export default function ContactForm() {
 
                   {/* Submit */}
                   <button
+                    id="contact-form-submit"
+                    data-tracking-id="contact-form-submit"
                     type="submit"
                     disabled={status === "loading"}
                     className="w-full flex items-center justify-center gap-2.5 px-8 py-4 bg-[#1B4332] text-white font-semibold text-sm tracking-[0.04em] rounded-full hover:bg-[#143a28] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"

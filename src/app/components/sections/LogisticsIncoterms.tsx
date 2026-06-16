@@ -165,7 +165,7 @@ export default function LogisticsIncoterms() {
             <span className="text-xl" aria-hidden="true">🚢</span>
             <p className="text-sm text-gray-600">
               Not sure which incoterm suits your needs?{" "}
-              <a href="/rfq" className="text-[#1B4332] font-semibold underline underline-offset-4 hover:text-[#D4A017] transition-colors">
+              <a id="logistics-incoterms-advisory" data-tracking-id="logistics-incoterms-advisory" href="/#request-quote" className="text-[#1B4332] font-semibold underline underline-offset-4 hover:text-[#D4A017] transition-colors">
                 Our team can advise you
               </a>
             </p>

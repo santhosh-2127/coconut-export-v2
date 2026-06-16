@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { fadeUp } from "@/constants/animations";
 
 /* ─── Animation variants ──────────────────────────────────────────────── */
@@ -11,6 +11,26 @@ const container = {
     transition: { staggerChildren: 0.12 },
   },
 };
+
+/* ─── Background slides ──────────────────────────────────────────────── */
+const backgroundSlides = [
+  {
+    image: "/images/products/fresh-brown-coconut/Fresh-Brown-image.png",
+    name: "Fresh Brown Coconut",
+  },
+  {
+    image: "/images/products/pollachi-fresh-coconut/hero.jpg",
+    name: "Pollachi Fresh Coconut",
+  },
+  {
+    image: "/images/products/copra-coconut/hero.jpg",
+    name: "Copra Coconut",
+  },
+  {
+    image: "/images/products/coco-peat/hero.jpg",
+    name: "Coco Peat",
+  },
+];
 
 /* ─── Trust indicators ────────────────────────────────────────────────── */
 const trustIndicators = [
@@ -29,8 +49,21 @@ const trustMetrics = [
 ];
 
 export default function LogisticsHero() {
-  const { scrollYProgress } = useScroll();
-  const imageParallax = useTransform(scrollYProgress, [0, 0.3], [0, -40]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % backgroundSlides.length);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) return;
+    intervalRef.current = setInterval(nextSlide, 5000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPaused, nextSlide]);
 
   return (
     <section
@@ -100,7 +133,9 @@ export default function LogisticsHero() {
 
               <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-4">
                 <a
-                  href="/rfq"
+                  id="logistics-hero-request-quote"
+                  data-tracking-id="logistics-hero-request-quote"
+                  href="/#request-quote"
                   className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]"
                 >
                   <span className="relative z-10">Request Quote</span>
@@ -132,19 +167,34 @@ export default function LogisticsHero() {
               </motion.div>
             </motion.div>
 
-            {/* RIGHT: Visual */}
-            <motion.div variants={fadeUp} className="lg:col-span-2 relative hidden lg:block select-none h-[520px] xl:h-[600px]">
+            {/* RIGHT: Visual Carousel */}
+            <motion.div
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              variants={fadeUp}
+              className="lg:col-span-2 relative hidden lg:block select-none h-[520px] xl:h-[600px]"
+            >
               <div className="absolute inset-0 rounded-[2px] overflow-hidden">
-                <motion.div style={{ y: imageParallax }} className="w-full h-[125%] -top-[12.5%] relative">
-                  <Image
-                    src="/images/logistics-hero.jpg"
-                    alt="Container port and global shipping operations — multi-port logistics from Chennai, Tuticorin, and Nhava Sheva"
-                    fill
-                    className="object-cover object-center"
-                    sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 38vw"
-                    priority
-                  />
-                </motion.div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={backgroundSlides[currentSlide].image}
+                      alt={`${backgroundSlides[currentSlide].name} — premium coconut export product shipped worldwide`}
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 38vw"
+                      priority={currentSlide === 0}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A12]/90 via-[#0C1A12]/10 to-[#0C1A12]/40" />
                 <div className="absolute inset-0 bg-gradient-to-l from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40" />
                 <div className="absolute top-[15%] left-0 w-[2px] h-[30%] bg-gradient-to-b from-[#D4A017]/80 to-transparent" />
@@ -167,6 +217,29 @@ export default function LogisticsHero() {
                   <span className="text-white text-[11px] lg:text-[13px] font-medium tracking-wide whitespace-nowrap">Full Documentation</span>
                 </div>
               </motion.div>
+
+              {/* ── Product name badge (bottom-right) ── */}
+              <div className="absolute bottom-3 right-3 z-20">
+                <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-white/15 select-none">
+                  {backgroundSlides[currentSlide].name}
+                </span>
+              </div>
+
+              {/* ── Pagination dots ── */}
+              <div className="absolute bottom-3 left-3 z-20 flex items-center gap-1.5">
+                {backgroundSlides.map((slide, i) => (
+                  <button
+                    key={slide.name}
+                    onClick={() => setCurrentSlide(i)}
+                    className={`transition-all duration-500 rounded-full focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-[#D4A017] ${
+                      i === currentSlide
+                        ? "w-4 h-1.5 bg-[#D4A017]/60"
+                        : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                    }`}
+                    aria-label={`Show ${slide.name} background`}
+                  />
+                ))}
+              </div>
 
               <div className="absolute top-4 right-4 z-10 opacity-40">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">

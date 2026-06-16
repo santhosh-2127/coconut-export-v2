@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { companyInfo } from "@/data/company";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 const WHATSAPP_NUMBER = (companyInfo.whatsapp ?? companyInfo.phone ?? "").replace(/\D/g, "");
 
@@ -17,6 +18,13 @@ export default function WhatsAppWidget() {
     const timer = setTimeout(() => setVisible(true), 300);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleWhatsAppClick = () => {
+    trackWhatsAppClick({
+      label: "floating_widget",
+      page: window.location.pathname,
+    });
+  };
 
   return (
     <div
@@ -43,9 +51,12 @@ export default function WhatsAppWidget() {
         </div>
 
         <a
+          id="whatsapp-widget"
+          data-tracking-id="whatsapp-widget"
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleWhatsAppClick}
           aria-label="Chat with Export Team on WhatsApp"
           className="relative flex items-center justify-center w-14 h-14 lg:w-16 lg:h-16 rounded-full shadow-lg shadow-black/30 hover:shadow-xl hover:shadow-black/40 bg-[#25D366] hover:bg-[#20BD5D] transition-all duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a1f16]"
           style={{

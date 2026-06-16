@@ -13,7 +13,7 @@ const slides = [
     image: "/images/products/fresh-brown-coconut/Fresh-Brown-image.png",
     cta: [
       { label: "Explore Products", href: "/products/fresh-brown-coconut", primary: false },
-      { label: "Request Quote", href: "/#contact", primary: true },
+      { label: "Request Quote", href: "/#request-quote", primary: true },
     ],
   },
   {

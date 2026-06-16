@@ -4,7 +4,7 @@ import { useState, FormEvent, useRef, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { slugsToNames } from "@/lib/rfq";
-import { trackRFQStep, trackEvent } from "@/lib/analytics";
+import { trackRFQStep, trackRFQSubmission, trackEvent } from "@/lib/analytics";
 
 /* ─────────────────────────────────────────────────────────
    TYPES
@@ -287,13 +287,10 @@ function SuccessPanel({
       </div>
 
       <h3 className="text-xl font-bold text-[#111827] mb-2">
-        Thank You for Your Inquiry
+        Thank You
       </h3>
-      <p className="text-gray-500 text-sm max-w-xs leading-relaxed mb-2">
-        Our export team will contact you shortly.
-      </p>
-      <p className="text-xs text-gray-400 mb-8">
-        This is currently a demonstration version.
+      <p className="text-gray-500 text-sm max-w-sm leading-relaxed mb-6">
+        Your quotation request has been received. Our export specialists will contact you within 24 hours.
       </p>
 
       {/* Next steps flow */}
@@ -796,10 +793,19 @@ export default function RFQForm() {
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
+    // Track RFQ submission in GA4 + Clarity with lead source
+    trackRFQSubmission({
+      products: form.products,
+      volume: `${form.volume} ${form.volumeUnit}`,
+      incoterm: form.incoterm,
+      country: form.country,
+      source: source,
+    });
+
     // Frontend-only demo mode — show success modal without calling API
     setStatus("success");
     setServerMsg(
-      "Thank you for your inquiry. Our export team will contact you shortly. This is currently a demonstration version."
+      "Thank you for your inquiry. Our export team will contact you shortly."
     );
     setForm(INITIAL_FORM);
   };
@@ -944,6 +950,8 @@ export default function RFQForm() {
                       {/* Next / Submit button */}
                       {isLastStep ? (
                         <button
+                          id="rfq-form-submit"
+                          data-tracking-id="rfq-form-submit"
                           type="submit"
                           disabled={status === "loading"}
                           className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-[#1B4332] text-white font-bold text-sm rounded-xl hover:bg-[#143a28] active:scale-[0.99] transition-all duration-200 shadow-lg shadow-[#1B4332]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B4332] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"

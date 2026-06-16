@@ -9,12 +9,12 @@ import { navLinks } from "@/constants/navLinks";
 ───────────────────────────────────────────── */
 
 const EXPORT_SUPPORT = [
-  { label: "Bulk Orders",              href: "/#contact" },
-  { label: "Export Consultation",      href: "/#contact" },
+  { label: "Bulk Orders",              href: "/#request-quote" },
+  { label: "Export Consultation",      href: "/#request-quote" },
   { label: "FAQ — Knowledge Center",   href: "/faq" },
   { label: "Logistics Support",        href: "/logistics" },
   { label: "Product Specifications",   href: "/products/fresh-brown-coconut" },
-  { label: "Shipping Documentation",   href: "/#contact" },
+  { label: "Shipping Documentation",   href: "/#request-quote" },
 ];
 
 const TRUST_PILLS = [
@@ -111,7 +111,7 @@ export default function Footer() {
               aria-label="Global Coco Exports — return to top"
             >
               <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 transition-all duration-200 group-hover:brightness-110">
-                <Image src="/images/logo-image.png" alt="" width={40} height={40} className="w-full h-full object-contain" />
+                <Image src="/images/logo-image.png" alt="Global Coco Exports" width={40} height={40} className="w-full h-full object-contain" />
               </div>
               <span className="font-bold text-base tracking-wide text-white leading-tight">
                 GLOBAL COCO{" "}
@@ -329,7 +329,9 @@ export default function Footer() {
                 Our team responds to all B2B enquiries within 24 hours.
               </p>
               <a
-                href="/#contact"
+                id="footer-request-quote"
+                data-tracking-id="footer-request-quote"
+                href="/#request-quote"
                 data-analytics={JSON.stringify({ type: "request_quote", label: "Footer Request Bulk Quote" })}
                 className="flex items-center justify-center gap-2 w-full bg-[#D4A017] text-[#0a1f16] text-xs font-bold py-2.5 rounded-lg hover:bg-[#e6b420] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d2d1f]"
               >

@@ -117,7 +117,9 @@ export default function AboutCertifications() {
           </span>
           <span className="text-white/10 text-[10px] hidden sm:inline">|</span>
           <a
-            href="/rfq"
+            id="about-certifications-request-docs"
+            data-tracking-id="about-certifications-request-docs"
+            href="/#request-quote"
             className="text-[10px] text-[#D4A017]/70 hover:text-[#D4A017] uppercase tracking-wider font-semibold transition-colors"
           >
             Request certification documents →

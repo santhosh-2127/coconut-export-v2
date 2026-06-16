@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { BreadcrumbSchema, FAQSchema } from "@/lib/schemas";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import LogisticsHero from "../components/sections/LogisticsHero";
 import LogisticsProcess from "../components/sections/LogisticsProcess";
-import LogisticsIncoterms from "../components/sections/LogisticsIncoterms";
-import LogisticsContainers from "../components/sections/LogisticsContainers";
-import LogisticsDocs from "../components/sections/LogisticsDocs";
-import LogisticsShipping from "../components/sections/LogisticsShipping";
-import LogisticsQuality from "../components/sections/LogisticsQuality";
-import LogisticsFAQ from "../components/sections/LogisticsFAQ";
-import LogisticsFinalCTA from "../components/sections/LogisticsFinalCTA";
+
+// ═══ Code-split: below-fold sections ═══
+const LogisticsIncoterms = dynamic(() => import("../components/sections/LogisticsIncoterms"), { ssr: true });
+const LogisticsContainers = dynamic(() => import("../components/sections/LogisticsContainers"), { ssr: true });
+const LogisticsDocs = dynamic(() => import("../components/sections/LogisticsDocs"), { ssr: true });
+const LogisticsShipping = dynamic(() => import("../components/sections/LogisticsShipping"), { ssr: true });
+const LogisticsQuality = dynamic(() => import("../components/sections/LogisticsQuality"), { ssr: true });
+const LogisticsFAQ = dynamic(() => import("../components/sections/LogisticsFAQ"), { ssr: true });
+const LogisticsFinalCTA = dynamic(() => import("../components/sections/LogisticsFinalCTA"), { ssr: true });
 
 export const metadata: Metadata = {
   title: "Logistics — Coconut Shipping from India",    description:

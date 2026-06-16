@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbSchema } from "@/lib/schemas";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import GlobalNetworkHero from "../components/sections/GlobalNetworkHero";
@@ -54,6 +55,12 @@ export const metadata: Metadata = {
 export default function GlobalNetworkPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Global Network", url: "/global-network" },
+        ]}
+      />
       <Navbar />
       <GlobalNetworkHero />
       <GlobalNetworkCountries />

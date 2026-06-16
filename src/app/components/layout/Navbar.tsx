@@ -62,7 +62,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5" aria-label="Global Coco Exports — Home">
           <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
-            <Image src="/images/logo-image.png" alt="" width={32} height={32} className="w-full h-full object-contain" />
+            <Image src="/images/logo-image.png" alt="Global Coco Exports" width={32} height={32} className="w-full h-full object-contain" />
           </div>
           <span
             className={`text-sm sm:text-base lg:text-lg font-bold tracking-wide transition-colors duration-500 ${
@@ -141,7 +141,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
 
         {/* Desktop CTA */}
         <a
-          href="/#contact"
+          id="navbar-request-quote"
+          data-tracking-id="navbar-request-quote"
+          href="/#request-quote"
           onClick={() => trackOutboundClick({ type: "request_quote", label: "Navbar Request Quote" })}
           className={`hidden lg:inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
             isSolid
@@ -274,7 +276,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               ))}
 
               <a
-                href="/#contact"
+                id="navbar-mobile-request-quote"
+                data-tracking-id="navbar-mobile-request-quote"
+                href="/#request-quote"
                 onClick={() => {
                   setMobileOpen(false);
                   trackOutboundClick({ type: "request_quote", label: "Mobile Navbar Request Quote" });

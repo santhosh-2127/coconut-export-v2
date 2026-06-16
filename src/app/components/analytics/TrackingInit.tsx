@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { trackScrollDepth, trackOutboundClick, trackPageView } from "@/lib/analytics";
+import { trackScrollDepth, trackOutboundClick, trackPageView, setLeadSourceInClarity } from "@/lib/analytics";
 import { usePathname } from "next/navigation";
 
 /* ─── Global Analytics Initialization ────────────
@@ -17,9 +17,10 @@ export default function TrackingInit() {
   const pathname = usePathname();
   const trackedDepths = useRef<Set<number>>(new Set());
 
-  // Track page views on route change
+  // Track page views and lead source on route change
   useEffect(() => {
     trackPageView(pathname);
+    setLeadSourceInClarity();
     trackedDepths.current = new Set(); // reset scroll tracking on navigation
   }, [pathname]);
 

@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { FAQSchema } from "@/lib/schemas";
+import dynamic from "next/dynamic";
+import { BreadcrumbSchema, FAQSchema } from "@/lib/schemas";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import FAQHero from "../components/sections/FAQHero";
 import FAQAccordionSection from "../components/sections/FAQAccordionSection";
-import FAQFinalCTA from "../components/sections/FAQFinalCTA";
 import type { FAQItem } from "../components/sections/FAQAccordionSection";
+
+// ═══ Code-split: below-fold section ═══
+const FAQFinalCTA = dynamic(() => import("../components/sections/FAQFinalCTA"), { ssr: true });
 
 /* ═══════════════════════════════════════════════════════════════════════
    FAQ DATA — 6 Categories
@@ -177,7 +180,7 @@ const rfqFaqs: FAQItem[] = [
   {
     question: "How do I request a quotation?",
     answer:
-      "Submit an RFQ via our online form at /rfq (fastest), email us at info@globalcocoexports.com, or reach out on WhatsApp. We respond with a detailed quotation within 24 hours.",
+      "Submit an inquiry via our online quotation form at globalcocoexports.com/#request-quote (fastest), email us at info@globalcocoexports.com, or reach out on WhatsApp. We respond with a detailed quotation within 24 hours.",
   },
   {
     question: "What information should I provide?",
@@ -268,6 +271,12 @@ const allFaqsForSchema = [
 export default function FAQPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "FAQ", url: "/faq" },
+        ]}
+      />
       <Navbar />
       <FAQHero />
       <FAQAccordionSection
