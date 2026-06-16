@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
 import { fadeUp } from "@/constants/animations";
 
 /* ─── Benefit cards ───────────────────────────────────────────────────── */
@@ -49,6 +50,18 @@ const benefits = [
 
 /* ─── Main section ────────────────────────────────────────────────────── */
 export default function LogisticsDocs() {
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollPos = el.scrollLeft;
+    const cardWidth = el.scrollWidth / benefits.length;
+    const newIndex = Math.round(scrollPos / cardWidth);
+    setActiveMobileIndex(Math.min(newIndex, benefits.length - 1));
+  }, []);
+
   return (
     <section
       id="export-docs"
@@ -93,8 +106,92 @@ export default function LogisticsDocs() {
           </p>
         </motion.div>
 
-        {/* ── Benefit cards — 4 columns desktop, 2×2 tablet, stacked mobile ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+        {/* ── Mobile: Swipeable carousel ── */}
+        <div className="sm:hidden -mx-6">
+          <div
+            ref={carouselRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 pb-2 gap-5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {benefits.map((benefit) => (
+              <div
+                key={benefit.title}
+                className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
+              >
+                <div className="relative bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden shadow-md flex flex-col h-full">
+                  {/* Gold top accent bar */}
+                  <div
+                    className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#D4A017] via-[#D4A017] to-[#D4A017]/40"
+                    aria-hidden="true"
+                  />
+
+                  {/* DOC badge — document-style corner indicator */}
+                  <span
+                    className="absolute top-4 right-4 text-[9px] font-bold uppercase tracking-[0.2em] px-2 py-1 rounded-md select-none"
+                    style={{
+                      color: "#1B4332",
+                      backgroundColor: "rgba(27,67,50,0.08)",
+                    }}
+                    aria-hidden="true"
+                  >
+                    DOC
+                  </span>
+
+                  <div className="p-6 flex flex-col flex-1 pt-7">
+                    {/* Deep Green icon container */}
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                      style={{
+                        color: "#1B4332",
+                        backgroundColor: "rgba(27,67,50,0.1)",
+                      }}
+                    >
+                      {benefit.icon}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="font-bold text-[#111827] text-base leading-snug mb-2">
+                      {benefit.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-[#6B7280] text-sm leading-relaxed flex-1">
+                      {benefit.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-4">
+            {benefits.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  const el = carouselRef.current;
+                  if (!el) return;
+                  const cardWidth = el.scrollWidth / benefits.length;
+                  el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+                }}
+                className={`rounded-full transition-all duration-300 ${
+                  i === activeMobileIndex
+                    ? "w-6 h-1.5"
+                    : "w-1.5 h-1.5 hover:opacity-50"
+                }`}
+                style={{
+                  backgroundColor: i === activeMobileIndex ? "#D4A017" : "rgba(27,67,50,0.25)",
+                }}
+                aria-label={`Go to documentation step ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── Desktop / Tablet: Grid — unchanged ── */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
           {benefits.map((benefit, i) => (
             <motion.div
               key={benefit.title}

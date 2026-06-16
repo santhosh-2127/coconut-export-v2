@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
 
 /* ─── Animation ───────────────────────────────────────────────────────── */
 const fadeUp = {
@@ -53,7 +54,59 @@ const strengths = [
   },
 ];
 
+/* ─── Mobile story cards ──────────────────────────────────────────────── */
+const storyCards = [
+  {
+    title: "Who We Are",
+    paragraphs: [
+      "We are Global Coco Exports — a premium coconut export company headquartered in Tamil Nadu, the heart of India's coconut belt. Our strategic location gives us direct access to the finest raw materials and major export ports.",
+      "With 10+ years in global coconut trade, we bridge farm-level production and international buyers through structured sourcing, certified processing, and reliable logistics.",
+    ],
+    highlight: "Headquartered in Tamil Nadu, India",
+    icon: "🏢",
+  },
+  {
+    title: "Our Mission",
+    paragraphs: [
+      "Our mission is to make international coconut procurement seamless, reliable, and transparent. We connect certified farms with global buyers through a fully managed supply chain.",
+      "Every shipment we export reflects our commitment to quality, consistency, and compliance — from farm-level screening to pre-shipment verification.",
+    ],
+    highlight: "Seamless farm-to-port supply chain",
+    icon: "🎯",
+  },
+  {
+    title: "Our Export Focus",
+    paragraphs: [
+      "We specialize in bulk export of fresh brown coconuts, high-grade copra, and coco peat to importers, distributors, and industrial buyers across 15+ countries.",
+      "ISO 22000 & HACCP certified, APEDA registered — our operations are built to meet international phytosanitary and quality standards for every destination market.",
+    ],
+    highlight: "Exporting to 15+ countries worldwide",
+    icon: "🌍",
+  },
+  {
+    title: "Our Commitment",
+    paragraphs: [
+      "We build long-term partnerships through consistent quality, reliable delivery, and transparent communication. Our buyer relationships span years — a testament to the trust we've earned.",
+      "From documentation support to destination-specific compliance, our team ensures every shipment arrives exactly as specified, every time.",
+    ],
+    highlight: "90%+ repeat buyer rate",
+    icon: "🤝",
+  },
+];
+
 export default function AboutWhoWeAre() {
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollPos = el.scrollLeft;
+    const cardWidth = el.scrollWidth / storyCards.length;
+    const newIndex = Math.round(scrollPos / cardWidth);
+    setActiveMobileIndex(Math.min(newIndex, storyCards.length - 1));
+  }, []);
+
   return (
     <section
       id="who-we-are"
@@ -92,7 +145,10 @@ export default function AboutWhoWeAre() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
             A Export Partner Built for{" "}
             <span className="text-[#D4A017]">Scale</span>
-          </h2>              <div className="mt-8 grid md:grid-cols-2 gap-8 text-left">
+          </h2>
+
+          {/* ── Desktop/Tablet: Info cards ── */}
+          <div className="hidden md:grid md:grid-cols-2 gap-8 text-left mt-8">
             <div className="p-6 bg-[#FAFAFA] rounded-2xl border-l-4 border-[#D4A017]">
               <span className="text-[10px] font-bold uppercase tracking-widest text-[#D4A017] mb-2 block">Our Mission</span>
               <p className="text-gray-600 text-sm leading-relaxed">
@@ -108,8 +164,92 @@ export default function AboutWhoWeAre() {
           </div>
         </motion.div>
 
-        {/* ── Core strengths grid ── */}
-        <div className="grid sm:grid-cols-2 gap-5 max-w-5xl mx-auto">
+        {/* ── Mobile: Storytelling carousel ── */}
+        <div className="md:hidden -mx-6 mb-10">
+          <div
+            ref={carouselRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 pb-2 gap-5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {storyCards.map((card, i) => (
+              <div
+                key={card.title}
+                className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
+              >
+                <div className="relative bg-[#FAFAFA] border border-[#E5E7EB] rounded-2xl overflow-hidden shadow-md flex flex-col h-full">
+                  {/* Deep Green title area */}
+                  <div
+                    className="px-6 pt-6 pb-4"
+                    style={{
+                      background: "linear-gradient(135deg, #1B4332 0%, #0d2d1f 100%)",
+                    }}
+                  >
+                    {/* Progression indicator */}
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D4A017]/70">
+                      {String(i + 1).padStart(2, "0")} / {String(storyCards.length).padStart(2, "0")}
+                    </span>
+
+                    {/* Icon + Title */}
+                    <div className="flex items-center gap-3 mt-2">
+                      <span className="text-2xl" aria-hidden="true">{card.icon}</span>
+                      <h3 className="text-xl font-bold text-white leading-tight">
+                        {card.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Gold accent divider */}
+                  <div className="h-[3px] bg-gradient-to-r from-[#D4A017] via-[#D4A017] to-[#D4A017]/40" aria-hidden="true" />
+
+                  {/* White content surface */}
+                  <div className="p-6 bg-white flex flex-col flex-1">
+                    {card.paragraphs.map((p) => (
+                      <p key={p.slice(0, 20)} className="text-gray-600 text-sm leading-relaxed mb-4 last:mb-0">
+                        {p}
+                      </p>
+                    ))}
+
+                    {/* Key Highlight */}
+                    <div className="mt-auto pt-4 flex items-center gap-2 border-t border-[#E5E7EB]">
+                      <span className="w-5 h-px bg-[#D4A017]" />
+                      <span className="text-[10px] uppercase tracking-[0.15em] text-[#1B4332] font-semibold">
+                        {card.highlight}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-4">
+            {storyCards.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  const el = carouselRef.current;
+                  if (!el) return;
+                  const cardWidth = el.scrollWidth / storyCards.length;
+                  el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+                }}
+                className={`rounded-full transition-all duration-300 ${
+                  i === activeMobileIndex
+                    ? "w-6 h-1.5"
+                    : "w-1.5 h-1.5 hover:opacity-50"
+                }`}
+                style={{
+                  backgroundColor: i === activeMobileIndex ? "#D4A017" : "rgba(27,67,50,0.25)",
+                }}
+                aria-label={`Go to story card ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── Desktop / Tablet: Core strengths grid ── */}
+        <div className="hidden sm:grid sm:grid-cols-2 gap-5 max-w-5xl mx-auto">
           {strengths.map((item, i) => (
             <motion.div
               key={item.label}

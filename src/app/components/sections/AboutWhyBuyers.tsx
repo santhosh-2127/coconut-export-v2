@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
 
 /* ─── Animation ───────────────────────────────────────────────────────── */
 const fadeUp = {
@@ -67,7 +68,7 @@ const buyerBenefits = [
   },
 ];
 
-/* ─── Single Benefit Card ─────────────────────────────────────────────── */
+/* ─── Single Benefit Card (Desktop) ──────────────────────────────────── */
 function BenefitCard({
   benefit,
   index,
@@ -130,7 +131,20 @@ function BenefitCard({
   );
 }
 
+/* ─── Main Section ────────────────────────────────────────────────────── */
 export default function AboutWhyBuyers() {
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollPos = el.scrollLeft;
+    const cardWidth = el.scrollWidth / buyerBenefits.length;
+    const newIndex = Math.round(scrollPos / cardWidth);
+    setActiveMobileIndex(Math.min(newIndex, buyerBenefits.length - 1));
+  }, []);
+
   return (
     <section
       id="why-buyers"
@@ -175,13 +189,104 @@ export default function AboutWhyBuyers() {
           </p>
         </motion.div>
 
-        {/* ── Benefits Grid ── */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+        {/* ── Mobile: Swipeable carousel ── */}
+        <div className="sm:hidden -mx-6">
+          <div
+            ref={carouselRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 pb-2 gap-5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {buyerBenefits.map((benefit) => (
+              <div
+                key={benefit.title}
+                className="w-[calc(100vw-32px)] flex-shrink-0 snap-center"
+              >
+                <div className="relative bg-white border border-[#D4A017]/20 rounded-2xl overflow-hidden shadow-md flex flex-col h-full">
+                  {/* Trust badge */}
+                  <div
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-br-xl absolute top-0 left-0"
+                    style={{
+                      background: "linear-gradient(135deg, #1B4332 0%, #143a28 100%)",
+                    }}
+                  >
+                    <svg viewBox="0 0 12 12" fill="none" className="w-2.5 h-2.5 flex-shrink-0">
+                      <path d="M2 6l3 3L10 3" stroke="#D4A017" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-white">
+                      Trusted Export Partner
+                    </span>
+                  </div>
+
+                  <div className="p-6 flex flex-col flex-1 pt-14">
+                    {/* Deep Green icon area */}
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                      style={{
+                        color: "#1B4332",
+                        backgroundColor: "rgba(27,67,50,0.1)",
+                      }}
+                    >
+                      {benefit.icon}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-[#111827] leading-tight tracking-[-0.01em] mb-3">
+                      {benefit.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-[#6B7280] text-sm leading-relaxed flex-1">
+                      {benefit.description}
+                    </p>
+
+                    {/* Stat */}
+                    <div className="flex items-center gap-2.5 pt-4 mt-5 border-t border-[#E5E7EB]">
+                      <span className="text-xl font-bold text-[#1B4332]">
+                        {benefit.stat.value}
+                      </span>
+                      <span className="text-[10px] text-[#9CA3AF] uppercase tracking-[0.12em]">
+                        {benefit.stat.label}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-4">
+            {buyerBenefits.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  const el = carouselRef.current;
+                  if (!el) return;
+                  const cardWidth = el.scrollWidth / buyerBenefits.length;
+                  el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+                }}
+                className={`rounded-full transition-all duration-300 ${
+                  i === activeMobileIndex
+                    ? "w-6 h-1.5"
+                    : "w-1.5 h-1.5 hover:opacity-50"
+                }`}
+                style={{
+                  backgroundColor: i === activeMobileIndex ? "#D4A017" : "rgba(27,67,50,0.25)",
+                }}
+                aria-label={`Go to buyer benefit ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── Desktop / Tablet: Grid — unchanged ── */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
           {buyerBenefits.slice(0, 3).map((benefit, i) => (
             <BenefitCard key={benefit.title} benefit={benefit} index={i} />
           ))}
         </div>
-        <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto mt-4">
+        <div className="hidden sm:grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto mt-4">
           {buyerBenefits.slice(3).map((benefit, i) => (
             <BenefitCard
               key={benefit.title}
