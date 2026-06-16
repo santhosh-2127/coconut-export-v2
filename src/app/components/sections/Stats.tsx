@@ -45,7 +45,7 @@ function StatBlock({
   isVisible: boolean;
 }) {
   const { numeric, suffix } = parseStatValue(value);
-  const counted = useCountUp(numeric, 1200 + index * 80, isVisible);
+  const counted = useCountUp(numeric, 1800 + index * 80, isVisible);
 
   return (
     <motion.div
@@ -55,7 +55,7 @@ function StatBlock({
     >
       {/* Large white number — dominating visual hierarchy */}
       <p
-        className="leading-none font-extrabold lg:font-black text-white tracking-[-0.03em] tabular-nums text-[clamp(2.5rem,8vw,3.5rem)] lg:text-[clamp(4rem,8vw,6rem)]"
+        className="leading-none font-black text-white tracking-[-0.03em] tabular-nums text-[clamp(3.5rem,12vw,5.5rem)] lg:text-[clamp(5.5rem,10vw,9rem)]"
         aria-label={`${value} ${label}`}
       >
         {isVisible ? counted : 0}

@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { fadeUp } from "@/constants/animations";
 
 const container = {
@@ -11,119 +10,12 @@ const container = {
   },
 };
 
-const backgroundSlides = [
-  {
-    image: "/images/products/fresh-brown-coconut/Fresh-Brown-image.png",
-    name: "Fresh Brown Coconut",
-  },
-  {
-    image: "/images/products/pollachi-fresh-coconut/hero.jpg",
-    name: "Pollachi Fresh Coconut",
-  },
-  {
-    image: "/images/products/copra-coconut/hero.jpg",
-    name: "Copra Coconut",
-  },
-  {
-    image: "/images/products/coco-peat/hero.jpg",
-    name: "Coco Peat",
-  },
-];
-
 const trustIndicators = [
   { label: "15+ Countries Served" },
   { label: "Multi-Port Logistics" },
   { label: "End-to-End Documentation" },
   { label: "Quality Assured Supply" },
 ];
-
-/* ─── Mobile Background Carousel ────────────────────────────────────── */
-function MobileBackgroundCarousel() {
-  const [index, setIndex] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  const next = useCallback(() => {
-    setIndex((prev) => (prev + 1) % backgroundSlides.length);
-  }, []);
-
-  const prev = useCallback(() => {
-    setIndex((prev) => (prev - 1 + backgroundSlides.length) % backgroundSlides.length);
-  }, []);
-
-  useEffect(() => {
-    intervalRef.current = setInterval(next, 5000);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [next]);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) next();
-      else prev();
-    }
-    intervalRef.current = setInterval(next, 5000);
-  };
-
-  return (
-    <div
-      className="absolute inset-0 lg:hidden"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={backgroundSlides[index].image}
-            alt={`${backgroundSlides[index].name} — premium coconut export product`}
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
-            priority={index === 0}
-          />
-        </motion.div>
-      </AnimatePresence>
-
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A12]/70 via-[#0C1A12]/50 to-[#0C1A12]/85" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40" />
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
-        {backgroundSlides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`rounded-full transition-all duration-300 ${
-              i === index
-                ? "w-5 h-1.5 bg-[#D4A017]"
-                : "w-1.5 h-1.5 bg-white/40"
-            }`}
-            aria-label={`Slide ${i + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function GlobalNetworkHero() {
   return (
@@ -132,11 +24,8 @@ export default function GlobalNetworkHero() {
       aria-label="Global Export Network"
       className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
-      {/* Mobile background carousel */}
-      <MobileBackgroundCarousel />
-
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden lg:block">
-        {/* Container / port background image */}
+      {/* Single responsive background image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <motion.div
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
@@ -153,10 +42,8 @@ export default function GlobalNetworkHero() {
           />
         </motion.div>
 
-        {/* Deep green branded overlay for text readability */}
         <div className="absolute inset-0 bg-[#0C1A12]/70" />
 
-        {/* Subtle grid texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -165,13 +52,9 @@ export default function GlobalNetworkHero() {
             backgroundSize: "60px 60px",
           }}
         />
-        {/* Gold radial glow — top-right */}
         <div className="absolute -top-48 right-[-10%] w-[900px] h-[900px] rounded-full bg-[#D4A017]/[0.06] blur-[160px]" />
-        {/* Green radial glow — bottom-left */}
         <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#1B4332]/[0.30] blur-[140px]" />
-        {/* Vignette overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40" />
-        {/* Gold bottom accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/20 to-transparent" />
       </div>
 

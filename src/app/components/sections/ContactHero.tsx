@@ -1,116 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect, useCallback } from "react";
-
-/* ─── Product background slides ──────────────────────────────────────── */
-const backgroundSlides = [
-  {
-    image: "/images/products/fresh-brown-coconut/Fresh-Brown-image.png",
-    name: "Fresh Brown Coconut",
-  },
-  {
-    image: "/images/products/pollachi-fresh-coconut/hero.jpg",
-    name: "Pollachi Fresh Coconut",
-  },
-  {
-    image: "/images/products/copra-coconut/hero.jpg",
-    name: "Copra Coconut",
-  },
-  {
-    image: "/images/products/coco-peat/hero.jpg",
-    name: "Coco Peat",
-  },
-];
-
-/* ─── Mobile Background Carousel ────────────────────────────────────── */
-function MobileBackgroundCarousel() {
-  const [index, setIndex] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  const next = useCallback(() => {
-    setIndex((prev) => (prev + 1) % backgroundSlides.length);
-  }, []);
-
-  const prev = useCallback(() => {
-    setIndex((prev) => (prev - 1 + backgroundSlides.length) % backgroundSlides.length);
-  }, []);
-
-  useEffect(() => {
-    intervalRef.current = setInterval(next, 5000);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [next]);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) next();
-      else prev();
-    }
-    intervalRef.current = setInterval(next, 5000);
-  };
-
-  return (
-    <div
-      className="absolute inset-0 lg:hidden"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={backgroundSlides[index].image}
-            alt={`${backgroundSlides[index].name} — premium coconut export product`}
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
-            priority={index === 0}
-          />
-        </motion.div>
-      </AnimatePresence>
-
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A12]/70 via-[#0C1A12]/50 to-[#0C1A12]/85" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40" />
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
-        {backgroundSlides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`rounded-full transition-all duration-300 ${
-              i === index
-                ? "w-5 h-1.5 bg-[#D4A017]"
-                : "w-1.5 h-1.5 bg-white/40"
-            }`}
-            aria-label={`Slide ${i + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function ContactHero() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -120,22 +12,6 @@ export default function ContactHero() {
   });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % backgroundSlides.length);
-  }, []);
-
-  useEffect(() => {
-    if (isPaused) return;
-    intervalRef.current = setInterval(nextSlide, 5000);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [isPaused, nextSlide]);
-
   return (
     <section
       ref={sectionRef}
@@ -143,8 +19,27 @@ export default function ContactHero() {
       style={{ background: "linear-gradient(160deg, #0C1A12 0%, #0d2d1f 40%, #0a1f16 100%)" }}
       aria-label="Contact Hero"
     >
-      {/* Mobile background carousel */}
-      <MobileBackgroundCarousel />
+      {/* Single responsive background image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <motion.div
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src="/images/storytelling/SHIPMENT-image.png"
+            alt="Export shipment and logistics — international coconut trade operations"
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
+        </motion.div>
+        {/* Deep green branded overlay for readability */}
+        <div className="absolute inset-0 bg-[#0C1A12]/70" />
+      </div>
+
       {/* Background texture */}
       <motion.div
         style={{
@@ -162,10 +57,7 @@ export default function ContactHero() {
 
       <div className="relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full py-16 md:py-0 lg:py-0">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-
-          {/* Left content */}
-          <div>
+          <div className="max-w-[680px]">
             {/* Premium badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -286,128 +178,7 @@ export default function ContactHero() {
               </a>
             </motion.div>
           </div>
-
-          {/* Right visual panel with product carousel */}
-          <motion.div
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:block relative"
-          >
-            {/* Floating contact cards */}
-            <div className="relative w-full aspect-[4/3]">
-              {/* Product image carousel — crossfade background */}
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={backgroundSlides[currentSlide].image}
-                      alt={`${backgroundSlides[currentSlide].name} — premium coconut export product`}
-                      fill
-                      className="object-cover object-center"
-                      sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 38vw"
-                      priority={currentSlide === 0}
-                    />
-                  </motion.div>
-                </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0C1A12]/80 via-[#0d2d1f]/60 to-[#0a1f16]/80" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A12]/90 via-transparent to-[#0C1A12]/20" />
-
-                {/* Product name badge (bottom-right of image) */}
-                <div className="absolute bottom-2 right-2 z-20">
-                  <span className="text-[8px] font-mono uppercase tracking-[0.2em] text-white/15 select-none">
-                    {backgroundSlides[currentSlide].name}
-                  </span>
-                </div>
-
-                {/* Pagination dots (bottom-left of image) */}
-                <div className="absolute bottom-2 left-2 z-20 flex items-center gap-1.5">
-                  {backgroundSlides.map((slide, i) => (
-                    <button
-                      key={slide.name}
-                      onClick={() => setCurrentSlide(i)}
-                      className={`transition-all duration-500 rounded-full focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-[#D4A017] ${
-                        i === currentSlide
-                          ? "w-4 h-1.5 bg-[#D4A017]/60"
-                          : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
-                      }`}
-                      aria-label={`Show ${slide.name} background`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Card 1 - WhatsApp */}
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="absolute top-[5%] right-[8%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-5 w-[170px] xl:w-[200px] shadow-2xl"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#25D366]/20 flex items-center justify-center text-lg">💬</div>
-                  <div>
-                    <p className="text-white/50 text-[10px] uppercase tracking-wider">WhatsApp</p>
-                    <p className="text-white text-sm font-semibold">+91 98765 43210</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
-                  <span className="text-[10px] text-green-300/70">Typically replies within 2 hours</span>
-                </div>
-              </motion.div>
-
-              {/* Card 2 - Email */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="absolute bottom-[15%] left-[5%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-5 w-[180px] xl:w-[220px] shadow-2xl"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#D4A017]/20 flex items-center justify-center text-lg">✉️</div>
-                  <div>
-                    <p className="text-white/50 text-[10px] uppercase tracking-wider">Email</p>
-                    <p className="text-white text-sm font-semibold">exports@globalcoco.com</p>
-                  </div>
-                </div>
-                <p className="text-white/40 text-[10px]">Business queries only</p>
-              </motion.div>
-
-              {/* Card 3 - Phone */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                className="absolute bottom-[35%] right-[15%] bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 w-[160px] shadow-2xl"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-8 h-8 rounded-lg bg-[#1B4332]/20 flex items-center justify-center text-lg">📱</div>
-                  <div>
-                    <p className="text-white/50 text-[10px] uppercase tracking-wider">Phone</p>
-                    <p className="text-white text-xs font-semibold">+91 98765 43210</p>
-                  </div>
-                </div>
-                <p className="text-white/40 text-[10px]">Mon–Sat, 9 AM – 6 PM IST</p>
-              </motion.div>
-
-              {/* Decorative elements */}
-              <div className="absolute top-[20%] left-[10%] w-20 h-20 rounded-full border border-[#D4A017]/20" />
-              <div className="absolute bottom-[40%] right-[5%] w-12 h-12 rounded-full border border-white/10" />
-            </div>
-          </motion.div>
-
         </div>
-      </div>
       </div>
     </section>
   );
