@@ -222,13 +222,13 @@ function MobileJourneyCarousel() {
       <div
         ref={containerRef}
         onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth -mx-6 px-6 gap-5"
+        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth -mx-6 px-4 gap-5"
       >
         {mobileSteps.map((step, i) => (
           <div
             key={step.number}
             data-index={i}
-            className={`min-w-[85vw] snap-start flex-shrink-0 bg-white rounded-xl overflow-hidden border transition-all duration-300 ${
+            className={`min-w-[calc(100vw-32px)] snap-start flex-shrink-0 bg-white rounded-xl overflow-hidden border transition-all duration-300 ${
               i === activeIndex
                 ? "border-[#1B4332]/20 scale-[1.02] shadow-[0_8px_30px_rgba(27,67,50,0.10)]"
                 : "border-[#E5E7EB] scale-100 shadow-sm"
@@ -241,7 +241,7 @@ function MobileJourneyCarousel() {
                 alt={step.alt}
                 fill
                 className="object-cover object-center"
-                sizes="85vw"
+                sizes="(max-width: 426px) calc(100vw - 32px), 85vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 

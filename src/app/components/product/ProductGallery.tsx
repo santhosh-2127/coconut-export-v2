@@ -139,7 +139,7 @@ export default function ProductGallery({ product }: { product: Product }) {
         </div>
 
         {/* Mobile: Swipeable gallery */}
-        <div className="md:hidden overflow-x-auto snap-x snap-mandatory -mx-6 px-6 scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+        <div className="md:hidden overflow-x-auto snap-x snap-mandatory -mx-6 px-4 scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           <style>{`div[data-gallery-scroll]::-webkit-scrollbar { display: none; }`}</style>
           <div data-gallery-scroll className="flex gap-4">
             {images.slice(0, 5).map((img, i) => (
@@ -149,11 +149,11 @@ export default function ProductGallery({ product }: { product: Product }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="snap-center shrink-0 w-[85vw] max-w-[400px] cursor-pointer"
+                className="snap-center shrink-0 w-[calc(100vw-32px)] max-w-[400px] cursor-pointer"
                 onClick={() => openLightbox(i)}
               >
                 <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-md group">
-                  <Image src={img.src} alt={img.alt} fill className="object-cover object-center transition-transform duration-500 group-hover:scale-105" sizes="85vw" />
+                  <Image src={img.src} alt={img.alt} fill className="object-cover object-center transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) calc(100vw - 32px), 85vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4">
                     <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/20 rounded">{LABELS[i]}</span>

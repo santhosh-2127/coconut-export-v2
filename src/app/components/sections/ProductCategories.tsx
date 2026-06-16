@@ -102,7 +102,7 @@ export default function ProductCategories() {
         </motion.div>
 
         {/* ── Product Grid / Mobile Swipe Carousel ── */}
-        <div className="flex min-[426px]:grid min-[426px]:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto min-[426px]:overflow-visible snap-x min-[426px]:snap-none snap-mandatory scroll-smooth -mx-6 min-[426px]:mx-0 px-6 min-[426px]:px-0">
+        <div className="flex min-[426px]:grid min-[426px]:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto min-[426px]:overflow-visible snap-x min-[426px]:snap-none snap-mandatory scroll-smooth [-webkit-overflow-scrolling:touch] -mx-6 min-[426px]:mx-0 px-4 min-[426px]:px-0">
           {products.map((product, i) => {
             const info = buyerInfo[product.id] ?? { forWhom: "", benefit: product.shortDescription };
             return (
@@ -113,7 +113,7 @@ export default function ProductCategories() {
                 whileInView="animate"
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
-                className="min-w-[85vw] min-[426px]:min-w-0 snap-start min-[426px]:snap-none flex-shrink-0 group relative bg-white rounded-xl overflow-hidden border border-[#E5E7EB] hover:border-[#1B4332]/20 hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] transition-all duration-300 flex flex-col"
+                className="min-w-[calc(100vw-32px)] min-[426px]:min-w-0 snap-start min-[426px]:snap-none flex-shrink-0 group relative bg-white rounded-xl overflow-hidden border border-[#E5E7EB] hover:border-[#1B4332]/20 hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] transition-all duration-300 flex flex-col"
               >
                 {/* ═══ Image ═══ */}
                 <div className="relative h-48 overflow-hidden bg-[#1B4332]">
@@ -196,9 +196,31 @@ export default function ProductCategories() {
         </div>
 
         {/* ── Swipe Hint (mobile only) ── */}
-        <p className="hidden max-[425px]:block text-center text-[11px] text-gray-400 mt-4">
-          Swipe to explore &rarr;
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="hidden max-[425px]:flex flex-col items-center justify-center mt-6 gap-2"
+        >
+          <div className="flex items-center gap-2 text-[12px] font-medium text-gray-600">
+            <span>Swipe to explore</span>
+            <svg
+              className="w-4 h-4 animate-bounce"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+            <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+          </div>
+        </motion.div>
 
         {/* ── Bottom CTA ── */}
         <motion.div
