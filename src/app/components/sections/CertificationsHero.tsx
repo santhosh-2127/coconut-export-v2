@@ -148,7 +148,27 @@ export default function CertificationsHero() {
 
       {/* Desktop backgrounds */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden lg:block">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0C1A12] via-[#0F2218] to-[#162A1D]" />
+        {/* Quality control inspection background image */}
+        <motion.div
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src="/images/storytelling/QualityControl-image.png"
+            alt="Quality control inspection — certified coconut export compliance and standards"
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
+        </motion.div>
+
+        {/* Deep green branded overlay for text readability */}
+        <div className="absolute inset-0 bg-[#0C1A12]/70" />
+
+        {/* Subtle grid texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -157,9 +177,13 @@ export default function CertificationsHero() {
             backgroundSize: "60px 60px",
           }}
         />
+        {/* Gold radial glow — top-right */}
         <div className="absolute -top-48 right-[-10%] w-[900px] h-[900px] rounded-full bg-[#D4A017]/[0.06] blur-[160px]" />
+        {/* Green radial glow — bottom-left */}
         <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#1B4332]/[0.30] blur-[140px]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A12]/80 via-transparent to-[#0C1A12]/60" />
+        {/* Vignette overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40" />
+        {/* Gold bottom accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/20 to-transparent" />
       </div>
 
