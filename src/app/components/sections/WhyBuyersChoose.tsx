@@ -94,7 +94,7 @@ function PillarCard({
       whileInView="animate"
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-      className="group relative bg-white border border-[#E5E7EB] rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] flex flex-col"
+      className="min-w-[85vw] md:min-w-0 snap-start md:snap-none flex-shrink-0 group relative bg-white border border-[#E5E7EB] rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgba(27,67,50,0.08)] flex flex-col"
     >
       <div className="relative flex flex-col h-full p-6">
         {/* ── Icon ── */}
@@ -174,12 +174,17 @@ export default function WhyBuyersChoose() {
           </p>
         </motion.div>
 
-        {/* ── Pillars Grid ── */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* ── Pillars Grid / Mobile Swipe Carousel ── */}
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 overflow-x-auto md:overflow-visible snap-x md:snap-none snap-mandatory scroll-smooth -mx-6 md:mx-0 px-6 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {pillars.map((pillar, i) => (
             <PillarCard key={pillar.id} pillar={pillar} index={i} />
           ))}
         </div>
+
+        {/* ── Swipe Hint (mobile only) ── */}
+        <p className="md:hidden text-center text-[11px] text-gray-400 mt-4">
+          Swipe to explore &rarr;
+        </p>
       </div>
     </section>
   );

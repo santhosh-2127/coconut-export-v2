@@ -80,7 +80,7 @@ export default function ProductCTA({ product }: { product: Product }) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
               {[
-                { icon: "⏱", text: "Response within 24 hours" },
+                { icon: "⏱", text: "Response Within Minutes" },
                 { icon: "📄", text: "Technical Datasheet Included" },
                 { icon: "🚢", text: "Door-to-Port Logistics" },
                 { icon: "📋", text: "Full Documentation Support" },
@@ -117,7 +117,7 @@ export default function ProductCTA({ product }: { product: Product }) {
                       <p className="text-gray-400 text-xs mt-1">Two simple ways to proceed</p>
                     </div>
                     <div className="flex-shrink-0 ml-4 flex flex-col items-center bg-[#1B4332]/6 border border-[#1B4332]/12 rounded-xl px-3 py-2">
-                      <span className="text-[#1B4332] font-black text-lg leading-none">24h</span>
+                      <span className="text-[#1B4332] font-black text-lg leading-none">Min</span>
                       <span className="text-[#1B4332]/60 text-[9px] uppercase tracking-wider font-semibold leading-none mt-0.5">Response</span>
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export default function ProductCTA({ product }: { product: Product }) {
                     </svg>
                     Call Our Export Team
                   </a>
-                  <p className="text-[11px] text-gray-400 text-center mt-2 leading-relaxed">🔒 Your enquiry is handled with full confidentiality. We respond within 24 hours.</p>
+                  <p className="text-[11px] text-gray-400 text-center mt-2 leading-relaxed">🔒 Your enquiry is handled with full confidentiality. We respond within minutes.</p>
                 </div>
               </div>
             </div>

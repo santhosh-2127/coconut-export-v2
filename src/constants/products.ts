@@ -44,7 +44,7 @@ export const PRODUCT_DEFAULTS = {
     standard: 14,
     urgent: 7,
   },
-  responseTime: "24 hours",
+  responseTime: "Minutes",
 } as const;
 
 /* ─── Product Category Icons ──────────────────────────── */

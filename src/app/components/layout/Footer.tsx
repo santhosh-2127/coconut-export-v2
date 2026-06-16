@@ -324,7 +324,7 @@ export default function Footer() {
                 Ready to source at scale?
               </p>
               <p className="text-white/35 text-[11px] leading-relaxed mb-4">
-                Our team responds to all B2B enquiries within 24 hours.
+                Our team responds to all B2B enquiries within minutes.
               </p>
               <a
                 id="footer-request-quote"

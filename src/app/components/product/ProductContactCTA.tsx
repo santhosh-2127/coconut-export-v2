@@ -65,7 +65,7 @@ export default function ProductContactCTA({ product }: ProductContactCTAProps) {
             <div className="relative">
               <span className="text-2xl block mb-3">📋</span>
               <h3 className="text-sm font-bold mb-1">Request Quote</h3>
-              <p className="text-[11px] text-white/60 leading-snug">Get bulk pricing within 24 hours</p>
+              <p className="text-[11px] text-white/60 leading-snug">Get prompt bulk pricing</p>
             </div>
           </motion.a>
 
@@ -144,7 +144,7 @@ export default function ProductContactCTA({ product }: ProductContactCTAProps) {
           transition={{ duration: 0.4, delay: 0.3 }}
           className="text-center text-[11px] text-gray-400 mt-8"
         >
-          🔒 All inquiries handled confidentially. We typically respond within 24 hours on business days.
+          🔒 All inquiries handled confidentially. We respond within minutes.
         </motion.p>
       </div>
     </section>

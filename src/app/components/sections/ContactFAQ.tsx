@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     q: "How quickly do you respond to inquiries?",
-    a: "We respond within 24 hours on email and within 2 hours on WhatsApp. Urgent inquiries before 2:00 PM IST are often answered the same day. Out-of-hours submissions get priority attention next business day.",
+    a: "We respond within minutes on email and within 2 hours on WhatsApp. Urgent inquiries before 2:00 PM IST are often answered the same day.",
   },
   {
     q: "Can I request product specifications before placing an order?",

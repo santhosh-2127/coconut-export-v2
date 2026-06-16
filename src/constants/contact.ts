@@ -55,9 +55,9 @@ export const CONTACT_FORM_FIELDS = [
 
 /* ─── Response Time Promises ─────────────────────────── */
 export const RESPONSE_TIME = {
-  STANDARD: "24 hours",
+  STANDARD: "Minutes",
   URGENT: "Same-day response",
-  RFQ: "24 hours",
+  RFQ: "Minutes",
 } as const;
 
 /* ─── Trust Signals ─────────────────────────────────── */
@@ -83,7 +83,7 @@ export const CONTACT_FEATURES = [
   {
     icon: "📧",
     title: "Email Support",
-    description: "Send detailed enquiries via email — our team responds within 24 hours guaranteed.",
+    description: "Send detailed enquiries via email — our team responds within minutes.",
   },
   {
     icon: "🏢",

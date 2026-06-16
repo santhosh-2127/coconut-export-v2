@@ -149,7 +149,7 @@ export default function ProductSelectionCTA() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-8 text-xs text-gray-400"
         >
-          🔒 All enquiries handled confidentially. We respond within 24 hours.
+          🔒 All enquiries handled confidentially. We respond within minutes.
         </motion.p>
       </div>
     </section>

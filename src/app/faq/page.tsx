@@ -156,7 +156,7 @@ const paymentFaqs: FAQItem[] = [
   {
     question: "How are quotations prepared?",
     answer:
-      "Based on your product type, volume, grade, packaging, incoterm, and destination. Includes per-unit pricing, total value, freight, insurance, and documentation charges. Typically delivered within 24 hours. Volume discounts available for recurring orders.",
+      "Based on your product type, volume, grade, packaging, incoterm, and destination. Includes per-unit pricing, total value, freight, insurance, and documentation charges. Typically delivered within minutes. Volume discounts available for recurring orders.",
   },
   {
     question: "How long are quotations valid?",
@@ -180,7 +180,7 @@ const rfqFaqs: FAQItem[] = [
   {
     question: "How do I request a quotation?",
     answer:
-      "Submit an inquiry via our online quotation form at globalcocoexports.com/#request-quote (fastest), email us at info@globalcocoexports.com, or reach out on WhatsApp. We respond with a detailed quotation within 24 hours.",
+      "Submit an inquiry via our online quotation form at globalcocoexports.com/#request-quote (fastest), email us at info@globalcocoexports.com, or reach out on WhatsApp. We respond with a detailed quotation within minutes.",
   },
   {
     question: "What information should I provide?",
@@ -190,7 +190,7 @@ const rfqFaqs: FAQItem[] = [
   {
     question: "How soon will I receive a response?",
     answer:
-      "Within 24 business hours. Detailed quotation including pricing, shipping costs, and timelines within 1–2 business days. Urgent requests before 2:00 PM IST often quoted same day.",
+      "Within minutes. Detailed quotation including pricing, shipping costs, and timelines within 1–2 business days. Urgent requests before 2:00 PM IST often quoted same day.",
   },
   {
     question: "Can I schedule a consultation?",

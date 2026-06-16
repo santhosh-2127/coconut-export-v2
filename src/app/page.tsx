@@ -142,7 +142,7 @@ export default function Home() {
           {
             question: "How quickly will I receive a quotation?",
             answer:
-              "We respond to all inquiries within 24 hours during business days. Urgent requests before 2:00 PM IST are often quoted the same day.",
+              "We respond to all inquiries within minutes. Urgent requests before 2:00 PM IST are often quoted the same day.",
           },
           {
             question: "What payment terms do you accept?",

@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
 
 /* ─── Animation ───────────────────────────────────────────────────────── */
 const fadeUp = {
@@ -13,7 +14,7 @@ const fadeUp = {
 const steps = [
   {
     number: "01",
-    title: "Farm Selection",
+    title: "Farm Sourcing",
     description: "Premium coconuts hand-selected from 200+ certified partner farms across Tamil Nadu. Full traceability from harvest.",
     value: "Farm-direct sourcing eliminates middlemen — better pricing and quality control for your supply chain.",
     image: "/images/storytelling/Farm Sourcing2-image.png",
@@ -156,6 +157,122 @@ function MobileArrow() {
   );
 }
 
+/* ─── Mobile Sticky Card ─────────────────────────────────────────────── */
+function StickyCard({
+  step,
+  index,
+  scrollYProgress,
+  numCards,
+}: {
+  step: (typeof steps)[0];
+  index: number;
+  scrollYProgress: MotionValue<number>;
+  numCards: number;
+}) {
+  const rangeStart = index / numCards;
+  const rangeEnd = (index + 1) / numCards;
+
+  const y = useTransform(
+    scrollYProgress,
+    [rangeStart, rangeStart + 0.05, rangeEnd - 0.04, rangeEnd],
+    ["120%", "0%", "0%", "-40%"],
+  );
+
+  const scale = useTransform(
+    scrollYProgress,
+    [rangeStart, rangeStart + 0.05, rangeEnd - 0.04, rangeEnd],
+    [0.85, 1, 1, 0.92],
+  );
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [rangeStart, rangeStart + 0.04, rangeEnd - 0.04, rangeEnd],
+    [0, 1, 1, 0],
+  );
+
+  return (
+    <div
+      className="sticky top-0 flex items-center justify-center px-4"
+      style={{ height: "100dvh", zIndex: index }}
+    >
+      <motion.div
+        style={{ y, scale, opacity }}
+        className="w-full max-w-sm"
+      >
+        <div className="relative bg-white rounded-xl overflow-hidden border border-[#E5E7EB] shadow-sm">
+          <div className="relative h-36 overflow-hidden bg-[#1B4332]">
+            <Image
+              src={step.image}
+              alt={step.alt}
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+
+            <div className="absolute top-3 left-3">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-md bg-[#D4A017] text-white text-[10px] font-bold shadow-sm">
+                {step.number}
+              </span>
+            </div>
+
+            <div className="absolute bottom-3 left-3 right-3">
+              <h3 className="text-base font-bold text-white leading-tight drop-shadow-sm">
+                {step.title}
+              </h3>
+            </div>
+          </div>
+
+          <div className="p-4">
+            <p className="text-xs text-gray-500 leading-relaxed mb-3 line-clamp-2">
+              {step.description}
+            </p>
+
+            <div className="flex items-start gap-2 p-2.5 bg-[#D4A017]/5 border border-[#D4A017]/15 rounded-lg">
+              <svg className="w-3.5 h-3.5 text-[#D4A017] mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-[11px] text-[#1B4332] font-medium leading-snug">
+                {step.value}
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ─── Mobile Card Stack ──────────────────────────────────────────────── */
+function MobileStack() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const mobileSteps = steps.slice(0, 5);
+  const numCards = mobileSteps.length;
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative"
+      style={{ height: `${numCards * 100}vh` }}
+    >
+      {mobileSteps.map((step, i) => (
+        <StickyCard
+          key={step.number}
+          step={step}
+          index={i}
+          scrollYProgress={scrollYProgress}
+          numCards={numCards}
+        />
+      ))}
+    </div>
+  );
+}
+
 /* ─── Section ─────────────────────────────────────────────────────────── */
 export default function QualityJourney() {
   return (
@@ -201,24 +318,30 @@ export default function QualityJourney() {
           </p>
         </motion.div>
 
-        {/* ── Journey Grid (3×2 on desktop, stacked on mobile) ── */}
-        <div className="relative">
-          {/* Desktop: 3×2 grid with arrow connectors */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
-            {steps.map((step, i) => (
-              <div key={step.number} className="relative">
-                {/* Horizontal connectors on desktop */}
-                {(i === 0 || i === 1) && <ConnectorArrow direction="right" />}
-                {/* After row 1, connector down to row 2 */}
-                {i === 2 && <ConnectorArrow direction="down" />}
-                {(i === 3 || i === 4) && <ConnectorArrow direction="right" />}
+        {/* ── Mobile Storytelling Stack (≤ 425px) ── */}
+        <div className="hidden max-[425px]:block">
+          <MobileStack />
+        </div>
 
-                <StepCard step={step} index={i} />
+        {/* ── Desktop / Tablet Grid (> 425px) ── */}
+        <div className="max-[425px]:hidden">
+          <div className="relative">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
+              {steps.map((step, i) => (
+                <div key={step.number} className="relative">
+                  {/* Horizontal connectors on desktop */}
+                  {(i === 0 || i === 1) && <ConnectorArrow direction="right" />}
+                  {/* After row 1, connector down to row 2 */}
+                  {i === 2 && <ConnectorArrow direction="down" />}
+                  {(i === 3 || i === 4) && <ConnectorArrow direction="right" />}
 
-                {/* Mobile arrow between steps */}
-                {i < steps.length - 1 && <MobileArrow />}
-              </div>
-            ))}
+                  <StepCard step={step} index={i} />
+
+                  {/* Mobile arrow between steps */}
+                  {i < steps.length - 1 && <MobileArrow />}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
