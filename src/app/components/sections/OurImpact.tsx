@@ -110,11 +110,7 @@ function StatItem({
       {!isLast && (
         <div
           aria-hidden="true"
-          className="
-            hidden lg:block
-            absolute right-0 top-1/2 -translate-y-1/2
-            w-px
-          "
+          className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-px"
           style={{
             height: "60%",
             background:
@@ -233,11 +229,7 @@ export default function OurImpact() {
         {/* Desktop: single row of 4 with vertical separators */}
         {/* Tablet + Mobile: 2×2 grid */}
         <div
-          className="
-            grid grid-cols-2 gap-y-10 gap-x-2
-            sm:gap-y-12 sm:gap-x-4
-            lg:grid-cols-4 lg:gap-x-0 lg:gap-y-0
-          "
+          className="grid grid-cols-2 gap-y-10 gap-x-2 sm:gap-y-12 sm:gap-x-4 lg:grid-cols-4 lg:gap-x-0 lg:gap-y-0"
         >
           {hasMounted
             ? stats.map((stat, i) => (

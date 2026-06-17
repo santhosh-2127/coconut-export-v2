@@ -182,7 +182,7 @@ export default function ProductHero({ product }: { product: Product }) {
   return (
     <section
       aria-label={`${product.name} — Premium Export Product`}
-      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] lg:h-auto lg:min-h-screen lg:max-h-none flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* Mobile background carousel — full viewport width */}
       <MobileBackgroundCarousel images={carouselImages} />

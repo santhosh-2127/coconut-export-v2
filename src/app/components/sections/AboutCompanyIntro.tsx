@@ -73,7 +73,7 @@ export default function AboutCompanyIntro() {
 
               {/* Short intro */}
               <p className="text-[#374151] text-base md:text-lg leading-relaxed mb-4">
-                We are <strong className="text-[#1B4332] font-semibold">Global Coco Exports</strong> — a premium coconut export
+                We are <strong className="text-[#1B4332] font-semibold">Global Coco Exports</strong>&nbsp;&mdash; a premium coconut export
                 company headquartered in Tamil Nadu, the heart of India&apos;s coconut belt. Our strategic location gives us
                 direct access to the finest raw materials and major export ports.
               </p>

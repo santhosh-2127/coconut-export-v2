@@ -42,7 +42,7 @@ export default function RFQHero() {
     <section
       id="rfq-hero"
       aria-label="RFQ — Request A Commercial Quotation"
-      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] lg:h-auto lg:min-h-screen lg:max-h-none flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* ═══════════════════════════════════════════════════════════════
          BACKGROUND: layered depth (same as homepage Hero)

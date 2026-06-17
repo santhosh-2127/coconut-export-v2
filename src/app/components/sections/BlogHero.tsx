@@ -22,7 +22,7 @@ export default function BlogHero() {
     <section
       id="blog-hero"
       aria-label="Industry Insights & Export Knowledge"
-      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] lg:h-auto lg:min-h-screen lg:max-h-none flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* Single responsive background image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">

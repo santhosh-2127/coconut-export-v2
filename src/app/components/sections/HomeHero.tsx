@@ -74,7 +74,7 @@ export default function HomeHero() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-label="Hero — Premium Coconut Exports From India"
-      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] lg:h-auto lg:min-h-screen lg:max-h-none flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* ═══════════════════════════════════════════════════════════════
          BACKGROUND CAROUSEL: Product visuals that crossfade
@@ -163,28 +163,28 @@ export default function HomeHero() {
                 variants={fadeUp}
                 className="mb-6 lg:mb-8"
               >
-                <p className="text-[clamp(2.2rem,5vw,4rem)] font-bold tracking-[0.08em] uppercase text-white leading-[1.08]">
-                  GLOBAL COCO{" "}
-                  <span className="text-[#D4A017]">EXPORTS</span>
-                </p>
+                <h1 className="text-[clamp(1.75rem,4vw,2rem)] md:text-[clamp(2.25rem,3vw,2.5rem)] lg:text-[clamp(2.5rem,3.5vw,3rem)] font-bold tracking-[0.08em] uppercase text-white leading-[1.08]">
+                  GLOBAL COCO EXPORTS
+                </h1>
               </motion.div>
 
               {/* ── Headline ── */}
-              <motion.h1
+              <motion.h3
                 variants={fadeUp}
-                className="text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] tracking-[-0.025em] text-white font-bold"
+                className="text-[clamp(1.375rem,3vw,1.5rem)] md:text-[clamp(1.5rem,2vw,1.75rem)] lg:text-[clamp(1.75rem,2.5vw,2rem)] leading-[1.08] tracking-[-0.025em] text-[#D4A017] font-bold"
               >
                 <span className="block">Premium Coconut</span>
-                <span className="block text-[#D4A017]">
+                <span className="block">
                   Exports From India
                 </span>
-              </motion.h1>
+              </motion.h3>
 
               {/* ── Subheadline ── */}
               <motion.p
                 variants={fadeUp}
                 className="mt-3 lg:mt-5 text-[16px] sm:text-lg text-white/70 leading-relaxed max-w-[580px] font-medium"
-              >                Trusted by importers, distributors and wholesalers worldwide for export-grade coconuts, copra and coco peat.
+              >
+                Trusted by importers, distributors and wholesalers worldwide for export-grade coconuts, copra and coco peat.
               </motion.p>
 
               {/* ── CTA Buttons ── */}

@@ -208,7 +208,7 @@ export default async function BlogArticlePage(props: {
       <Navbar />
 
       {/* ── Hero ── */}
-      <section className="relative pt-28 pb-12 md:pt-36 md:pb-16 bg-[#0C1A12] overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pt-36 md:pb-16 lg:min-h-screen lg:grid lg:items-center bg-[#0C1A12] overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{
