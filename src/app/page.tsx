@@ -5,7 +5,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import HomeHero from "./components/sections/HomeHero";
 import HomeAbout from "./components/sections/HomeAbout";
-import Stats from "./components/sections/Stats";
+import OurImpact from "./components/sections/OurImpact";
 
 // ═══ Code-split: all below-fold sections ═══
 const ProductCategories = dynamic(
@@ -89,10 +89,10 @@ export default function Home() {
       {/* SECTION 2: About Global Coco Exports — company introduction */}
       <HomeAbout />
 
-      {/* SECTION 3: Trust Statistics */}
-      <Stats />
+      {/* SECTION 3: Our Impact — export scale and global reach */}
+      <OurImpact />
 
-      {/* SECTION 3: Product Categories */}
+      {/* SECTION 4: Product Categories */}
       <ProductCategories />
 
       {/* SECTION 4: Why Buyers Choose Us */}

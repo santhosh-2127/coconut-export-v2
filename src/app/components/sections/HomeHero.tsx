@@ -163,7 +163,7 @@ export default function HomeHero() {
                 variants={fadeUp}
                 className="mb-6 lg:mb-8"
               >
-                <p className="text-[clamp(0.85rem,1.6vw,1.05rem)] font-bold tracking-[0.22em] uppercase text-white/90">
+                <p className="text-[clamp(2.2rem,5vw,4rem)] font-bold tracking-[0.08em] uppercase text-white leading-[1.08]">
                   GLOBAL COCO{" "}
                   <span className="text-[#D4A017]">EXPORTS</span>
                 </p>
