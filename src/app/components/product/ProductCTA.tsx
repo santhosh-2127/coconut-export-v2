@@ -176,53 +176,44 @@ export default function ProductCTA({ product }: { product: Product }) {
           </p>
         </motion.div>
 
-        {/* ── Trust Bar — Immediately above form ── */}
-        <div className="max-w-3xl mx-auto mb-6">
-          <motion.div
-            variants={fadeUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="grid grid-cols-1 min-[400px]:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3"
-          >
+        {/* ── Trust Strip — Compact pill badges above form ── */}
+        <motion.div
+          variants={fadeUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="max-w-3xl mx-auto mb-5"
+        >
+          {/* Desktop: single row — Mobile: two rows of two */}
+          <div className="flex flex-wrap justify-center gap-x-0 gap-y-2">
             {[
-              { label: "Response Within Minutes" },
-              { label: "Export Specialists" },
-              { label: "Global Shipping Support" },
-              { label: "Bulk Order Assistance" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="group flex items-center gap-2.5 sm:justify-center px-3.5 py-3 rounded-xl bg-white/[0.06] border border-white/10 shadow-sm hover:shadow-md hover:border-[#D4A017]/30 transition-all duration-300"
-              >
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#D4A017]/15 flex items-center justify-center group-hover:bg-[#D4A017]/25 transition-colors duration-300">
-                  <svg viewBox="0 0 12 12" fill="none" className="w-2.5 h-2.5 text-[#D4A017]">
-                    <path d="M2.5 6l2.5 2.5L9.5 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <span className="text-[11px] sm:text-[12px] font-semibold text-white/80 leading-tight">
+              { icon: "⚡", label: "Response Within Minutes" },
+              { icon: "🌍", label: "Export Specialists" },
+              { icon: "🚢", label: "Global Shipping Support" },
+              { icon: "📦", label: "Bulk Order Assistance" },
+            ].map((item, i, arr) => (
+              <span key={item.label} className="inline-flex items-center">
+                {/* Badge */}
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.07] border border-[#D4A017]/20 text-[11px] sm:text-[12px] font-semibold text-white/80 leading-none whitespace-nowrap">
+                  <span className="text-[12px] leading-none" aria-hidden="true">{item.icon}</span>
                   {item.label}
                 </span>
-              </div>
+                {/* Separator dot — hidden after last item */}
+                {i < arr.length - 1 && (
+                  <span className="mx-2 text-[#D4A017]/40 text-[10px] select-none" aria-hidden="true">•</span>
+                )}
+              </span>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.p
-            variants={fadeUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            className="mt-4 text-center text-[12px] sm:text-[13px] text-white/30 leading-relaxed max-w-2xl mx-auto"
-          >
-            Join importers and distributors across{" "}
+          <p className="mt-3 text-center text-[11px] sm:text-[12px] text-white/30 leading-relaxed max-w-2xl mx-auto">
+            Join importers across{" "}
             <span className="text-[#D4A017] font-semibold">15+ countries</span>{" "}
             who trust{" "}
-            <span className="text-[#D4A017] font-semibold">Global Coco Exports</span>{" "}
-            for reliable coconut supply.
-          </motion.p>
-        </div>
+            <span className="text-[#D4A017] font-semibold">Global Coco Exports</span>.
+          </p>
+        </motion.div>
 
         {/* ── Form Card ── */}
         <div className="max-w-3xl mx-auto">

@@ -11,7 +11,7 @@ export default function GlobalNetworkCTA() {
     <section
       id="global-network-cta"
       ref={sectionRef}
-      className="relative py-20 md:py-24 overflow-hidden"
+      className="relative py-14 md:py-18 overflow-hidden"
       style={{
         background:
           "linear-gradient(145deg, #0a1f16 0%, #0d2d1f 35%, #102a1e 65%, #0a1a12 100%)",
@@ -51,7 +51,7 @@ export default function GlobalNetworkCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="inline-flex items-center gap-3 mb-6"
+          className="inline-flex items-center gap-3 mb-5"
         >
           <span className="block w-8 h-px bg-[#D4A017]" />
           <span className="text-[#D4A017] text-[11px] font-semibold uppercase tracking-[0.24em]">
@@ -75,7 +75,7 @@ export default function GlobalNetworkCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-          className="mt-6 text-white/60 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto"
+          className="mt-5 text-white/60 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto"
         >
           Connect with our export team for product sourcing, logistics planning, pricing, and export support.
         </motion.p>
@@ -84,7 +84,7 @@ export default function GlobalNetworkCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
-          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
             href="/#request-quote"

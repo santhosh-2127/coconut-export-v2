@@ -57,15 +57,6 @@ const strengths = [
 /* ─── Mobile story cards ──────────────────────────────────────────────── */
 const storyCards = [
   {
-    title: "Who We Are",
-    paragraphs: [
-      "We are Global Coco Exports — a premium coconut export company headquartered in Tamil Nadu, the heart of India's coconut belt. Our strategic location gives us direct access to the finest raw materials and major export ports.",
-      "With 10+ years in global coconut trade, we bridge farm-level production and international buyers through structured sourcing, certified processing, and reliable logistics.",
-    ],
-    highlight: "Headquartered in Tamil Nadu, India",
-    icon: "🏢",
-  },
-  {
     title: "Our Mission",
     paragraphs: [
       "Our mission is to make international coconut procurement seamless, reliable, and transparent. We connect certified farms with global buyers through a fully managed supply chain.",
@@ -109,8 +100,8 @@ export default function AboutWhoWeAre() {
 
   return (
     <section
-      id="who-we-are"
-      aria-label="Who We Are"
+      id="our-story"
+      aria-label="Our Story — Export Strengths"
       className="relative py-14 md:py-18 overflow-hidden bg-white"
     >
       {/* ── Subtle background ── */}
@@ -138,12 +129,12 @@ export default function AboutWhoWeAre() {
           <div className="inline-flex items-center gap-2 mb-5">
             <span className="w-8 h-px bg-[#D4A017]" />
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">
-              Who We Are
+              Our Story
             </p>
             <span className="w-8 h-px bg-[#D4A017]" />
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111827] leading-tight">
-            A Export Partner Built for{" "}
+            An Export Partner Built for{" "}
             <span className="text-[#D4A017]">Scale</span>
           </h2>
 

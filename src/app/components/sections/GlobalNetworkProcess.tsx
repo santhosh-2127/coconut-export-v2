@@ -96,7 +96,7 @@ export default function GlobalNetworkProcess() {
     <section
       id="export-process-overview"
       ref={ref}
-      className="relative py-20 md:py-24 overflow-hidden bg-[#FAFAFA]"
+      className="relative py-14 md:py-18 overflow-hidden bg-[#FAFAFA]"
       aria-label="Export Process Overview"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -108,9 +108,9 @@ export default function GlobalNetworkProcess() {
           initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65 }}
-          className="text-center max-w-2xl mx-auto mb-10 md:mb-14"
+          className="text-center max-w-2xl mx-auto mb-8 md:mb-10"
         >
-          <div className="inline-flex items-center gap-2 mb-5">
+          <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-8 h-px bg-[#D4A017]" />
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">
               Export Process
@@ -193,7 +193,7 @@ export default function GlobalNetworkProcess() {
         <div className="hidden md:block relative max-w-4xl mx-auto">
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#1B4332]/30 via-[#D4A017]/20 to-[#1B4332]/30" />
 
-          <div className="space-y-12">
+          <div className="space-y-8">
             {steps.map((step, index) => (
               <motion.div
                 key={step.step}

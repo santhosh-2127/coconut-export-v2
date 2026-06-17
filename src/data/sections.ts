@@ -95,23 +95,38 @@ export const supplyChainSteps: SupplyChainStep[] = [
 ];
 
 export const exportDestinations: ExportDestination[] = [
+  // Middle East
   { country: "United Arab Emirates", region: "Middle East", flag: "🇦🇪" },
   { country: "Saudi Arabia", region: "Middle East", flag: "🇸🇦" },
   { country: "Kuwait", region: "Middle East", flag: "🇰🇼" },
   { country: "Qatar", region: "Middle East", flag: "🇶🇦" },
   { country: "Oman", region: "Middle East", flag: "🇴🇲" },
   { country: "Bahrain", region: "Middle East", flag: "🇧🇭" },
-  { country: "Malaysia", region: "Southeast Asia", flag: "🇲🇾" },
-  { country: "Singapore", region: "Southeast Asia", flag: "🇸🇬" },
+  // Europe
   { country: "Germany", region: "Europe", flag: "🇩🇪" },
   { country: "Netherlands", region: "Europe", flag: "🇳🇱" },
   { country: "United Kingdom", region: "Europe", flag: "🇬🇧" },
+  { country: "France", region: "Europe", flag: "🇫🇷" },
+  { country: "Italy", region: "Europe", flag: "🇮🇹" },
+  { country: "Belgium", region: "Europe", flag: "🇧🇪" },
+  { country: "Spain", region: "Europe", flag: "🇪🇸" },
+  // North America
   { country: "United States", region: "North America", flag: "🇺🇸" },
   { country: "Canada", region: "North America", flag: "🇨🇦" },
+  // Oceania
   { country: "Australia", region: "Oceania", flag: "🇦🇺" },
-  { country: "New Zealand", region: "Oceania", flag: "🇳🇿" },
-  { country: "South Korea", region: "East Asia", flag: "🇰🇷" },
+  // East Asia
   { country: "Japan", region: "East Asia", flag: "🇯🇵" },
+  { country: "South Korea", region: "East Asia", flag: "🇰🇷" },
+  // Southeast Asia
+  { country: "Singapore", region: "Southeast Asia", flag: "🇸🇬" },
+  { country: "Malaysia", region: "Southeast Asia", flag: "🇲🇾" },
+  { country: "Thailand", region: "Southeast Asia", flag: "🇹🇭" },
+  { country: "Indonesia", region: "Southeast Asia", flag: "🇮🇩" },
+  // South Asia
+  { country: "Bangladesh", region: "South Asia", flag: "🇧🇩" },
+  // Africa
+  { country: "South Africa", region: "Africa", flag: "🇿🇦" },
 ];
 
 export const regionGroups: RegionGroup[] = [
@@ -139,13 +154,21 @@ export const regionGroups: RegionGroup[] = [
   {
     region: "Asia-Pacific",
     description:
-      "Fast-growing markets across Southeast Asia, Oceania, and East Asia via Singapore and Port Klang hubs. Transit: 7–14 days.",
+      "Fast-growing markets across Southeast Asia, Oceania, East Asia, and South Asia via Singapore and Port Klang hubs. Transit: 7–14 days.",
     color: "#9B59B6",
     countries: exportDestinations.filter(
       (d) =>
         d.region === "Southeast Asia" ||
         d.region === "Oceania" ||
-        d.region === "East Asia"
+        d.region === "East Asia" ||
+        d.region === "South Asia"
     ),
+  },
+  {
+    region: "Africa",
+    description:
+      "Expanding presence across Sub-Saharan Africa, serving importers and distributors in South Africa and beyond.",
+    color: "#E05C3A",
+    countries: exportDestinations.filter((d) => d.region === "Africa"),
   },
 ];

@@ -53,9 +53,15 @@ function StatBlock({
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: 0.08 + index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      {/* Large white number — dominating visual hierarchy */}
+      {/* Large white number — Hero-heading level visual prominence */}
       <p
-        className="leading-none font-black text-white tracking-[-0.03em] tabular-nums text-[clamp(3.5rem,12vw,5.5rem)] lg:text-[clamp(5.5rem,10vw,9rem)]"
+        className="
+          font-black text-white tracking-[-0.03em] tabular-nums
+          text-[clamp(3rem,10vw,4rem)]
+          sm:text-[clamp(4rem,7vw,5rem)]
+          lg:text-[clamp(4.5rem,8vw,6rem)]
+        "
+        style={{ lineHeight: 0.95, fontWeight: 900 }}
         aria-label={`${value} ${label}`}
       >
         {isVisible ? counted : 0}

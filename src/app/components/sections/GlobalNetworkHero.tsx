@@ -22,7 +22,7 @@ export default function GlobalNetworkHero() {
     <section
       id="global-network-hero"
       aria-label="Global Export Network"
-      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* Single responsive background image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -59,14 +59,14 @@ export default function GlobalNetworkHero() {
       </div>
 
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 lg:min-h-[70vh] flex items-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 flex items-center">
           <motion.div
             variants={container}
             initial="initial"
             animate="animate"
             className="max-w-[800px]"
           >
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-8">
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 mb-6">
               <span className="block w-8 h-px bg-[#D4A017]" />
               <span className="text-[#D4A017] text-[11px] font-semibold uppercase tracking-[0.24em]">
                 Global Network
@@ -97,7 +97,7 @@ export default function GlobalNetworkHero() {
               ))}
             </motion.div>
 
-            <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row gap-4">
+            <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
                 href="/#request-quote"
                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D4A017] text-[#0C1A12] font-bold text-sm tracking-[0.06em] uppercase transition-all duration-300 hover:bg-[#E4B42A] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4A017]"

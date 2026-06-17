@@ -19,20 +19,12 @@ const fadeUp = {
   },
 };
 
-/* ─── Trust indicators ────────────────────────────────────────────────── */
-const trustIndicators = [
-  { label: "ISO 22000 Certified" },
-  { label: "HACCP Certified" },
-  { label: "APEDA Registered" },
-  { label: "SGS Verified" },
-];
-
 export default function CertificationsHero() {
   return (
     <section
       id="certifications-hero"
       aria-label="Certifications — Export Compliance & Quality Standards"
-      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* Single responsive background image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -69,7 +61,7 @@ export default function CertificationsHero() {
       </div>
 
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 lg:min-h-[70vh] flex items-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 flex items-center">
           <motion.div
             variants={container}
             initial="initial"
@@ -94,18 +86,6 @@ export default function CertificationsHero() {
             <motion.p variants={fadeUp} className="mt-6 text-[15px] sm:text-base text-white/60 leading-relaxed max-w-[640px] font-medium">
               Every shipment carries ISO 22000, HACCP, APEDA, and SGS certifications — ensuring food safety, quality compliance, and full traceability for global buyers.
             </motion.p>
-
-            <motion.div variants={fadeUp} className="mt-6 flex flex-wrap gap-2">
-              {trustIndicators.map((indicator) => (
-                <span
-                  key={indicator.label}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-white/80 bg-white/[0.06] border border-white/[0.12] rounded-full"
-                >
-                  <span className="text-[#D4A017] text-xs">✓</span>
-                  {indicator.label}
-                </span>
-              ))}
-            </motion.div>
 
             <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row gap-4">
               <a

@@ -24,7 +24,7 @@ export default function LogisticsHero() {
     <section
       id="logistics-hero"
       aria-label="Logistics — Global Logistics & Export Operations"
-      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* BACKGROUND: single responsive export logistics image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">

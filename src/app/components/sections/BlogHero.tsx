@@ -22,7 +22,7 @@ export default function BlogHero() {
     <section
       id="blog-hero"
       aria-label="Industry Insights & Export Knowledge"
-      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* Single responsive background image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -65,7 +65,7 @@ export default function BlogHero() {
       </div>
 
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 lg:min-h-[60vh] flex items-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 flex items-center">
           <motion.div
             variants={container}
             initial="initial"

@@ -219,6 +219,23 @@ export default async function BlogArticlePage(props: {
         />
         <div className="absolute -top-48 right-[-10%] w-[600px] h-[600px] rounded-full bg-[#D4A017]/[0.06] blur-[140px] pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto px-6">
+          {/* ── Back to Blogs ── */}
+          <Link
+            href="/blog"
+            className="group inline-flex items-center gap-1.5 mb-6 text-white/60 hover:text-[#D4A017] text-sm font-medium transition-colors duration-200"
+          >
+            <svg
+              className="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+            <span>Back to Blogs</span>
+          </Link>
+
           <div className="flex items-center gap-2 mb-5">
             <span className="w-8 h-px bg-[#D4A017]" />
             <span className="text-[#D4A017] text-[11px] font-semibold uppercase tracking-[0.2em]">

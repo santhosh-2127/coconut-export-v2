@@ -4,6 +4,7 @@ import { BreadcrumbSchema } from "@/lib/schemas";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import AboutHero from "../components/sections/AboutHero";
+import AboutCompanyIntro from "../components/sections/AboutCompanyIntro";
 import AboutWhoWeAre from "../components/sections/AboutWhoWeAre";
 
 // ═══ Code-split: below-fold sections ═══
@@ -65,6 +66,7 @@ export default function AboutPage() {
       />
       <Navbar />
       <AboutHero />
+      <AboutCompanyIntro />
       <AboutWhoWeAre />
       <AboutWhyBuyers />
       <AboutOperations />

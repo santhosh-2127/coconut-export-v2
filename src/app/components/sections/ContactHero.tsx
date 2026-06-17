@@ -15,7 +15,7 @@ export default function ContactHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100dvh] min-h-screen lg:h-screen lg:max-h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden"
       style={{ background: "linear-gradient(160deg, #0C1A12 0%, #0d2d1f 40%, #0a1f16 100%)" }}
       aria-label="Contact Hero"
     >
@@ -98,49 +98,93 @@ export default function ContactHero() {
               className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-2"
             >
               {/* Email */}
-              <a href="mailto:exports@globalcoco.com"
-                className="group flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#D4A017]/30 transition-all duration-300">
-                <div className="w-8 h-8 rounded-lg bg-[#D4A017]/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-base">📧</span>
+              <a
+                href="mailto:exports@globalcoco.com"
+                className="group flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#F5F0E8]/[0.06] border border-[#CA8A04]/20 hover:bg-[#CA8A04]/10 hover:border-[#CA8A04]/40 transition-all duration-300 shadow-sm shadow-black/20 min-w-0"
+              >
+                <div className="w-7 h-7 rounded-md bg-[#CA8A04]/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <svg viewBox="0 0 20 20" fill="none" className="w-3.5 h-3.5" aria-hidden="true">
+                    <rect x="2" y="4" width="16" height="12" rx="2" stroke="#CA8A04" strokeWidth="1.5" />
+                    <path d="M2 7l8 5 8-5" stroke="#CA8A04" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
-                <div className="min-w-0">
-                  <p className="text-[9px] text-white/40 uppercase tracking-wider font-medium">Email</p>
-                  <p className="text-white text-xs font-semibold truncate">exports@globalcoco.com</p>
+                <div className="min-w-0 overflow-hidden">
+                  <p className="text-[9px] text-[#CA8A04] uppercase tracking-wider font-semibold leading-none mb-0.5">Email</p>
+                  <p
+                    className="text-[#F5F0E8] text-[11px] font-semibold leading-tight"
+                    style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}
+                  >
+                    exports@globalcoco.com
+                  </p>
                 </div>
               </a>
 
               {/* Phone */}
-              <a href="tel:+919876543210"
-                className="group flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#D4A017]/30 transition-all duration-300">
-                <div className="w-8 h-8 rounded-lg bg-[#1B4332]/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-base">📱</span>
+              <a
+                href="tel:+919876543210"
+                className="group flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#F5F0E8]/[0.06] border border-[#CA8A04]/20 hover:bg-[#CA8A04]/10 hover:border-[#CA8A04]/40 transition-all duration-300 shadow-sm shadow-black/20 min-w-0"
+              >
+                <div className="w-7 h-7 rounded-md bg-[#CA8A04]/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <svg viewBox="0 0 20 20" fill="none" className="w-3.5 h-3.5" aria-hidden="true">
+                    <path d="M3 3.5C3 3.5 4 2 5.5 2c.5 0 1 .3 1.3.7l1.5 2.3c.3.5.2 1.1-.2 1.5L7 7.6s.8 2 2.4 3.6S13 13 13 13l1.1-1.1c.4-.4 1-.5 1.5-.2l2.3 1.5c.4.3.7.8.7 1.3 0 1.5-1.5 2.5-1.5 2.5s-2 1-5-2S2 7 2 7 1 5 3 3.5z" stroke="#CA8A04" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
-                <div>
-                  <p className="text-[9px] text-white/40 uppercase tracking-wider font-medium">Phone</p>
-                  <p className="text-white text-xs font-semibold">+91 98765 43210</p>
+                <div className="min-w-0 overflow-hidden">
+                  <p className="text-[9px] text-[#CA8A04] uppercase tracking-wider font-semibold leading-none mb-0.5">Phone</p>
+                  <p
+                    className="text-[#F5F0E8] text-[11px] font-semibold leading-tight"
+                    style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}
+                  >
+                    +91 98765 43210
+                  </p>
                 </div>
               </a>
 
               {/* WhatsApp */}
-              <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer"
-                className="group flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#25D366]/30 transition-all duration-300">
-                <div className="w-8 h-8 rounded-lg bg-[#25D366]/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-base">💬</span>
+              <a
+                href="https://wa.me/919876543210"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#F5F0E8]/[0.06] border border-[#CA8A04]/20 hover:bg-[#25D366]/10 hover:border-[#25D366]/40 transition-all duration-300 shadow-sm shadow-black/20 min-w-0"
+              >
+                <div className="w-7 h-7 rounded-md bg-[#25D366]/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  {/* Official WhatsApp icon */}
+                  <svg viewBox="0 0 32 32" fill="none" className="w-4 h-4" aria-hidden="true">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M16 2C8.268 2 2 8.268 2 16c0 2.44.638 4.73 1.755 6.718L2 30l7.518-1.724A13.934 13.934 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.45 11.45 0 01-5.82-1.588l-.418-.248-4.462 1.023 1.058-4.332-.272-.432A11.5 11.5 0 1116 27.5zm6.34-8.622c-.347-.174-2.054-1.013-2.374-1.128-.32-.116-.553-.174-.786.174-.232.347-.9 1.128-1.103 1.36-.203.232-.406.26-.753.087-.347-.174-1.466-.54-2.793-1.722-1.032-.92-1.73-2.055-1.932-2.402-.203-.348-.022-.536.152-.71.156-.155.347-.405.521-.608.174-.202.232-.347.347-.578.116-.232.058-.435-.029-.608-.087-.174-.786-1.894-1.076-2.593-.283-.681-.57-.589-.786-.6l-.67-.01c-.232 0-.608.087-.927.434-.32.348-1.22 1.19-1.22 2.902s1.25 3.365 1.424 3.597c.174.232 2.46 3.756 5.96 5.267.833.36 1.483.575 1.99.736.836.266 1.597.228 2.199.138.671-.1 2.054-.84 2.345-1.652.29-.811.29-1.506.203-1.652-.087-.145-.32-.232-.667-.405z"
+                      fill="#25D366"
+                    />
+                  </svg>
                 </div>
-                <div>
-                  <p className="text-[9px] text-white/40 uppercase tracking-wider font-medium">WhatsApp</p>
-                  <p className="text-white text-xs font-semibold">Chat With Us</p>
+                <div className="min-w-0 overflow-hidden">
+                  <p className="text-[9px] text-[#CA8A04] uppercase tracking-wider font-semibold leading-none mb-0.5">WhatsApp</p>
+                  <p
+                    className="text-[#F5F0E8] text-[11px] font-semibold leading-tight"
+                    style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}
+                  >
+                    Chat With Us
+                  </p>
                 </div>
               </a>
 
               {/* Location */}
-              <div className="group flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#2D7D9A]/30 transition-all duration-300">
-                <div className="w-8 h-8 rounded-lg bg-[#2D7D9A]/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-base">📍</span>
+              <div className="group flex items-center gap-2 px-2.5 py-2 rounded-lg bg-[#F5F0E8]/[0.06] border border-[#CA8A04]/20 hover:bg-[#CA8A04]/10 hover:border-[#CA8A04]/40 transition-all duration-300 shadow-sm shadow-black/20 min-w-0">
+                <div className="w-7 h-7 rounded-md bg-[#CA8A04]/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <svg viewBox="0 0 20 20" fill="none" className="w-3.5 h-3.5" aria-hidden="true">
+                    <path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z" stroke="#CA8A04" strokeWidth="1.5" strokeLinejoin="round" />
+                    <circle cx="10" cy="8" r="2" stroke="#CA8A04" strokeWidth="1.5" />
+                  </svg>
                 </div>
-                <div>
-                  <p className="text-[9px] text-white/40 uppercase tracking-wider font-medium">Location</p>
-                  <p className="text-white text-xs font-semibold">Tamil Nadu, India</p>
+                <div className="min-w-0 overflow-hidden">
+                  <p className="text-[9px] text-[#CA8A04] uppercase tracking-wider font-semibold leading-none mb-0.5">Location</p>
+                  <p
+                    className="text-[#F5F0E8] text-[11px] font-semibold leading-tight"
+                    style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}
+                  >
+                    Tamil Nadu, India
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -169,7 +213,7 @@ export default function ContactHero() {
                 href="https://wa.me/919876543210"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 border border-white/20 text-white/90 font-semibold text-sm tracking-[0.04em] rounded-full hover:bg-white/10 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-semibold text-sm tracking-[0.04em] rounded-full transition-all duration-300 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
               >
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4" aria-hidden="true">
                   <path d="M17.05 2.95A9.93 9.93 0 0010 0C5.1 0 1.1 3.1.15 7.5c-.4 1.8-.2 3.7.6 5.3L0 20l7.5-2.1c1.6.8 3.4 1.1 5.5 1.1 4.9 0 9-3.5 10-8.5.5-2.5 0-5.2-1.95-7.55zm-7.05 13c-1.5 0-3-.4-4.3-1.2l-.3-.2-4.35 1.2 1.2-4.2-.2-.3c-.8-1.3-1.2-2.8-1.2-4.3 0-4.2 3.5-7.7 7.8-7.7 2.1 0 4.1.8 5.6 2.3 1.5 1.5 2.3 3.5 2.3 5.6.1 4.3-3.4 7.8-7.65 7.8zm4.3-6.1c-.2-.1-.9-.5-1.1-.5-.2-.1-.4-.1-.5.1-.2.3-.6.5-.7.6-.1.1-.3.2-.5.1-.2-.1-.8-.3-1.5-.9-.5-.5-.9-1.1-1-1.3-.1-.2 0-.3.1-.4.1-.1.2-.2.3-.4.1-.1.1-.2.2-.3.1-.1.1-.3 0-.4 0-.1-.5-1.2-.7-1.6-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.2-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.3.1.1 1.5 2.4 3.8 3.3s2.8.9 3.2.9c.4 0 .9-.2 1.2-.4.3-.3.4-.6.5-.7.1-.2.1-.4 0-.5-.1-.1-.1-.2-.3-.3z" />

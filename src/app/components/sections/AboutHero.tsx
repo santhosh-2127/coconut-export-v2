@@ -32,7 +32,7 @@ export default function AboutHero() {
     <section
       id="about-hero"
       aria-label="About — Building Global Supply Relationships"
-      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* ═══════════════════════════════════════════════════════════════
          BACKGROUND: single responsive farm sourcing image

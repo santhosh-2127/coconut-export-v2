@@ -54,7 +54,7 @@ export default function GlobalNetworkWhy() {
     <section
       id="why-global-buyers"
       ref={sectionRef}
-      className="relative py-20 md:py-24 overflow-hidden"
+      className="relative py-14 md:py-18 overflow-hidden"
       style={{ background: "linear-gradient(170deg, #FAFAFA 0%, #f4f8f5 50%, #FAFAFA 100%)" }}
       aria-label="Why Global Buyers Choose Us"
     >
@@ -65,9 +65,9 @@ export default function GlobalNetworkWhy() {
           initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65 }}
-          className="text-center max-w-2xl mx-auto mb-14"
+          className="text-center max-w-2xl mx-auto mb-10"
         >
-          <div className="inline-flex items-center gap-2 mb-5">
+          <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-8 h-px bg-[#D4A017]" />
             <p className="text-[#D4A017] uppercase tracking-[5px] text-[11px] font-bold">
               Why Choose Us

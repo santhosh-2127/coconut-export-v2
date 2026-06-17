@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { fadeUpBig, fadeIn } from "./ProductConstants";
 import type { Product } from "@/types";
@@ -37,26 +37,46 @@ function getCarouselImages(product: Product) {
 /* ─── Mobile Background Carousel ────────────────────────────────────── */
 function MobileBackgroundCarousel({ images }: { images: { src: string; alt: string }[] }) {
   const [index, setIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const len = images.length;
 
+  /**
+   * Advance to the next (or specific) slide.
+   * We track `prevIndex` so the outgoing slide stays elevated (z-index: 2)
+   * and fully visible while the incoming image fades in over it.
+   * This guarantees the green background is NEVER exposed during a transition.
+   */
+  const goTo = useCallback((next: number) => {
+    setIndex((current) => {
+      setPrevIndex(current);
+      return next;
+    });
+  }, []);
+
   const next = useCallback(() => {
-    setIndex((prev) => (prev + 1) % len);
-  }, [len]);
+    goTo((index + 1) % len);
+  }, [index, len, goTo]);
 
   const prev = useCallback(() => {
-    setIndex((prev) => (prev - 1 + len) % len);
-  }, [len]);
+    goTo((index - 1 + len) % len);
+  }, [index, len, goTo]);
 
   // Autoplay
   useEffect(() => {
-    intervalRef.current = setInterval(next, 5000);
+    intervalRef.current = setInterval(() => {
+      setIndex((current) => {
+        const nextIdx = (current + 1) % len;
+        setPrevIndex(current);
+        return nextIdx;
+      });
+    }, 5000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [next]);
+  }, [len]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -74,7 +94,28 @@ function MobileBackgroundCarousel({ images }: { images: { src: string; alt: stri
       else prev();
     }
     // Resume autoplay
-    intervalRef.current = setInterval(next, 5000);
+    intervalRef.current = setInterval(() => {
+      setIndex((current) => {
+        const nextIdx = (current + 1) % len;
+        setPrevIndex(current);
+        return nextIdx;
+      });
+    }, 5000);
+  };
+
+  /**
+   * Z-index strategy for flicker-free cross-fade:
+   *   incoming (active) slide  → z: 1  fades in  (opacity 0 → 1)
+   *   outgoing (prev)   slide  → z: 2  fades out (opacity 1 → 0) stays ON TOP until gone
+   *   all other slides         → z: 0  hidden
+   *
+   * Because the outgoing slide is above the incoming one and only disappears
+   * after the incoming image has rendered, the background color is never visible.
+   */
+  const getZIndex = (i: number) => {
+    if (i === prevIndex) return 2; // outgoing — stays on top while fading out
+    if (i === index) return 1;    // incoming — fades in beneath the outgoing
+    return 0;
   };
 
   return (
@@ -84,36 +125,42 @@ function MobileBackgroundCarousel({ images }: { images: { src: string; alt: stri
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <AnimatePresence mode="wait">
+      {images.map((img, i) => (
         <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: "easeInOut" }}
+          key={img.src}
           className="absolute inset-0"
+          initial={false}
+          animate={{
+            opacity: i === index ? 1 : 0,
+            scale: i === index ? 1.03 : 1.0,
+          }}
+          transition={{
+            opacity: { duration: 1.0, ease: "easeInOut" },
+            scale: { duration: 6.0, ease: "easeOut" },
+          }}
+          style={{ zIndex: getZIndex(i) }}
         >
           <Image
-            src={images[index].src}
-            alt={images[index].alt}
+            src={img.src}
+            alt={img.alt}
             fill
             className="object-cover object-center"
             sizes="100vw"
-            priority={index === 0}
+            priority={i === 0}
           />
         </motion.div>
-      </AnimatePresence>
+      ))}
 
-      {/* Dark gradient overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A12]/70 via-[#0C1A12]/50 to-[#0C1A12]/85" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40" />
+      {/* Dark gradient overlays — above all slides (z-10) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A12]/70 via-[#0C1A12]/50 to-[#0C1A12]/85 z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A12]/60 via-transparent to-[#0C1A12]/40 z-10 pointer-events-none" />
 
       {/* Dots indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
         {images.map((_, i) => (
           <button
             key={i}
-            onClick={() => setIndex(i)}
+            onClick={() => goTo(i)}
             className={`rounded-full transition-all duration-300 ${
               i === index
                 ? "w-5 h-1.5 bg-[#D4A017]"
@@ -135,7 +182,7 @@ export default function ProductHero({ product }: { product: Product }) {
   return (
     <section
       aria-label={`${product.name} — Premium Export Product`}
-      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* Mobile background carousel — full viewport width */}
       <MobileBackgroundCarousel images={carouselImages} />
@@ -151,7 +198,7 @@ export default function ProductHero({ product }: { product: Product }) {
       </div>
 
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 lg:min-h-[70vh] flex items-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0 flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
             {/* Left: Content */}
             <motion.div initial="initial" animate="animate" className="lg:col-span-3 max-w-[640px]">

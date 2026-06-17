@@ -6,6 +6,7 @@ import { products } from "@/data/products";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
 import ProductHero from "@/app/components/product/ProductHero";
+import ProductOverview from "@/app/components/product/ProductOverview";
 import ProductSpecs from "@/app/components/product/ProductSpecs";
 import PackagingSection from "@/app/components/product/PackagingSection";
 import ProductQuality from "@/app/components/product/ProductQuality";
@@ -43,7 +44,10 @@ export default function ProductPageClient() {
       {/* SECTION 1: Hero — What is it? */}
       <ProductHero product={product} />
 
-      {/* SECTION 2: Specifications — Technical details */}
+      {/* SECTION 2: Product Overview — Introduction before specs */}
+      <ProductOverview product={product} />
+
+      {/* SECTION 3: Specifications — Technical details */}
       <ProductSpecs product={product} />
 
       {/* SECTION 3: Applications — What is it used for? */}

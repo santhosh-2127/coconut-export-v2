@@ -4,6 +4,7 @@ import { FAQSchema } from "@/lib/schemas";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import HomeHero from "./components/sections/HomeHero";
+import HomeAbout from "./components/sections/HomeAbout";
 import Stats from "./components/sections/Stats";
 
 // ═══ Code-split: all below-fold sections ═══
@@ -21,6 +22,10 @@ const QualityJourney = dynamic(
 );
 const FAQHome = dynamic(
   () => import("./components/sections/FAQHome"),
+  { ssr: true }
+);
+const HomeCertifications = dynamic(
+  () => import("./components/sections/HomeCertifications"),
   { ssr: true }
 );
 const RequestQuoteSection = dynamic(
@@ -81,7 +86,10 @@ export default function Home() {
       {/* SECTION 1: Hero — Large product visual + headline + CTAs */}
       <HomeHero />
 
-      {/* SECTION 2: Trust Statistics */}
+      {/* SECTION 2: About Global Coco Exports — company introduction */}
+      <HomeAbout />
+
+      {/* SECTION 3: Trust Statistics */}
       <Stats />
 
       {/* SECTION 3: Product Categories */}
@@ -96,7 +104,10 @@ export default function Home() {
       {/* SECTION 6: Buyer Testimonials */}
       <FAQHome />
 
-      {/* SECTION 9: Request Quote — Centralized quotation form */}
+      {/* SECTION 7: Certifications & Compliance */}
+      <HomeCertifications />
+
+      {/* SECTION 8: Request Quote — Centralized quotation form */}
       <RequestQuoteSection />
 
       {/*

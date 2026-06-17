@@ -127,7 +127,7 @@ export default function Hero() {
     <section
       id="home"
       aria-label="Hero — Premium Coconut Export Solutions"
-      className="relative min-h-[100dvh] min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1A12]"
+      className="relative h-[95dvh] h-[95vh] min-h-[95dvh] min-h-[95vh] max-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0C1A12]"
     >
       {/* ═══════════════════════════════════════════════════════════════
          BACKGROUND: layered depth
@@ -166,7 +166,7 @@ export default function Hero() {
          MAIN CONTENT
          ═══════════════════════════════════════════════════════════════ */}
       <div className="relative z-10 w-full flex items-center">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-28 md:py-0">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full py-16 md:py-0">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
             {/* ═══ LEFT: Content — 3/5 cols (60%) ═══════════════════ */}
             <motion.div
